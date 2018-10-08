@@ -1,0 +1,23 @@
+{{ if isset .Site.Params "about" }}
+{{ if .Site.Params.about.enable }}
+<!-- Photo by Joey Kyber on Unsplash (https://unsplash.com/photos/45FJgZMXCK8) -->
+<section class="bar background-image-fixed-2 no-mb color-white text-center">
+    <div class="dark-mask"></div>
+    <div class="container">
+        <div class="col-md-12">
+            {{range where .Site.Pages "Type" "=" "about"}} 
+            <div class="heading text-center">
+                <h2>{{ .Title }}</h2>
+            </div>
+            <p class="lead">{{ .Summary }}</p>
+            <p class="read-more">
+                <a href="{{ .Permalink }}" class="btn btn-template-main">{{ i18n "continueReading" }}</a>
+            </p>
+			{{ end }}
+        </div>
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /.bar -->
+{{ end }}
+{{ end }}
