@@ -1,0 +1,48 @@
+/* navbar */
+/* PK: min-height = logo height + 20px */ 
+.navbar {
+  min-height: 100px;
+}
+/* PK: height = logo height + 20px */ 
+.navbar-brand {
+  height: 100px;
+}
+/* cd-fixed-bg */
+.cd-fixed-bg {  
+  min-height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.cd-fixed-bg.cd-fixed-bg--2 {
+  background-image: url("../img/fixed-background-2.jpg");
+}
+
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+#all {
+  min-height:100%;
+  position:relative;
+}
+#content {
+  padding:10px;
+  padding-bottom:252px;   /* Height of the footer */
+}
+#bottom {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:235px;   /* Height of the footer */
+  background:#6cf;
+}
+
+.footer-img {
+  margin-left:15px;
+  margin-right:15px;
+}
