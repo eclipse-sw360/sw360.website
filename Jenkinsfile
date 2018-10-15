@@ -36,9 +36,13 @@ spec:
       steps {
         dir('www') {
             git branch: '$env.BRANCH_NAME',
-                url: 'ssh://genie.${PROJECT_NAME}@git.eclipse.org:29418/www.eclipse.org/${PROJECT_NAME}.git',
+                url: 'ssh://genie.sw360@git.eclipse.org:29418/www.eclipse.org/sw360.git',
                 credentialsId: 'git.eclipse.org-bot-ssh'
         }
+        dir('hugo') {
+                    git branch: 'master',
+                        url: 'https://github.com/eclipse/sw360.website.git'
+                }
       }
     }
     stage('Build website with Hugo') {
