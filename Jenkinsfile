@@ -36,7 +36,7 @@ spec:
       steps {
         dir('www') {
             git branch: '$env.BRANCH_NAME',
-                url: 'ssh://genie.sw360@git.eclipse.org:29418/www.eclipse.org/sw360.git',
+                url: 'ssh://genie@git.eclipse.org:29418/www.eclipse.org/sw360.git',
                 credentialsId: 'git.eclipse.org-bot-ssh'
         }
         dir('hugo') {
