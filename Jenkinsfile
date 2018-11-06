@@ -54,7 +54,7 @@ spec:
       steps {
         sh 'cp -Rvf hugo/public/* www/'
         dir('www') {
-            sshagent(['git.eclipse.org-bot-ssh']) {
+            sshagent(['b0848941-4b29-491c-9886-f5a0009202b9']) {
                 sh '''
                 git add -A
                 if ! git diff --cached --exit-code; then
