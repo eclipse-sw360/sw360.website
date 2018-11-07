@@ -36,7 +36,7 @@ spec:
       steps {
         dir('www') {
             git branch: '$env.BRANCH_NAME',
-                url: 'ssh://genie.${PROJECT_NAME}@git.eclipse.org:29418/www.eclipse.org/${PROJECT_NAME}.git',
+                url: 'ssh://genie.sw360@git.eclipse.org:29418/www.eclipse.org/sw360.git',
                 credentialsId: 'git.eclipse.org-bot-ssh'
         }
       }
@@ -45,7 +45,7 @@ spec:
       steps {
         container('hugo') {
             dir('hugo') {
-                sh 'hugo -b https://www.eclipse.org/${PROJECT_NAME}/'
+                sh 'hugo -b https://www.eclipse.org/sw360/'
             }
         }
       }
@@ -58,9 +58,9 @@ spec:
                 sh '''
                 git add -A
                 if ! git diff --cached --exit-code; then
-                  echo "Changes have been detected, publishing to repo 'www.eclipse.org/${PROJECT_NAME}'"
-                  git config --global user.email "${PROJECT_NAME}-bot@eclipse.org"
-                  git config --global user.name "${PROJECT_BOT_NAME}"
+                  echo "Changes have been detected, publishing to repo 'www.eclipse.org/sw360'"
+                  git config --global user.email "sw360-bot@eclipse.org"
+                  git config --global user.name "SW360 Bot"
                   git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
                   git log --graph --abbrev-commit --date=relative -n 5
                   git push origin HEAD:$env.BRANCH_NAME
