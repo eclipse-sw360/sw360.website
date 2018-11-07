@@ -42,7 +42,7 @@ if ! grep -q "^git.eclipse.org" ~/.ssh/known_hosts; then
 fi
 '''
                 dir('www') {
-                    git branch: "master",
+                    git branch: "${env.BRANCH_NAME}",
                         url: "ssh://genie.${PROJECT_NAME}@git.eclipse.org:29418/www.eclipse.org/${PROJECT_NAME}.git",
                         credentialsId: 'b0848941-4b29-491c-9886-f5a0009202b9'
                 }
