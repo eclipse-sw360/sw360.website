@@ -37,8 +37,8 @@ spec:
         dir('www') {
           sshagent(['b0848941-4b29-491c-9886-f5a0009202b9']) {
             git branch: '$env.BRANCH_NAME',
-                url: 'ssh://genie.sw360@git.eclipse.org:29418/www.eclipse.org/sw360.git',
-                credentialsId: 'git.eclipse.org-bot-ssh'
+            url: 'ssh://genie.sw360@git.eclipse.org/gitroot/www.eclipse.org/sw360.git',
+            credentialsId: 'git.eclipse.org-bot-ssh'
           }
         }
       }
