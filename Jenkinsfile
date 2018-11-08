@@ -25,6 +25,7 @@ spec:
     environment {
         PROJECT_NAME = "sw360" // must be all lowercase.
         PROJECT_BOT_NAME = "SW360 Bot" // Capitalize the name
+        BRANCH_NAME = "master"
     }
 
     options {
@@ -42,7 +43,7 @@ if ! grep -q "^git.eclipse.org" ~/.ssh/known_hosts; then
 fi
 '''
                 dir('www') {
-                    git branch: "${env.BRANCH_NAME}",
+                    git branch: "${BRANCH_NAME}",
                         url: "ssh://genie.${PROJECT_NAME}@git.eclipse.org:29418/www.eclipse.org/${PROJECT_NAME}.git",
                         credentialsId: 'b0848941-4b29-491c-9886-f5a0009202b9'
                 }
@@ -60,9 +61,6 @@ fi
         stage('Push www') {
             steps {
                 sh '''
-ls -alF www/
-# rm -r www/*
-# ls -alF www/
 cp -Rvf hugo/public/* www/
 git config --global user.email "sw360-bot@eclipse.org"
 git config --global user.name "SW360 Bot"
@@ -70,15 +68,18 @@ git config --global user.name "SW360 Bot"
                 dir('www') {
                     sshagent(['b0848941-4b29-491c-9886-f5a0009202b9']) {
                         sh """
+echo "handling for branch: ${BRANCH_NAME}"
 git add -A
 if ! git diff --cached --exit-code; then
   echo "Changes have been detected, publishing to repo 'www.eclipse.org/sw360'"
   git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
-  git log --graph --abbrev-commit --date=relative -n 5
-  git push origin HEAD:${env.BRANCH_NAME}
 else
   echo "No change have been detected since last build, nothing to publish"
 fi
+
+git log --graph --abbrev-commit --date=relative -n 5
+git push origin HEAD:${BRANCH_NAME} ||
+  echo "failed to push to ${BRANCH_NAME}"
 """
                     }
                 }
