@@ -70,7 +70,7 @@ if ! git diff --cached --exit-code; then
   git config --global user.name "SW360 Bot"
   git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
   git log --graph --abbrev-commit --date=relative -n 5
-  git push origin HEAD:master
+  git push origin HEAD:${env.BRANCH_NAME}
 else
   echo "No change have been detected since last build, nothing to publish"
 fi
