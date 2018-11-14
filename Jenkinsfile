@@ -61,14 +61,16 @@ fi
         stage('Push www') {
             steps {
                 sh '''
+echo "copy and update files"
+rm -rf www/* || ls -alF www/
 cp -Rvf hugo/public/* www/
-git config --global user.email "sw360-bot@eclipse.org"
-git config --global user.name "SW360 Bot"
 '''
                 dir('www') {
                     sshagent(['b0848941-4b29-491c-9886-f5a0009202b9']) {
                         sh """
-echo "handling for branch: ${BRANCH_NAME}"
+echo "handling git for branch: ${BRANCH_NAME}"
+git config --global user.email "sw360-bot@eclipse.org"
+git config --global user.name "SW360 Bot"
 git add -A
 if ! git diff --cached --exit-code; then
   echo "Changes have been detected, publishing to repo 'www.eclipse.org/sw360'"
