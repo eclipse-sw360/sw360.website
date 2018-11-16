@@ -25,4 +25,4 @@ For example, SW360 can trigger a clearing process in the open source compliance 
 
 ### Further Information
 
-You can find more detailed information on the project [wiki](https://github.com/sw360/sw360portal/wiki).
+You can find more detailed information on the project [wiki](https://github.com/eclipse/sw360/wiki).
