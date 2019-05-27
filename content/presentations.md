@@ -23,5 +23,6 @@ draft: false
 
 ## 2016
 * **Bitkom AK Open Source**: "SW360 – Your Open Component Hub" (Johannes Kristan, Bosch Software Innovations GmbH & Michael C. Jaeger, Siemens AG)
+* **[JAXenter](https://jaxenter.de/eclipse-sw360-44641)**: "Neu im Eclipse-Universum: SW360 – das Katalogisierungsprogramm für Software-Komponenten" (Dominik Mohilo, JAXenter)
 * **[EclipseCon Europe 2016](http://wiki.eclipse.org/Eclipse_Unconference_Europe_2016#Open_Source_Component_Management)**: "Open Source Component Management -- Unconference Session" (Johannes Kristan, Bosch Software Innovations GmbH & Michael C. Jaeger, Siemens AG)
 * **[Linux Foundation Collab Summit 2016](https://collabsummit2016.sched.com/event/6YQh/sw360-a-place-like-home-for-oss-michael-jaeger-siemens-maximilian-huber-tng-technology-consulting)**: "SW360: A Place like Home for OSS" (Michael C. Jaeger, Siemens AG)
