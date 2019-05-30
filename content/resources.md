@@ -10,7 +10,7 @@ draft: false
 * Eclipse SW360antenna: https://github.com/eclipse/antenna
 * Eclipse SW360 Website: https://github.com/eclipse/sw360.website
 
-### More SW360-Related Projects on Guthub
+### More SW360-Related Projects on Github
 
 * sw360chores, a docker-compose-based deployment environment: https://github.com/sw360/sw360chores
 * sw360vagrant, deploying sw360 using puppet and vagrant: https://github.com/sw360/sw360vagrant

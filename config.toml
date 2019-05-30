@@ -30,9 +30,14 @@ paginate = 10
     url  = "/about/"
     weight = 15
 
+# [[menu.main]]
+#    name = "Blog"
+#    url  = "/blog/"
+#    weight = 20
+
 [[menu.main]]
-    name = "Blog"
-    url  = "/blog/"
+    name = "Screenshots"
+    url  = "/screenshots/"
     weight = 20
 
 [[menu.main]]
@@ -121,8 +126,9 @@ paginate = 10
    # latitude = "-12.043333"
    # longitude = "-77.028333"
 
-[Permalinks]
-    blog = "/blog/:year/:month/:day/:filename/"
+# mcj deactived blog temporary
+#[Permalinks]
+#    blog = "/blog/:year/:month/:day/:filename/"
 
 # Enable or disable top bar with social icons
 [params.topbar]
