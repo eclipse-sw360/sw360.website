@@ -18,6 +18,10 @@ spec:
       command:
       - cat
       tty: true
+    - name: "jnlp"
+      env:
+      - name: "HOME"
+        value: "/home/jenkins/agent"
 """
         }
     }
@@ -45,7 +49,7 @@ fi
                 dir('www') {
                     git branch: "${BRANCH_NAME}",
                         url: "ssh://genie.${PROJECT_NAME}@git.eclipse.org:29418/www.eclipse.org/${PROJECT_NAME}.git",
-                        credentialsId: 'b0848941-4b29-491c-9886-f5a0009202b9'
+                        credentialsId: 'git.eclipse.org-bot-ssh'
                 }
             }
         }
@@ -66,7 +70,7 @@ rm -rf www/* || ls -alF www/
 cp -Rvf hugo/public/* www/
 '''
                 dir('www') {
-                    sshagent(['b0848941-4b29-491c-9886-f5a0009202b9']) {
+                    sshagent(['git.eclipse.org-bot-ssh']) {
                         sh """
 echo "handling git for branch: ${BRANCH_NAME}"
 git config --global user.email "sw360-bot@eclipse.org"
