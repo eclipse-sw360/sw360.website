@@ -14,7 +14,7 @@ metadata:
 spec:
   containers:
     - name: hugo
-      image: eclipsecbi/hugo:0.42.1
+      image: klakegg/hugo:0.93.2-ext-ubuntu
       command:
       - cat
       tty: true

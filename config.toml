@@ -1,169 +1,157 @@
-baseurl = "http://localhost/sw360/"
-#baseurl = "http://localhost/"
-#baseurl = ""
+baseurl = "sw360/"
 title = "Eclipse SW360"
-theme = "hugo-universal-theme"
-#themesDir = "../.."
-languageCode = "en-us"
-# Site language. Available translations in the theme's `/i18n` directory.
+
+theme = ["docsy"]
+
+# Language settings
+contentDir = "content/en"
 defaultContentLanguage = "en"
-# Enable comments by entering your Disqus shortname
-# disqusShortname = "devcows"
-# Enable Google Analytics by entering your tracking code
-# googleAnalytics = "UA-XXXXX-X"
-googleAnalytics = ""
+defaultContentLanguageInSubdir = false
+# Useful when translating.
+enableMissingTranslationPlaceholders = true
 
-# Define the number of posts per page
-paginate = 10
+enableRobotsTXT = true
 
-[menu]
+# Will give values to .Lastmod etc.
+enableGitInfo = true
 
-# Main menu
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
-[[menu.main]]
-    name = "Home"
-    url  = "/"
-    weight = 10
+# Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+#pygmentsOptions = "linenos=table"
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "tango"
 
-[[menu.main]]
-    name = "About"
-    url  = "/about/"
-    weight = 15
+# Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
 
-# [[menu.main]]
-#    name = "Blog"
-#    url  = "/blog/"
-#    weight = 20
 
-[[menu.main]]
-    name = "Screenshots"
-    url  = "/screenshots/"
-    weight = 20
+[languages]
+[languages.en]
+title = "Eclipse SW360"
+description = "Eclipse SW360 official website"
+languageName ="English"
+# Weight used for sorting.
+weight = 1
 
-[[menu.main]]
-    name = "Presentations"
-    url  = "/presentations/"
-    weight = 30
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+    style = "tango"
+    # Uncomment if you want your chosen highlight style used for code blocks without a specified language
+    guessSyntax = "true"
 
-[[menu.main]]
-    name = "Resources"
-    url  = "/resources/"
-    weight = 40
-
-#[[menu.main]]
-#    name = "Events"
-#    url  = "/calendar/"
-#    weight = 50
-
-# Top bar social links menu
-
-[[menu.topbar]]
-    weight = 1
-    name = "GitHub"
-    url = "https://github.com/eclipse/sw360"
-    pre = "<i class='fa fa-2x fa-github'></i>"
-
-#[[menu.topbar]]
-#    weight = 2
-#    name = "Facebook"
-#    url = "http://facebook.com"
-#    pre = "<i class='fa fa-2x fa-facebook'></i>"
-
-#[[menu.topbar]]
-#    weight = 3
-#    name = "Twitter"
-#    url = "http://twitter.com/"
-#    pre = "<i class='fa fa-2x fa-twitter'></i>"
-
-[[menu.topbar]]
-    weight = 4
-    name = "Email"
-    url = "mailto:sw360-dev@eclipse.org"
-    pre = "<i class='fa fa-2x fa-envelope'></i>"
+[outputs]
+section = ["HTML", "RSS"]
 
 [params]
-    viewMorePostLink = "/blog/"
-    author = "Admin"
-    defaultKeywords = ["sw360", "foss", "eclipse", "open source"]
-    defaultDescription = "Eclipse SW360 community website"
+copyright = "The Eclipse Foundation"
+privacy_policy = "https://policies.google.com/privacy"
 
-    # Google Maps API key (if not set will default to not passing a key.)
-    #googleMapsApiKey = "AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y"
+# Menu title if your navbar has a versions selector to access old versions of your site.
+# This menu appears only if you have at least one [params.versions] set.
+version_menu = "Releases"
 
-    # Style options: default (light-blue), blue, green, marsala, pink, red, turquoise, violet
-    style = "turquoise"
+# The version number for the version of the docs represented in this doc set.
+# Used in the "version-banner" partial to display a version number for the 
+# current doc set.
+version = "0.2"
 
-    # Since this template is static, the contact form uses www.formspree.io as a
-    # proxy. The form makes a POST request to their servers to send the actual
-    # email. Visitors can send up to a 1000 emails each month for free.
-    #
-    # What you need to do for the setup?
-    #
-    # - set your email address under 'email' below
-    # - upload the generated site to your server
-    # - send a dummy email yourself to confirm your account
-    # - click the confirm link in the email from www.formspree.io
-    # - you're done. Happy mailing!
-    #
-    # Enable the contact form by entering your Formspree.io email
-    email = ""
+# Repository configuration (URLs for in-page links to opening issues and suggesting changes)
+github_repo = "https://github.com/eclipse/sw360.website"
+# An optional link to a related project repo. For example, the sibling repository where your product code lives.
+github_project_repo = "https://github.com/eclipse/sw360"
 
-    #copyright = "Copyright © 2018 The Eclipse Foundation. All Rights Reserved."
 
-    # Format dates with Go's time formatting
-    date_format = "January 2, 2006"
+# Uncomment this if your GitHub repo does not have "main" as the default branch,
+# or specify a new value if you want to reference another branch in your GitHub links
+github_branch= "master"
 
-    logo = "img/sw360-h-209x79.png"
-   #address = """<p><strong>Universal Ltd.</strong>
-   #     <br>13/25 New Avenue
-   #     <br>Newtown upon River
-   #     <br>45Y 73J
-   #     <br>England
-   #     <br>
-   #     <strong>Great Britain</strong>
-   #   </p>
-   #   """
-   # latitude = "-12.043333"
-   # longitude = "-77.028333"
+# Enable Algolia DocSearch
+algolia_docsearch = true
 
-# mcj deactived blog temporary
-#[Permalinks]
-#    blog = "/blog/:year/:month/:day/:filename/"
+# -----------------------------------
+# User interface configuration
 
-# Enable or disable top bar with social icons
-[params.topbar]
-    enable = true
-    text = """<p class="hidden-sm hidden-xs">Contact us on <a href="mailto:sw360-dev@eclipse.org">sw360-dev@eclipse.org</a></p>
-      <p class="hidden-md hidden-lg"><a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
-      <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-      </p>
-      """
+[params.ui]
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+# Set to true to disable the About link in the site footer
+footer_about_disable = false
+# Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
+navbar_logo = true
+# Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
+navbar_translucent_over_cover_disable = false
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = false
+# Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = false
 
-# Enable and disable widgets for the right sidebar
-[params.widgets]
-    categories = true
-    tags = true
-    search = true
+# Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
+# This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
+# If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
+# add "hide_feedback: true" to the page's front matter.
+[params.ui.feedback]
+enable = false
 
-[params.carousel]
-    enable = true
-    # All carousel items are defined in their own files. You can find example items
-    # at 'exampleSite/data/carousel'.
-    # For more informtion take a look at the README.
+# Adds a reading time to the top of each doc.
+# If you want this feature, but occasionally need to remove the Reading time from a single page, 
+# add "hide_readingtime: true" to the page's front matter
+[params.ui.readingtime]
+enable = false
 
-[params.clients]
-    enable = false
-    # All clients are defined in their own files. You can find example items
-    # at 'exampleSite/data/clients'.
-    # For more informtion take a look at the README.
-    title = "Our Partners"
-    subtitle = ""
+[params.links]
+# End user relevant links. These will show up on left side of footer and in the community page if you have one.
 
-[params.recent_posts]
-    enable = true
-    title = "Our latest news"
-    subtitle = ""
+[[params.links.user]]
+  name = "User mailing list"
+  url = "mailto:sw360-dev@eclipse.org"
+  icon = "fa fa-envelope"
+  desc = "Discussion and help from your fellow users"
+# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+
+[[params.links.developer]]
+  name = "GitHub"
+  url = "https://github.com/eclipse/sw360"
+  icon = "fab fa-github"
+  desc = "Development takes place here!"
+
+[[params.links.developer]]
+  name = "Slack"
+  url = "https://sw360chat.slack.com"
+  icon = "fab fa-slack"
+  desc = "Chat with other project developers"
+
+[[params.links.developer]]
+  name = "Developer mailing list"
+  url = "mailto:sw360-dev@eclipse.org"
+  icon = "fa fa-envelope"
+  desc = "Discuss development issues around the project"
 
 [params.about]
     enable = true
     title = "About"
+
+[module]
+  # uncomment line below for temporary local development of module
+  # replacements = "github.com/google/docsy -> ../../docsy"
+  [module.hugoVersion]
+    extended = true
+    min = "0.75.0"
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false
+  [[module.imports]]
+    path = "github.com/google/docsy/dependencies"
+    disable = false  
+

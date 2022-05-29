@@ -1,0 +1,112 @@
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: $text_primary;
+}
+
+a {
+  font-weight: 600;
+  color: $primary;
+  text-shadow: none;
+}
+
+footer {
+  min-height: auto;
+  img {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  background: $primary;
+  color: #999999;
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+
+    a {
+      color: #999999;
+      &:hover {
+        color: #5d8ea9;
+        text-decoration: none;
+      }
+    }
+  }
+
+  
+  h4 {
+    color: #eeeeee;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  li {
+    text-align: -webkit-match-parent;
+  }
+}
+
+.display-1 {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px black;
+}
+
+.display-2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px black;
+}
+
+.display-3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+}
+
+// Customize simple About in front page
+
+.about {
+  font-size: 1.5rem;
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  li {
+    text-align: -webkit-match-parent;
+  }
+}
+
+// Remove editing from Documentation right ::backdrop
+.td-page-meta--edit {
+  display: none !important;
+}
+.td-page-meta--child {
+  display: none !important;
+}
+.td-page-meta--print {
+  display: none !important;
+}
+.td-page-meta--project-issue {
+  display: none !important;
+}
+
+// Card customizations
+.card {
+  .card-header {
+    background-color: $primary;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 1px 1px 2px black;
+  }
+  .card-text {
+    color: black;
+    text-align: justify;
+  }
+}
