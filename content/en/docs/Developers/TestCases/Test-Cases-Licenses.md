@@ -1,4 +1,10 @@
-**TC01: Create, edit and delete license**
+---
+title: "Licenses"
+linkTitle: "Licenses"
+weight: 10
+---
+
+## Create, edit and delete license
 
 Step | Action | Result
 ---:|:-----|:----
@@ -13,7 +19,7 @@ Step | Action | Result
 9 | Click on _Edit License Details and Text_ | License page is displayed
 10 | Click o _Delete_ license name | _License removed successfully!_ message is displayed
 
-**TC02: Edit license TODOs and Obligations**
+## Edit license TODOs and Obligations
 
 Step | Action | Result
 ---:|:-----|:----
@@ -27,7 +33,7 @@ Step | Action | Result
 8 | Click TODOs and Obligations | The previously entered Todo is listed on the page together with chosen obligations
 9 | Click on _Edit WhiteList_, deselect first Todo and click _Submit_ | The deselected Todo is not displayed anymore on _TODOs and Obligations_ page
 
-**TC03: Check Export Licenses**
+## Check Export Licenses
 
 Step | Action | Result
 ---:|:-----|:----

@@ -1,4 +1,10 @@
-**TC01: Add a component and release with vendor present**
+---
+title: "Component / Release"
+linkTitle: "Component / Release"
+weight: 10
+---
+
+## Add a component and release with vendor present
 
 Step | Action | Result
 ---:|:-----|:----
@@ -19,14 +25,14 @@ Step | Action | Result
 15 | Click _Update Release_ | _Release updated successfully!_ message is displayed
 16 | Click on _Components_ tab | The new component should be added to the components list (e.g. filter by _Keyword Search_)
 
-**TC02: Modify a component and release with vendor present**
+## Modify a component and release with vendor present
 
 Step | Action | Result
 ---:|:-----|:----
 1 | Search for an existing component (e.g. created in TC01) and click _Edit_ | _You are editing the original document_ message is displayed  
 2 | Execute steps 5-16 from TC01
 
-**TC03: Add and modify a component and release with all fields filled in**
+## Add and modify a component and release with all fields filled in
 
 Step | Action | Result
 ---:|:-----|:----
@@ -47,7 +53,7 @@ Step | Action | Result
 15 | Check all fields of the release under _Summary_, _Linked Releases_, _Clearing Details_ and _Attachments_ | Values are filled in correctly
 16 | Click _Edit_ button, modify some fields and _Update Release_ | Values are updated successfully
 
-**TC04: Delete a component that is first linked to a project and then not, and a project**
+## Delete a component that is first linked to a project and then not, and a project
 
 Step | Action | Result
 ---:|:-----|:----
@@ -61,7 +67,7 @@ Step | Action | Result
 8 | Go to components, delete the newly created components (not linked anymore to a project) | Message _Do you want to delete component?_ is displayed
 9 | Click _OK_ | Component is deleted successfully
 
-**TC05: Add new attachments to an existing release and delete attachments**
+## Add new attachments to an existing release and delete attachments
 
 Step | Action | Result
 ---:|:-----|:----
@@ -81,7 +87,7 @@ Step | Action | Result
 14 | Click _OK_ | Attachment is deleted successfully
 15 | Click _Update Release_ | _Release updated successfully!_ message is displayed
 
-**TC06: Duplicate an existing release**
+## Duplicate an existing release
 
 Step | Action | Result
 ---:|:-----|:----
@@ -94,7 +100,7 @@ Step | Action | Result
 7 | Click on component name link on top of the page | Summary page for the component is displayed
 8 | Click on _Release Overview | The new copied release is listed among previous releases
 
-**TC07: Search for and create a new vendor for a new release**
+## Search for and create a new vendor for a new release
 
 Step | Action | Result
 ---:|:-----|:----

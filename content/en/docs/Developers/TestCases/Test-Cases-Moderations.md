@@ -1,4 +1,10 @@
-**TC01: Accept moderation request, for visible projects by other users**
+---
+title: "Moderation"
+linkTitle: "Moderation"
+weight: 10
+---
+
+## Accept moderation request, for visible projects by other users
 
 Step | Action | Result
 ---:|:-----|:----
@@ -20,7 +26,7 @@ Step | Action | Result
 16 | Open the _Projects_ tab and click on previously modified project on step 7 | Project _Summary_ page displayed successfully
 17 | Check the moderation requested changes | Changes are visible in the corresponding fields
 
-**TC02: Decline moderation request, for visible projects by other users**
+## Decline moderation request, for visible projects by other users
 
 Step | Action | Result
 ---:|:-----|:----
@@ -32,7 +38,7 @@ Step | Action | Result
 16 | Open the _Projects_ tab and click on previously modified project on step 7 | Project _Summary_ page displayed successfully
 17 | Check the moderation requested changes | Changes are not visible in the corresponding fields
 
-**TC03: Remove Me from Moderators for moderation request, for visible projects by other users**
+## Remove Me from Moderators for moderation request, for visible projects by other users
 
 Step | Action | Result
 ---:|:-----|:----
