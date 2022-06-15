@@ -1,8 +1,10 @@
+---
+linkTitle: "Search"
+title: "Search"
+description: "SW360 General Search"
+weight: 100
+---
 
-This page shows the user which option he has to search in sw360. It can give orientation how the search in sw360 - as guidance or orientation. 
-
-## General Search
- 
 ![general-search](https://github.com/eclipse/sw360/wiki/images/general-search.png)
 
 The user can use the general Search. He can find that under Search at the navigation bar. There he can choose, for what elements (Projects, Components, Releases, Licences, Users, Vendors) he wants to search. Therefore he toogle the elements which should be included in the search.  

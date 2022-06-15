@@ -1,3 +1,11 @@
+---
+title: "Workflows"
+linkTitle: "Workflows"
+weight: 10
+oem_ignore: true
+description: "SW360 User Workflows"
+---
+
 This page is one of the basic user workflow documentation pages. It can give orientation how the sw360 can be used - as guidance or orientation. There is no particular need to follow these workflows, it is just one way. Workflows are shown as flow charts.
 
 ### Create Component and Release

@@ -1,10 +1,12 @@
-# Enumerations
+---
+linkTitle: "Enumerations"
+title: "Enumerations"
+description: "SW360 enumeration values for the internal thrift API"
+weight: 100
+---
 
-This page explains all enumeration values for the internal thrift API for the thrift files as found in:
 
-https://github.com/eclipse/sw360/tree/master/libraries/lib-datahandler/src/main/thrift
-
-Which is comprised of the following methods:
+SW360 thrift API is comprised of the following methods:
 
 * attachments 
 * codescoop 
@@ -24,6 +26,7 @@ Which is comprised of the following methods:
 * vendors 
 * vulnerabilities 
 
+Reference: https://github.com/eclipse/sw360/tree/master/libraries/lib-datahandler/src/main/thrift
 
 ## Attachments
 
