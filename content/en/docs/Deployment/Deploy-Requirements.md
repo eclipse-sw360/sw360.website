@@ -1,3 +1,11 @@
+---
+linkTitle: "System Requirements"
+title: "System Requirements"
+weight: 100
+description: 
+  SW360 minimal system requirements based on system class
+---
+
 For deploying the SW360, there are the following hardware requirements below. Please note that the main memory consumer is the tomcat application container. Accordingly, this requires different settings (see `$TOMCAT_HOME/bin/setenv.sh`).
 
 Please note that you can review the current memory situation of the application in the liferay administration section as well (see `Configuration`-> `Server Administration`).

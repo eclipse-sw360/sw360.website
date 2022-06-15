@@ -1,3 +1,11 @@
+---
+linkTitle: "Ubuntu 18.04 and Java 11"
+title: "Ubuntu 18.04 LTS, Java 11"
+weight: 100
+description: 
+  Bare metal deployment with Ubuntu 18.04 LTS and Java 11
+---
+
 ## Introduction
 
 We are covering the update for ubuntu 18.04 LTS here, because that is our main / agreed base system for running sw360. sw360 may run on a varienty of other linux distributions or OSes such as macosx, but in order to avoid problem we agreed on having a reference OS, which are the ubuntu long term releases. The author of this guide also uses macosx and homebrew which also works fairly well.

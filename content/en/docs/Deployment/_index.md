@@ -3,5 +3,5 @@ title: "Deployment"
 linkTitle: "Deployment"
 weight: 20
 oem_ignore: true
-description: >
+description: SW360 Deployment Guides
 ---

@@ -1,4 +1,12 @@
-sw360 provides a feature for showing country codes and country names.
+---
+linkTitle: "Configuring Country Codes"
+title: "Configuring Country Codes"
+weight: 100
+description: 
+  SW360 provides a feature for showing country codes and country names
+---
+
+This feature is available on:
 - projects / Owner Country
 - components / Owner Country
 

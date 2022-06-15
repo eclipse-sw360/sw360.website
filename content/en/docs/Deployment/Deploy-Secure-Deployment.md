@@ -1,3 +1,11 @@
+---
+linkTitle: "Security"
+title: "Security"
+weight: 100
+description: 
+  SW360 security checklist pre and post deployment
+---
+
 After the basic installation, there are some following steps that should be considered for securing the deployment. The main issue that can be done upfront is the documentation of the involved components:
 
 * Lifearay

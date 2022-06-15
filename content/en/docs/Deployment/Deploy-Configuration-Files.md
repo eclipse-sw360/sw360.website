@@ -1,6 +1,13 @@
-### Introduction
+---
+linkTitle: "Configurable Property Keys"
+title: "Configurable Property Keys"
+weight: 100
+description: 
+  SW360 Configurable property keys
+---
 
-This wiki page shows all SW360 configurable property keys!
+
+### Introduction
 
 List of all applicable property files in sw360:
 - sw360.properties

@@ -1,3 +1,12 @@
+---
+linkTitle: "Liferay 7.3 and Java 11"
+title: "Liferay 7.3 and Java 11"
+weight: 100
+description: 
+  Upgrading previous sw360 instances to Liferay 7.3.x and Java 11
+---
+
+
 ## Introduction
 
 We are covering the update for ubuntu here, because that is our main / agreed base system for running sw360. sw360 may run on a varienty of other linux distributions or OSes such as macosx, but in order to avoid problem we agreed on having a reference OS, which are the ubuntu long term releases.
