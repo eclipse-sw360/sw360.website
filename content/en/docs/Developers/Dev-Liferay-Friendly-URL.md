@@ -1,4 +1,9 @@
-### Introduction
+---
+title: "Liferay Friendly"
+linkTitle: "Liferay Friendly"
+weight: 10
+description: "Basis of communication between SW360 and FOSSology"
+---
 
 The normal generated portlet URLs containing a set of internal Liferay request parameters. <br>
 These long URLs of links or forms are mostly not readable and its not easy to share it somewhere else.
@@ -24,7 +29,7 @@ How to configure the friendly URL Mapper in Liferay? <br> <br>
 **Configuration of URL routes in XML files** <br>
 
 _CREATE example-friendly-url-routes.xml_ <br>
-```
+```Xml
 <?xml version="1.0"?>
 <!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.2.2//EN"
 "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
@@ -57,7 +62,7 @@ These files should located in the resources folder otherwise they will not be av
 <br>
 _MODIFY liferay-portlet.xml_
 <br>
-```
+```Xml
 <friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 <friendly-url-mapping>example</friendly-url-mapping>
 <friendly-url-routes>com/.../example-friendly-url-routes.xml</friendly-url-routes>
@@ -73,7 +78,7 @@ tag.
 ### Friendly URL Mapper outcome
 
 **Liferay will generate the following friendly URL** <br>
-```
+```Bash
 http://localhost:8080/web/guest/examples/-/example/action/new
 ```
 <br>

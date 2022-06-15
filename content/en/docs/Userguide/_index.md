@@ -2,6 +2,6 @@
 title: "User Guides"
 linkTitle: "User Guides"
 weight: 10
-oem_ignore: true
+icon: fas fa-users
 description: SW360 User Guides
 ---

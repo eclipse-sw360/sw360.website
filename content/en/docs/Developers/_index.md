@@ -2,6 +2,6 @@
 title: "Development"
 linkTitle: "Development"
 weight: 30
-oem_ignore: true
+icon: fab fa-github
 description: SW360 Development Information
 ---

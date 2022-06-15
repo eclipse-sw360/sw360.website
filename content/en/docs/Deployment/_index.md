@@ -2,6 +2,6 @@
 title: "Deployment"
 linkTitle: "Deployment"
 weight: 20
-oem_ignore: true
+icon: fas fa-tools
 description: SW360 Deployment Guides
 ---

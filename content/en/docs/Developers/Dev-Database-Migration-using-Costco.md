@@ -1,3 +1,9 @@
+---
+title: "Database migration using Costco"
+linkTitle: "Database Migration"
+weight: 10
+---
+
 ### Praeamble
 
 Please note that database migrations are done now in python scripts at
@@ -29,7 +35,7 @@ Note that costco does not allow to perform operations involving several document
 ### Troubleshooting
 
 If you try to install costco, you try to install couchapp mst likely. However, it might be that some python packages are missing which results in a 'not-so-obvious' python error during install of couchapp. The following line could be th dependencies that you might need:
-```
+```Bash
 sudo apt-get install python-dev libxml2-dev libxslt-dev
 ```
 
@@ -37,7 +43,7 @@ sudo apt-get install python-dev libxml2-dev libxslt-dev
 
 OK, if you read until here, to make it easy for you just the few lines to have executed to install costco when youi have a machine that is deployed with our vagrant:
 
-```
+```Bash
 $ sudo apt-get install python-dev libxml2-dev libxslt-dev
 $ sudo pip install couchapp
 $ git clone http://github.com/harthur/costco.git
@@ -53,7 +59,7 @@ The following examples show some costco code from the use with sw360.
 
 In order to rename a field's key, the following code might be helpful. In the following example, the field's key ```developement``` into ```development``` (correcting a typo in the datamodel).
 
-```
+```JavaScript
 function(doc) {
    if(doc.type == 'todo') {
      doc.development = doc.developement;
@@ -67,7 +73,7 @@ function(doc) {
 
 Similar thing as above, rename a key from ```comment``` to ```createdcomment```, but this time inside a nested list of documents.
 
-```
+```JavaScript
 function(doc) {
   if (doc.type == 'release') {
      for (var f = 0, len = doc.attachments.length; f < len; f +=1 ) {
@@ -85,7 +91,7 @@ In addition to costco, also the couchdb map-reduce functions can help to track d
 
 The following example searched for attachments of type `SOURCE` at releases, which do not have the `createdBy` set:
 
-```
+```JavaScript
 function(doc) { 
   if ((doc.type == 'release') 
        && (doc.attachments)) {
@@ -102,7 +108,7 @@ function(doc) {
 
 The following example looks into date fields, in this case `createdOn`, and checks if it uses dots (for changing them into dashes).
 
-```
+```JavaScript
 function(doc) {
   if(
       (doc.type == 'release')

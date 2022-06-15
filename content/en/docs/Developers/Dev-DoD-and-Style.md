@@ -1,4 +1,9 @@
-The definition of done helps to set a common understanding for solving a ticket.
+---
+title: "Definition of Done"
+linkTitle: "Definition of Done"
+weight: 10
+description: "The definition of done helps to set a common understanding for solving a ticket."
+---
 
 ### Policy
 
@@ -62,7 +67,7 @@ All files contributed require headers - this will ensure the license and copyrig
 
 If a file has relevant functionality, note that we should move to Eclipse 2.0
 
-```
+```Java
 /*
  * Copyright COPYRIGHT HOLDER, 2017.
  * Copyright NEXT COPYRIGHT HOLDER, 2017.
@@ -80,7 +85,7 @@ If a file has relevant functionality, note that we should move to Eclipse 2.0
 
 For small files such as property files, configuration files or standard XML files:
 
-```
+```Bash
 # Copyright <COPYRIGHT_HOLDER>, <YEAR>. Part of the SW360 Portal Project.
 #
 # All rights reserved. This configuration file is provided to you under the

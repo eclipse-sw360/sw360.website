@@ -1,4 +1,9 @@
-This page shall list small issues / tips when developing for sw360.
+---
+title: "Troubleshooting"
+linkTitle: "Troubleshooting"
+weight: 10
+description: "List of small issues / tips when developing for SW360"
+---
 
 ### Development: problems building sw360portal with maven?
 
@@ -74,7 +79,7 @@ sw360/src/libraries/lib-datahandler/src/main/java/com/siemens/sw360/datahandler/
 
 If the deployment via maven of the backend does fail with an error like this 
 
-```
+```Bash
 Uploading: http://localhost:8085/manager/text/deploy?path=%2Flicenses
 2302/17930 KB   
 Uploading: http://localhost:8085/manager/text/deploy?path=%2Flicenses
@@ -134,7 +139,7 @@ One solution is that you deployed already and the tomcat7 plugin does not like t
 
 If the virtual machine was shut down and started up again, the backend services and frontend liferay require manual restart. Please contribute a change in the vagrant deployment if you feel that this could be changed. The actual places to call are:
 
-```
+```Bash
 /opt/apache-tomcat-.../bin/.startup.sh
 /opt/liferay-.../tomcat-.../bin/.startup.sh
 ``` 

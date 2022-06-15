@@ -1,28 +1,34 @@
-# Motivation
+---
+title: "CouchDB External Documents"
+linkTitle: "CouchDB External Documents"
+weight: 10
+---
+
+## Motivation
 In some cases inline documents are not sufficient for storing extended information to a document. This is especially the case if these information might be relevant from outside as well.
 Projects, components and releases contain attachments. The metadata of these attachments are stored as inline documents inside its parent document (which is the project, component or release).
 However these attachments may be used by other documents as well, e.g. license info files which are attached to releases are used by projects to generate the overall license information for that project.
 In such cases an external document might be the better model. For example the attachment usage can be stored along the metadata without touching the owner document on update.
 
-# Advantages of external documents
+## Advantages of external documents
 * single documents with a clear separation to other documents
 * easy identification
 * might be loaded and updated standalone
 
-# Advantages of internal documents
+## Advantages of internal documents
 * Very fast loading along with the owner
 * Easy handling since only the owner must be loaded or updated
 
 In any case it is highly dependent on the use case whether external documents are to be favored over internal documents.
 
-# Possible implementations for linked documents
-## Special ResponseHandler with special views from CouchDB
+## Possible implementations for linked documents
+### Special ResponseHandler with special views from CouchDB
 
 | Easy to use? | Performance? | Effort to use in existing code |
 | ------------ | ------------ | ----------------------------- |
 | :star::star: Middle, special views have to be created, fields of data objects has to be annotated. | :star::star::star: Very good, fetching of multiple documents with a single request. | :star: High, since existing code has to be changed |
 
-### Couch-DB theory
+#### Couch-DB theory
 At the time of writing, support of external (or linked) documents in Couch-DB is limited. Consider the following documents:
 ```javascript
 project = {
@@ -133,7 +139,7 @@ However Ektorp has a linking feature as well: You may annotate fields with the `
 
 Internally Ektorp is also using special views for getting linked documents to work. A quick look into the source codes suggests that this feature is implemented using special serializers which would lead to additional requests on loading and storing as well. Therefore the same performance issues might be come across if the annotation would work.
 
-## Own serializer/deserzialer
+### Own serializer/deserzialer
 
 | Easy to use? | Performance? | Effort to use in existing code |
 | ------------ | ------------ | ----------------------------- |
@@ -147,8 +153,8 @@ The following classes are needed:
 1. A new mapper factory to properly configure the custom serializer
 1. Custom serializers/deserializer
 
-### Example for externalizing attachments
-#### Mixin-Class
+#### Example for externalizing attachments
+##### Mixin-Class
 This will configure Ektorp to use a special class for this field. We use a special serializer for the field instead of for the type (in this case Attachment), so we can do serialization/deserialization for all attachments at once. If we would use a special serializer, every 
 ```java
 public abstract class SplitAttachmentsMixin extends DatabaseMixIn {
@@ -158,7 +164,7 @@ public abstract class SplitAttachmentsMixin extends DatabaseMixIn {
 }
 ```
 
-#### Mapper factory
+##### Mapper factory
 ```java
 public class SplitAttachmentsMapperFactory extends MapperFactory {
 
@@ -200,7 +206,7 @@ public class SplitAttachmentsMapperFactory extends MapperFactory {
 }
 ```
 
-#### Serializer
+##### Serializer
 ```java
 public class AttachmentSetSerializer extends JsonSerializer<Set<Attachment>> {
 

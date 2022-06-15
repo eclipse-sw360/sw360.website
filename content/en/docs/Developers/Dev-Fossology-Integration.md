@@ -1,4 +1,9 @@
-## Basis of communication between SW360 and FOSSology
+---
+title: "Fossology Integration"
+linkTitle: "Fossology Integration"
+weight: 10
+description: "Basis of communication between SW360 and FOSSology"
+---
 
 Basic communication with the FOSSology server is done over an SSH connection: the fossology service of SW360 executes remote commands on the FOSSology server.
 

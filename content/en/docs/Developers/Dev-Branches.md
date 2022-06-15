@@ -1,6 +1,9 @@
-## SW360 Dev Branches
-- helps to see who is responsible and to which issue the Pull Request corresponds
-
+---
+title: "SW360 Development Branches"
+linkTitle: "Branches"
+weight: 10
+description: "Helps to see who is responsible and to which issue the Pull Request corresponds"
+---
 
 ## Branches structure
 `<github-nickname>/<issue>/<description>`

@@ -1,4 +1,10 @@
-# Behaviour testing
+---
+title: "Testing Frameworks"
+linkTitle: "Testing Frameworks"
+weight: 10
+description: "Behaviour testing"
+---
+
 The implementation of complicated rules is not always easy to read.
 A good way to document and explain the behaviour of rule engines are natural language tests.
 A frame work we use for that is [jgiven](http://jgiven.org/). 

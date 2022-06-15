@@ -1,4 +1,8 @@
-### How to add a portlet to sw360
+---
+title: "How to add a backend portlet to sw360"
+linkTitle: "Add backend portlet"
+weight: 10
+---
 
 This page how to add some operations / service calls on the backend for the portlet writing on the page that covers the front end. Note that this page does not create a new (thrift service), but just explains how to add more operations.
 
@@ -12,7 +16,7 @@ This explanation follows bottom up approach where we first add the backend metho
 #### Thrift
 
 First we add some methods to the thrift files, components.thrift
-```
+```java
 //new Methods to ensure uniqueness of Identifiers
 map <string, list<string>> getDuplicateComponents();
 map <string, list<string>> getDuplicateReleases();
@@ -23,7 +27,7 @@ map <string, list<string>> getDuplicateReleases();
 then we install lib-datahandler. That way we see which methods we have to implement.
 We have chosen to change the interface of the ComponentService. That means we need to implement them in the ComponentHandler.
 
-```
+```java
 @Override
 public Map<String, List<String>> getDuplicateComponents() throws TException {
     return handler.getDuplicateComponents();
@@ -42,7 +46,7 @@ In the ComponentHandler we only assert that the input is correct.
 Since we implement methods without parameters, there is nothing else for us to do.
 In the ComponentDatabaseHandler.java we actually do some work and implement the methods
 
-```    
+```java
 public Map<String, List<String>> getDuplicateComponents() {
     ListMultimap<String, String> componentIdentifierToComponentId = ArrayListMultimap.create();
 
@@ -67,7 +71,7 @@ public Map<String, List<String>> getDuplicateReleases() {
 
 We then write some tests in ComponentDatabaseHandlerTest.java
 
-```
+```java
 @Test
 public void testDuplicateComponentIsFound() throws Exception {
     String originalComponentId = "C3";

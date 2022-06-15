@@ -1,3 +1,9 @@
+---
+title: "Filtering in Portlets"
+linkTitle: "Filtering in Portlets"
+weight: 10
+---
+
 For the filters that are shown for components and listings, there are some options:
 
 1. The **Keyword search** works directly on the table shown on the main right area. For example in the components portlet, this is in components/view.jsp. 

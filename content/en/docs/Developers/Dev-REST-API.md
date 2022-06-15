@@ -1,3 +1,9 @@
+---
+title: "REST API"
+linkTitle: "REST API"
+weight: 10
+---
+
 The sw360 REST API provides access to sw360 resources for external clients. It consists currently of three Maven modules aggregated in one parent module `rest` in the sw360 distribution.
 
 # Module Structure
@@ -33,7 +39,7 @@ The following example shows some ideas of the REST API. It can be obtained by
 https://[hostname]:[port]/resource/api/browser/index.html#/resource/api
 ```
 Note that the response below is maybe not the exact same response of your current version:
-```
+```json
 {
   "_links": {
     "sw360:attachments": {
@@ -226,7 +232,7 @@ Probably the browser has to be used again because many SSO environments are base
 https://[hostname]:[port]/authorization/oauth/token?grant_type=password&client_id=[clientid]&client_secret=[clientsecret]
 ```
 Of course the client id and the client secret should be replaced by the values of the configured client. The received response should look similar to
-```
+```json
 {
   "access_token" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsiUkVBRCJdLCJleHAiOjE1NjM4MDYwNDQsImF1dGhvcml0aWVzIjpbIlJFQUQiXSwianRpIjoiZDY4ZWY1YWEtZTQ5My00Y2YxLWI2NGQtNWE5MTdkY2M2ZTYwIiwiY2xpZW50X2lkIjoiMTcyMmZmYzdkZWE3MTU3OGQ5ZWE1ZTZhNmMwMDA4NzMifQ.iO5sLrqRcZfzvMP5gjaJhk3caWyZLkUesdbMfqCGy4V5rbnU9QP1LjdybY0Udh8hvAvhlpqPfaxeKe1c3-gQs5MYlqG0lNQCyWcb7NRHj8VFlwLPuJRZJNk3tybvgITVm9r14pfAXogpVE0S4KihD2W1_SoKH4NzTa2vOEG0CK4VzCLetxUlUuePxZH8ugouqbS2d0SpyeeMTm-PzxzzeTb_4ulGpg63eE1v7GvTsI23uh2WfIgHBa1GRr5jWtE0Meq-5UFCVQkhMm8P-r8wO2iuRblCu6a-bWwy7bfdj3S2VDnqSQskE2dVrC_qMs-V2AGvCV1xvlF0P8A4tgwL-w",
   "token_type" : "bearer",
@@ -242,13 +248,13 @@ From this response the value of the `access_token` and probably `refresh_token` 
 
 With a Liferay backed authentication all REST clients that offer basic auth support can be used. For example `curl`:
 
-```
+```Bash
 curl -X POST --user '[clientid]:[clientsecret]' -d 'grant_type=password&username=[username]&password=[password]' https://[hostname]:[port]/authorization/oauth/token -k
 ```
 
 Example response:
 
-```
+```json
 {
   "access_token" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsiUkVBRCJdLCJleHAiOjE1NjM4MDYwNDQsImF1dGhvcml0aWVzIjpbIlJFQUQiXSwianRpIjoiZDY4ZWY1YWEtZTQ5My00Y2YxLWI2NGQtNWE5MTdkY2M2ZTYwIiwiY2xpZW50X2lkIjoiMTcyMmZmYzdkZWE3MTU3OGQ5ZWE1ZTZhNmMwMDA4NzMifQ.iO5sLrqRcZfzvMP5gjaJhk3caWyZLkUesdbMfqCGy4V5rbnU9QP1LjdybY0Udh8hvAvhlpqPfaxeKe1c3-gQs5MYlqG0lNQCyWcb7NRHj8VFlwLPuJRZJNk3tybvgITVm9r14pfAXogpVE0S4KihD2W1_SoKH4NzTa2vOEG0CK4VzCLetxUlUuePxZH8ugouqbS2d0SpyeeMTm-PzxzzeTb_4ulGpg63eE1v7GvTsI23uh2WfIgHBa1GRr5jWtE0Meq-5UFCVQkhMm8P-r8wO2iuRblCu6a-bWwy7bfdj3S2VDnqSQskE2dVrC_qMs-V2AGvCV1xvlF0P8A4tgwL-w",
   "token_type" : "bearer",
@@ -278,7 +284,7 @@ If you are authentication your users on a proxy, you have to configure that prox
 ## Example Apache configuration
 The following example shows the relevant part for an Apache proxy to configure
 authentication of the `authorization-server` properly:
-```
+```apache
 <Location /authorization/oauth/token>
     Order allow,deny
     Allow from all
@@ -348,18 +354,19 @@ sw360 deploys a REST API documentation at every instance. There are the followin
 
 If you use Nginx or Apache as request front end server there maybe some configuration caveats: The REST API objects provides self links to reference to other objects also including the protocol prefix. These links are realized on Hypertext Application Language (HAL) for example you will find in REST responses:
 
-```  
- "_links": {
-    "self": {
-     "href": "https://localhost:8443/resource/api/projects/065f3aa45c2683297fd1bb39296f519d"
- }
+```json  
+"_links": {
+  "self": {
+    "href": "https://localhost:8443/resource/api/projects/065f3aa45c2683297fd1bb39296f519d"
+  }
+}
 ```
 
 The REST spring boot applications are using the Tomcat environment configuration to generate the HAL links. If the Tomcat is only configured as HTTP, the generated links will contain the `http` protocol and port - which is a problem if the server should be contacted over `https`only. This problem occurs, if tomcat is used together with Nginx, Apache httpd or other Web servers, which are configured to repsond only to `https`.
 
 Solution is to set for example in Nginx HTTP 'X-Forward-*' headers on a reverse proxy, for example:
 
-```
+```nginx
  location / {
    ...
    proxy_set_header        X-Forwarded-Port   443;

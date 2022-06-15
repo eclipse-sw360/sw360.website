@@ -1,4 +1,9 @@
-# General: Our Versioning and Release Principles
+---
+title: "Release and Versioning"
+linkTitle: "Release and Versioning"
+weight: 10
+description: "Our Versioning and Release Principles"
+---
 
 We have the following main principles for versioning and releases. We consider [semantic versioning](http://semver.org/):
 
@@ -50,7 +55,7 @@ Let us assume, that we want to tag the version **1.2.0** and that the current ve
 
 ### 0. Work in a clean environment
 Especially should all poms be without uncommitted changes. The safe way is to start with:
-``` 
+``` Bash
 $ cd /tmp/
 $ git clone https://github.com/eclipse/sw360.git
 $ cd sw360portal
@@ -71,28 +76,19 @@ $ mvn install
 or even better: use vagrant.
 
 ### 3. Create and push the tag
-<pre>
+```Bash
 $ mvn scm:tag
-</pre>
+```
 This creates the tag and **pushes it to github**.
 
 ### 4. Write the new incremented SNAPSHOT-version into the poms
-<pre>
+```Bash
 $ mvn versions:set -DnewVersion=<b>1.3.0-SNAPSHOT</b>
 $ git add pom.xml \*\*/pom.xml
 $ git commit -m "set version to <b>1.3.0-SNAPSHOT</b>"
 $ git push origin master
-</pre>
+```
 
 
 --
 ⁽¹⁾ based on: https://axelfontaine.com/blog/final-nail.html
-
-# How to deploy/distribute binarys
-TODO
-
-# How to communicate the new release
-TODO
-
-# How to modify the github release page
-TODO

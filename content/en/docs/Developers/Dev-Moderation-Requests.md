@@ -1,4 +1,8 @@
-## General
+---
+title: "Moderation Requests"
+linkTitle: "Moderation Requests"
+weight: 10
+---
 
 The concept of moderation is good for two things:
 

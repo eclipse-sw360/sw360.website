@@ -1,4 +1,9 @@
-# Status quo
+---
+title: "Using RequireJS fro Javascript Modules"
+linkTitle: "Using RequireJS"
+weight: 10
+---
+
 Today most of the javascript code runs in the global namespace. This increases the risk of overwriting symbols in the global namespace due to different libraries and snippets.
 
 # Goal

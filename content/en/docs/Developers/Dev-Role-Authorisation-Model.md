@@ -1,4 +1,9 @@
-# SW360 Roles and Authorization
+---
+title: "Roles and Authorization"
+linkTitle: "Roles and Authorization"
+weight: 10
+description: "SW360 Roles and Authorization"
+---
 
 Like any other system, SW360 allows for setting different levels of access for different users. Technically, the decision when user should be able to see or to do something happens (generally) on the backend server. This ensures consistency between the REST API and the portal application.
 

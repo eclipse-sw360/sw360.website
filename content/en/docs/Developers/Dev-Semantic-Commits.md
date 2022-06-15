@@ -1,3 +1,9 @@
+---
+title: "Semantic Commits"
+linkTitle: "Semantic Commits"
+weight: 10
+---
+
 ## The reason and benefit of semantic commit messages
 - automatic generating of the changelog
 - simple navigation through git history (e.g. ignoring style changes)

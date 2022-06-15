@@ -1,5 +1,8 @@
-How to add a portlet to sw360
-=============================
+---
+title: "How to add a frontend portlet to sw360"
+linkTitle: "Add frontend portlet"
+weight: 10
+---
 
 We create a class in 
 ```
@@ -13,13 +16,13 @@ DatabaseSanitation.java
 
 Here are some code snippets that are important:
 
-```
+```java
 public class DatabaseSanitation extends Sw360Portlet 
 ```
 
 the base class Sw360Portlet adds some convenience methods to render the most common return values of functions into messages.
 
-```
+```java
 @Override
 public void doView(RenderRequest request, RenderResponse response) throws IOException, PortletException {
     // Proceed with page rendering
@@ -28,7 +31,7 @@ public void doView(RenderRequest request, RenderResponse response) throws IOExce
 ```
 
 This method is used to render different pages, a common pattern would be to have if/else tree like 
-```
+```java
 //! VIEW and helpers
 @Override
 public void doView(RenderRequest request, RenderResponse response) throws IOException, PortletException {
@@ -45,7 +48,7 @@ public void doView(RenderRequest request, RenderResponse response) throws IOExce
 
 but since we only have one page this is all we need. The jsp that is rendered by super.doView is set in 
 
-```
+```java
 sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/portlet.xml
 ```
 but more on that later.
@@ -60,11 +63,13 @@ public void serveResource(ResourceRequest request, ResourceResponse response) th
     }
 }
 ```
+
 similar to the PAGENAME tree, here we have an ACTION if/else block. We only have one action, so this is simple.
 
 
 Let's have a look at 
-```
+
+```java
 private void serveDuplicates(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
 
     Map<String, List<String>> duplicateComponents=null;
@@ -88,6 +93,7 @@ private void serveDuplicates(ResourceRequest request, ResourceResponse response)
     }
 }
 ```    
+
 The member variable thriftClients is inherited from the Sw360Portlet. This is how we talk to the backend.
 We call the methods that we wrote in the first part of the tutorial.
 The error handling is reported with renderRequestStatus, also from Sw360Portlet.
@@ -95,11 +101,12 @@ When we have findings then we report them by rendering a jsp in the RESOURCE_PHA
 This is then some html that our AJAX function gets as data.
 
 Then we have to register the portlets in some xml files:
+
 ```
 sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/liferay-display.xml
 ```
 
-```
+```xml
 ...
 <portlet id="databaseSanitation"/>
 ```
@@ -108,7 +115,7 @@ sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/liferay-display.xml
 sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/liferay-portlet.xml
 ```
 
-```
+```xml
 ...
 <portlet>
     <portlet-name>databaseSanitation</portlet-name>
@@ -125,7 +132,7 @@ Note that here it is important to include things like jquery in this way so that
 sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/portlet.xml
 ```
 
-```
+```xml
 ...
 <portlet>
     <portlet-name>databaseSanitation</portlet-name>
