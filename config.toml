@@ -22,9 +22,6 @@ pygmentsCodeFences = true
 pygmentsUseClasses = false
 # Use the new Chroma Go highlighter in Hugo.
 pygmentsUseClassic = false
-#pygmentsOptions = "linenos=table"
-# See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
 
 # Image processing configuration.
 [imaging]
@@ -47,9 +44,9 @@ weight = 1
       unsafe = true
   [markup.highlight]
     # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style = "tango"
+    style = "manni"
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
-    guessSyntax = "true"
+    guessSyntax = true
 
 [outputs]
 section = ["HTML", "RSS"]
@@ -93,7 +90,8 @@ navbar_logo = true
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
 navbar_translucent_over_cover_disable = false
 # Enable to show the side bar menu in its compact state.
-sidebar_menu_compact = false
+sidebar_menu_compact = true
+sidebar_menu_foldable = true
 # Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
 sidebar_search_disable = false
 
@@ -142,7 +140,7 @@ enable = false
     enable = true
     title = "About"
 
-[[menus.main]]
+[[menu.main]]
 url = "https://github.com/eclipse/sw360"
 name = "Github"
 pre = "<i class='fab fa-github'></i> "
