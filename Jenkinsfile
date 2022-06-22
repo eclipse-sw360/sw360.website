@@ -57,6 +57,8 @@ fi
             steps {
                 container('hugo') {
                     dir('hugo') {
+                        sh 'git submodule add https://github.com/google/docsy.git themes/docsy'
+                        sh 'git submodule update --init --recursive'
                         sh 'hugo -b https://www.eclipse.org/sw360/'
                     }
                 }
