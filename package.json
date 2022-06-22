@@ -1,0 +1,21 @@
+{
+    "name": "sw360-website",
+    "version": "1.99",
+    "description": "sw360 main website",
+    "main": "none.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eclipse/sw360.website.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://eclipse.org/sw360",
+    "devDependencies": {
+        "autoprefixer": "^10.4.0",
+        "postcss": "^8.3.7",
+        "postcss-cli": "^9.0.2"
+    }
+}
