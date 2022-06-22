@@ -1,0 +1,111 @@
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: $text_primary;
+}
+
+a {
+  font-weight: 600;
+  color: $primary;
+  text-shadow: none;
+}
+
+footer {
+  min-height: auto;
+  img {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  background: $primary;
+  color: #999999;
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+
+    a {
+      color: #999999;
+      &:hover {
+        color: #5d8ea9;
+        text-decoration: none;
+      }
+    }
+  }
+
+  
+  h4 {
+    color: #eeeeee;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  li {
+    text-align: -webkit-match-parent;
+  }
+}
+
+.display-cover {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 1px black;
+  background-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  padding: 20px;
+
+}
+
+.display-2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 1px 1px 1px black;
+}
+
+
+// Remove editing from Documentation right ::backdrop
+.td-page-meta--edit {
+  display: none !important;
+}
+.td-page-meta--child {
+  display: none !important;
+}
+.td-page-meta--print {
+  display: none !important;
+}
+.td-page-meta--project-issue {
+  display: none !important;
+}
+
+/*
+Docsy's 'cover/block' option for setting background images does
+not currently support svg's. This sets the background on hero
+sections site wide to the original site's background svg.
+*/
+.td-cover-block {
+  background-image: url("/img/featured-background.jpg");
+}
+
+// Layout
+.l-container--padded {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.td-box--secondary {
+    color: #fff;
+    background-color: #162c37;
+}
+
+.vision-description {
+  font-size: 18px;
+}
+
+.vision-title {
+  font-weight: 700;
+}

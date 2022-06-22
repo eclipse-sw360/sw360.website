@@ -1,0 +1,9 @@
+<a href="{{.Get `src`}}" data-lightbox="x" class="mb-5">
+  <div class="card">
+    <img class="card-img-top" src="{{.Get `src`}}" alt="Card image cap" />
+    <div class="card-body">
+      <h5 class="card-title">{{ .Get "title"}}</h5>
+      <p class="card-text">{{ .Inner }}</p>
+    </div>
+  </div>
+</a>

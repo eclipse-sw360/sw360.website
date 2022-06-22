@@ -48,3 +48,7 @@ _site/
 resources/
 
 .idea/*
+
+# Hugo tmporary dirs
+public
+.hugo_build.lock
