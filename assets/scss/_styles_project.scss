@@ -64,27 +64,6 @@ footer {
   text-shadow: 1px 1px 1px black;
 }
 
-.display-vision {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  text-shadow: 1px 1px 1px black;
-  margin-bottom: 2.5rem;
-}
-
-// Customize simple About in front page
-
-.about {
-  font-size: 1.5rem;
-  ul {
-    padding-left: 0;
-    list-style: none;
-  }
-
-  li {
-    text-align: -webkit-match-parent;
-  }
-}
 
 // Remove editing from Documentation right ::backdrop
 .td-page-meta--edit {
@@ -100,26 +79,6 @@ footer {
   display: none !important;
 }
 
-// Card customizations
-.card {
-  height: 95%;
-  .card-header {
-    background-color: $primary;
-    color: white;
-    font-weight: 700;
-    font-size: 1.1vw;
-    text-align: center;
-    text-shadow: 1px 1px 2px black;
-  }
-  .card-text {
-    color: black;
-    text-align: calc();
-    text-shadow: 0px 0px 0px;
-    font-size: 1.2rem;
-    font-size: 1.1vw;
-  }
-}
-
 /*
 Docsy's 'cover/block' option for setting background images does
 not currently support svg's. This sets the background on hero
@@ -129,14 +88,6 @@ sections site wide to the original site's background svg.
   background-image: url("/img/featured-background.jpg");
 }
 
-.td-overlay__inner {
-  text-shadow: 2px 2px 4px black;
-}
-
-.td-navbar {
-  font-size: 0.94rem;
-}
-
 // Layout
 .l-container--padded {
   padding-top: 2rem;
@@ -144,4 +95,17 @@ sections site wide to the original site's background svg.
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.td-box--secondary {
+    color: #fff;
+    background-color: #162c37;
+}
+
+.vision-description {
+  font-size: 18px;
+}
+
+.vision-title {
+  font-weight: 700;
 }
