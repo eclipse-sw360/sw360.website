@@ -1,7 +1,7 @@
 ---
 title: "Workflows"
 linkTitle: "Workflows"
-weight: 10
+weight: 20
 oem_ignore: true
 description: "SW360 User Workflows"
 ---
@@ -16,7 +16,7 @@ Therefore, for a new component the user needs to create a component entry first,
 
 The intended roles for this can be a developer that would like to start caring for an OSS component or release. In addition a project owner / project owner can care for the components and releases part of the product or process.
 
-![worklfow-adding-component-and-release-to-a-project](https://github.com/eclipse/sw360/wiki/images-workflow/worklfow-adding-component-and-release-to-a-project.png)
+{{< figure src="/img/workflow/worklfow-adding-component-and-release-to-a-project.png">}}
 
 ### Create a Project
 
@@ -36,7 +36,7 @@ A project it self does not need much information, it is just about the name and 
 * Project contacts
 * Important Dates for the project
 
-![workflow-add-project](https://github.com/eclipse/sw360/wiki/images-workflow/workflow-add-project.png)
+{{< figure src="/img/workflow/workflow-add-project.png">}}
 
 ### Moderation
 
@@ -48,7 +48,7 @@ The moderation is the basic way of applying changes if the document is not creat
 * Moderators of this document
 * Other special roles, such as project responsible 
 
-Please see the page [about the Role Authorization Model](https://github.com/eclipse/sw360/wiki/Dev-Role-Authorisation-Model) for more information.
+Please see the page [about the Role Authorization Model]({{< ref "../../Development/Dev-Role-Authorisation-Model.md" >}} "Dev Role" ) for more information.
 
 If the user who wishes to change a document and is not one of these, the moderator workflow kicks in. Then changes applied to the document are not really applied, but are sent to a moderator. Moderators are:
 
@@ -59,4 +59,4 @@ If the user who wishes to change a document and is not one of these, the moderat
 
 The moderator can review, approve or decline the request. Then, the requesting user can delete the request. The moderator request workflow is shown below.
 
-![workflow-moderation](https://github.com/eclipse/sw360/wiki/images-workflow/workflow-moderation.png)
+{{< figure src="/img/workflow/workflow-moderation.png">}}
