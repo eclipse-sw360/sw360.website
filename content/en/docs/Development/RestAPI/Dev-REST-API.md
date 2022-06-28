@@ -1,7 +1,7 @@
 ---
-title: "REST API"
-linkTitle: "REST API"
-weight: 10
+title: "SW360 Rest API"
+linkTitle: "SW360 Rest API"
+weight: 30
 ---
 
 The sw360 REST API provides access to sw360 resources for external clients. It consists currently of three Maven modules aggregated in one parent module `rest` in the sw360 distribution.
