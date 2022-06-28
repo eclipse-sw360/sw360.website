@@ -6,7 +6,7 @@ weight: 10
 
 The **admin menu** consists of the following items:
 
-{{< figure src="/img/ImagesBasic/admin_menu.png">}}
+{{< figure src="/sw360/img/ImagesBasic/admin_menu.png">}}
 
 - **User**: Displays the list of **Liferay Users**. One can also download or upload new users in this section
 

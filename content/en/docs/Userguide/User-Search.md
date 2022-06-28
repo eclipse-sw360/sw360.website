@@ -2,10 +2,9 @@
 linkTitle: "Search"
 title: "Search"
 description: "SW360 General Search"
-weight: 100
 ---
 
-![general-search](https://github.com/eclipse/sw360/wiki/images/general-search.png)
+{{< figure src="/sw360/img/ImagesBasic/general-search.png" >}}
 
 The user can use the general Search. He can find that under Search at the navigation bar. There he can choose, for what elements (Projects, Components, Releases, Licences, Users, Vendors) he wants to search. Therefore he toogle the elements which should be included in the search.  
 
@@ -14,12 +13,11 @@ The user can use the general Search. He can find that under Search at the naviga
 The user can search with wildcards. A wildcard is a character which substitue for zero or more characters in a string. For a single character users can use '?' and for multiple character wildcard he can use '*'. The Wildcard can stand in the middle of characters or at the end, but not at the beginning.
 
 ## Search in Projects, Components and Licenses 
-![specific-search](https://github.com/eclipse/sw360/wiki/images/navigationbar-search.png)
+{{< figure src="/sw360/img/ImagesBasic/navigationbar-search.png" >}}
 
 The user can use besides of the general search the specific search at the specific view of projects, components and licenses. There he has a Quickfilter and the Advanced Search where he has the option to search more refined.    
 
-##
-<img src="https://github.com/eclipse/sw360/wiki/images/sw360_specific_search.png"/><img src="https://github.com/eclipse/sw360/wiki/images/specific-search.png"/>
+{{< figure src="/sw360/img/ImagesBasic/sw360_specific_search.png" >}}
 
 ### Quickfilter
 
@@ -35,6 +33,6 @@ The user has for components and projects the option to use the advanced search i
 
 With the Export Spreadsheet button at the bottom of the site, users can export the search result as a xlsx file (Excel). He can choose between a file with 'only components' or 'components with releases'. If he chooses 'only components' he gets a file with just the Components and its attributes. If the user chooses the option 'with release', he will get all the release of the components with their attributes, for example the clearing state of releases, in the xlsx file.
 
-![Export-Spreadsheet](https://github.com/eclipse/sw360/wiki/images/Export-Spreadsheet.png)
+{{< figure src="/sw360/img/ImagesBasic/Export-Spreadsheet.png" >}}
  
 

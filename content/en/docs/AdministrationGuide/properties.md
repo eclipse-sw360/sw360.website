@@ -6,7 +6,7 @@ weight: 12
 
 **Frontend Properties**: All the sw360 frontend properties are mentioned in [sw360.properties](https://github.com/eclipse/sw360/blob/master/frontend/sw360-portlet/src/main/resources/sw360.properties) file.
 For example;
-
+https://github.com/eclipse/sw360/wiki/
  - Different categories for components,
 
     component.categories=[ "framework", "SDK", "big-data", "build-management", "cloud", "content", "database", "graphics", "http", "javaee", "library", "mail", "mobile", "network-client", "network-server", "osgi", "security", "testing", "virtual-machine", "web-framework", "xml"]

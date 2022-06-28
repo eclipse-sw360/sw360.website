@@ -72,11 +72,11 @@ Our tests have confirmed that, if you have used the JWT authentication workflow,
 
 Please find attached, where to obtain the token:
 
-{{< figure src="/img/SW360RESTfulAPIImages/Preferences-AccessToke.png">}}
+{{< figure src="/sw360/img/SW360RESTfulAPIImages/Preferences-AccessToke.png">}}
 
 And then find the interface for issuing the tokens:
 
-{{< figure src="/img/SW360RESTfulAPIImages/Preferences-AccessToke1.png">}}
+{{< figure src="/sw360/img/SW360RESTfulAPIImages/Preferences-AccessToke1.png">}}
 
 ### Token into which Header?
 If you are used to REST clients, you might know that you need some kind of authentication info. Below are the previous and current ways of adding the authentication info to the HTTP header. Now you should add to the header the token value that you can obtain from the sw360 UI (see above):

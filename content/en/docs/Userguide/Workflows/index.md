@@ -16,7 +16,7 @@ Therefore, for a new component the user needs to create a component entry first,
 
 The intended roles for this can be a developer that would like to start caring for an OSS component or release. In addition a project owner / project owner can care for the components and releases part of the product or process.
 
-{{< figure src="/img/workflow/worklfow-adding-component-and-release-to-a-project.png">}}
+{{< figure src="/sw360/img/workflow/worklfow-adding-component-and-release-to-a-project.png">}}
 
 ### Create a Project
 
@@ -36,7 +36,7 @@ A project it self does not need much information, it is just about the name and 
 * Project contacts
 * Important Dates for the project
 
-{{< figure src="/img/workflow/workflow-add-project.png">}}
+{{< figure src="/sw360/img/workflow/workflow-add-project.png">}}
 
 ### Moderation
 
@@ -59,4 +59,4 @@ If the user who wishes to change a document and is not one of these, the moderat
 
 The moderator can review, approve or decline the request. Then, the requesting user can delete the request. The moderator request workflow is shown below.
 
-{{< figure src="/img/workflow/workflow-moderation.png">}}
+{{< figure src="/sw360/img/workflow/workflow-moderation.png">}}

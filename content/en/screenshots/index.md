@@ -23,7 +23,7 @@ A dashboard listing the components and projects created by the user logged in. W
 
 {{< gallery/gallery >}} 
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-home.png" title="Home" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-home.png" title="Home" >}}
   
   {{< /gallery/card >}}
 
@@ -43,19 +43,19 @@ Not only the clearing status for each use of a release can be captured by SW360.
 
 {{< gallery/gallery >}} 
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-projectlist.png" title="Main area" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-projectlist.png" title="Main area" >}}
   {{< /gallery/card >}}
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-projects01.png" title="Summary" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-projects01.png" title="Summary" >}}
   {{< /gallery/card >}}
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-projects02.png" title="Clearing Status" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-projects02.png" title="Clearing Status" >}}
   {{< /gallery/card >}}
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-projects03.png" title="ECC Clearing Status" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-projects03.png" title="ECC Clearing Status" >}}
   {{< /gallery/card >}}
 
-{{< gallery/card src="../img/sw360screenshots/sw360screenshot-projects04.png" title="Releases and Projects" >}}
+{{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-projects04.png" title="Releases and Projects" >}}
   {{< /gallery/card >}}
 {{< /gallery/gallery >}}
 
@@ -67,13 +67,13 @@ At each release, basic attributes can be stored, some of them are informal, but 
 
 {{< gallery/gallery >}} 
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-components02.png" title="Component" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-components02.png" title="Component" >}}
   {{< /gallery/card >}}
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-components01.png" title="Component Edit" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-components01.png" title="Component Edit" >}}
   {{< /gallery/card >}}
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-components04.png" title="Component Clearance" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-components04.png" title="Component Clearance" >}}
   {{< /gallery/card >}}
 
 {{< /gallery/gallery >}}
@@ -85,7 +85,7 @@ SW360 provides an index for all data, thus searching for keywords will yield res
 
 {{< gallery/gallery >}} 
 
-  {{< gallery/card src="../img/sw360screenshots/sw360screenshot-search.png" title="Search" >}}
+  {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-search.png" title="Search" >}}
   {{< /gallery/card >}}
 
 {{< /gallery/gallery >}}
