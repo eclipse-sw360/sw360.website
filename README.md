@@ -15,16 +15,17 @@ The jenkins jobs looks every 15 minutes after changes on the repository. If it d
 
 ## Docker local live testing
 
-If you have docker installed on you system, you can test in realtime all changes.
+If you have docker installed on your system, you can test in realtime all changes.
 
-In a second terminal, run:
+In a terminal, run:
 
 ```sh
 bash docker_serve_local.sh
 ```
-
-The open your browser on following URL:
+then open your browser on following URL:
 
 ```sh
 http://localhost:1313/sw360
 ```
+
+All changes done in code will be refreshed in real time on the browser
