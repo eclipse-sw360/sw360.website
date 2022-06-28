@@ -1,7 +1,6 @@
 ---
 linkTitle: "Importing"
 title: "Importing"
-weight: 100
 ---
 
 # How to Import Projects from BDP into SW360

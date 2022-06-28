@@ -1,7 +1,6 @@
 ---
 linkTitle: "Attachment File Types"
 title: "Attachment File Types"
-weight: 100
 ---
 
 SW360 maintains attachments for projects, components and releases. Currently, SW360 cannot automatically detect these types and is dependent on that users select the appropriate type accordingly. If not, some functionality will not properly kick of that uses such attachments.

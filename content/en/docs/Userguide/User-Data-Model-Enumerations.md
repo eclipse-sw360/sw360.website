@@ -2,7 +2,6 @@
 linkTitle: "Enumerations"
 title: "Enumerations"
 description: "SW360 enumeration values for the internal thrift API"
-weight: 100
 ---
 
 

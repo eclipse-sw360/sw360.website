@@ -36,7 +36,7 @@ There is the need to have a dual license text. FOSSology offers the dual license
 
 Consider the following example:
 
-{{< figure src="/img/ImagesBasic/dual_license.png" >}}
+{{< figure src="/sw360/img/ImagesBasic/dual_license.png" >}}
 
 The fact that it is "LGPL-3.0+" is confusing for these texts. It should be changed to the following:
 
