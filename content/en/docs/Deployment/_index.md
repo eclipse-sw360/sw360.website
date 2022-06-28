@@ -2,7 +2,7 @@
 title: "Deployment"
 linkTitle: "Deployment"
 weight: 20
-icon: fas fa-tools
+icon: fas fa-truck
 description: SW360 Deployment Guides
 ---
 
