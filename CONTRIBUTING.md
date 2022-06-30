@@ -4,7 +4,7 @@ Thanks for your interest in this project.
 
 ## Project description
 
-SW360 is an open source software project licensed under the EPL-1.0 that provides both a web application and a repository to collect, organize and make available information about software components. It establishes a central hub for software components in an organization. SW360 allows for
+SW360 is an open source software project licensed under the EPL-2.0 that provides both a web application and a repository to collect, organize and make available information about software components. It establishes a central hub for software components in an organization. SW360 allows for
 
 * tracking components used by a project/product,
 * assessing security vulnerabilities,
