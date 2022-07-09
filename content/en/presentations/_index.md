@@ -17,6 +17,17 @@ menu:
 <div class="col-12 col-lg-8">
 
 
+## 2022
+* **[FOSDEM 2022](https://fosdem.org/2022/)**: "[How to manage OSS license obligations and SBoM by SW360's new features](https://fosdem.org/2022/schedule/event/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/)" (Kouki Hama, Toshiba Corporation) [[slides](https://fosdem.org/2022/schedule/event/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/attachments/slides/5198/export/events/attachments/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/slides/5198/fosdem_2022_hama.pdf)] [[video](https://video.fosdem.org/2022/D.dependency/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features.webm)]
+    
+## 2021
+* **[Open Source Summit Europe 2021](https://osselc21.sched.com/)**: "[SW360 SBOM and License Obligation Management](https://sched.co/lAVK)" (Michael Jaeger, Siemens AG & Kouki Hama, Toshiba Corporation)
+        
+## 2019
+* **[Open Source Summit Japan 2019](https://events19.linuxfoundation.org/events/open-source-summit-japan-2019/)**: "[
+Using SW360 for OSS Compliance Management Process](https://sched.co/OVtF)" Kouki Hama , Toshiba Corporation)
+"  [[slides](https://events19.linuxfoundation.org/wp-content/uploads/2018/07/OpenSourceSummitJapan_final.pdf)]
+
 ## 2018
 * **[Bitkom Forum Open Source 2018](https://www.bitkom.org/bfoss18/)**: "Eclipse SW360 – Lessons Learned From Automated License Compliance" (Johannes Kristan, Bosch Software Innovations GmbH & Michael C. Jaeger, Siemens AG)
 * **Inner Source Commons 2018**: "Committing to Change: Inner Source at Siemens" (Karsten Gerloff, Siemens AG)
