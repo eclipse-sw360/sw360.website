@@ -8,22 +8,20 @@ menu:
 ---
 
 ## Overview
-**SW360** is a software catalogue application designed to provide a central place for sharing information about software components used by an organization. It is designed to neatly integrate into existing infrastructures related to the management of software artifacts and projects by providing separate backend services for distinct tasks and a set of portlets to access these services. A complete deployment unit exists (vagrant box or docker container) that contains a complete configuration of all services and portlets.
+**SW360** is a software catalogue application designed to provide a central place for sharing information about software components used by an organization. The main goal is to handle SW license information, which is supported by workflows. The analysis of the sourcecode concerning licenses, copyrights etc. is done by license scanners like FOSSology which is integrated.
+
+It is designed to neatly integrate into existing infrastructures related to the management of software artifacts and projects by providing separate backend services for distinct tasks and a set of portlets to access these services. A complete deployment unit exists (vagrant box or docker container) that contains a complete configuration of all services and portlets.
 
 SW360 comprises the following main use case areas:
 
-- Component: Handling of information and processes related to components, e.g. name, vendor
-- License: Handling of information regarding licenses, e.g. obligations, license texts etc
-- Project: handling of project information providing a context for the use of components
+- Project: Handling of project information with all contained Open Source SW components and other Third Party SW Components and Snippets.
+- Component/Releases: Handling of information and processes related to components, e.g. name, vendor, version, ECCN information, license compliance information
+- License: Handling of information regarding licenses, e.g. license texts, copyrights, acknowledgements, obligations etc.
 - Vulnerability: Collecting Security Vulnerability Management Information and matching them with components stored in the component service
+- License Compliance documentation: all relevant documents (e.g. Readme, source code bundle) can be created, supported by workflows.
 
 ## Functionality
-The SW360 is a software catalogue application which is:
-
-- Based on the Open Source Liferay portal server
-- Integrated with Fossology
-
- With SW360, you can
+The SW360 is a software catalogue application with which you can:
 
 - Manage your components and projects
 - Send source packages to the clearing tool Fossology
@@ -31,11 +29,16 @@ The SW360 is a software catalogue application which is:
 - Import cleared components with clearing reports and other documents
 - Browse licenses and their obligations
 
-In order to work with SW360, please note a fundamental setup in the data model when dealing with components:
+SW360 is
+- Based on the Open Source Liferay portal server
+- Integrated with Fossology
 
-- A component is a list of releases with metadata. vice versa, releases refer to a component.
-- A vendor is separate from a component and releases. The link to the vendor is set at the release. (think of Sun and Oracle)
+ In order to work with SW360, please note a fundamental setup in the data model when dealing with components:
+
+- A component is a list of releases with metadata. 
+- A Release is a version of a component with metadata and specific attachments.
 - A project refers to a number of releases of components accordingly, not components.
+- A vendor is separate from a component and releases. The link to the vendor is set at the release. (think of Sun and Oracle where the owner changed with a new release)
 
 ## Getting started
 
