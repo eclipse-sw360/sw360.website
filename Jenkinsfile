@@ -29,7 +29,7 @@ spec:
     environment {
         PROJECT_NAME = "sw360" // must be all lowercase.
         PROJECT_BOT_NAME = "SW360 Bot" // Capitalize the name
-        BRANCH_NAME = "master"
+        BRANCH_NAME = "main"
     }
 
     options {
