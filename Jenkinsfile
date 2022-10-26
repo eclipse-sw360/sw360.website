@@ -48,7 +48,7 @@ fi
 '''
                 dir('www') {
                     git branch: "${BRANCH_NAME}",
-                        url: "https://github.com/eclipse/sw360.website.published.git",
+                        url: "ssh://git@github.com/eclipse/sw360.website.published.git",
                         credentialsId: 'github-bot-ssh'
                 }
             }
