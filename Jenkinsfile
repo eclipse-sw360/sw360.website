@@ -1,11 +1,11 @@
-// See documentation on: https://wiki.eclipse.org/Jenkins#Build_my_project.27s_website_with_Jenkins.3F
+// See documentation on: https://wiki.eclipse.org/Jenkins#How_to_build_my_project.27s_website_with_Jenkins.3F
 
 pipeline {
 
-    agent {
-        kubernetes {
-            label 'hugo-agent'
-            yaml """
+  agent {
+    kubernetes {
+      label 'hugo-agent'
+      yaml """
 apiVersion: v1
 metadata:
   labels:
@@ -13,15 +13,22 @@ metadata:
   name: hugo-pod
 spec:
   containers:
+    - name: "jnlp"
+      volumeMounts:
+      - mountPath: /home/jenkins/.ssh
+        name: volume-known-hosts
+      env:
+      - name: "HOME"
+        value: "/home/jenkins"
     - name: hugo
       image: klakegg/hugo:0.93.2-ext-ubuntu
       command:
       - cat
       tty: true
-    - name: "jnlp"
-      env:
-      - name: "HOME"
-        value: "/home/jenkins/agent"
+  volumes:
+  - configMap:
+      name: known-hosts
+    name: volume-known-hosts
 """
         }
     }
@@ -32,6 +39,10 @@ spec:
         BRANCH_NAME = "main"
     }
 
+    triggers {
+      pollSCM('H/10 * * * *')
+    }
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         checkoutToSubdirectory('hugo')
@@ -40,57 +51,71 @@ spec:
     stages {
         stage('Checkout www repo') {
             steps {
-                sh '''
-if ! grep -q "^git.eclipse.org" ~/.ssh/known_hosts; then
-  mkdir -p ~/.ssh
-  ssh-keyscan -t rsa git.eclipse.org >> ~/.ssh/known_hosts
-fi
-'''
                 dir('www') {
-                    git branch: "${BRANCH_NAME}",
-                        url: "ssh://git@github.com/eclipse/sw360.website.published.git",
-                        credentialsId: 'github-bot-ssh'
+                  sshagent(['github-bot-ssh']) {
+                    sh '''
+                      rm -rf .git
+                      git clone git@github.com:eclipse/sw360.website.git .
+                      git checkout ${BRANCH_NAME}
+                    '''
                 }
             }
+          }
         }
-        stage('Build website with Hugo') {
-            steps {
-                container('hugo') {
-                    dir('hugo') {
-                        sh 'mkdir -p themes/docsy'
-                        sh 'hugo -b https://www.eclipse.org/sw360/'
-                    }
-                }
-            }
+        stage('Build main website with Hugo') {
+          when {
+            branch 'main'
+          }
+          steps {
+              container('hugo') {
+                  dir('hugo') {
+                      sh 'mkdir -p themes/docsy'
+                      sh 'hugo -b https://www.eclipse.org/sw360/'
+                  }
+              }
+          }
+        }
+        stage('Build staging website with Hugo') {
+          when {
+            branch 'staging'
+          }
+          steps {
+              container('hugo') {
+                  dir('hugo') {
+                      sh 'mkdir -p themes/docsy'
+                      sh 'hugo -b https://www.eclipse.org/sw360/'
+                  }
+              }
+          }
         }
         stage('Push www') {
-            steps {
-                sh '''
-echo "copy and update files"
-rm -rf www/* || ls -alF www/
-cp -Rvf hugo/public/* www/
-'''
-                dir('www') {
-                    sshagent(['git.eclipse.org-bot-ssh']) {
-                        sh """
-echo "handling git for branch: ${BRANCH_NAME}"
-git config --global user.email "sw360-bot@eclipse.org"
-git config --global user.name "SW360 Bot"
-git add -A
-if ! git diff --cached --exit-code; then
-  echo "Changes have been detected, publishing to repo 'www.eclipse.org/sw360'"
-  git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
-else
-  echo "No change have been detected since last build, nothing to publish"
-fi
-
-git log --graph --abbrev-commit --date=relative -n 5
-git push origin HEAD:${BRANCH_NAME} ||
-  echo "failed to push to ${BRANCH_NAME}"
-"""
-                    }
-                }
+          when {
+            anyOf {
+              branch "main"
+              branch "staging"
             }
+          }
+          steps {
+            sh 'rm -rf www/* && cp -Rvf hugo/public/* www/'
+            dir('www') {
+              sshagent(['github-bot-ssh']) {
+                sh '''
+                git add -A
+                if ! git diff --cached --exit-code; then
+                  echo "Changes have been detected, publishing to repo 'www.eclipse.org/sw360'"
+                  git config --global user.email "${PROJECT_NAME}-bot@eclipse.org"
+                  git config --global user.name "${PROJECT_BOT_NAME}"
+                  git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
+                  git log --graph --abbrev-commit --date=relative -n 5
+                  git push origin HEAD:${BRANCH_NAME}
+                else
+                  echo "No changes have been detected since last build, nothing to publish"
+                fi
+                '''
+              }
+            }
+          }
         }
-    }
-}
+     }
+  }
+
