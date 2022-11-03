@@ -54,8 +54,7 @@ spec:
                 dir('www') {
                   sshagent(['github-bot-ssh']) {
                     sh '''
-                      rm -rf .git
-                      git clone git@github.com:eclipse/sw360.website.git .
+                      git clone git@github.com:eclipse/sw360.website.published.git .
                       git checkout ${BRANCH_NAME}
                     '''
                 }
@@ -83,7 +82,7 @@ spec:
               container('hugo') {
                   dir('hugo') {
                       sh 'mkdir -p themes/docsy'
-                      sh 'hugo -b https://www.eclipse.org/sw360/'
+                      sh 'hugo -b https://www.eclipse.org/${PROJECT_NAME}/'
                   }
               }
           }
@@ -102,9 +101,9 @@ spec:
                 sh '''
                 git add -A
                 if ! git diff --cached --exit-code; then
-                  echo "Changes have been detected, publishing to repo 'www.eclipse.org/sw360'"
-                  git config --global user.email "${PROJECT_NAME}-bot@eclipse.org"
-                  git config --global user.name "${PROJECT_BOT_NAME}"
+                  echo "Changes have been detected, publishing to repo 'www.eclipse.org/${PROJECT_NAME}'"
+                  git config user.email "${PROJECT_NAME}-bot@eclipse.org"
+                  git config user.name "${PROJECT_BOT_NAME}"
                   git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
                   git log --graph --abbrev-commit --date=relative -n 5
                   git push origin HEAD:${BRANCH_NAME}
