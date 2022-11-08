@@ -113,6 +113,15 @@ sudo mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_IN
 ```
 > This will create /deploy under root, so sudo is necessary, however you can chmod /deploy.
 > This will take time, around 5 - 10 min.
+> After deploying the project, you should copy the portal-ext.properties to the place of the Liferay.
+```sh
+cp frontend/configuration/portal-ext.properties ${LIFERAY_INSTALL}/
+```
+> Then modify the file: setup.wizard.enabled=false -> setup.wizard.enabled=true
+> Then copy the files in the directory scripts/docker-config/etc_sw360/ to the directory /etc/sw360/. If the directory /etc/sw360/ does not exist, create it and chmod it.
+```sh
+cp -r scripts/docker-config/etc_sw360/* /etc/sw360/
+```
 > After this step, you should be able to run Tomcat server and see the index page of SW360 portal. [Check SW360]
 ### 1.5. Install PostgreSQL
 > Install PostgerSQL manually, you can install through "apt install" too:
