@@ -100,7 +100,31 @@ export SW360_DIR_INSTALL="{absolute path to sw360 repository folder}/sw360"
 $ source ~/.bashrc
 ```
 ### 1.4. Make and build SW360
-> Go to sw360 repository folder and type: 
+> Go to sw360 repository folder firstly.
+
+> We also suggest you change the environment settings (frontend/configuration/setenv.sh) to avoid the lack of memory before making and building SW360.
+```sh
+$ vim frontend/configuration/setenv.sh
+```
+```sh
+# The following settings should be adapted to your needs
+JAVA_MEMORY_MIN="3g"
+JAVA_MEMORY_MAX="6g"
+
+# The following settings should not be touched unless you know what you are doing
+# Misconfiguration may be lead to an unusable instance.
+JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF8"
+JAVA_OPTS="$JAVA_OPTS -Dorg.apache.catalina.loader.WebappClassLoader.ENABLE_CLEAR_REFERENCES=false"
+JAVA_OPTS="$JAVA_OPTS -Duser.timezone=GMT"
+JAVA_OPTS="$JAVA_OPTS -Xms${JAVA_MEMORY_MIN} -Xmx${JAVA_MEMORY_MAX}"
+JAVA_OPTS="$JAVA_OPTS -XX:+UseG1GC"
+JAVA_OPTS="$JAVA_OPTS -XX:+CMSParallelRemarkEnabled"
+JAVA_OPTS="$JAVA_OPTS -XX:SurvivorRatio=20"
+
+JAVA_OPTS="$JAVA_OPTS -Dlog4j2.formatMsgNoLookups=true"
+```
+
+> Then we can type the following command to install: 
 > "sudo" might not be necessary, and this will take time, around 5 min]
 ```sh
 $ mvn clean
