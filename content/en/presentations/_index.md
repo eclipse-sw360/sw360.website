@@ -18,6 +18,10 @@ menu:
 
 
 ## 2022
+* **[Open Source Summit Japan 2022](https://osselc21.sched.com/)**: "[SW360 SBOM: Managing Vulnerability Information, SPDX Documents and New Dependency Network Between a Project and Software Components](https://sched.co/1D12t)" (Tien Le & Kouki Hama, Toshiba Corporation) [[slides](https://static.sched.com/hosted_files/ossjapan2022/ed/OSSJapan2022-SW360.pdf)] [[video](https://youtu.be/JP69MOFFE4o)]
+
+* **[EclipseCon 2022](https://www.eclipsecon.org/2022)**: "[sw360 - How new life is been injected in the traditional compliance software](https://www.eclipsecon.org/2022/sessions/sw360-how-new-life-been-injected-traditional-compliance-software)" (Helio Chissini de Castro) [[video](https://youtu.be/sbCwuV6iuOM)]
+    
 * **[FOSDEM 2022](https://fosdem.org/2022/)**: "[How to manage OSS license obligations and SBoM by SW360's new features](https://fosdem.org/2022/schedule/event/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/)" (Kouki Hama, Toshiba Corporation) [[slides](https://fosdem.org/2022/schedule/event/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/attachments/slides/5198/export/events/attachments/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/slides/5198/fosdem_2022_hama.pdf)] [[video](https://video.fosdem.org/2022/D.dependency/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features.webm)]
     
 ## 2021
