@@ -218,6 +218,15 @@ This material helps user to install SW360 17.0.0
     
         # default.admin.last.name=Administrator
 
+- Add lines to setup Postgres
+
+```
+    # Postgres configuration
+    jdbc.default.driverClassName=org.postgresql.Driver
+    jdbc.default.url=jdbc:postgresql://postgresdb:5432/lportal
+    jdbc.default.username=liferay
+    jdbc.default.password=liferay
+```
 * Remove files in folder `hypersonic` with path: `/home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic`
     - `$ rm -rf /home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic/*`
 
@@ -653,6 +662,11 @@ $ sudo systemctl status postgres@@12-main.service
 ...
 ... halt systemd[1]: Started Apache CouchDB.
 ```
+* install mkdocs
+    - `$ sudo apt-get install python3 -y`
+    - `$ sudo -E apt-get install python3-pip -y`
+    - `$ sudo -E pip3 install mkdocs`
+    - `$ sudo -E pip3 install mkdocs-material`
 
 * Set Environment for `${LIFERAY_INSTALL}`
     - `$ cd /home/user/work/sw360`
@@ -662,7 +676,7 @@ $ sudo systemctl status postgres@@12-main.service
     - `$ mvn clean install -DskipTests `
 
 2. For deployment run the command 
-    - `mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -DskipTests`
+    - `mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Duser.timezone=GMT -Dhelp-docs=true `
     
 #### 3.7.1 Start and Configure Liferay 
 
