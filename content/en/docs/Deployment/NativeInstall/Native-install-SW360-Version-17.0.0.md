@@ -218,15 +218,28 @@ This material helps user to install SW360 17.0.0
     
         # default.admin.last.name=Administrator
 
-- Add lines to setup Postgres
+- Add lines to setup Postgres. Change jdbc.default.username, jdbc.default.password
 
 ```
     # Postgres configuration
     jdbc.default.driverClassName=org.postgresql.Driver
-    jdbc.default.url=jdbc:postgresql://postgresdb:5432/lportal
-    jdbc.default.username=liferay
-    jdbc.default.password=liferay
+    jdbc.default.url=jdbc:postgresql://localhost:5432/lportal
+    jdbc.default.username=${postgres_user}
+    jdbc.default.password=${postgres_password}
 ```
+
+- Add lines to setup passsword policies
+```
+    # Passsword policies
+    passwords.default.policy.change.required=false
+    company.security.send.password.reset.link=false
+    company.security.auto.login=false
+    company.security.auth.type=emailAddress
+    company.security.strangers=false
+    company.security.strangers.with.mx=false
+    company.security.strangers.verify=false
+```
+
 * Remove files in folder `hypersonic` with path: `/home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic`
     - `$ rm -rf /home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic/*`
 
@@ -323,18 +336,14 @@ $ ./pg_ctl start
 sudo systemctl status postgresql@12-main.service
 sudo systemctl start postgresql@12-main.service
 ```
-Normally, Default postgres creates user "postgres" with "postgres" password, use that to enter PostgreSQL terminal:
-```sh
-$ sudo -i -u postgres
-$ psql
- ```
-* You will be logged in as user named "postgres".
+* Postgres will create an user with username ${ubuntu_user} (username login to ubuntu)
+* Use theses command to change password of user ${ubuntu_user} in postgres sql.
 ```sh
 $ psql postgres
 postgres=# \du
 postgres=# create database lportal;
-postgres=# ALTER USER postgres WITH PASSWORD 'sw360fossy';
-postgres=# ALTER ROLE postgres with superuser;
+postgres=# ALTER USER ${ubuntu_user} WITH PASSWORD 'sw360fossy';
+postgres=# ALTER ROLE ${ubuntu_user} with superuser;
 postgres=# \q
 ```
 * Connect to postgres shell, and check users information
@@ -376,6 +385,13 @@ https://www.eclipse.org/sw360/docs/deployment/deploy-cve-search/
 
 * For thrift, we need version 0.16. The installation script in Path: `${SW360_REPOSITORY}/scripts/install-thrift.sh`
 
+* Run command to install libraries:
+    - `$ sudo apt-get install -y clang-tidy`
+    - `$ sudo apt-get install flex`
+    - `$ sudo apt-get install -y clang-tools`
+    - `$ sudo apt-get install bison`
+    - `$ sudo apt-get install cmake`
+
 * Run command:
     - `$ chmod +x install-thrift.sh`
     - `$ sudo ./install-thrift.sh`
@@ -405,235 +421,235 @@ In case there is thrift in the package management of the OS you re running on, j
 
 *  Create file `application.yml` in path `/etc/sw360/authorizaton` with content: 
 ```
-        #
-        # Copyright Siemens AG, 2017, 2019. Part of the SW360 Portal Project.
-        #
-        # This program and the accompanying materials are made
-        # available under the terms of the Eclipse Public License 2.0
-        # which is available at https://www.eclipse.org/legal/epl-2.0/
-        #
-        # SPDX-License-Identifier: EPL-2.0
-        #
+#
+# Copyright Siemens AG, 2017, 2019. Part of the SW360 Portal Project.
+#
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
 
-        # Port to open in standalone mode
-        server:
-        port: 8090
+# Port to open in standalone mode
+server:
+  port: 8090
 
-        # Connection to the couch databases. Will be used to store client credentials
-        couchdb:
-        url: http://localhost:5984
-        database: sw360oauthclients
-        # if your couchdb does not use authentication, pls just don't use the settings for username and password
-        username: admin
-        password: password
+# Connection to the couch databases. Will be used to store client credentials
+couchdb:
+  url: http://localhost:5984
+  database: sw360oauthclients
+  # if your couchdb does not use authentication, pls just don't use the settings for username and password
+  username: admin
+  password: password
 
-        jwt:
-        secretkey: sw360SecretKey
+jwt:
+  secretkey: sw360SecretKey
 
-        spring:
-        jackson:
-            serialization:
-            indent_output: true
+spring:
+  jackson:
+    serialization:
+      indent_output: true
 
-        # Common SW360 properties
-        sw360:
-        # The url of the Liferay instance
-        sw360-portal-server-url: ${SW360_PORTAL_SERVER_URL:http://127.0.0.1:8080}
-        # The id of the company in Liferay that sw360 is run for
-        sw360-liferay-company-id: ${SW360_LIFERAY_COMPANY_ID:20101}
-        # Allowed origins that should be set in the header
-        cors:
-            allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
+# Common SW360 properties
+sw360:
+  # The url of the Liferay instance
+  sw360-portal-server-url: ${SW360_PORTAL_SERVER_URL:http://127.0.0.1:8080}
+  # The id of the company in Liferay that sw360 is run for
+  sw360-liferay-company-id: ${SW360_LIFERAY_COMPANY_ID:20101}
+  # Allowed origins that should be set in the header
+  cors:
+    allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
 
-        security:
-        # Configuration for enabling authorization via headers, e.g. when using SSO
-        # in combination with a reverse proxy server
-        customheader:
-            headername:
-            # You have to enable authorization by headers explicitly here
-            enabled: false
-            # Attention: please make sure that the proxy is removing there headers
-            # if they are coming from anywhere else then the authentication server
-            intermediateauthstore: custom-header-auth-marker
-            email: authenticated-email
-            extid: authenticated-extid
-            # also available - at least in saml pre auth - are "givenname", "surname" and "department"
+security:
+  # Configuration for enabling authorization via headers, e.g. when using SSO
+  # in combination with a reverse proxy server
+  customheader:
+    headername:
+      # You have to enable authorization by headers explicitly here
+      enabled: false
+      # Attention: please make sure that the proxy is removing there headers
+      # if they are coming from anywhere else then the authentication server
+      intermediateauthstore: custom-header-auth-marker
+      email: authenticated-email
+      extid: authenticated-extid
+      # also available - at least in saml pre auth - are "givenname", "surname" and "department"
 
-        oauth2:
-            resource:
-            id: sw360-REST-API
+  oauth2:
+    resource:
+      id: sw360-REST-API
 
 ```
 *  Create file `application.yml` in path `/etc/sw360/rest` with content:
 ```
-        #
-        # Copyright Siemens AG, 2017. Part of the SW360 Portal Project.
-        # Copyright Bosch.IO GmbH 2020
-        #
-        # This program and the accompanying materials are made
-        # available under the terms of the Eclipse Public License 2.0
-        # which is available at https://www.eclipse.org/legal/epl-2.0/
-        #
-        # SPDX-License-Identifier: EPL-2.0
-        #
+#
+# Copyright Siemens AG, 2017. Part of the SW360 Portal Project.
+# Copyright Bosch.IO GmbH 2020
+#
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
 
-        server:
-        port: 8091
+server:
+  port: 8091
 
-        management:
-        endpoints:
-            enabled-by-default: false
-            web:
-            base-path:
-        endpoint:
-            health:
-            enabled: true
-            show-details: always
-            info:
-            enabled: true
-            web:
-            base-path: /
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
+    web:
+      base-path: /
 
-        spring:
-        servlet:
-            multipart:
-            max-file-size: 500MB
-            max-request-size: 600MB
+spring:
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 600MB
 
-        # logging:
-        #   level:
-        #     org.springframework.web: DEBUG
+# logging:
+#   level:
+#     org.springframework.web: DEBUG
 
-        security:
-        oauth2:
-            resource:
-            id: sw360-REST-API
-            jwt:
-                keyValue: |
-                -----BEGIN PUBLIC KEY-----
-                MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApz8Cr1o5yHMv/FUdF5uy
-                VptilqdWtNvw5S6Tr4IaQ4XR9QPt8nlRsjOngfG4QCcKMBWJISldFg8PlJWUBeV+
-                6TwQUidxokl2GbO6/+QA+lz1a5Ei1Y1pcnvFeRb2pdYlH3Yg6fXMxS6QwDLk27pZ
-                5xbpSDIGISDesyaIMvwaKdhAbFW/tTb/oJY7rCPvmYLT80kJzilijJ/W01jMMSHg
-                9Yi5cCt1eU/s78co+pxHzwNXO0Ul4iRpo/CXprQCsSIsdWkJTo6btal1xzd292Da
-                d+9xq499JEsNbcqLfCq8DBQ7CEz6aJjMvPkvZiCrFIGxC/Gqmw35DQ4688rbkKSJ
-                PQIDAQAB
-                -----END PUBLIC KEY-----
+security:
+  oauth2:
+    resource:
+      id: sw360-REST-API
+      jwt:
+        keyValue: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApz8Cr1o5yHMv/FUdF5uy
+          VptilqdWtNvw5S6Tr4IaQ4XR9QPt8nlRsjOngfG4QCcKMBWJISldFg8PlJWUBeV+
+          6TwQUidxokl2GbO6/+QA+lz1a5Ei1Y1pcnvFeRb2pdYlH3Yg6fXMxS6QwDLk27pZ
+          5xbpSDIGISDesyaIMvwaKdhAbFW/tTb/oJY7rCPvmYLT80kJzilijJ/W01jMMSHg
+          9Yi5cCt1eU/s78co+pxHzwNXO0Ul4iRpo/CXprQCsSIsdWkJTo6btal1xzd292Da
+          d+9xq499JEsNbcqLfCq8DBQ7CEz6aJjMvPkvZiCrFIGxC/Gqmw35DQ4688rbkKSJ
+          PQIDAQAB
+          -----END PUBLIC KEY-----
 
-        sw360:
-        thrift-server-url: ${SW360_THRIFT_SERVER_URL:http://localhost:8080}
-        test-user-id: admin@sw360.org
-        test-user-password: sw360-password
-        couchdb-url: ${SW360_COUCHDB_URL:http://localhost:5984}
-        cors:
-            allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
+sw360:
+  thrift-server-url: ${SW360_THRIFT_SERVER_URL:http://localhost:8080}
+  test-user-id: admin@sw360.org
+  test-user-password: sw360-password
+  couchdb-url: ${SW360_COUCHDB_URL:http://localhost:5984}
+  cors:
+    allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
 ```
 
 * Create file `couchdb.properties` in path `/etc/sw360` with content:
 
 ```
-        #
-        # Copyright Siemens AG, 2020. Part of the SW360 Portal Project.
-        #
-        # This program and the accompanying materials are made
-        # available under the terms of the Eclipse Public License 2.0
-        # which is available at https://www.eclipse.org/legal/epl-2.0/
-        #
-        # SPDX-License-Identifier: EPL-2.0
-        #
+#
+# Copyright Siemens AG, 2020. Part of the SW360 Portal Project.
+#
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
 
-        couchdb.url = http://localhost:5984
-        couchdb.user = admin
-        couchdb.password = password
-        couchdb.database = sw360db
-        couchdb.usersdb = sw360users
-        couchdb.attachments = sw360attachments
-        lucenesearch.limit = 10000
+couchdb.url = http://localhost:5984
+couchdb.user = admin
+couchdb.password = password
+couchdb.database = sw360db
+couchdb.usersdb = sw360users
+couchdb.attachments = sw360attachments
+lucenesearch.limit = 10000
 
 ```
 * Create file `sw360.properties` and `/etc/sw360` with content:
 
 ```
-        # Copyright Siemens AG, 2016-2017. Part of the SW360 Portal Project.
-        #
-        # This program and the accompanying materials are made
-        # available under the terms of the Eclipse Public License 2.0
-        # which is available at https://www.eclipse.org/legal/epl-2.0/
-        #
-        # SPDX-License-Identifier: EPL-2.0
-        #
+# Copyright Siemens AG, 2016-2017. Part of the SW360 Portal Project.
+#
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
 
-        # common property file for the backend services
-        backend.url= http://localhost:8080
+# common property file for the backend services
+backend.url= http://localhost:8080
 
-        licenseinfo.spdxparser.use-license-info-from-files=true
-        mainline.state.enabled.for.user=false
+licenseinfo.spdxparser.use-license-info-from-files=true
+mainline.state.enabled.for.user=false
 
-        # settings for the mail utility:
-        # if host is not set, e-mailing is disabled
-        MailUtil_host=
-        MailUtil_from=__No_Reply__@sw360.org
-        MailUtil_port=25
-        MailUtil_enableStarttls=
-        MailUtil_enableSsl=
-        MailUtil_isAuthenticationNecessary=
-        MailUtil_login=
-        MailUtil_password=
-        MailUtil_enableDebug=
-        MailUtil_supportMailAddress=
+# settings for the mail utility:
+# if host is not set, e-mailing is disabled
+MailUtil_host=
+MailUtil_from=__No_Reply__@sw360.org
+MailUtil_port=25
+MailUtil_enableStarttls=
+MailUtil_enableSsl=
+MailUtil_isAuthenticationNecessary=
+MailUtil_login=
+MailUtil_password=
+MailUtil_enableDebug=
+MailUtil_supportMailAddress=
 
-        # text patterns for mail utility
-        defaultBegin = \
-        *** This is an automatically generated email, please do not reply. ***\n\n\
-        Dear SW360-user,\n\n
-        defaultEnd = \
-        With best regards,\n\
-        SW360-support
-        unsubscribeNoticeBefore =\n\n*** If you do not wish to receive mails from SW360, please notify:
-        unsubscribeNoticeAfter =. ***
+# text patterns for mail utility
+defaultBegin = \
+*** This is an automatically generated email, please do not reply. ***\n\n\
+Dear SW360-user,\n\n
+defaultEnd = \
+With best regards,\n\
+SW360-support
+unsubscribeNoticeBefore =\n\n*** If you do not wish to receive mails from SW360, please notify:
+unsubscribeNoticeAfter =. ***
 
-        subjectForNewModerationRequest= New moderation request
-        subjectForUpdateModerationRequest= Update on moderation request
-        subjectForAcceptedModerationRequest= Your moderation request has been accepted
-        subjectForDeclinedModerationRequest= Your moderation request has been declined
-        subjectForDeclinedUserModerationRequest= Your request for a SW360 user account has been declined
-        subjectForNewComponent= New component created
-        subjectForUpdateComponent= Component updated
-        subjectForNewRelease= New release created
-        subjectForUpdateRelease= Release updated
-        subjectForNewProject= New project created
-        subjectForUpdateProject= Project updated
-        subjectForNewClearingRequest= New clearing request <%s> for Project <%s>
-        subjectForClearingRequestComment= New comment added in clearing request <%s> for Project <%s>
-        subjectForUpdatedClearingRequest= Your clearing request <%s> has been updated for Project <%s>
-        subjectForClosedClearingRequest= Your clearing request <%s> has been closed for Project <%s>
-        subjectForRejectedClearingRequest= Your clearing request <%s> has been rejected for Project <%s>
-        subjectForUpdatedProjectWithClearingRequest= Project <%s> with clearing request <%s> updated
+subjectForNewModerationRequest= New moderation request
+subjectForUpdateModerationRequest= Update on moderation request
+subjectForAcceptedModerationRequest= Your moderation request has been accepted
+subjectForDeclinedModerationRequest= Your moderation request has been declined
+subjectForDeclinedUserModerationRequest= Your request for a SW360 user account has been declined
+subjectForNewComponent= New component created
+subjectForUpdateComponent= Component updated
+subjectForNewRelease= New release created
+subjectForUpdateRelease= Release updated
+subjectForNewProject= New project created
+subjectForUpdateProject= Project updated
+subjectForNewClearingRequest= New clearing request <%s> for Project <%s>
+subjectForClearingRequestComment= New comment added in clearing request <%s> for Project <%s>
+subjectForUpdatedClearingRequest= Your clearing request <%s> has been updated for Project <%s>
+subjectForClosedClearingRequest= Your clearing request <%s> has been closed for Project <%s>
+subjectForRejectedClearingRequest= Your clearing request <%s> has been rejected for Project <%s>
+subjectForUpdatedProjectWithClearingRequest= Project <%s> with clearing request <%s> updated
 
-        textForNewModerationRequest= a new moderation request has been added to your SW360-account.\n\n
-        textForUpdateModerationRequest= \
-        one of the moderation requests previously added to your \
-        SW360-account has been updated.\n\n
-        textForAcceptedModerationRequest= your moderation request to change the %s %s has been accepted by one of the moderators.\n\n
-        textForDeclinedModerationRequest= your moderation request to change the %s %s has been declined by one of the moderators.\n\n
-        textForDeclinedUserModerationRequest= your request for a SW360 user account has been declined by one of the administrators.\n\n
-        textForNewComponent= a new component %s, in which you take part, has been created.\n\n
-        textForUpdateComponent= the component %s, in which you take part, has been updated.\n\n
-        textForNewRelease= a new release %s %s, in which you take part, has been created.\n\n
-        textForUpdateRelease= the release %s %s, in which you take part, has been updated.\n\n
-        textForNewProject= a new project %s %s, in which you take part, has been created.\n\n
-        textForUpdateProject= the project %s %s, in which you take part, has been updated.\n\n
-        textForClosedClearingRequest= your clearing request with id: %s for the project %s has been closed by the clearing team.\n\n
-        textForRejectedClearingRequest= your clearing request with id: %s for the project %s has been rejected by the clearing team.\n\n
-        #attachment.store.file.system.location=/opt/sw360tempattachments
-        #enable.attachment.store.to.file.system=false
-        #attachment.store.file.system.permission=rwx------
-        #attachemnt.delete.no.of.days=30
+textForNewModerationRequest= a new moderation request has been added to your SW360-account.\n\n
+textForUpdateModerationRequest= \
+one of the moderation requests previously added to your \
+SW360-account has been updated.\n\n
+textForAcceptedModerationRequest= your moderation request to change the %s %s has been accepted by one of the moderators.\n\n
+textForDeclinedModerationRequest= your moderation request to change the %s %s has been declined by one of the moderators.\n\n
+textForDeclinedUserModerationRequest= your request for a SW360 user account has been declined by one of the administrators.\n\n
+textForNewComponent= a new component %s, in which you take part, has been created.\n\n
+textForUpdateComponent= the component %s, in which you take part, has been updated.\n\n
+textForNewRelease= a new release %s %s, in which you take part, has been created.\n\n
+textForUpdateRelease= the release %s %s, in which you take part, has been updated.\n\n
+textForNewProject= a new project %s %s, in which you take part, has been created.\n\n
+textForUpdateProject= the project %s %s, in which you take part, has been updated.\n\n
+textForClosedClearingRequest= your clearing request with id: %s for the project %s has been closed by the clearing team.\n\n
+textForRejectedClearingRequest= your clearing request with id: %s for the project %s has been rejected by the clearing team.\n\n
+#attachment.store.file.system.location=/opt/sw360tempattachments
+#enable.attachment.store.to.file.system=false
+#attachment.store.file.system.permission=rwx------
+#attachemnt.delete.no.of.days=30
 
-        #Uncomment the below file location if the log4j2.xml file is placed inside etc/sw360 folder.
-        #sw360changelog.config.file.location=/etc/sw360/log4j2.xml
-        enable.sw360.change.log=false
-        sw360changelog.output.path=sw360changelog/sw360changelog
+#Uncomment the below file location if the log4j2.xml file is placed inside etc/sw360 folder.
+#sw360changelog.config.file.location=/etc/sw360/log4j2.xml
+enable.sw360.change.log=false
+sw360changelog.output.path=sw360changelog/sw360changelog
 
 ```
 
@@ -662,11 +678,16 @@ $ sudo systemctl status postgres@@12-main.service
 ...
 ... halt systemd[1]: Started Apache CouchDB.
 ```
-* install mkdocs
+* install python and pip
     - `$ sudo apt-get install python3 -y`
     - `$ sudo -E apt-get install python3-pip -y`
-    - `$ sudo -E pip3 install mkdocs`
-    - `$ sudo -E pip3 install mkdocs-material`
+* install mkdocs
+    - Without proxy:
+        + `$ sudo -E pip3 install mkdocs`
+        + `$ sudo -E pip3 install mkdocs-material`
+    - Via proxy:
+        + `$ sudo -E pip3 install --proxy="http://username:password@hostname:port" mkdocs`
+        + `$ sudo -E pip3 install --proxy="http://username:password@hostname:port" mkdocs-material`
 
 * Set Environment for `${LIFERAY_INSTALL}`
     - `$ cd /home/user/work/sw360`
@@ -676,17 +697,17 @@ $ sudo systemctl status postgres@@12-main.service
     - `$ mvn clean install -DskipTests `
 
 2. For deployment run the command 
-    - `mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Duser.timezone=GMT -Dhelp-docs=true `
+    - `mvn clean package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Dtest=org/eclipse/sw360/rest/resourceserver/restdocs/* -Dhelp-docs=true -Dsurefire.failIfNoSpecifiedTests=false`
     
 #### 3.7.1 Start and Configure Liferay 
 
 * Set Environment for `${LIFERAY_INSTALL}`
     - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
-* After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work/sw360/deploy/jars` to deploy folder in liferay `${LIFERAY_INSTALL}/deploy`
+* After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work/sw360/utils/deploy/jars` to  `${LIFERAY_INSTALL}/osgi/modules`
 
-    - `$ cd /home/user/work/sw360/deploy/jars`
-    - `$ sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/deploy`
+    - `$ cd /home/user/work/sw360/utils/deploy/jars`
+    - `$ sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/osgi/modules/`
 
 * We also suggest you change the environment settings (frontend/configuration/setenv.sh) to avoid the lack of memory before making and building SW360.
 
@@ -696,7 +717,7 @@ $ sudo systemctl status postgres@@12-main.service
 * Start liferay    
     - `$ ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/startup.sh`
 * Log    
-    - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/*`
+    - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/catalina.out`
 
 * Url SW360 : `https://localhost:8080`
 
@@ -713,6 +734,125 @@ $ sudo systemctl status postgres@@12-main.service
         beginning and click `Upload Users` on the right side. [A user file can be found here in the sw360vagrant project](https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv)
         * Download: `$ wget https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv`
 
+- Setup liferay:
+
+After successful , Then if you open the server with the URL `https://localhost:8080/` the following screen should appear:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/1.png" >}}
+
+Note that the actual image changes with every liferay version. If there is weird html output without images and plain text, then likely some port settings did not work and the pages generated have wrong URLs inside.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/2.png" >}}
+
+After login the sw360 is not setup, thus the server does not display much, but a screen like the following:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/3.png" >}}
+
+#### User and Login Settings in Liferay
+
+Go into the control panel area by clicking the items icon (nine small cubes) in the upper right corner and select the control panel tab:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/4.png" >}}
+
+Edit this password policy and disable `change Required` if you wish to do so. Click on Save_the bottom of the page to save the selection.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/6.png" >}}
+
+Then, go: in `Configuration` >  `Instance Settings` > `Users` >
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/7.png" >}}
+
+In this area, select `Default User Associations` to enter SW360 and apply it also to existing users. Click on Save to save the selection:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/8.png" >}}
+
+Then, in `Configuration` >  `Instance Settings` > `User Authentication` > `General` to disable all kind of auto login to make sure only authenticated users can log in. You may want to switch off the e-mail verification, because for most of the development times it will not be of much value.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/9.png" >}}
+
+Finally, sice Liferay 7.4 some of the bundled modules need to be activated:
+
+* jquery
+* font awesome
+
+In oder to do this, please select from the `Configuration` >  `System Settings` > `Third Party` and go to jquery, select the enablement and click on Update:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/10.png" >}}
+
+Do the same for Font Awesome:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/11.png" >}}
+
+Note that you need to reload the browser or load a new browser window to take changes to effect.
+
+#### Setup SW360 for Liferay: Import *.lar Files
+
+For the setup of SW360 in Liferay, the portal description files, `*.lar` files need not be imported. there is no way except from doing this in the UI. If we are wrong with this, please let us know, because it is very annoying that these ever occurring steps cannot be automated with Liferay.
+
+In order to go ahead, switch to the `SW360` area where you can apply site settings:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/12.png" >}}
+
+The go into >  `Publishing` > `Import` which shows like this:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/13.png" >}}
+
+Then, click on the plus sign in order to import the *.lar file for public pages. You will find the lar files in the [frontend/configuration](https://github.com/eclipse/sw360/tree/master/frontend/configuration) folder of the sw360 repository.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/14.png" >}}
+
+As for import settings, follow the selection as shown on the screenshot. It is very important that for the `Public_Pages_7_4_3_18_GA18.lar` file the selection `Public_Pages_7_4_3_18_GA18.lar` is made.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/15.png" >}}
+
+Importing permission makes sure that pages are visible according to users rights. For public pages, it is irrelevant_the moment. Overwriting and the write as current user needs to be selected.
+
+After successful importing, the same steps shall be repeated for the `Private_Pages_7_4_3_18_GA18.lar` file.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/16.png" >}}
+
+Make sure that `Private_Pages_7_4_3_18_GA18.lar ` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/17.png" >}}
+
+
+If you click then the liferay logo_the upper left corner where the SW360 is, you will return to the application and the following screen should appear:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/18.png" >}}
+
+You can close the left menu area by clicking on the upper left icon:
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/19.png" >}}
+
+Click `Start` to open the private pages. You are still logged in, so the setup account is used to view the pages.
+
+__Important__ The setup account does not belong to a group. Thus, not all view are functional because they require a group membership to work correctly.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/20.png" >}}
+
+#### Import User Accounts for Testing
+
+Click the SW360 `Admin` menu which is_the right and selection the `User` item.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/21.png" >}}
+
+At the bottom of that view, select a User file to import for testing. Skip it if you will create users differently. You can find a [user account import file](https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv) to import in the `sw360vagrant` project in the folder `shared`. After the user have been imported successfully, they should appear in the table view.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/22.png" >}}
+
+After the user have been imported successfully, they should appear in the table view. You can logout for now and use one of the just added accounts (see below):
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/23.png" >}}
+
+#### Real Login
+
+One example user is `user@sw360.org` with the password `12345`. Note that in the import file with the example accounts, the password is provided with a hash. If you would like to generate new (salted) hashes, you can change your password and export the user list using the same portlet where you have imported the users. This functionality can be also used to migrate accounts between servers.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/24.png" >}}
+
+After the successful login, SW360 will look as follows.
+
+{{< figure src="/sw360/img/sw360screenshots/deploy74/25.png" >}}
 
 ### 3.8 Version Management Table (sw360 17.0.0)
 
@@ -756,4 +896,3 @@ $ sudo systemctl status postgres@@12-main.service
    [Liferay bundled with Tomcat]: <https://learn.liferay.com/dxp/latest/en/installation-and-upgrades/installing-liferay/installing-a-liferay-tomcat-bundle.html>
    [PostgreSQL]: <https://www.postgresql.org/download/linux/ubuntu/>
    [CouchDB]: <https://docs.couchdb.org/en/stable/install/unix.html>
-

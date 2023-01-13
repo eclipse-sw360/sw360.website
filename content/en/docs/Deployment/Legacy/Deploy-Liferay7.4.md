@@ -4,13 +4,11 @@ title: "Initial Setup of Liferay 7.4 and sw360"
 weight: 100
 ---
 
-After successful , Then if you open the server with the URL `https://localhost:8888/` the following screen should appear:
+After successful , Then if you open the server with the URL `https://localhost:8080/` the following screen should appear:
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/1.png" >}}
 
 Note that the actual image changes with every liferay version. If there is weird html output without images and plain text, then likely some port settings did not work and the pages generated have wrong URLs inside.
-
-Sign in_the icon_the upper left corner. If you did not change the values in `configuration.rb`the default login is `setup@sw360.org` and `sw360fossy`.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/2.png" >}}
 
@@ -23,10 +21,6 @@ After login the sw360 is not setup, thus the server does not display much, but a
 Go into the control panel area by clicking the items icon (nine small cubes) in the upper right corner and select the control panel tab:
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/4.png" >}}
-
-In this area, go for Security > Password Policies:
-
-{{< figure src="/sw360/img/sw360screenshots/deploy74/5.png" >}}
 
 Edit this password policy and disable `change Required` if you wish to do so. Click on Save_the bottom of the page to save the selection.
 
@@ -75,17 +69,17 @@ Then, click on the plus sign in order to import the *.lar file for public pages.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/14.png" >}}
 
-As for import settings, follow the selection as shown on the screenshot. It is very important that for the `PublicPages.lar` file the selection `Public Pages` is made.
+As for import settings, follow the selection as shown on the screenshot. It is very important that for the `Public_Pages_7_4_3_18_GA18.lar` file the selection `Public_Pages_7_4_3_18_GA18.lar` is made.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/15.png" >}}
 
 Importing permission makes sure that pages are visible according to users rights. For public pages, it is irrelevant_the moment. Overwriting and the write as current user needs to be selected.
 
-After successful importing, the same steps shall be repeated for the `PrivatePages.lar` file.
+After successful importing, the same steps shall be repeated for the `Private_Pages_7_4_3_18_GA18.lar` file.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/16.png" >}}
 
-Make sure that `Private Pages` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
+Make sure that `Private_Pages_7_4_3_18_GA18.lar ` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/17.png" >}}
 
@@ -120,7 +114,7 @@ After the user have been imported successfully, they should appear in the table 
 
 # Real Login
 
-One example user is `user@sw360.org` with the password `12345`. Note that in the import file with the example accounts, the passwort is provided with a hash. If you would like to generate new (salted) hashes, you can change your password and export the user list using the same portlet where you have imported the users. This functionality can be also used to migrate accounts between servers.
+One example user is `user@sw360.org` with the password `12345`. Note that in the import file with the example accounts, the password is provided with a hash. If you would like to generate new (salted) hashes, you can change your password and export the user list using the same portlet where you have imported the users. This functionality can be also used to migrate accounts between servers.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/24.png" >}}
 
