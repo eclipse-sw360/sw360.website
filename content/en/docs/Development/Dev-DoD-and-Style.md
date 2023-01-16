@@ -20,14 +20,12 @@ description: "The definition of done helps to set a common understanding for sol
   * Copyright and author
 
 * Create Branches for sw360
-  * Please use conventional branch names for sw360 ([Dev-Branches](https://github.com/eclipse/sw360/wiki/Dev-Branches))
-
+  * Please use conventional branch names for sw360 [Dev-Branches]({{< relref path="Dev-Branches.md">}})
+  
 * Avoid (serious) compiler warnings
   * Squash your commits into one or more logical units of work. No dozens of hourly/daily commits in your pull request, please
   * Rebase onto current master so that a fast forward merge is possible
   * That means that merge to master is prepared
-
-* use conventional change log for commit messages ([Dev-Semantic-Commits](https://github.com/eclipse/sw360/wiki/Dev-Semantic-Commits)) <br> For more information please go to https://conventionalcommits.org/ 
 
 * No breaking test
   * Unit testing as it is already present
@@ -42,7 +40,7 @@ description: "The definition of done helps to set a common understanding for sol
 
 * Commit style
   * try to squash commits. In the ideal case, a feature is contained in one commit.
-  * try to use conventional changelog for commit messages. ([Dev-Semantic-Commits](https://github.com/eclipse/sw360/wiki/Dev-Semantic-Commits))
+  * try to use conventional changelog for commit messages. [Dev-Semantic-Commits]({{< relref path="Dev-Semantic-Commits.md" >}})
 
 # Review
 

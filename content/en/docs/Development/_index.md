@@ -57,8 +57,8 @@ sw360 is a server application using Java servlets. It did some faint steps towar
 
 ### General
 
-1. [How to write a new portlet](https://github.com/eclipse/sw360/wiki/Dev-Adding-a-new-portlet:-Frontend)
-1. [Adding a new backend service](https://github.com/eclipse/sw360/wiki/Dev-Adding-a-new-portlet:-Backend)
+1. [How to write a new portlet]({{< relref path="Dev-Adding-a-new-portlet-Frontend.md" >}})
+1. [Adding a new backend service]({{< relref path="Dev-Adding-a-new-portlet-Backend.md" >}})
 1. [Changing the data model](Dev-Adding-New-Fields-to-Existing-Classes)
 1. [REST API overview](Dev-REST-API)
 1. [Migrating to Javascript modules](Dev-Using-RequireJS-for-javascript-modules)
