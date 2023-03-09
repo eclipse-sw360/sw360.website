@@ -273,14 +273,14 @@ $ curl localhost:5984
 * You can use "start/stop/status/restart" command with systemctl for controlling CouchDB service.
 
 
-#### 3.2.1.1 Install Couchdb Lucene
+#### Install Couchdb Lucene
 
 * SW360 uses for searching the contents of the couchdb databases a lucene-based server named couchdb-lucene
 
 * Run command download Couchdb Lucene
     - `wget --no-check-certificate https://github.com/rnewson/couchdb-lucene/archive/v2.1.0.tar.gz -O couchdb-lucene.tar.gz`
 
-* Note Extract liferay To folder `work` with path of work: `/home/user/work`
+* Note extract couchdb-lucene to folder `work` with path of work: `/home/user/work`
     - `tar -xzf couchdb-lucene.tar.gz`
 
 * Run command: 
@@ -292,7 +292,7 @@ $ curl localhost:5984
     - `mvn clean install war:war`
     - `cp target/couchdb-lucene-*.war /opt/liferay-ce-portal-7.4.3.18-ga18/tomcat-9.0.56/webapps/couchdb-lucene.war`
 
-### 3.2.1 Install PostgreSQL
+### 3.2.2 Install PostgreSQL
 
 * Install PostgerSQL manually, you can install through "apt install" too:
 ```sh
@@ -653,6 +653,104 @@ sw360changelog.output.path=sw360changelog/sw360changelog
 
 ```
 
+* Configure the sw360ChangeLog path
+#### 1. Create log4j2.xml file
+- Based on log4j2.xml file from https://github.com/eclipse/sw360/blob/main/build-configuration/resources/log4j2.xml, update the content as below, then place this file to etc/sw360 folder.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~ Copyright (c) Bosch.IO GmbH 2020.
+~
+~ All rights reserved. This program and the accompanying materials
+~ are made available under the terms of the Eclipse Public License v2.0
+~ which accompanies this distribution, and is available at
+~ http://www.eclipse.org/legal/epl-v20.html
+~
+~ SPDX-License-Identifier: EPL-2.0
+-->
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+        </Console>
+        <!-- environment variables can be set in the format of "$ {env: LOG_ROOT}" -->
+        <RollingFile name="ChangeLogFile" fileName="${env:FILE_PATH}/sw360changelog/sw360changelog.log"
+                filePattern="${env:FILE_PATH}/sw360changelog/sw360changelog-%d{yyyy-MM-dd}-%i.log" >
+            <PatternLayout pattern="%m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.eclipse.sw360" level="info"/>
+         <Logger name="sw360changelog" level="debug" >
+            <AppenderRef ref="ChangeLogFile" />
+        </Logger>
+        <Logger name="org.eclipse.sw360" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="warn">
+            <AppenderRef ref="ChangeLogFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
+* Set the environment variable for the changelog directory (`${env:FILE_PATH}/sw360changelog/sw360changelog.log`)
+    - `$ export FILE_PATH=/var/log`
+    - If `/var/log` folder requires permission, set permission for this folder:
+            `sudo chown -R $USER:$USER /var/log`
+
+* NOTE: I suggest the path ${env:FILE_PATH} to use LIFERAY_INSTALL env variable
+
+#### 2. Enable changelog config
+
+Add the following lines to the sw360.properties file (or uncomment if they are existing)
+
+* `sw360changelog.config.file.location=/etc/sw360/log4j2.xml`
+* `enable.sw360.change.log=true`
+
+#### 3. Compile and deploy
+
+   * Set `sw360.liferay.company.id = 20099` in `sw360.properties` file
+
+   * Set the environment variable for the LIFERAY_INSTALL directory
+
+      - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+
+   * Note: Should add -DskipTests when building sw360 to avoid test data write to log file
+
+   * To clean everything and install without running the tests
+
+      - `$ mvn clean install -DskipTests`
+
+   * For deployment, run the command
+
+      - `$ cd /home/user/work/sw360`
+      - `$ mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -DskipTests`
+
+#### 4. Start and configure Liferay
+
+* Set the environment variable for the LIFERAY_INSTALL directory
+
+    - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+
+* Start liferay
+
+    - `$ ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/startup.sh`
+
+* Log
+
+    - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/*`
+
+* SW360 URL: `https://localhost:8080`
+
+#### 5. How to check the logs
+- Edit (update) a project, component, or release in SW360.
+- Then check the logs in `${FILE_PATH}/sw360changelog/sw360changelog.log` file
+\
 
 ### 3.7 Compile and deploy
 
@@ -704,9 +802,9 @@ $ sudo systemctl status postgres@@12-main.service
 * Set Environment for `${LIFERAY_INSTALL}`
     - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
-* After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work/sw360/utils/deploy/jars` to  `${LIFERAY_INSTALL}/osgi/modules`
+* After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work/sw360/utils/jars` to  `${LIFERAY_INSTALL}/osgi/modules`
 
-    - `$ cd /home/user/work/sw360/utils/deploy/jars`
+    - `$ cd /home/user/work/sw360/utils/jars`
     - `$ sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/osgi/modules/`
 
 * We also suggest you change the environment settings (frontend/configuration/setenv.sh) to avoid the lack of memory before making and building SW360.
