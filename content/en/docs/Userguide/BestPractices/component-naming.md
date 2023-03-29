@@ -1,6 +1,7 @@
 ---
 title: "Naming a Component"
 linkTitle: "Naming a Component"
+weight: 21
 ---
 
 **The name is the most important criteria to identify software components. Unfortunately there is no common naming scheme available.**

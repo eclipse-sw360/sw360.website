@@ -1,7 +1,6 @@
 ---
 title: "SW360 Best Practices"
 linkTitle: "Best Practices"
-weight: 11
 ---
 
 ## SW360 Usage and Handling of Components

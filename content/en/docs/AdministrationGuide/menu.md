@@ -1,7 +1,7 @@
 ---
 linkTitle: "Administrator Menu"
 title: "Administrator Menu"
-weight: 10
+weight: 9
 ---
 
 The **admin menu** consists of the following items:
