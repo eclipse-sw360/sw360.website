@@ -1,7 +1,7 @@
 ---
 linkTitle: "User Management Roles"
 title: "User Management Roles"
-weight: 11
+weight: 10
 ---
 
 Every user can create records and edit own created records. However, to change records of others, approval is required. Approval in SW360 is a so called moderation request. A moderation request is a set of proposed changed not applied to record immediately, but will be routed to;

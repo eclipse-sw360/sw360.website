@@ -1,6 +1,7 @@
 ---
 title: "Record Creation"
 linkTitle: "Record Creation"
+weight: 23
 ---
 
 ## How to Create (Component) Entries?

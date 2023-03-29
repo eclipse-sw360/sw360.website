@@ -1,7 +1,7 @@
 ---
 title: "SW360 User Frequently Asked Questions"
 linkTitle: "FAQ"
-weight: 20
+weight: 21
 ---
 
 ##### **Q**: Who should be listed as Moderator?
