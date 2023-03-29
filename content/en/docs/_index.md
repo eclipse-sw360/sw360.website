@@ -8,9 +8,9 @@ menu:
 ---
 
 ## Overview
-**SW360** is a software catalogue application designed to provide a central place for sharing information about software components used by an organization. The main goal is to handle SW license information, which is supported by workflows. The analysis of the sourcecode concerning licenses, copyrights etc. is done by license scanners like FOSSology which is integrated.
+**SW360** is a software catalogue application that has been developed to facilitate the sharing of information related to software components used by an organization. Its primary objective is to manage software license information with the support of workflows. The application employs license scanners **FOSSology**, which is integrated to analyze the source code for licenses, copyrights, and other relevant information.
 
-It is designed to neatly integrate into existing infrastructures related to the management of software artifacts and projects by providing separate backend services for distinct tasks and a set of portlets to access these services. A complete deployment unit exists (vagrant box or docker container) that contains a complete configuration of all services and portlets.
+SW360 has been designed to seamlessly integrate with existing software artifact and project management infrastructures. It provides separate backend services for distinct tasks and a set of portlets to access these services. To ensure a smooth and hassle-free deployment, a complete deployment unit is available, which includes a Vagrant box or Docker container that contains a complete configuration of all services and portlets.
 
 SW360 comprises the following main use case areas:
 
@@ -50,3 +50,4 @@ SW360 is
 | Slack Channel | https://sw360chat.slack.com/ | the main chat spot, everybody is welcome |
 | Slack Channel Invitation Link | [Sharable join link to join](https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI) | that should bring you in |
 | sw360 developer meeting | [Meeting Info](Developer-Meetings) | Everyone is welcome!
+
