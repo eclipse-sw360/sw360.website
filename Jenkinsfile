@@ -54,7 +54,7 @@ spec:
                 dir('www') {
                   sshagent(['github-bot-ssh']) {
                     sh '''
-                      git clone git@github.com:eclipse/sw360.website.published.git .
+                      git clone git@github.com:eclipse-sw360/sw360.website.published.git .
                       git checkout ${BRANCH_NAME}
                     '''
                 }
