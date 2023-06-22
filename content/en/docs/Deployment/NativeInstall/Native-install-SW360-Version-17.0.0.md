@@ -675,8 +675,8 @@ sw360changelog.output.path=sw360changelog/sw360changelog
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </Console>
         <!-- environment variables can be set in the format of "$ {env: LOG_ROOT}" -->
-        <RollingFile name="ChangeLogFile" fileName="${env:FILE_PATH}/sw360changelog/sw360changelog.log"
-                filePattern="${env:FILE_PATH}/sw360changelog/sw360changelog-%d{yyyy-MM-dd}-%i.log" >
+        <RollingFile name="ChangeLogFile" fileName="${env:FILE_PATH}/sw360changelog.log"
+                filePattern="${env:FILE_PATH}/sw360changelog-%d{yyyy-MM-dd}-%i.log" >
             <PatternLayout pattern="%m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="10MB" />
@@ -698,10 +698,13 @@ sw360changelog.output.path=sw360changelog/sw360changelog
     </Loggers>
 </Configuration>
 ```
-* Set the environment variable for the changelog directory (`${env:FILE_PATH}/sw360changelog/sw360changelog.log`)
-    - `$ export FILE_PATH=/var/log`
-    - If `/var/log` folder requires permission, set permission for this folder:
-            `sudo chown -R $USER:$USER /var/log`
+* Set the environment variable for the changelog directory (`${env:FILE_PATH}/sw360changelog.log`)
+    - Create Folder `sw360changelog` in `var/log/`:
+        - `$ sudo mkdir sw360changelog `
+    - If `/var/log/sw360changelog` folder requires permission, set permission for this folder:
+        - `$ sudo chown -R $USER:$USER /var/log/sw360changelog`
+
+    - `$ export FILE_PATH=/var/log/sw360changelog`
 
 * NOTE: I suggest the path ${env:FILE_PATH} to use LIFERAY_INSTALL env variable
 
