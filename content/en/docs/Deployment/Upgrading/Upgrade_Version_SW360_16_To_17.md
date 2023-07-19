@@ -152,7 +152,7 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
 |   Open JDK    |  11.0.15 |
 |   Thrift      |  0.16.0  |
 
-* To check couchdb version: run `curl http://localhost_or_yourcouchdbserver:5984 | json_pp` or ''
+* To check couchdb version: run `curl http://localhost_or_yourcouchdbserver:5984 | json_pp`
 ## Migrate database {#ref3}
 
 * Check migrate scripts from 16.0 to 17.0 by <https://github.com/eclipse/sw360/tree/master/scripts/migrations>
