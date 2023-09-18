@@ -113,3 +113,60 @@ Step | Action | Result
 7 | Click _Add Vendor_ | Dialog closes and the new vendor is displayed in release _Vendor_ field
 8 | Click _Add Release_	| The page remain the same and the message _You are editing the original document._ is displayed
 9 | Click on component name link on top of the page | Summary page for the component is displayed. The new vendor for the new release, as well as existing vendors from previous releases are listed under _Vendors_ field for the component
+
+## Link a release to the project in view component page and check used by projects
+
+Step | Action | Result
+---:|:-----|:----
+1 | Search for an existing component with release and click _Release Overview_ tab | The list of releases are displayed
+2 | Click _Link Project_ button under Action column | The dialog _Link Release to Project_ is displayed with _Link to Project_ button is disabled
+3 | Click on _Search_ button then choose a project to link | _Link to Project_ button on the dialog is enabled
+4 | Click on __Link to Project_ button | _The release {component name} ({version}) has been successfully linked to project {project name}_<br>_Click <ins>here<ins>_ _to edit the release relation as well as the project mainline state in the project._ message is displayed
+5 | Click on _here_ hyperlink in the dialog | Redirect to the _edit project_ page with the release was linked (displayed on  _License Clearing_ page)
+6 | Re-open the release at view page and click on _Summary_ tab | Used by project information is updated correspondingly
+
+## Link a release to a project in the view release page
+
+Step | Action | Result
+---:|:-----|:----
+1 | Search for an existing component with release and click _Release Overview_ tab | The list of releases are displayed
+2 | Click on _a release name_ hyperlink. Eg: release R1 | Redirect to the _view release_ page
+3 | Click on _Link to Project_ button | The dialog _Link Release to Project_ is displayed with _Link to Project_ button is disabled
+4 | Click on _Search_ button then choose a project to link | _Link to Project_ button on the dialog is enabled
+5 | Click on __Link to Project_ button | _The release {component name} ({version}) has been successfully linked to project {project name}_<br>_Click <ins>here<ins>_ _to edit the release relation as well as the project mainline state in the project._ message is displayed
+6 | Click on _here_ hyperlink in the dialog | Redirect to the _edit project_ page with the release was linked (displayed on  _License Clearing_ page)
+
+## Import a new component by .spdx/.xml/ .rdf file
+
+Step | Action | Result
+---:|:-----|:----
+1 | Click on _Components_ tab | _Components_ page is displayed
+2 | Click on _Import SBOM_ button | A dialog _Upload SBOM_ is displayed
+3 | Choose a **_.spdx_** or **_.xml_** or **_.rdf_** file by clicking on the _Browse_ button or drop/draft a file into the dialog | The message is displayed in the dialog: <br> _The new Component and new Release will be created, do you want to import? <br> New Component: {new component names} <br> New Release: {new release names}_
+4 | Click on _Import_ button | The dialog is closed. New releases and new components are imported successfully
+
+## Export components without releases
+
+Step | Action | Result
+---:|:-----|:----
+1 | Click on _Components_ tab | _Components_ page is displayed
+2 | Click on _Export Spreadsheet_ button and choose _Components only_ option | A new file with name's format _components-{yyyy}-{mm}-{dd}.xlsx_ is downloaded<br> The content of the downloaded file includes information of all components in the system
+
+## Export components with releases
+
+Step | Action | Result
+---:|:-----|:----
+1 | Click on _Components_ tab | _Components_ page is displayed
+2 | Click on _Export Spreadsheet_ button and choose _Components with releases_ option | New file with name _components-{yyyy}-{mm}-{dd}.xlsx_ is downloaded.<br> The content of the downloaded file includes information of all components and releases in the system
+
+## Create a clearing request for a release
+
+Step | Action | Result
+---:|:-----|:----
+1 | Search for an existing component with releases and click _Release Overview_ tab | The list of releases are displayed
+2 | Click _Edit_ button under _Action_ column. Eg: edit release R1 | Redirect to _view release_ page and the message _Success:You are editing the original document._ is displayed
+3 | Click on _Attachments_ tab, then add a source file (Eg: .rdf file) with _Type_ is _Source file_ | The data is updated correspondingly
+4 | Click on _Update Release_ button | The message _Success:Release {release name} updated successfully!_ is displayed
+5 | Click on _Clearing details_ tab, then click on _Possology Process_ icon beside _Clearing State_ field and wait for the process to finish | The message _The FOSSology process already finished. You should find the resulting report as attachment at this release._ is displayed in the _Fossology Process_ dialog
+6 | Click on _Close_ button in the dialog | The dialog is closed
+7 | Reload this page, then click on _Attachments_ tab | A new file is listed in _Attachments_ page with name's format _{component name}-{version}-{yyyymmdd}-{hhmm}-SPDX.rdf_
