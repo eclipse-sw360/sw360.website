@@ -1,9 +1,9 @@
 ---
-linkTitle: "SPDX Documnent"
-title: "SPDX Documnent"
+linkTitle: "SPDX Document"
+title: "SPDX Document"
 weight: 100
 description: 
-  SPDX Documnent
+  SPDX Document
 ---
 
 # **How to enable this feature**
