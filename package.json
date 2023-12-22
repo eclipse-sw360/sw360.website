@@ -14,8 +14,8 @@
     "license": "ISC",
     "homepage": "https://eclipse.org/sw360",
     "devDependencies": {
-        "autoprefixer": "^10.4.0",
-        "postcss": "^8.3.7",
-        "postcss-cli": "^9.0.2"
+        "autoprefixer": "^10.4.16",
+        "postcss": "^8.4.32",
+        "postcss-cli": "^11.0.0"
     }
 }
