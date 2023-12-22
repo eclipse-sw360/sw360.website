@@ -52,3 +52,6 @@ resources/
 # Hugo tmporary dirs
 public
 .hugo_build.lock
+
+# Nodejs
+node_modules

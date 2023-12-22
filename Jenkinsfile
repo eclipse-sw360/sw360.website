@@ -21,7 +21,7 @@ spec:
       - name: "HOME"
         value: "/home/jenkins"
     - name: hugo
-      image: klakegg/hugo:0.107.0-ext-ubuntu
+      image: klakegg/hugo:0.111.3-ext-ubuntu
       command:
       - cat
       tty: true
