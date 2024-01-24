@@ -283,7 +283,7 @@ $ curl localhost:5984
 * You can use "start/stop/status/restart" command with systemctl for controlling CouchDB service.
 
 
-### 3.2.2 Install PostgreSQL
+##### 3.2.2 Install PostgreSQL
 
 * Install PostgerSQL manually, you can install through "apt install" too:
 ```sh
