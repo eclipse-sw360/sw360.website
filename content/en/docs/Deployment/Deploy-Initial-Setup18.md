@@ -1,6 +1,6 @@
 ---
-linkTitle: "Initial Setup of Liferay 7.4 and sw360"
-title: "Initial Setup of Liferay 7.4 and sw360"
+linkTitle: "sw360_18_series"
+title: "SW360 18.x.x Series Initial Setup"
 weight: 100
 ---
 
