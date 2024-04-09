@@ -16,7 +16,7 @@ After login the sw360 is not setup, thus the server does not display much, but a
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/3.png" >}}
 
-# User and Login Settings in Liferay
+## User and Login Settings in Liferay
 
 Go into the control panel area by clicking the items icon (nine small cubes) in the upper right corner and select the control panel tab:
 
@@ -53,7 +53,7 @@ Do the same for Font Awesome:
 
 Note that you need to reload the browser or load a new browser window to take changes to effect.
 
-# Setup SW360 for Liferay: Import *.lar Files
+## Setup SW360 for Liferay: Import *.lar Files
 
 For the setup of SW360 in Liferay, the portal description files, `*.lar` files need not be imported. there is no way except from doing this in the UI. If we are wrong with this, please let us know, because it is very annoying that these ever occurring steps cannot be automated with Liferay.
 
@@ -98,21 +98,18 @@ __Important__ The setup account does not belong to a group. Thus, not all view a
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/20.png" >}}
 
-# Import User Accounts for Testing
+## Create User Accounts for Test
 
 Click the SW360 `Admin` menu which is_the right and selection the `User` item.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/21.png" >}}
 
-At the bottom of that view, select a User file to import for testing. Skip it if you will create users differently. You can find a [user account import file](https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv) to import in the `sw360vagrant` project in the folder `shared`. After the user have been imported successfully, they should appear in the table view.
+Create at least one user with Admin properties. Example:
 
-{{< figure src="/sw360/img/sw360screenshots/deploy74/22.png" >}}
+{{< figure src="/sw360/img/sw360screenshots/deploy74/26.png" >}}
 
-After the user have been imported successfully, they should appear in the table view. You can logout for now and use one of the just added accounts (see below):
 
-{{< figure src="/sw360/img/sw360screenshots/deploy74/23.png" >}}
-
-# Real Login
+## Real Login
 
 One example user is `user@sw360.org` with the password `12345`. Note that in the import file with the example accounts, the password is provided with a hash. If you would like to generate new (salted) hashes, you can change your password and export the user list using the same portlet where you have imported the users. This functionality can be also used to migrate accounts between servers.
 
