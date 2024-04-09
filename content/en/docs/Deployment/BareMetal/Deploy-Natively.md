@@ -2,8 +2,7 @@
 linkTitle: "Ubuntu 22.04 / Debian 11"
 title: "Ubuntu 22.04 / Debian 11"
 weight: 100
-description: 
-  Bare metal deployment with Debian based Linux
+description: Bare metal deployment with Debian based Linux
 ---
 
 ## Introduction
@@ -15,10 +14,9 @@ We are covering the update for Debian based Linux distros, because that is our m
 The installation consists of quite some tasks, as an overview:
 
 * Java 11
-* Postgresql >= 9.x
-* CouchDB >= 3.x
-* CouchDB-Lucene 2.1
-* Thrift 0.16
+* Postgresql >= 15.x
+* CouchDB >= 3.2.x
+* Thrift 0.18.1
 * Liferay CE 7.4.3 GA18
 
 ## Initial steps
@@ -72,11 +70,11 @@ sudo ./install-thrift.sh
 
 In case there is thrift in the package management of the OS you re running on, just make sure, you have version 0.16
 
-## Java 11 
+## Java 11
 
 If you do not have installed java 11 yet on your setup:
 
-```shell 
+```shell
 curl https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /etc/apt/trusted.gpg.d/apache-temurin.gpg >/dev/null
 echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.gpg
 ```

@@ -11,11 +11,8 @@ After the basic installation, there are some following steps that should be cons
 * Lifearay
 * Tomcat
 * Couchdb
-* Vagrant
 
-For vagrant it is important to understand how to close the provisioning users and not keep default usernames and passwords open.
-
-Then for the applications, the following very first line measure should be considered:
+For the applications, the following very first line measure should be considered:
 
 * Change password of Liferay administrator user or check if that is appropriately secure.
 
@@ -33,6 +30,5 @@ Then for the applications, the following very first line measure should be consi
 
 * Add https access to couchdb
 
-* check that sw360 eyecuting user does not have sudo rights and config files for sw360 are `600` only for the executing user.
+* check that sw360 runtime user does not have sudo rights and config files for sw360 are `600` only.
 
-Note that the Linux vagrant scripts applies somesecurity measures already on the OS level.
