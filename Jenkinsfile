@@ -1,7 +1,6 @@
 // See documentation on: https://wiki.eclipse.org/Jenkins#How_to_build_my_project.27s_website_with_Jenkins.3F
 
 pipeline {
-
   agent {
     kubernetes {
       label 'hugo-agent'
@@ -49,72 +48,75 @@ spec:
     }
 
     stages {
-        stage('Checkout www repo') {
-            steps {
-                dir('www') {
-                  sshagent(['github-bot-ssh']) {
-                    sh '''
-                      git clone git@github.com:eclipse-sw360/sw360.website.published.git .
-                      git checkout ${BRANCH_NAME}
-                    '''
+      stage('Checkout www repo') {
+          steps {
+              dir('www') {
+                sshagent(['github-bot-ssh']) {
+                  sh '''
+                    git clone git@github.com:eclipse-sw360/sw360.website.published.git .
+                    git checkout ${BRANCH_NAME}
+                  '''
+              }
+          }
+        }
+      }
+
+      stage('Build main website with Hugo') {
+        when {
+          branch 'main'
+        }
+        steps {
+            container('hugo') {
+                dir('hugo') {
+                    sh 'mkdir -p themes/docsy'
+                    sh 'hugo --minify -b https://www.eclipse.org/sw360/'
                 }
             }
-          }
         }
-        stage('Build main website with Hugo') {
-          when {
-            branch 'main'
-          }
-          steps {
-              container('hugo') {
-                  dir('hugo') {
-                      sh 'mkdir -p themes/docsy'
-                      sh 'hugo -b https://www.eclipse.org/sw360/'
-                  }
-              }
-          }
+      }
+
+      stage('Build staging website with Hugo') {
+        when {
+          branch 'staging'
         }
-        stage('Build staging website with Hugo') {
-          when {
-            branch 'staging'
-          }
-          steps {
-              container('hugo') {
-                  dir('hugo') {
-                      sh 'mkdir -p themes/docsy'
-                      sh 'hugo -b https://www.eclipse.org/${PROJECT_NAME}/'
-                  }
-              }
-          }
-        }
-        stage('Push www') {
-          when {
-            anyOf {
-              branch "main"
-              branch "staging"
+        steps {
+            container('hugo') {
+                dir('hugo') {
+                    sh 'mkdir -p themes/docsy'
+                    sh 'hugo --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
+                }
             }
+        }
+      }
+
+      stage('Push www') {
+        when {
+          anyOf {
+            branch "main"
+            branch "staging"
           }
-          steps {
-            sh 'rm -rf www/* && cp -Rvf hugo/public/* www/'
-            dir('www') {
-              sshagent(['github-bot-ssh']) {
-                sh '''
-                git add -A
-                if ! git diff --cached --exit-code; then
-                  echo "Changes have been detected, publishing to repo 'www.eclipse.org/${PROJECT_NAME}'"
-                  git config user.email "${PROJECT_NAME}-bot@eclipse.org"
-                  git config user.name "${PROJECT_BOT_NAME}"
-                  git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
-                  git log --graph --abbrev-commit --date=relative -n 5
-                  git push origin HEAD:${BRANCH_NAME}
-                else
-                  echo "No changes have been detected since last build, nothing to publish"
-                fi
-                '''
-              }
+        }
+        steps {
+          sh 'rm -rf www/* && cp -Rvf hugo/public/* www/'
+          dir('www') {
+            sshagent(['github-bot-ssh']) {
+              sh '''
+              git add -A
+              if ! git diff --cached --exit-code; then
+                echo "Changes have been detected, publishing to repo 'www.eclipse.org/${PROJECT_NAME}'"
+                git config user.email "${PROJECT_NAME}-bot@eclipse.org"
+                git config user.name "${PROJECT_BOT_NAME}"
+                git commit -m "Website build ${JOB_NAME}-${BUILD_NUMBER}"
+                git log --graph --abbrev-commit --date=relative -n 5
+                git push origin HEAD:${BRANCH_NAME}
+              else
+                echo "No changes have been detected since last build, nothing to publish"
+              fi
+              '''
             }
           }
         }
-     }
+      }
+    }
   }
 
