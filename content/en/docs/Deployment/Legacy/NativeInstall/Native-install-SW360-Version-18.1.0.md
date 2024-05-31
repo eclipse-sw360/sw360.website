@@ -763,8 +763,6 @@ Run following commands to config Couchdb Lucene (remember to replace **COUCHDB_U
 $ cd third-party/couchdb-lucene/
 $ sed -i "s/allowLeadingWildcard=false/allowLeadingWildcard=true/" ./src/main/resources/couchdb-lucene.ini 
 $ sed -i "s/localhost:5984/COUCHDB_USER:COUCHDB_USER@localhost:5984/" ./src/main/resources/couchdb-lucene.ini 
-$ mvn clean install war:war
-$ cp target/couchdb-lucene-*.war /opt/liferay-ce-portal-7.4.3.18-ga18/tomcat-9.0.56/webapps/couchdb-lucene.war
 ```
 
 ##### 3.7.6. Clean everything and install without running the tests:
