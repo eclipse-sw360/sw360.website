@@ -17,7 +17,7 @@ This docker compose comes with default admin passwords for couchdb and postgres.
 Donload the file mentioned above an just run:
 
 ```bash
-docker compose -d
+docker compose up -d
 ```
 
 Three nested docker containers will be created for sw360, couchdb and postgres, and the respective volumes for the containers. They run in a closed sw360 docker network.
