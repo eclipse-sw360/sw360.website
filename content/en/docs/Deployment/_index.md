@@ -29,6 +29,7 @@ After successful , Then if you open the server with the URL `https://localhost:8
 {{< figure src="/sw360/img/sw360screenshots/deploy74/1.png" >}}
 
 Note that the actual image changes with every liferay version. If there is weird html output without images and plain text, then likely some port settings did not work and the pages generated have wrong URLs inside.
+The default sw360 login username is *setup@sw360.org* and default password is *sw360fossy*.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/2.png" >}}
 
@@ -58,7 +59,7 @@ Then, in `Configuration` >  `Instance Settings` > `User Authentication` > `Gener
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/9.png" >}}
 
-Finally, sice Liferay 7.4 some of the bundled modules need to be activated:
+Finally, since Liferay 7.4 some of the bundled modules need to be activated:
 
 * jquery
 * font awesome
