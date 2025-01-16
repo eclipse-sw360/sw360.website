@@ -46,8 +46,8 @@ CouchDB is not part of the Ubuntu package management anymore. Thus, you need to 
 
 ```shell
 apt install curl gpg
-curl https://couchdb.apache.org/repo/keys.asc | sudo gpg –dearmor -o /etc/apt/trusted.gpg.d/couchdb-archive-keyring.gpg
-echo “deb https://apache.jfrog.io/artifactory/couchdb-deb/ $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main” | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
+curl https://couchdb.apache.org/repo/keys.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/couchdb-archive-keyring.gpg
+echo "deb https://apache.jfrog.io/artifactory/couchdb-deb/ $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/couchdb.list >/dev/null
 sudo apt-get update -y
 sudo apt-get install -y couchdb
 ```
