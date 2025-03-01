@@ -21,7 +21,7 @@ Please report issues to the issue tracker, but please keep also in mind that som
 * What you intended to do?
 * What did you observe?
 * Why do you think it is wrong?
-* Screenshots of what you have observed presumably gone wrong or link to pages were another person can follow
+* Screenshots of what you have observed presumably gone wrong or link to pages where another person can follow
 * Version where you have observed this.
 * Common written English and use of line breaks!!! Use the preview function!
 
