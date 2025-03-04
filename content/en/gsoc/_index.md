@@ -19,7 +19,7 @@ menu:
 
 ## Google Summer of Code 2025
 
-SW360 is looking forward for participating in
+SW360 is selected as a mentoring Org with
 [Google Summer of Code 2025](https://opensource.googleblog.com/2025/01/google-summer-of-code-2025-is-here.html).
 
 You can visit our [idea page for GSoC 2025]({{< relref path="GSoC-projects-2025.md">}}).
@@ -36,6 +36,7 @@ More info to come here.
 
 ### Proposed Mentors
 
+- [Akshit Joshi](https://github.com/akshitjoshii)
 - [Amrit Kumar Verma](https://github.com/amritkv)
 - [Arun Azhakesan](https://github.com/arunazhakesan)
 - [Gaurav Mishra](https://github.com/GMishx)
