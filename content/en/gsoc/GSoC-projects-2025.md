@@ -22,8 +22,10 @@ Welcome to the idea page for all GSoC 2025 related information.
 
 ## Intro
 
-We, from the SW360 project, would like to apply for GSoC 2025. Please see two
-main resources for finding out more SW360 in general:
+SW360 project has been selected as a mentoring Org with GSoC 2025. Thank you,
+Google!
+
+Please see two main resources for finding out more SW360 in general:
 
 - Check https://eclipse.dev/sw360/ and development and deployment section.
 - Try to install SW360 from source or your can try the [Docker](https://github.com/eclipse-sw360/sw360/blob/main/docker-compose.yml)
@@ -53,6 +55,7 @@ Interested in becoming a mentor? Please reach out to us!
 
 #### Volunteers so far:
 
+- [Akshit Joshi](https://github.com/akshitjoshii)
 - [Amrit Kumar Verma](https://github.com/amritkv)
 - [Arun Azhakesan](https://github.com/arunazhakesan)
 - [Gaurav Mishra](https://github.com/GMishx)
