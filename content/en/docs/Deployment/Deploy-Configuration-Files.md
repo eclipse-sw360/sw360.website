@@ -94,7 +94,7 @@ These configuration parameters are necessary to connect to a fossology server.
 
 ### couchdb.properties (/etc/sw360/couchdb.properties)
 
-CouchDB and Lucene serach configuration properties.
+CouchDB and Lucene search configuration properties.
 
 | Property Key | Default|
 |:-----------|:------------|
