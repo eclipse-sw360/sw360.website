@@ -62,6 +62,7 @@ Interested in becoming a mentor? Please reach out to us!
 - [Helio Chissini de Castro](https://github.com/heliocastro)
 - [Katharina Ettinger](https://github.com/EttingerK)
 - [Keerthi BL](https://github.com/keerthi-bl)
+- [Kouki Hama](https://github.com/KoukiHama)
 - [Rudra Chopra](https://github.com/rudra-superrr)
 
 ## Topic Proposals
