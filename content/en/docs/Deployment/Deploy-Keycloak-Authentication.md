@@ -266,7 +266,7 @@ sw360-keycloak-user-storage-provider.jar
 ### Step 4: Test the Integration
 1. Click on Authentication from Left hand Configure Group section
 2. Click on Browser Flow
-3. Click config of Identity Provider Redirector
+3. Click config of Identity Provider Redirector  {{< figure src="/sw360/img/keycloak/keycloak-browser-flow-identity-provider-redirector-config.png" >}}
 4. Provide Default Identity Provider as the value which was given in Identity Providers Alias ( e.g. `azure-foss360` in previous section) and click on save.
 5. With this configuration update now access https://foss360.siemens.com/ and verify the automatic login with Azure ID redirect.
 
