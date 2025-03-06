@@ -234,6 +234,41 @@ sw360-keycloak-user-storage-provider.jar
       the *Credentials* page.
 
       {{< figure src="/sw360/img/keycloak/keycloak-users-password.png" >}}
+## Adding Identity Providers in Keycloak for Azure AD Integration
+
+### Prerequisites
+- Keycloak 26.0.5 installed and running
+- Azure AD tenant with necessary permissions
+
+### Step 1: Create an Application in Azure AD
+### Step 2: Configure the Application
+### Step 3: Configure Keycloak
+1. Log in to the Keycloak admin console.
+2. Select the realm sw360 to add the identity provider.
+3. Go to **Identity Providers** and select **OpenID Connect v1.0** from the dropdown.
+4. Fill in the following details:
+   - **Alias**: `azure-foss360`
+   - **Display Name**: `Login with AzureAD`
+   - **Authorization URL**: `https://login.microsoftonline.com/<your-tenant-id>/oauth2/v2.0/authorize`
+   - **Token URL**: `https://login.microsoftonline.com/<your-tenant-id>/oauth2/v2.0/token`
+   - **Logout URL**: `https://login.microsoftonline.com/<your-tenant-id>/oauth2/v2.0/logout`
+   - **User Info URL**: `https://graph.microsoft.com/oidc/userinfo`
+   - **Issuer**: `https://login.microsoftonline.com/<your-tenant-id>/v2.0`
+   - **JWKS URL**: `https://login.microsoftonline.com/<your-tenant-id>/discovery/v2.0/keys`
+   - **Validate Signatures**: ON
+   - **Use JWKS URL**: ON
+   - **Trust Email**: ON
+   - **Client ID**: The Application (client) ID from Azure AD
+   - **Client Secret**: The client secret you created in Azure AD
+   - **Default Scopes**: `openid profile email`
+5. Click **Save**.
+
+### Step 4: Test the Integration
+1. Click on Authentication from Left hand Configure Group section
+2. Click on Browser Flow
+3. Click config of Identity Provider Redirector  {{< figure src="/sw360/img/keycloak/keycloak-browser-flow-identity-provider-redirector-config.png" >}}
+4. Provide Default Identity Provider as the value which was given in Identity Providers Alias ( e.g. `azure-foss360` in previous section) and click on save.
+5. With this configuration update now access http://localhost:8080 and verify the automatic login with Azure ID redirect.
 
 ## Clone SW360 Frontend Repository
 
