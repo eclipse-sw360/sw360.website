@@ -80,6 +80,7 @@ https://github.com/eclipse-sw360/sw360/discussions/2868
 4. [Improve tests for all REST API endpoints](#improve-tests-for-all-rest-api-endpoints)
 5. [SBOM based recommendation](#sbom-based-recommendation)
 6. [Creating Project as a Service](#creating-project-as-a-service)
+7. []
 
 ### License Change Detection
 
@@ -244,5 +245,50 @@ still reusing the common Component repository.
 | Preferred contributor  | Student/professional              |
 | Skills needed          | Java, Spring, Microservices, REST |
 | Contact                | @keerthi-bl @GMishx @heliocastro  |
+
+
+### Update Official Documentation Page
+
+**Goal:** Separate out the Project and related modules as a separate
+microservice
+
+#### Motivation
+The current official documentation page (https://eclipse.dev/sw360/) lacks clear
+instructions regarding environment configurations and upgrade procedures for
+recent software versions. This discrepancy often confuses users and negatively
+affects productivity during installation or updating processes. Keeping the
+official documentation accurate and up-to-date helps attract new users and
+fosters an active user community. Moreover, documentation updates do not require
+direct changes to the software source code, allowing contributors to undertake
+this task concurrently with other development or testing activities, thus
+lowering the barriers for OSS contributions.
+
+### Proposed Changes
+- Clearly document environment setup instructions and upgrade procedures
+  corresponding to the latest software versions.
+- Complement missing details in documentation, such as updates to dependencies
+  and version compatibility, reducing user confusion.
+- Enhance visual clarity by adding practical examples and screenshots
+  illustrating the updated procedures.
+
+### Notes
+- This task involves no source code modifications, making it easy to execute
+  alongside other development tasks or community activities.
+- Documentation updates are valuable contributions to OSS projects and serve as
+  excellent entry points for new contributors.
+- It is advisable to explicitly recognize documentation maintenance as a
+  significant and formally acknowledged form of OSS contribution.
+
+| Category               | Rating                          |
+|:-----------------------|:--------------------------------|
+| Low Hanging Fruit      | ***                             |
+| Risk/Exploratory       | *                               |
+| Fun/Peripheral         | **                              |
+| Core Development       | *                               |
+| Project Infrastructure | ***                             |
+| Project size           | Medium                          |
+| Preferred contributor  | Student/professional            |
+| Skills needed          | Markdown, Hugo                  |
+| Contact                | @GMishx @heliocastro @KoukiHama |
 
 </div></div></div>
