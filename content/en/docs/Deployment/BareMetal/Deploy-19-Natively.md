@@ -149,10 +149,17 @@ or whatever package version is suitable here, for example version 15 for Debian 
 Follow the [Keycloak based authentication](../Deploy-Keycloak-Authentication.md)
 guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
-### 1.7. Clone and build sw360 version 19.x
+### 1.7. Clone SW360 backend and create default user
 
 * Clone sw360 source code to folder
     - `$ git clone https://github.com/eclipse-sw360/sw360.git`
+* Create default user
+    - Open the file `./scripts/addUnsafeDefaultClient.sh`
+    - Replace the `couchdb_username` and `couchdb_password` in line 23 & 24 with your `couchdb_username` and `couchdb_password`
+    - Run `./scripts/addUnsafeDefaultClient.sh`
+
+### 1.8. Build sw360 version 19.x
+
 * Create config properties
     - `$ sudo mkdir -p /etc/sw360 /etc/sw360/autorization /etc/sw360/rest`
     - Find the relevant configurations at [Configurable Property Keys](../Deploy-Configuration-Files.md)
@@ -161,7 +168,7 @@ guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
 This will install the jar and war files at appropriate locations.
 
-### 1.8. Start backend service
+### 1.9. Start backend service
 
 * Start tomcat server
     - `$ /opt/apache-tomcat-11.0.4/bin/startup.sh`
