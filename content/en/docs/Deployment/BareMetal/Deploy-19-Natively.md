@@ -155,7 +155,7 @@ guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
     - `$ git clone https://github.com/eclipse-sw360/sw360.git`
 * Create default user
     - Open the file `./scripts/addUnsafeDefaultClient.sh`
-    - Replace the `couchdb_username` and `couchdb_password` in line 23 & 24 with your `couchdb_username` and `couchdb_password`
+    - Replace the `couchdb_username` and `couchdb_password` in `AUTH_CLIENTS_URL` & `USERS_DB_URL` with your `couchdb_username` and `couchdb_password`
     - Run `./scripts/addUnsafeDefaultClient.sh`
 
 ### 1.8. Build sw360 version 19.x
