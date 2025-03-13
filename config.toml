@@ -125,7 +125,7 @@ desc = "Development takes place here!"
 
 [[params.links.developer]]
 name = "Slack"
-url = "https://sw360chat.slack.com"
+url = "https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI"
 icon = "fab fa-slack"
 desc = "Chat with other project developers"
 
