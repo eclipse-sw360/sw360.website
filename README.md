@@ -13,6 +13,44 @@ The result of the jenkins build is pushed to: http://git.eclipse.org/c/www.eclip
 
 The jenkins jobs looks every 15 minutes after changes on the repository. If it detects changes it will start the hugo build and copy the generated static html files to git.eclipse.org. From there another job fetches the files and copies them to the actual static webspace of the Eclipse Foundation.
 
+## Getting Started
+
+### Fork and Clone the Repository
+1. Fork this repository by clicking the "Fork" button at the top-right corner of the GitHub page.
+2. Clone your forked repository:
+   ```sh
+   git clone https://github.com/eclipse-sw360/sw360.website.git
+   ```
+3. Navigate into the project directory:
+   ```sh
+   cd sw360.website
+   ```
+
+### Install Hugo
+Make sure you have [Hugo installed](https://gohugo.io/getting-started/installing/). 
+
+#### Install Hugo on Linux/macOS
+```sh
+sudo apt install hugo  # For Debian/Ubuntu
+brew install hugo      # For macOS (using Homebrew)
+```
+
+#### Install Hugo on Windows
+Download the [Hugo binary](https://github.com/gohugoio/hugo/releases) and add it to your system `PATH`.
+
+### Verify Hugo Installation
+Run the following command to check if Hugo is installed correctly:
+```sh
+hugo version
+```
+
+### Previewing Changes Locally
+To start a local server and preview your changes:
+```sh
+hugo serve -D
+```
+This will generate the site and serve it at `http://localhost:1313/`.
+
 ## Docker local live testing
 
 If you have docker installed on your system, you can test in realtime all changes.
