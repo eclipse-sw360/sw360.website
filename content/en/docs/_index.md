@@ -7,47 +7,58 @@ menu:
     weight: 90
 ---
 
-## Overview
-**SW360** is a software catalogue application that has been developed to facilitate the sharing of information related to software components used by an organization. Its primary objective is to manage software license information with the support of workflows. The application employs license scanners **FOSSology**, which is integrated to analyze the source code for licenses, copyrights, and other relevant information.
+## **Overview**
+**SW360** is a software catalog application designed to facilitate the sharing of information about software components within an organization. Its primary objective is to manage software license information while supporting compliance workflows.  
 
-SW360 has been designed to seamlessly integrate with existing software artifact and project management infrastructures. It provides separate backend services for distinct tasks and a set of portlets to access these services. To ensure a smooth and hassle-free deployment, a complete deployment unit is available, which includes a Vagrant box or Docker container that contains a complete configuration of all services and portlets.
+SW360 integrates with **FOSSology**, an open-source license scanning tool, to analyze source code for licenses, copyrights, and other relevant details.  
 
-SW360 comprises the following main use case areas:
+To ensure seamless adoption, SW360 is designed to integrate with existing software artifact and project management infrastructures. It provides:  
+- **Backend services** for different tasks.  
+- **A set of portlets** to access these services.  
+- **Deployment options** via a pre-configured **Vagrant box** or **Docker container**, ensuring an easy setup process.  
 
-- Project: Handling of project information with all contained Open Source SW components and other Third Party SW Components and Snippets.
-- Component/Releases: Handling of information and processes related to components, e.g. name, vendor, version, ECCN information, license compliance information
-- License: Handling of information regarding licenses, e.g. license texts, copyrights, acknowledgements, obligations etc.
-- Vulnerability: Collecting Security Vulnerability Management Information and matching them with components stored in the component service
-- License Compliance documentation: all relevant documents (e.g. Readme, source code bundle) can be created, supported by workflows.
+#### **Key Use Cases**
+SW360 supports various use cases, including:  
+- **Projects:** Manage project details, including open-source and third-party software components.  
+- **Components & Releases:** Store component details such as name, vendor, version, ECCN, and license compliance.  
+- **Licenses:** Maintain records of license texts, copyrights, acknowledgments, and obligations.  
+- **Vulnerabilities:** Track security vulnerabilities and match them with components in the system.  
+- **License Compliance Documentation:** Generate required compliance documents such as README files and source code bundles.  
 
-## Functionality
-The SW360 is a software catalogue application with which you can:
+---
 
-- Manage your components and projects
-- Send source packages to the clearing tool Fossology
-- Reuse cleared components and releases for your project
-- Import cleared components with clearing reports and other documents
-- Browse licenses and their obligations
+## **Functionality**
+With **SW360**, you can:  
+- Manage software components and projects.  
+- Analyze source packages using **FOSSology**.  
+- Reuse previously cleared components for new projects.  
+- Import cleared components along with compliance reports and other related documents.  
+- Browse and review software licenses and their obligations.  
 
-SW360 is
-- Based on the Open Source Liferay portal server
-- Integrated with Fossology
+#### **Key Features**
+- **Built on the Open Source Liferay Portal Server.**  
+- **Integrated with FOSSology** for license scanning and compliance analysis.  
 
- In order to work with SW360, please note a fundamental setup in the data model when dealing with components:
+#### **Data Model Concepts**
+Understanding SW360’s data model is essential:  
+- A **Component** consists of multiple releases, each with its own metadata.  
+- A **Release** represents a specific version of a component with metadata and associated attachments.  
+- A **Project** consists of multiple component releases, not just components.  
+- A **Vendor** is independent of a component or release. The vendor link is assigned at the release level.  
+  *(For example, Sun Microsystems and Oracle—ownership changed in a later release.)*  
 
-- A component is a list of releases with metadata. 
-- A Release is a version of a component with metadata and specific attachments.
-- A project refers to a number of releases of components accordingly, not components.
-- A vendor is separate from a component and releases. The link to the vendor is set at the release. (think of Sun and Oracle where the owner changed with a new release)
+---
 
-## Getting started
+## **Getting Started** 
 
-| Name | URL | Remarks |
+| Name | URL | Description |
 | --- | --- | --- |
-| Main home page | https://www.eclipse.org/sw360/ | main home page with general info |
-| Project @ Github | https://github.com/eclipse/sw360 | where the music plays |
-| Developer mailing list | sw360-dev@eclipse.org | for developers, discussion about developing |
-| Slack Channel | https://sw360chat.slack.com/ | the main chat spot, everybody is welcome |
-| Slack Channel Invitation Link | [Sharable join link to join](https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI) | that should bring you in |
-| sw360 developer meeting | [Meeting Info](Developer-Meetings) | Everyone is welcome!
+| **Main Home Page** | [Eclipse SW360](https://www.eclipse.org/sw360/) | Official project homepage with general information. |
+| **GitHub Repository** | [SW360 on GitHub](https://github.com/eclipse/sw360) | The source code and development discussions. |
+| **Developer Mailing List** | `sw360-dev@eclipse.org` | For development-related discussions. |
+| **Slack Channel** | [SW360 Chat](https://sw360chat.slack.com/) | Main chat hub—everyone is welcome! |
+| **Slack Invitation** | [Join SW360 Slack](https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI) | Use this link to join our Slack community. |
+| **SW360 Developer Meeting** | [Meeting Info](Developer-Meetings) | Open to all contributors! |
+
+---
 
