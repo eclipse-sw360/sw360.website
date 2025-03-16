@@ -89,7 +89,7 @@ sudo apt-get install -y temurin-21-jdk
 
 ### 1.3. Thrift
 
-For thrift, the helper install script is located on sw360 `scripts/install-thrift.sh`:
+To install Apache Thrift using the helper script in the SW360 project, run the install-thrift.sh script located in `third-party/thrift/install-thrift.sh`: [here](https://github.com/eclipse-sw360/sw360/blob/d7869d252c4b4c84e6ee389cbed44543cd37f7ac/third-party/thrift/install-thrift.sh)
 
 ```bash
 sudo ./scripts/install-thrift.sh
