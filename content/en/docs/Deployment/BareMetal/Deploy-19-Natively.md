@@ -146,7 +146,7 @@ sudo apt install postgresql
 
 or whatever package version is suitable here, for example version 15 for Debian 12.
 
-Follow the [Keycloak based authentication](../Deploy-Keycloak-Authentication.md)
+Follow the [Keycloak based authentication](../../Deployment/Deploy-Keycloak-Authentication.md)
 guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
 ### 1.7. Clone SW360 backend and create default user
@@ -166,7 +166,7 @@ guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
 * Create config properties
     - `$ sudo mkdir -p /etc/sw360 /etc/sw360/autorization /etc/sw360/rest`
-    - Find the relevant configurations at [Configurable Property Keys](../Deploy-Configuration-Files.md)
+    - Find the relevant configurations at [Configurable Property Keys](../../Deployment/Deploy-Configuration-Files.md)
 * Compile and install the application
     - `$ mvn clean install -Dbase.deploy.dir=/opt/apache-tomcat-11.0.4/ -Dlistener.deploy.dir=/opt/keycloak-26.1.3/providers -P deploy`
 
