@@ -8,7 +8,7 @@ description:
 
 ## Introduction
 
-We are covering the update for Ubuntu 18.04 LTS here because it is our main and agreed-upon base system for running SW360. While SW360 may run on a variety of other Linux distributions or operating systems such as macOS, we have agreed to use Ubuntu Long-Term Releases as a reference OS to avoid compatibility issues. The author of this guide also uses macOS with Homebrew, which works fairly well.
+We are covering the update for Ubuntu 18.04 LTS here because it is our main / agreed-upon base system for running SW360. While SW360 may run on a variety of other Linux distributions or operating systems such as macOS, we have agreed to use Ubuntu Long-Term Releases as a reference OS to avoid compatibility issues. The author of this guide also uses macOS with Homebrew, which works fairly well.
 
 
 
