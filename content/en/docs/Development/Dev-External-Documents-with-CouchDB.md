@@ -22,11 +22,11 @@ In such cases an external document might be the better model. For example the at
 In any case it is highly dependent on the use case whether external documents are to be favored over internal documents.
 
 ## Possible implementations for linked documents
-### Special ResponseHandler with special views from CouchDB
+### Special ResponseHandler with Special Views from CouchDB
 
-| Easy to use? | Performance? | Effort to use in existing code |
-| ------------ | ------------ | ----------------------------- |
-| :star::star: Middle, special views have to be created, fields of data objects has to be annotated. | :star::star::star: Very good, fetching of multiple documents with a single request. | :star: High, since existing code has to be changed |
+| **Ease of Use**        | **Performance**        | **Integration Effort** |
+|------------------------|------------------------|------------------------|
+| ⭐⭐ Middle, special views have to be created, fields of data objects has to be annotated. | ⭐⭐⭐ Very good, fetching of multiple documents with a single request. | ⭐ High, since existing code has to be changed. |
 
 #### Couch-DB theory
 At the time of writing, support of external (or linked) documents in Couch-DB is limited. Consider the following documents:
@@ -37,7 +37,7 @@ project = {
    name: "Testproject",
    attachments: [
        { _id: "a1" },
-       { _id: "z2" }
+       { _id: "a2" }
    ]
 }
 attachment1 = {
@@ -58,7 +58,7 @@ Unfortunately there is no way to get the project document with the attachments d
 function(doc) {
     if(doc.type === "attachment") {
         emit(doc._id, null);
-        for(var in in doc.attachments) {
+        for(var i in doc.attachments) {
             emit(doc._id, { _id: doc.attachments[i]._id });
         }
     }
@@ -116,7 +116,7 @@ https://github.com/eclipse/sw360/pull/596 show an implementation to transparentl
 * a response handler used for parsing the results when requesting linked documents
 * two annotation classes to mark fields which contain ids for linked documents
 After the branch was merged, the new feature can be used in only three steps. You need:
-1. A view that loads the "main" documents along with there linked documents
+1. A view that loads the "main" documents along with their linked documents
 1. A special method in your database handler / database repository which calls the new method from the connector
 1. A mixin for your data object which annotates the fields which contain ids to linked documents
 
@@ -139,11 +139,11 @@ However Ektorp has a linking feature as well: You may annotate fields with the `
 
 Internally Ektorp is also using special views for getting linked documents to work. A quick look into the source codes suggests that this feature is implemented using special serializers which would lead to additional requests on loading and storing as well. Therefore the same performance issues might be come across if the annotation would work.
 
-### Own serializer/deserzialer
+### Own serializer/deserializer
 
-| Easy to use? | Performance? | Effort to use in existing code |
-| ------------ | ------------ | ----------------------------- |
-| :star::star::star: Quite easy, just some Jackson configuration necessary | :star::star: Good, but every type of linked objects needs an additional request | :star::star::star: Low, existing code does not have to be changed |
+| Easy to use?       | Performance?       | Effort to use in existing code |
+|--------------------|--------------------|--------------------------------|
+| ⭐⭐⭐ Quite easy, just some Jackson configuration necessary | ⭐⭐ Good, but every type of linked objects needs an additional request | ⭐⭐⭐ Low, existing code does not have to be changed |
 
 This method works just like the Ektorp way. In addition a slow transition from internal to external documents is possible, since the custom serialization methods will handle both cases directly. Any embedded documents will be externalized on first update of the owner object.
 The following classes are needed:
@@ -225,6 +225,7 @@ public class AttachmentSetSerializer extends JsonSerializer<Set<Attachment>> {
             if (!results.isEmpty()) {
                 throw new IOException("Cannot create or update attachments. Some failed: " + results);
             }
+            
         } catch (SW360Exception exception) {
             throw new IOException("Cannot create or update attachments.", exception);
         }
