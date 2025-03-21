@@ -385,8 +385,8 @@ You can see all the changes that are done for the release/component in change lo
 
 ## 2.07 Import SPDX BOM
 
-For more information on importing SBOM, refer to [1.05 Import SBOM](1.ProjectPage.md/#105-import-sbom).
+For more information on importing SBOM, refer to [1.05 Import SBOM](Project.md/#105-import-sbom).
 
 ## 2.08 Export Spreadsheet
 
-For more information on exporting spreadsheet, refer to [1.13 Export Spreadsheet](1.ProjectPage.md/#113-export-spreadsheet).
+For more information on exporting spreadsheet, refer to [1.13 Export Spreadsheet](Project.md/#113-export-spreadsheet).
