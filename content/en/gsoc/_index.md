@@ -36,6 +36,7 @@ More info to come here.
 
 ### Proposed Mentors
 
+- [Afsah Syeda](https://github.com/afsahsyeda)
 - [Akshit Joshi](https://github.com/akshitjoshii)
 - [Amrit Kumar Verma](https://github.com/amritkv)
 - [Arun Azhakesan](https://github.com/arunazhakesan)
