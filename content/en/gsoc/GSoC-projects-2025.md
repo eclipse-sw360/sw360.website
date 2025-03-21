@@ -55,6 +55,7 @@ Interested in becoming a mentor? Please reach out to us!
 
 #### Volunteers so far:
 
+- [Afsah Syeda](https://github.com/afsahsyeda)
 - [Akshit Joshi](https://github.com/akshitjoshii)
 - [Amrit Kumar Verma](https://github.com/amritkv)
 - [Arun Azhakesan](https://github.com/arunazhakesan)
