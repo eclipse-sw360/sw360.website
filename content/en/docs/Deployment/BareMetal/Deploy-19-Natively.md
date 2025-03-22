@@ -89,7 +89,7 @@ sudo apt-get install -y temurin-21-jdk
 
 ### 1.3. Thrift
 
-For thrift, the helper install script is located on sw360 `scripts/install-thrift.sh`:
+To install Apache Thrift using the helper script in the SW360 project, run the install-thrift.sh script located in `third-party/thrift/install-thrift.sh`: [here](https://github.com/eclipse-sw360/sw360/blob/d7869d252c4b4c84e6ee389cbed44543cd37f7ac/third-party/thrift/install-thrift.sh)
 
 ```bash
 sudo ./scripts/install-thrift.sh
@@ -146,7 +146,7 @@ sudo apt install postgresql
 
 or whatever package version is suitable here, for example version 15 for Debian 12.
 
-Follow the [Keycloak based authentication](../Deploy-Keycloak-Authentication.md)
+Follow the [Keycloak based authentication](../../deploy-keycloak-authentication/)
 guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
 ### 1.7. Clone SW360 backend and create default user
@@ -166,7 +166,7 @@ guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
 * Create config properties
     - `$ sudo mkdir -p /etc/sw360 /etc/sw360/autorization /etc/sw360/rest`
-    - Find the relevant configurations at [Configurable Property Keys](../Deploy-Configuration-Files.md)
+    - Find the relevant configurations at [Configurable Property Keys](../../deploy-configuration-files/)
 * Compile and install the application
     - `$ mvn clean install -Dbase.deploy.dir=/opt/apache-tomcat-11.0.4/ -Dlistener.deploy.dir=/opt/keycloak-26.1.3/providers -P deploy`
 
