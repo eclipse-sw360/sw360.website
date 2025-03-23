@@ -11,7 +11,7 @@ We are covering the installation for Debian based Linux distros. sw360 may run
 on a variety of other linux distributions or OSes such as Mac OSX (amd64 only).
 
 This is a guide with detailed explanation of how to install and run SW360
-natively on you local machine. It includes installation of all dependencies
+natively on your local machine. It includes installation of all dependencies
 manually, and will not use docker or other container system during the
 installation or run.
 
@@ -21,7 +21,7 @@ The installation consists of quite some tasks, as an overview:
 
 * Java 21
 * Maven >= 3.5.0
-* Tomcat 11.0
+* Tomcat 11.0can assist! 😊
 * Postgresql >= 16
 * CouchDB >= 3.4.x
 * Thrift 0.20.0
@@ -41,7 +41,7 @@ sudo apt upgrade
 
 ### 1.1. CouchDB
 
-CouchDB manages their own package repository, and we will be using it to get
+CouchDB manages its own package repository, and we will be using it to get
 latest packages for installation.
 
 Starting with adding keys and sources to APT and installing the couchdb and the
@@ -95,7 +95,7 @@ For thrift, the helper install script is located on sw360 `scripts/install-thrif
 sudo ./scripts/install-thrift.sh
 ```
 
-In case there is thrift in the package management of the OS you are running on,
+In case there is Thrift in the package management of the OS you are running on,
 just make sure, you have version 0.20
 
 ### 1.4. Maven
@@ -138,7 +138,7 @@ sudo tar -xzvf ~/Downloads/keycloak-26.1.3.tar.gz -C /opt
 sudo chown -R $USER:$USER /opt/keycloak-26.1.3/
 ```
 
-Install PostgreSQL used by KeyCloak for management.
+Install PostgreSQL, which is used by KeyCloak for management.
 
 ```bash
 sudo apt install postgresql
