@@ -109,3 +109,29 @@ sections site wide to the original site's background svg.
 .vision-title {
   font-weight: 700;
 }
+.scroll-to-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: white;
+  color: black;
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:hover {
+  background-color: #e5e7ea;
+}
+.topArrow{
+  font-size: 40px;
+  position: relative;
+  bottom: 15px;
+  color: black;
+}
