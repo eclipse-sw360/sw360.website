@@ -1,0 +1,41 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="td-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+    <header>
+      {{ partial "navbar.html" . }}
+    </header>
+    <div class="container-fluid td-default td-outer">
+      <main role="main" class="td-main">
+        {{ block "main" . }}{{ end }}
+      </main>
+      <button id="scrollToTop" class="scroll-to-top"><div class="topArrow">
+        ↑
+    </div></button>
+      {{ partial "footer.html" . }}
+    </div>
+    {{ partialCached "scripts.html" . }}
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const scrollToTopButton = document.getElementById("scrollToTop");
+      
+          window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+              scrollToTopButton.style.display = "block";
+            } else {
+              scrollToTopButton.style.display = "none";
+            }
+          });
+      
+          scrollToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          });
+        });
+      </script>
+  </body>
+</html>
