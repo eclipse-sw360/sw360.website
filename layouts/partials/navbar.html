@@ -1,7 +1,7 @@
 {{ $cover := .HasShortcode "blocks/cover" }}
 
 <nav class="js-navbar-scroll navbar navbar-expand navbar-dark {{ if $cover}} td-navbar-cover {{ end }} flex-column flex-md-row td-navbar">
-        <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}"
+        <a class="navbar-brand flex-shrink-0" href="{{ .Site.Home.RelPermalink }}"
 		{{ if eq .Page.Title "SW360" }} 
 			{{ if $cover }}
 				style="display: none;" 
@@ -10,8 +10,8 @@
 		>			
 		{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}
 	</a>
-	<div class="td-navbar-nav-scroll ml-md-auto ms-md-auto" id="main_navbar">
-		<ul class="navbar-nav">
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
 			{{ $p := . }}
 			{{ range .Site.Menus.main }}
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -27,12 +27,12 @@
 			</li>
 			{{ end }}
 			{{ if  .Site.Params.versions }}
-			<li class="nav-item dropdown mx-2">
+			<li class="nav-item dropdown mr-4 d-none d-lg-block">
 				{{ partial "navbar-version-selector.html" . }}
 			</li>
 			{{ end }}
 			{{ if  (gt (len .Site.Home.Translations) 0) }}
-			<li class="nav-item dropdown mx-2">
+			<li class="nav-item dropdown mr-4 d-none d-lg-block">
 				{{ partial "navbar-lang-selector.html" . }}
 			</li>
 			{{ end }}
@@ -40,5 +40,3 @@
 	</div>
 	<div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div>
 </nav>
-
-
