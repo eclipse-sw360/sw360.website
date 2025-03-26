@@ -19,7 +19,7 @@ To open the License page, click on the **License tab** from the main menu bar. Y
 |:----:|:----------|
 |1| [Quick Filter](#32-quick-filter)|
 |2| [Add License](#34-add-license)|
-|3| [Export Spreadsheet, refer to Project Page](1.%20ProjectPage.pdf) |
+|3| [Export Spreadsheet, refer to Project Page](Project.md/#113-export-spreadsheet) |
 |4| [License List](#33-license-list) |
 
 ## 3.2 Quick Filter
