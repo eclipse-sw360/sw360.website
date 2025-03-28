@@ -73,9 +73,6 @@ github_project_repo = "https://github.com/eclipse-sw360/sw360"
 # or specify a new value if you want to reference another branch in your GitHub links
 github_branch = "main"
 
-# Enable Algolia DocSearch
-algolia_docsearch = false
-
 # -----------------------------------
 # User interface configuration
 
