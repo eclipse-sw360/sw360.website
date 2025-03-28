@@ -10,6 +10,6 @@ docker run \
     --name sw360_website \
     -p 1313:1313 \
     "$@" \
-    klakegg/hugo:0.111.3-ext-ubuntu \
-    server --verbose --verboseLog --debug --cleanDestinationDir \
-    --baseUrl http://localhost:1313/sw360
+    hugomods/hugo:exts-non-root \
+    server --logLevel debug --cleanDestinationDir \
+    --baseURL http://localhost:1313/sw360
