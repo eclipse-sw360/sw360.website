@@ -1,0 +1,47 @@
+{{ define "main" }}
+<div class="td-content">
+    {{ with .Content }}{{ . }}{{ end }}
+</div>
+<div class="container p-3">
+    <!-- Group events by year from folder structure -->
+    {{ $years := slice }}
+    {{ range .Site.RegularPages }}
+        {{ $year := path.BaseName (path.Dir .File.Path) }}
+        {{ if and (eq (path.Dir (path.Dir .File.Path)) "events") (not (in $years $year)) }}
+            {{ $years = $years | append $year }}
+        {{ end }}
+    {{ end }}
+
+    {{ range sort $years "value" "desc" }}
+    {{ $currentYear := . }}
+    <section class="year-section mb-3">
+        <!-- Year Section -->
+        <div class="year-header text-center py-3 bg-light mb-3 rounded">
+            <h1 class="display-4 fw-bold">{{ $currentYear }}</h1>
+        </div>
+
+        <!-- Event Cards Section -->
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+            {{ range where $.Site.RegularPages "File.Dir" "eq" (printf "events/%s/" $currentYear) }}
+            <div class="col py-3">
+              <div class="card h-100 shadow-sm" style="max-width: 100%;">
+                  {{ if .Params.eventimage }}
+                  <img src="{{ .Params.eventimage }}" class="card-img-top" alt="{{ .Title }}">
+                  {{ end }}
+                  <div class="card-body p-3 d-flex flex-column">
+                      <h5 class="card-title mb-2">
+                          <a href="{{ .RelPermalink }}" class="text-decoration-none">{{ .Title }}</a>
+                      </h5>
+                      {{ with .Params.description }}
+                      <p class="card-text mb-3">{{ truncate 100 . }}</p>
+                      {{ end }}
+                      <a href="{{ .RelPermalink }}" class="btn btn-primary mt-auto">View Details</a>
+                  </div>
+              </div>
+          </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+</div>
+{{ end }}
