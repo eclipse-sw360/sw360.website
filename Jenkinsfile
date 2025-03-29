@@ -24,6 +24,9 @@ spec:
       command:
       - cat
       tty: true
+      env:
+      - name: "HOME"
+        value: "/home/jenkins"
   volumes:
   - configMap:
       name: known-hosts
@@ -70,7 +73,11 @@ spec:
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
                     sh 'hugo version'
-                    sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/sw360/'
+                    sh 'uid'
+                    sh 'mkdir $HOME/jenkins/.npm'
+                    sh 'npm config get prefix -g'
+                    sh 'npm install --loglevel=verbose '
+                    sh 'hugo build --cleanDestinationDir --minify -b https://www.eclipse.org/sw360/'
                 }
             }
         }
@@ -85,6 +92,7 @@ spec:
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
                     sh 'hugo version'
+                    sh 'npm install --no-fund'
                     sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
                 }
             }
