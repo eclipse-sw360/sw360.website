@@ -20,7 +20,7 @@ spec:
       - name: "HOME"
         value: "/home/jenkins"
     - name: hugo
-      image: klakegg/hugo:0.111.3-ext-ubuntu
+      image: hugomods/hugo:exts-non-root
       command:
       - cat
       tty: true
