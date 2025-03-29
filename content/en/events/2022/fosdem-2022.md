@@ -15,8 +15,6 @@ speakers:
     address: "Nishinomiya, Hyogo, Japan"
     linkedin: "https://www.linkedin.com/in/kouki-hama-841111187/"
     github: "https://github.com/KoukiHama"
-eventimage: "/images/events/fosdem-2022-card.jpg"
-topicimage: "/images/events/How to Manage OSS License Obligations and SBoM by SW360's New Features.jpg"
 presentation: 
   session_link: "https://fosdem.org/2022/schedule/event/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/"
   slides_link: "https://fosdem.org/2022/schedule/event/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/attachments/slides/5198/export/events/attachments/how_to_manage_oss_license_obligation_and_sbom_using_sw360_new_features/slides/5198/fosdem_2022_hama.pdf"

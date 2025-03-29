@@ -8,8 +8,13 @@ format: talk
 tags:
   - talk
 speakers:
-  - Karsten Gerloff
-  - Siemens AG
+  - name: "Johannes Kristan"
+    affiliation: "Siemens AG"
+    about: ""
+    speakerimage: ""
+    address: ""
+    linkedin: ""
+    github: ""
 presentation: 
 draft: false
 description: |

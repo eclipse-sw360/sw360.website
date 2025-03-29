@@ -8,7 +8,13 @@ format: talk
 tags:
   - talk
 speakers:
-  - Helio Chissini de Castro
+  - name: "Helio Chissini de Castro"
+    affiliation: "Software Technologies Lead at CARIAD"
+    about: ""
+    speakerimage: ""
+    address: "Ulm, Baden-Württemberg, Germany"
+    linkedin: "https://www.linkedin.com/in/heliocastro/"
+    github: "https://github.com/heliocastro"
 presentation: 
   session_link: "https://www.eclipsecon.org/2022/sessions/sw360-how-new-life-been-injected-traditional-compliance-software"
   video_link: "https://youtu.be/sbCwuV6iuOM"

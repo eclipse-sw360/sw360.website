@@ -8,8 +8,13 @@ format: talk
 tags:
   - talk
 speakers:
-  - Steffen Evers
-  - Bosch Software Innovations GmbH
+  - name: "Steffen Evers"
+    affiliation: " Bosch Software Innovations GmbH"
+    about: ""
+    speakerimage: ""
+    address: ""
+    linkedin: ""
+    github: ""
 presentation: 
   session_link: "http://events17.linuxfoundation.org/events/open-source-leadership-summit/program/schedule"
 draft: false

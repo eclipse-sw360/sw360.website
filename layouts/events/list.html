@@ -14,7 +14,7 @@
 
     {{ range sort $years "value" "desc" }}
     {{ $currentYear := . }}
-    <section class="year-section mb-3">
+    <div class="year-section mb-3">
         <!-- Year Section -->
         <div class="year-header text-center py-3 bg-light mb-3 rounded">
             <h1 class="display-4 fw-bold">{{ $currentYear }}</h1>
@@ -41,7 +41,7 @@
           </div>
             {{ end }}
         </div>
-    </section>
+    </div>
     {{ end }}
 </div>
 {{ end }}
