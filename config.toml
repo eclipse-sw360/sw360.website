@@ -136,13 +136,6 @@ desc = "Discuss development issues around the project"
 enable = true
 title = "About"
 
-[[menu.main]]
-url = "https://github.com/eclipse-sw360/sw360"
-name = "Github"
-pre = "<i class='fab fa-github'></i> "
-weight = 100
-
-
 # THIS NEED TO BE THE  LAST ENTRY
 [module]
 # uncomment line below for temporary local development of module
