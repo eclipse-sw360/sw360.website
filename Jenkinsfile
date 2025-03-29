@@ -69,7 +69,8 @@ spec:
             container('hugo') {
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
-                    sh 'hugo --minify -b https://www.eclipse.org/sw360/'
+                    sh 'hugo version'
+                    sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/sw360/'
                 }
             }
         }
@@ -83,7 +84,8 @@ spec:
             container('hugo') {
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
-                    sh 'hugo --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
+                    sh 'hugo version'
+                    sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
                 }
             }
         }
