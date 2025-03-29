@@ -4,7 +4,6 @@ linkTitle: About
 menu:
     main:
         weight: 10
-
 ---
 
 {{< blocks/cover image_anchor="top" height="sm" color="primary" >}}
@@ -13,28 +12,31 @@ menu:
 
 <div class="container l-container--padded">
 
-
 <div class="row">
 <div class="col-12 col-lg-8">
 
-In most cases, software today is not built from scratch, but rather assembled from various prepackaged third-party software components. As a result, organizations face the following challenges:
+In most cases, modern software is not built from scratch but is instead assembled using various prepackaged third-party software components. As a result, organizations face several challenges:
 
-* Verifying various aspects of compliance when using third-party software components: license compliance, ECC checks, IP assessments, etc.
-* Sharing knowledge about software components and their qualities. For example, which software components should be recommended, which should be phased out based on which criteria?
-* Providing a broad overview of the components used: An organization and its supply chain management must have information about which assets are integrated into which products or solutions.
+* **Verifying compliance** when using third-party software components, including license compliance, ECC checks, and IP assessments.
+* **Sharing knowledge** about software components and their qualities, such as which components should be recommended and which should be phased out based on specific criteria.
+* **Providing a broad overview** of the components used in an organization and its supply chain to track which assets are integrated into different products or solutions.
 
-These three main use cases target different roles in an organization: quality managers, software developers, legal counsels, software architects, R&D managers etc. However, all these use cases share a common need for a central hub that manages insights into software components.
+These three main use cases cater to different roles within an organization, including quality managers, software developers, legal counsels, software architects, and R&D managers. However, all these roles share a common need for a centralized hub that manages insights into software components.
 
-SW360 is an open source software project licensed under the EPL-2.0 that provides both a web application and a repository to collect, organize and make available information about software components. It establishes a central hub for software components in an organization. SW360 allows for
+**SW360** is an open-source software project licensed under EPL-2.0 that provides both a web application and a repository for collecting, organizing, and making software component information available. It serves as a central hub for managing software components within an organization. SW360 enables:
 
-* tracking components used by a project/product,
-* assessing security vulnerabilities,
-* maintaining license obligations,
-* enforcing policies, and
-* generating legal documents.
+* Tracking components used in a project or product.
+* Assessing security vulnerabilities.
+* Maintaining license obligations.
+* Enforcing policies.
+* Generating legal documents.
 
-For example, SW360 can trigger a clearing process in the open source compliance tool FOSSology and import the resulting clearing reporting. Data is either stored in SW360’s database or on the fly imported from external sources. In future we plan to have federations of SW360 instances that share selected information. Besides its web-based UI, all functionality of SW360 is available through an API that allows an integration into existing devops tools.
+For instance, SW360 can trigger a clearing process in the open-source compliance tool **FOSSology** and import the resulting clearing reports. Data can either be stored in SW360’s database or imported dynamically from external sources. 
+
+In the future, we plan to establish federations of SW360 instances that share selected information. 
+
+In addition to its web-based UI, all functionalities of SW360 are accessible via an API, allowing seamless integration into existing DevOps tools.
+
 </div>
-
 </div>
 </div>
