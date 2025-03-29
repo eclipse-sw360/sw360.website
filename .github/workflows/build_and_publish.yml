@@ -9,7 +9,7 @@ on:
 
 jobs:
   build_website:
-    name: Build Main Website Documentation
+    name: Build and Test
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: sw360
