@@ -8,8 +8,13 @@ format: article
 tags:
   - article
 speakers:
-  - Dominik Mohilo
-  - JAXenter
+  - name: "Dominik Mohilo"
+    affiliation: "JAXenter"
+    about: ""
+    speakerimage: ""
+    address: ""
+    linkedin: ""
+    github: ""  
 presentation: 
   article_link: "https://jaxenter.de/eclipse-sw360-44641"
 draft: false

@@ -8,8 +8,13 @@ format: talk
 tags:
   - talk
 speakers:
-  - Marcel Kurzmann
-  - Bosch Software Innovations GmbH
+  - name: "Marcel Kurzmann"
+    affiliation: " Bosch Software Innovations GmbH"
+    about: ""
+    speakerimage: ""
+    address: ""
+    linkedin: ""
+    github: ""
 presentation: 
   session_link: "https://www.eclipsecon.org/europe2017"
   slides_link: "https://www.eclipsecon.org/europe2017/sites/default/files/slides/Leveraging_Open_Source_Projects_for_OSM_EclipseCon.pdf"

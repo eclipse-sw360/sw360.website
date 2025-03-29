@@ -8,8 +8,14 @@ format: talk
 tags:
   - talk
 speakers:
-  - Michael C. Jaeger
-  - Siemens AG
+speakers:
+  - name: "Michael C. Jaeger"
+    affiliation: "Project Lead, Siemens AG"
+    about: "Michael C. Jaeger is one of the maintainers for Linux Foundation's FOSSology and Eclipse SW360 projects, both available on Github and both in the area of OSS handling w.r.t. license compliance and component management. At Siemens Corporate Technology in Munich, Germany, Michael works in several roles as project lead, software architect, trainer and consultant for distributed systems, server applications and their development with open source software."
+    speakerimage: ""
+    address: "Munich, Germany"
+    linkedin: ""
+    github: ""
 presentation: 
   session_link: "http://oshug.org/event/65"
 draft: false

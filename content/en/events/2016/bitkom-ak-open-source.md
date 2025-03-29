@@ -8,10 +8,13 @@ format: talk
 tags:
   - talk
 speakers:
-  - Johannes Kristan
-  - Michael C. Jaeger
-  - Bosch Software Innovations GmbH
-  - Siemens AG
+  - name: "Johannes Kristan"
+    affiliation: "Senior Software Engineer, Robert Bosch GmbH"
+    about: ""
+    speakerimage: ""
+    address: ""
+    linkedin: ""
+    github: ""
 presentation: 
 draft: false
 description: |

@@ -8,8 +8,13 @@ format: talk
 tags:
   - talk
 speakers:
-  - Kouki Hama
-  - Toshiba Corporation
+  - name: "Kouki Hama"
+    affiliation: "Software Engineering Researcher, Toshiba Corporation"
+    about: "Kouki Hama is a researcher of software engineering in Toshiba Corporation. He researches open source compliance and these tools. He is also one of the members of OpenChain project Japan workgroup and one of the contributors for Eclipse SW360 projects."
+    speakerimage: "/img/speakers/kouki-hama.png"
+    address: "Nishinomiya, Hyogo, Japan"
+    linkedin: "https://www.linkedin.com/in/kouki-hama-841111187/"
+    github: "https://github.com/KoukiHama"
 presentation: 
   session_link: "https://sched.co/OVtF"
   slides_link: "https://events19.linuxfoundation.org/wp-content/uploads/2018/07/OpenSourceSummitJapan_final.pdf"

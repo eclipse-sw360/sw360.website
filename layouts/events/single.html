@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container py-5">
     <!-- Event Header -->
-    <header class="text-center mb-5">
+    <header class="text-center m-5">
         <h1 class="display-3 fw-bold mb-2">{{ .Title | default "Untitled Event" }}</h1>
         <p class="lead text-muted">
             {{ with .Params.format }}{{ . | title }}{{ else }}N/A{{ end }}
@@ -22,18 +22,18 @@
             {{ end }}
 
             <!-- Description -->
-            <section class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h2 class="h4 mb-3 fw-bold">About the Session</h2>
                     <div class="content">
                         {{ .Params.description | default "No description available." | markdownify }}
                     </div>
                 </div>
-            </section>
+            </div>
 
             <!-- Presentation Resources -->
             {{ with .Params.presentation }}
-            <section class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h2 class="h4 mb-3 fw-bold">Resources</h2>
                     <div class="d-flex flex-column gap-3">
@@ -54,7 +54,7 @@
                         {{ end }}
                     </div>
                 </div>
-            </section>
+            </div>
             {{ end }}
         </div>
 
@@ -62,7 +62,7 @@
         <div class="col-lg-4">
             <!-- Speakers -->
             {{ with .Params.speakers }}
-            <section class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h2 class="h4 mb-3 fw-bold">Speakers</h2>
                     {{ range $index, $speaker := . }}
@@ -105,7 +105,7 @@
                     </div>
                     {{ end }}
                 </div>
-            </section>
+            </div>
             {{ end }}
 
             <!-- Topic Image -->
@@ -119,7 +119,7 @@
 
     <!-- Navigation -->
     <nav class="text-center mt-5">
-        <a href="/events/" class="btn btn-outline-primary px-4 py-2">Back to Events</a>
+        <a href="/sw360/events/" class="btn btn-outline-primary px-4 py-2">Back to Events</a>
     </nav>
 </div>
 {{ end }}
