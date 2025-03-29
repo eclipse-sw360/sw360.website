@@ -23,6 +23,9 @@ spec:
       image: hugomods/hugo:exts-non-root
       command:
       - cat
+      env:
+      - name: "HOME"
+        value: "/home/hugo"
       tty: true
   volumes:
   - configMap:
@@ -70,7 +73,11 @@ spec:
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
                     sh 'hugo version'
-                    sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/sw360/'
+                    sh 'npm config get prefix -g'
+                    sh 'npm config set prefix $HOME/.npm'
+                    sh 'rm -rf node_modules'
+                    sh 'npm install --loglevel=verbose '
+                    sh 'hugo build --cleanDestinationDir --minify -b https://www.eclipse.org/sw360/'
                 }
             }
         }
@@ -85,6 +92,7 @@ spec:
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
                     sh 'hugo version'
+                    sh 'npm install --no-fund'
                     sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
                 }
             }
