@@ -4,8 +4,13 @@
 {
   // Disable some built-in rules
   "config": {
-    "no-trailing-spaces": false,
-    "no-multiple-blanks": false
+    "no-trailing-spaces": true,
+    "no-multiple-blanks": true,
+    "line-length": false,
+    "no-inline-html": false,
+    "first-line-heading": false,
+    "blanks-around-headings": false,
+    "heading-style": false
   },
 
   // Fix any fixable errors
