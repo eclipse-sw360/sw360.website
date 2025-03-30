@@ -11,7 +11,7 @@ menu:
 {{< page/header >}}
 {{< /blocks/cover >}}
 
-<div class="container p-3">
+<div class="container p-4">
   <div class="row align-items-center shadow p-4 mx-3 my-4">
     <div class="col-md-6 mb-4 mb-md-0">
       <h1>Welcome to the Eclipse SW360 Community!</h1>
@@ -27,7 +27,7 @@ menu:
   </div>
 </div>
 
-<div class="container p-3">
+<div class="container p-4">
   <div class="row align-items-center shadow p-4 mx-3 my-4">
     <div class="col-md-6 mb-4 mb-md-0">
       <h3 class="fw-bold mb-4 light-gray-text">Community heartbeat</h3>
@@ -38,12 +38,13 @@ menu:
       <a href="/sw360/events/" class="btn btn-primary btn-lg" target="_blank">Stay Updated on Events</a>
     </div>
     <div class="col-md-6 text-center">
-      <img src="your-image-url-here.jpg" alt="Community Events" class="img-fluid rounded shadow-sm">
+          <h2 class="h3 mb-3">Upcomming Events</h2>
+          <p>coming soon</p>
     </div>
   </div>
 </div>
 
-<div class="container p-3">
+<div class="container p-4">
   <div class="row align-items-center shadow p-4 mx-3 my-4">
     <div class="col-md-6 mb-4 mb-md-0">
 <h3 class="fw-bold mb-4 light-gray-text">All community info, tracked</h3>
@@ -54,7 +55,7 @@ menu:
       <a href="https://sw360chat.slack.com" class="btn btn-primary btn-lg" target="_blank">Join SW360 Slack</a>
     </div>
     <div class="col-md-6 text-center">
-      <img src="https://via.placeholder.com/600x400" alt="Community Image" class="img-fluid rounded shadow-sm">
+      <img src="../../../static/img/slack.jpg" alt="Community Image" class="img-fluid rounded shadow-sm">
     </div>
   </div>
 </div>
