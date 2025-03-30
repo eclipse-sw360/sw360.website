@@ -12,19 +12,28 @@ metadata:
   name: hugo-pod
 spec:
   containers:
-    - name: "jnlp"
-      volumeMounts:
-      - mountPath: /home/jenkins/.ssh
-        name: volume-known-hosts
-      env:
-      - name: "HOME"
-        value: "/home/jenkins"
-    - name: hugo
-      image: klakegg/hugo:0.111.3-ext-ubuntu
-      command:
-      - cat
-      tty: true
+  - name: "jnlp"
+    volumeMounts:
+    - mountPath: /home/jenkins/.ssh
+      name: volume-known-hosts
+    env:
+    - name: "HOME"
+      value: "/home/jenkins"
+  - name: hugo
+    image: hugomods/hugo:exts-non-root
+    command:
+    - cat
+    tty: true
+    env:
+    - name: "HOME"
+      value: "/home/jenkins"
+    volumeMounts:
+    - mountPath: "/home/jenkins"
+      name: "jenkins-home"
+      readOnly: false
   volumes:
+  - name: "jenkins-home"
+    emptyDir: {}
   - configMap:
       name: known-hosts
     name: volume-known-hosts
@@ -69,7 +78,10 @@ spec:
             container('hugo') {
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
-                    sh 'hugo --minify -b https://www.eclipse.org/sw360/'
+                    sh 'hugo version'
+                    sh 'mkdir $HOME/.npm'
+                    sh 'npm install --loglevel=verbose'
+                    sh 'hugo build --cleanDestinationDir --minify -b https://eclipse.dev/sw360/'
                 }
             }
         }
@@ -83,7 +95,9 @@ spec:
             container('hugo') {
                 dir('hugo') {
                     sh 'mkdir -p themes/docsy'
-                    sh 'hugo --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
+                    sh 'hugo version'
+                    sh 'npm install --no-fund'
+                    sh 'hugo build --ignoreCache --gc --enableGitInfo --cleanDestinationDir --minify -b https://www.eclipse.org/${PROJECT_NAME}/'
                 }
             }
         }

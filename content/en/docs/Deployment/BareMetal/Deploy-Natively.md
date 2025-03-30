@@ -7,7 +7,7 @@ description: Bare metal deployment with Debian based Linux
 
 ## Introduction
 
-We are covering the update for Debian based Linux distros, because that is our main / agreed base system for running sw360. sw360 may run on a varienty of other linux distributions or OSes such as Mac OSX (amd64 only).
+We are covering the update for Debian based Linux distros, because that is our main / agreed base system for running sw360. sw360 may run on a variety of other linux distributions or OSes such as Mac OSX (amd64 only).
 
 ## Requirements
 
@@ -55,7 +55,7 @@ sudo apt-get install -y couchdb
 The installer will ask a couple of questions:
 
 1. Bind address: for CouchDB and SW360 `127.0.0.1` (localhost) is a good bind address, if you would like to access the server from a remote computer because your sw360 runs as a server in the network, you would need to change accordingly.
-2. Unless you know what you are doing, use standalone install intead of clustered option, for a regular single instalation.
+2. Unless you know what you are doing, use standalone install instead of clustered option, for a regular single installation.
 3. Admin user: For fresh installation for sure a very good idea. You can set the password at sw360 for CouchDB in `couchdb.properties` and place it centrally in `/etc/sw360`
 
 In case you added an admin accidentally and would like to remove it, 
@@ -94,7 +94,7 @@ For liferay, unpack it, ideally in the `/opt` directory.
 
 SW360 uses for searching the contents of the couchdb databases a lucene-based server named couchdb-lucene. The main issue here is that it requires a patch for the use in the normal SW3360 setups. The reason for the patch is that the developers presume that couchdb-lucene runs as the only component in the application server, while in the sw360 setup, there is a setup in which couchdb-lucene runs along with other components in the same application container.
 
-For build the custom CLucene jar:
+To build the custom CLucene jar:
 
 ```shell
 #!/bin/bash
@@ -117,7 +117,7 @@ mvn clean package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=/opt/lifera
   -Dbackend.deploy.dir=/opt/liferay-ce-portal-7.4.3-ga18/tomcat-9.0.33/webapps/ -Drest.deploy.dir=/opt/liferay-ce-portal-7.4.18-ga4/tomcat-9.0.33/webapps/ -DskipTests
 ```
 
-Skipping tests has the reason that usually, the sw360 is tested in the CI and thus, local tests are note necessary, if the code has not been changed locally. Note that the REST API documentation framework is based on building test cases and thus for deploying a version with REST API documentation, tests should be executed:
+Tests are usually performed in CI, so skipping them locally is fine unless you've made changes to the code. Note that the REST API documentation framework is based on building test cases and thus for deploying a version with REST API documentation, tests should be executed:
 
 ```bash
 cd rest
@@ -126,7 +126,7 @@ mvn clean package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=/opt/lifera
 
 ## Final Steps in Liferay
 
-Liferay CE 7.3 will need to have some manual steps applied in order to complete the setup. Unfortunately, these cannot be automated (if you know how, please let us know). For earlier versions of Liferay, please refer to the main wiki page. 
+Liferay CE 7.3 will need to have some manual steps applied in order to complete the setup. Unfortunately, these steps cannot be automated (if you know how, please let us know). For earlier versions of Liferay, please refer to the main wiki page. 
 
 This is the legacy guide for Liferay CE 7.3.3 but is valid for current 7.4.3 deployment:
 

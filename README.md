@@ -3,80 +3,82 @@
     <img src="static/img/logos/logo_full.svg" alt="SW360 Logo" width="450">
   </a>
   <h1 align="center">sw360.website</h1>
-
   <p align="center">
     <a href="https://eclipse.dev/sw360/"><strong>Learn more »</strong></a>
     <br />
     <br />
-    <a href="https://sw360chat.slack.com/">Discussions</a>
-    ·
-    <a href="https://eclipse.dev/sw360/">Website</a>
-    ·
-    <a href="https://github.com/eclipse-sw360/sw360.website/issues">Issues</a>
-    ·
-    <a href="https://eclipse.dev/sw360/docs/">Documentation</a>
-    ·
+    <a href="https://sw360chat.slack.com/">Discussions</a> ·
+    <a href="https://eclipse.dev/sw360/">Website</a> ·
+    <a href="https://github.com/eclipse-sw360/sw360.website/issues">Issues</a> ·
+    <a href="https://eclipse.dev/sw360/docs/">Documentation</a> ·
     <a href="https://eclipse.dev/sw360/gsoc/">GSoC</a>
   </p>
 </p>
+
 <p align="left">
-    <a href="https://github.com/eclipse-sw360/sw360.website/graphs/contributors" alt="SW360 GitHub Contributors">
-      <img src="https://img.shields.io/github/contributors/eclipse-sw360/sw360.website?color=orange" />
-    </a>
-<a href="https://github.com/eclipse-sw360/sw360.website/issues?q=is%3Aopen" alt="SW360 Website Open Issues">
-      <img src="https://img.shields.io/github/issues/eclipse-sw360/sw360.website?color=%23DDDD22&label=open%20issues" />
-    </a>
-    <a href="https://www.repostatus.org/#active" alt="Repo Status">
-      <img src="https://www.repostatus.org/badges/latest/active.svg" />
-    </a>
-<a href="https://sw360chat.slack.com/" alt="Join SW360 Slack">
-      <img src="https://img.shields.io/badge/Slack-Join%20SW360-yellow?logo=slack" />
-    </a>
+  <a href="https://github.com/eclipse-sw360/sw360.website/graphs/contributors" alt="SW360 GitHub Contributors">
+    <img src="https://img.shields.io/github/contributors/eclipse-sw360/sw360.website?color=orange" />
+  </a>
+  <a href="https://github.com/eclipse-sw360/sw360.website/issues?q=is%3Aopen" alt="SW360 Website Open Issues">
+    <img src="https://img.shields.io/github/issues/eclipse-sw360/sw360.website?color=%23DDDD22&label=open%20issues" />
+  </a>
+  <a href="https://www.repostatus.org/#active" alt="Repo Status">
+    <img src="https://www.repostatus.org/badges/latest/active.svg" />
+  </a>
+  <a href="https://sw360chat.slack.com/" alt="Join SW360 Slack">
+    <img src="https://img.shields.io/badge/Slack-Join%20SW360-yellow?logo=slack" />
+  </a>
 </p>
 
-# 👋 Welcome to the SW360 Website!
+<p>
+  The website is based on the Hugo static page generator. All relevant source files can be found at <a href="https://github.com/eclipse/sw360.website">github/sw360.website</a>.
+  The page is published at <a href="https://eclipse.org/sw360">eclipse.org/sw360</a> and built with a Jenkins job, which is configured in a Jenkins file in the repository of the website.
+</p>
 
-This website serves as the central hub for the SW360 project. It is built using the following technologies:
+<p>
+  If you want to add content to the page, please checkout the git repository <a href="https://github.com/eclipse/sw360.website.git">sw360.website.git</a> and add your content.
+</p>
 
-* **Hugo:** A fast and flexible static site generator.
-* **Docsy:** A Hugo theme optimized for documentation.
+<p>
+  The page will be built as soon as you push to the upstream main branch. There is also a staging area at the Eclipse Foundation page at <a href="https://staging.eclipse.org/sw360">staging.eclipse.org/sw360</a>, which is protected by your Eclipse Foundation user credentials and filled with content found at the staging branch in <a href="https://github.com/eclipse/sw360.website">sw360.website repository</a>.
+  If you want to check out your changes first, just push to the staging branch. The content is published the same way as with the main branch.
+</p>
 
-The source code for this website is open-source and available on GitHub: [https://github.com/eclipse-sw360/sw360.website](https://github.com/eclipse-sw360/sw360.website).
+<p>
+  The Jenkins instance is operated by the Eclipse Foundation and can be found here: <a href="https://jenkins.eclipse.org/sw360/job/sw360.website/">Jenkins SW360 Website</a>.
+  The result of the Jenkins build is pushed to: <a href="http://git.eclipse.org/c/www.eclipse.org/sw360.git">git.eclipse.org/sw360</a>.
+</p>
 
-**Website Publication Process**
+<p>
+  The Jenkins job looks every 15 minutes for changes in the repository. If it detects changes, it will start the Hugo build and copy the generated static HTML files to git.eclipse.org. From there, another job fetches the files and copies them to the actual static webspace of the Eclipse Foundation.
+</p>
 
-The website is published at [eclipse.org/sw360](https://eclipse.org/sw360) through an automated process:
+## Table of Contents
 
-1.  Changes are made to the website's content by contributing to the GitHub repository.
-2.  A Jenkins job, configured in the `Jenkinsfile` within the repository, builds the site using Hugo.
-3.  The generated static HTML files are pushed to `git.eclipse.org/c/www.eclipse.org/sw360.git`.
-4.  Another job fetches these files and copies them to the Eclipse Foundation's webspace.
-
-Jenkins checks for changes in the repository every 15 minutes. A staging area is also available at `staging.eclipse.org/sw360` (protected by Eclipse Foundation credentials) for previewing changes before they go live.
-
-# Setting Up the SW360 Website Locally
-
-This guide explains how to set up and run the SW360 website locally using Docker and Hugo with the Docsy theme. This setup allows for local development and testing. These instructions are compatible with **Windows**, **macOS**, and **Linux**.
+- [Prerequisites](#prerequisites)
+- [Installation Steps](#installation-steps)
+  - [Clone the Repository](#clone-the-repository)
+  - [Set Up the Docsy Theme](#set-up-the-docsy-theme)
+  - [Serve the Site Locally with Docker](#serve-the-site-locally-with-docker)
+- [Troubleshooting](#troubleshooting)
+- [Project Structure](#project-structure)
+- [Contributors](#contributors)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Prerequisites
 
-Before starting, ensure the following tools are installed on your system:
+Ensure you have the following installed before proceeding:
 
 1.  **[Docker Desktop](https://www.docker.com/products/docker-desktop/)**
     * **Windows/macOS**: Download and install from the official site.
     * **Linux**: Install via your package manager (e.g., `sudo apt install docker.io` on Ubuntu) and start the service (`sudo systemctl start docker`).
     * Verify: `docker --version`
-2.  **[Git](https://git-scm.com/downloads)**
-    * **Windows/macOS**: Install using the official installer.
-    * **Linux**: Install via your package manager (e.g., `sudo apt install git` on Ubuntu).
-    * Verify: `git --version`
-3.  **[Hugo (Extended Version)](https://gohugo.io/installation/)**
-    * Install the **extended version** of Hugo (required for SCSS support):
-        * **Windows**: Use Chocolatey (`choco install hugo-extended`) or download from [releases](https://github.com/gohugoio/hugo/releases).
-        * **macOS**: Use Homebrew (`brew install hugo`).
-        * **Linux**: Download the extended version from [releases](https://github.com/gohugoio/hugo/releases) or use your package manager if available.
-    * Verify: `hugo version` (ensure "extended" appears in the output).
-4.  **[Go](https://go.dev/doc/install)** (optional)
+2. **Bash (Available by default on macOS and Linux; for Windows, use Git Bash or WSL)**
+    * **macOS/Linux**: Bash is available by default in the terminal.
+    * **Windows**: You can use Git Bash or install Windows Subsystem for Linux (WSL) to get Bash.
+    * Verify: Run `bash --version` to ensure Bash is installed.
+3.  **[Go](https://go.dev/doc/install)** (optional)
     * Required only for Hugo development or customization.
     * Install following OS-specific instructions.
     * Verify: `go version`
@@ -85,12 +87,12 @@ Before starting, ensure the following tools are installed on your system:
 
 Follow these steps to set up and serve the SW360 website locally:
 
-### 1. Clone the Repository
+### Clone the Repository
 
 * Clone the project repository, replacing `{{your_username}}` with your GitHub username:
 
     ```bash
-    git clone [https://github.com/](https://github.com/){{your_username}}/sw360.website.git
+    git clone https://github.com/{{your_username}}/sw360.website.git
     ```
 
 * Navigate into the project directory:
@@ -99,7 +101,7 @@ Follow these steps to set up and serve the SW360 website locally:
     cd sw360.website
     ```
 
-### 2. Set Up the Docsy Theme
+### Set Up the Docsy Theme
 
 * Create a `themes` directory to store the theme:
 
@@ -116,7 +118,7 @@ Follow these steps to set up and serve the SW360 website locally:
 * Clone the Docsy theme from Google’s repository:
 
     ```bash
-    git clone [https://github.com/google/docsy.git](https://github.com/google/docsy.git)
+    git clone https://github.com/google/docsy.git
     ```
 
 * Navigate into the `docsy` directory:
@@ -137,7 +139,7 @@ Follow these steps to set up and serve the SW360 website locally:
     cd ../../
     ```
 
-### 3. Serve the Site Locally with Docker
+### Serve the Site Locally with Docker
 
 * Ensure Docker is running:
     * **Windows/macOS**: Launch Docker Desktop.
@@ -165,6 +167,48 @@ Follow these steps to set up and serve the SW360 website locally:
 * Once running, access the site at `http://localhost:1313` (confirm the port in the script output).
 
 **Note:** The local development environment uses Hugo's built-in live reload functionality. Any changes made to the site's content or layout will be automatically reflected in your browser in real-time. This allows for rapid iteration and immediate visual feedback during development.
+
+## Troubleshooting
+
+### Docker is not running
+
+**Issue:** `bash: docker: command not found`
+
+**Solution:**
+
+- Ensure Docker is installed and running.
+- On macOS or Windows, open Docker Desktop.
+- On Linux, start Docker with:
+
+  ```sh
+  sudo systemctl start docker
+  ```
+
+### 2. Permission issues running the script
+
+**Issue:** `Permission denied` error when executing `docker_serve_local.sh`. 
+
+**Solution:**
+
+- Give execution permission to the script:
+  ```sh
+  chmod +x docker_serve_local.sh
+  ```
+- Run it again:
+  ```sh
+  bash docker_serve_local.sh
+  ```
+
+## Project Structure
+```
+sw360.website/
+├── content/               # Website content (pages, posts, etc.)
+├── layouts/               # Custom layout templates
+├── static/                # Static assets (images, CSS, JS)
+├── config.toml            # Hugo configuration
+├── docker_serve_local.sh  # Docker development script
+└── README.md              # Project documentation and contribution guidelines
+```
 
 ## Contributors
 

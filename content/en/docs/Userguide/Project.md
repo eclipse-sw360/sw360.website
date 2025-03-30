@@ -504,7 +504,7 @@ You can view the existing clearing requests which are already created for a proj
 
 ### **C. Edit Clearing Requests**
 
-For more information on how to edit the existing clearing requests, refer to [6. Requests](../New%20Userguide/6.%20Requests.pdf).
+For more information on how to edit the existing clearing requests, refer to [6. Requests](Requests.md/#6-requests).
 
 ## 1.13 Export Spreadsheet
 
