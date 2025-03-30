@@ -13,13 +13,11 @@ menu:
 
 <div class="container p-3">
   <div class="row align-items-center shadow p-4 mx-3 my-4">
-    <!-- Left Column: Text and Button -->
     <div class="col-md-6 mb-4 mb-md-0">
       <h1>Welcome to the Eclipse SW360 Community!</h1>
       <p class="lead">The Eclipse SW360 community is where developers, open-source enthusiasts, and industry professionals come together to collaborate on managing software supply chains, compliance, and security. Join us to contribute, learn, and be part of this exciting project.</p>
       <a href="https://github.com/eclipse-sw360/sw360/discussions" class="btn btn-primary btn-lg" target="_blank">Join Discussion</a>
     </div>
-    <!-- Right Column: Contribution Graph -->
     <div class="col-md-6 text-center">
       <h2 class="h3 mb-3">Our Contributors</h2>
       <a href="https://github.com/eclipse-sw360/sw360.website/graphs/contributors" target="_blank">
@@ -31,7 +29,6 @@ menu:
 
 <div class="container p-3">
   <div class="row align-items-center shadow p-4 mx-3 my-4">
-    <!-- Left Column: Text and Button -->
     <div class="col-md-6 mb-4 mb-md-0">
       <h3 class="fw-bold mb-4 light-gray-text">Community heartbeat</h3>
       <h1>Get Involved with Eclipse SW360 Events</h1>
@@ -40,7 +37,6 @@ menu:
       </p>
       <a href="/sw360/events/" class="btn btn-primary btn-lg" target="_blank">Stay Updated on Events</a>
     </div>
-    <!-- Right Column: Image of Events -->
     <div class="col-md-6 text-center">
       <img src="your-image-url-here.jpg" alt="Community Events" class="img-fluid rounded shadow-sm">
     </div>
@@ -49,7 +45,6 @@ menu:
 
 <div class="container p-3">
   <div class="row align-items-center shadow p-4 mx-3 my-4">
-    <!-- Left Column: Text and Join Slack Button -->
     <div class="col-md-6 mb-4 mb-md-0">
 <h3 class="fw-bold mb-4 light-gray-text">All community info, tracked</h3>
       <h1>Join the Eclipse SW360 Slack Community</h1>
@@ -58,7 +53,6 @@ menu:
       </p>
       <a href="https://sw360chat.slack.com" class="btn btn-primary btn-lg" target="_blank">Join SW360 Slack</a>
     </div>
-    <!-- Right Column: Placeholder for Image -->
     <div class="col-md-6 text-center">
       <img src="https://via.placeholder.com/600x400" alt="Community Image" class="img-fluid rounded shadow-sm">
     </div>
