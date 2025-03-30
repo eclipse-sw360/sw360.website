@@ -60,7 +60,7 @@ sw360 is a server application using Java servlets. It did some faint steps towar
 1. [How to write a new portlet]({{< relref path="Dev-Adding-a-new-portlet-Frontend.md" >}})
 1. [Adding a new backend service]({{< relref path="Dev-Adding-a-new-portlet-Backend.md" >}})
 1. [Changing the data model](Dev-Adding-New-Fields-to-Existing-Classes)
-1. [REST API overview](Dev-REST-API)
+1. [REST API overview](./RestAPI/_index.md)
 1. [Migrating to Javascript modules](Dev-Using-RequireJS-for-javascript-modules)
 
 ### Special
@@ -77,7 +77,8 @@ sw360 is a server application using Java servlets. It did some faint steps towar
 
 Generally, all modules have unit tests and these are executed (including deployment of couchdb) at CI times. In addtion, to test the front end, there are defined integration test cases for a manual check, if the sw360 is working properly in general:
 
-1. [Test Cases: Components Functionality](Test-Cases-Components)
-1. [Test Cases: Licenses Functionality](Test-Cases-Licenses)
-1. [Test Cases: Moderations Functionality](Test-Cases-Moderations)
-1. [Test Cases: Projects Functionality](Test-Cases-Projects)
+1. [Test Cases: Components Functionality](./TestCases/Test-Cases-Components.md)
+1. [Test Cases: Licenses Functionality](./TestCases/Test-Cases-Licenses.md)
+1. [Test Cases: Moderations Functionality](./TestCases/Test-Cases-Moderations.md)
+1. [Test Cases: Projects Functionality](./TestCases/Test-Cases-Projects.md)
+1. [Test Cases: Packages Functionality](./TestCases/Test-Cases-Packages.md)
