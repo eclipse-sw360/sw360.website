@@ -57,9 +57,6 @@
 
 - [Prerequisites](#prerequisites)
 - [Installation Steps](#installation-steps)
-  - [Clone the Repository](#clone-the-repository)
-  - [Set Up the Docsy Theme](#set-up-the-docsy-theme)
-  - [Serve the Site Locally with Docker](#serve-the-site-locally-with-docker)
 - [Troubleshooting](#troubleshooting)
 - [Project Structure](#project-structure)
 - [Contributors](#contributors)
@@ -99,44 +96,6 @@ Follow these steps to set up and serve the SW360 website locally:
 
     ```bash
     cd sw360.website
-    ```
-
-### Set Up the Docsy Theme
-
-* Create a `themes` directory to store the theme:
-
-    ```bash
-    mkdir themes
-    ```
-
-* Enter the `themes` directory:
-
-    ```bash
-    cd themes
-    ```
-
-* Clone the Docsy theme from Google’s repository:
-
-    ```bash
-    git clone https://github.com/google/docsy.git
-    ```
-
-* Navigate into the `docsy` directory:
-
-    ```bash
-    cd docsy
-    ```
-
-* Switch to version `v0.3.0` to ensure compatibility:
-
-    ```bash
-    git checkout v0.3.0
-    ```
-
-* Return to the project root directory:
-
-    ```bash
-    cd ../../
     ```
 
 ### Serve the Site Locally with Docker
