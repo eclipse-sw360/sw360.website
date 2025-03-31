@@ -89,7 +89,7 @@ sudo apt-get install -y temurin-21-jdk
 
 ### 1.3. Thrift
 
-For thrift, the helper install script is located on sw360 `scripts/install-thrift.sh`:
+To install Apache Thrift using the helper script in the SW360 project, run the install-thrift.sh script located in `third-party/thrift/install-thrift.sh`: [here](https://github.com/eclipse-sw360/sw360/blob/d7869d252c4b4c84e6ee389cbed44543cd37f7ac/third-party/thrift/install-thrift.sh)
 
 ```bash
 sudo ./scripts/install-thrift.sh
@@ -115,7 +115,7 @@ sudo chmod 0644 /etc/profile.d/maven.sh
 
 ### 1.5. Install Apache Tomcat 11
 
-Get the latest version of Apache Tomcat 11 from https://tomcat.apache.org/download-11.cgi
+Get the latest version of [Apache Tomcat 11](https://tomcat.apache.org/download-11.cgi).
 and install it in `/opt`
 
 ```shell
@@ -130,7 +130,7 @@ You can configure KeyCloak with SW360 for IAM. SW360 on its own can do
 authentication and authorization, but for corporate setup, you might want to
 offload to KeyCloak. Thus, this step is optional.
 
-Get the latest 26.x.x version from https://www.keycloak.org/downloads
+Get the latest 26.x.x version from [Keycloack downloads](https://www.keycloak.org/downloads).
 
 ```shell
 curl -L 'https://github.com/keycloak/keycloak/releases/download/26.1.3/keycloak-26.1.3.tar.gz' -o ~/Downloads/keycloak-26.1.3.tar.gz
@@ -146,27 +146,38 @@ sudo apt install postgresql
 
 or whatever package version is suitable here, for example version 15 for Debian 12.
 
-Follow the [Keycloak based authentication](../Deploy-Keycloak-Authentication.md)
+Follow the [Keycloak based authentication](../../deploy-keycloak-authentication/)
 guide to set up KeyCloak for SW360 after the installation from 1.8 is done.
 
-### 1.7. Clone and build sw360 version 19.x
+### 1.7. Clone SW360 backend and create default user
 
 * Clone sw360 source code to folder
-    - `$ git clone https://github.com/eclipse-sw360/sw360.git`
+  * `> git clone https://github.com/eclipse-sw360/sw360.git`
+* Create default user  
+  * Run `> ./scripts/addUnsafeDefaultClient.sh [OPTIONS]`  
+    * **Options**  
+      * `-d` : Should delete default client
+      * `-du` : Should delete default user
+      * `--host` : To change host from `http://127.0.0.1:5984`
+      * `--user` : To change username from `admin`
+      * `--pass` : To change password from `admin`
+
+### 1.8. Build sw360 version 19.x
+
 * Create config properties
-    - `$ sudo mkdir -p /etc/sw360 /etc/sw360/autorization /etc/sw360/rest`
-    - Find the relevant configurations at [Configurable Property Keys](../Deploy-Configuration-Files.md)
+  * `$ sudo mkdir -p /etc/sw360 /etc/sw360/autorization /etc/sw360/rest`
+  * Find the relevant configurations at [Configurable Property Keys](../../Deployment/Deploy-Configuration-Files.md)
 * Compile and install the application
-    - `$ mvn clean install -Dbase.deploy.dir=/opt/apache-tomcat-11.0.4/ -Dlistener.deploy.dir=/opt/keycloak-26.1.3/providers -P deploy`
+  * `> mvn clean install -Dbase.deploy.dir=/opt/apache-tomcat-11.0.4/ -Dlistener.deploy.dir=/opt/keycloak-26.1.3/providers -P deploy`
 
 This will install the jar and war files at appropriate locations.
 
-### 1.8. Start backend service
+### 1.9. Start backend service
 
 * Start tomcat server
-    - `$ /opt/apache-tomcat-11.0.4/bin/startup.sh`
+  * `> /opt/apache-tomcat-11.0.4/bin/startup.sh`
 * Check tomcat logs
-    - `$ tail -f100 /opt/apache-tomcat-11.0.4/logs/catalina.out`
+  * `> tail -f100 /opt/apache-tomcat-11.0.4/logs/catalina.out`
 
 Once you see message like
 `org.apache.catalina.startup.Catalina.start Server startup in [**] milliseconds`
@@ -179,14 +190,13 @@ The backend install SwaggerUI as well and accessible via
 ## 2. Installing frontend services
 
 Since version 19, SW360 has separated the front-end as a React based project.
-It is hosted at https://github.com/eclipse-sw360/sw360-frontend/ and needs to be
+It is hosted at [Github SW360 Frontend repository](https://github.com/eclipse-sw360/sw360-frontend/) and needs to be
 installed as well.
 
 ### 2.1. Install node 20
 
 First we need to install Node and NPM version 20 or above. Setting nvm is the
-easiest and fastest way to do it for your user. Follow the guide from
-https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+easiest and fastest way to do it for your user. Follow the [guide from installing and updating](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
 
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -206,9 +216,11 @@ npm install -g pnpm@latest-10
 ### 2.3. Clone and install frontend
 
 * Clone sw360 source code to folder
-    - `$ git clone https://github.com/eclipse-sw360/sw360-frontend.git`
+    `> git clone https://github.com/eclipse-sw360/sw360-frontend.git`
+
 * Setup `.env` file
-    - ```ini
+
+     ```ini
       NEXTAUTH_SECRET='secret'
       NEXT_PUBLIC_SW360_API_URL='http://localhost:8080'
       NEXTAUTH_URL='http://localhost:3000'
@@ -221,10 +233,13 @@ npm install -g pnpm@latest-10
       #AUTH_ISSUER='http://localhost:8083/realms/sw360'
       #NEXT_PUBLIC_SW360_AUTH_PROVIDER='keycloak'
       ```
+
 * Install dependencies and build pages
-    - ```shell
-      $ pnpm install
-      $ pnpm build
-      ```
+  
+  ```shell
+  > pnpm install
+  > pnpm build
+  ```
+
 * Start the server and visit [http://localhost:3000](http://localhost:3000)
-    - `$ pnpm start`
+`$ pnpm start`

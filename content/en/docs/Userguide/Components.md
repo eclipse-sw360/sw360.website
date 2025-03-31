@@ -126,11 +126,11 @@ procedure.
 
 #### **D. External Ids**
 
-For more information on how to add an **External ID** for your component, refer to [E. External Ids](1.ProjectPage.md/#e-external-ids).
+For more information on how to add an **External ID** for your component, refer to [E. External Ids](Project.md/#e-external-ids).
 
 #### **E. Additional Data**
 
-For more information on how to add an **Additional Data** for your component, refer to [F. Additional Data](1.ProjectPage.md/#f-additional-data).
+For more information on how to add an **Additional Data** for your component, refer to [F. Additional Data](Project.md/#f-additional-data).
  
 After all the summary information is filled click on **Create Component**, which redirects you to another page where you can add more component information. Following are the two new sections to be filled:
   * **Releases**
@@ -206,7 +206,7 @@ You can add a release repository URL for your release. To add a release reposito
 
 #### **B. Linked Releases**
 
-To add linked releases to your release, click on linked releases. For more information, refer to [B. Linking Releases](1.ProjectPage.md/#b-linking-releases).
+To add linked releases to your release, click on linked releases. For more information, refer to [B. Linking Releases](Project.md/#b-linking-releases).
 
 Click on **Create Release** to add more information for this release.
 
@@ -261,7 +261,7 @@ To enter ECC details for a release click on **ECC Details**.
 
 #### **E. Attachments**
 
-You can add or modify the attachments to your release. To add attachments, click on **Attachments** on the left. For more information on how to add attachments to the release, refer to [1.06 Edit project](1.ProjectPage.md/#106-edit-project).
+You can add or modify the attachments to your release. To add attachments, click on **Attachments** on the left. For more information on how to add attachments to the release, refer to [1.06 Edit project](Project.md/#106-edit-project).
 
 ##
 
@@ -279,7 +279,7 @@ If you do not want to create a release, click on **Cancel**.
 3. You can view summary, releases, and attachment information of the component. 
 4. Click on **Summary** to edit component summary information. For more information on the fields to edit, refer to [1. Summary](#1-summary).
 5. Click on **Releases** to view all the releases that are linked to the component. If you want to add more releases to the component click on **Add Releases** at the bottom of the list. For more information on how to add a release, refer to [2. Releases](#2-releases).
-6. Click on **Attachments** to view all the attachments that are linked to the component. If you want to add more attachments to the components, refer to paragraph 4 of [1.06 Edit project](1.ProjectPage.md/#106-edit-project). 
+6. Click on **Attachments** to view all the attachments that are linked to the component. If you want to add more attachments to the components, refer to paragraph 4 of [1.06 Edit project](Project.md/#106-edit-project). 
 7. To update the new component information, click on **Update Component**.
 8. To delete the component, click on **Delete Component**.
 9. If you do not want to edit the component, click on **Cancel**.
@@ -385,8 +385,8 @@ You can see all the changes that are done for the release/component in change lo
 
 ## 2.07 Import SPDX BOM
 
-For more information on importing SBOM, refer to [1.05 Import SBOM](1.ProjectPage.md/#105-import-sbom).
+For more information on importing SBOM, refer to [1.05 Import SBOM](Project.md/#105-import-sbom).
 
 ## 2.08 Export Spreadsheet
 
-For more information on exporting spreadsheet, refer to [1.13 Export Spreadsheet](1.ProjectPage.md/#113-export-spreadsheet).
+For more information on exporting spreadsheet, refer to [1.13 Export Spreadsheet](Project.md/#113-export-spreadsheet).

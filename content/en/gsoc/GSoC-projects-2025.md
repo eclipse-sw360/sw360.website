@@ -55,6 +55,7 @@ Interested in becoming a mentor? Please reach out to us!
 
 #### Volunteers so far:
 
+- [Afsah Syeda](https://github.com/afsahsyeda)
 - [Akshit Joshi](https://github.com/akshitjoshii)
 - [Amrit Kumar Verma](https://github.com/amritkv)
 - [Arun Azhakesan](https://github.com/arunazhakesan)
@@ -80,7 +81,7 @@ https://github.com/eclipse-sw360/sw360/discussions/2868
 4. [Improve tests for all REST API endpoints](#improve-tests-for-all-rest-api-endpoints)
 5. [SBOM based recommendation](#sbom-based-recommendation)
 6. [Creating Project as a Service](#creating-project-as-a-service)
-7. []
+7. [Update Official Documentation Page](#update-official-documentation-page)
 
 ### License Change Detection
 

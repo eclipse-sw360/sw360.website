@@ -26,11 +26,11 @@ SW360 thrift API is comprised of the following methods:
 * vendors 
 * vulnerabilities 
 
-Reference: https://github.com/eclipse/sw360/tree/master/libraries/lib-datahandler/src/main/thrift
+Reference: https://github.com/eclipse-sw360/sw360/tree/main/libraries/datahandler/src/main/thrift
 
 ## Attachments
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/attachments.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/attachments.thrift
 
 ### AttachmentType
 
@@ -68,11 +68,11 @@ https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/
 
 ## Components 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/components.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/components.thrift
 
 ## cvesearch 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/cvesearch.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/cvesearch.thrift
 
 | Value  | Description |
 |---|---|
@@ -83,19 +83,19 @@ https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/
 
 ## Fossology 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/fossology.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/fossology.thrift
 
 _No enumerations provided_
 
 ## Importstatus 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/importstatus.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/importstatus.thrift
 
 _No enumerations provided_
 
 ## License Info 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/licenseinfo.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/licenseinfo.thrift
 
 _No enumerations provided_
 
@@ -116,13 +116,13 @@ _No enumerations provided_
 
 ## Licenses 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/licenses.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/licenses.thrift
 
 _No enumerations provided_
 
 ## Moderation 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/moderation.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/moderation.thrift
 
 ### DocumentType 
 
@@ -136,13 +136,13 @@ https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/
 
 ## Project Import 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/projectimport.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/projectimport.thrift
 
 _No enumerations provided_
 
 ## Projects 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/projects.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/projects.thrift
 
 ### Project State
 
@@ -181,13 +181,13 @@ https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/
 
 ## Schedule 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/schedule.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/schedule.thrift
 
 _No enumerations provided_
 
 ## Search 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/search.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/search.thrift
 
 _No enumerations provided_
 
@@ -259,16 +259,16 @@ _No enumerations provided_
 
 ## Users 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/users.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/users.thrift
 
 ## Vendors 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/vendors.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/vendors.thrift
 
 _No enumerations provided_
 
 ## Vulnerabilities 
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/vulnerabilities.thrift
+https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/vulnerabilities.thrift
 
 _No enumerations provided_

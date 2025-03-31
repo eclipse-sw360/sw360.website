@@ -55,3 +55,6 @@ public
 
 # Nodejs
 node_modules
+
+# theme module 
+themes/*

@@ -1,7 +1,7 @@
 <footer class="footer py-5 row d-print-none">
-  <div class="container-fluid mx-sm-5">
-    <div class="row">
-      <div class="col-md-3 col-sm-6">
+  <div class="container-fluid">
+    <div class="row w-100 justify-content-center">
+      <div class="col-md-1">
         <h4>Legal</h4>
         <ul>
           <li>
@@ -28,7 +28,7 @@
         </ul>
       </div>
 
-      <div class="col-md-6 col-sm-6" align="center">
+      <div class="col-md-9" align="center">
         <p><strong>Eclipse SW360</strong> is supported by</p>
         <p>
           <a href="https://www.siemens.com/">
@@ -55,14 +55,10 @@
             src="{{ .Site.BaseURL}}/img/clients/Eclipse.png"
             class="footer-img"
             width="100"
-            alt="Bosch Software Innovation"
+            alt="Eclipse Foundation"
         /></a></div>
       </div>
 
-      <div class="col-md-3 col-sm-6 ">
-        {{ with .Site.Params.links }} {{ with index . "developer"}} {{ template
-        "footer-links-block" . }} {{ end }} {{ end }}
-      </div>
     </div>
   </div>
   <!-- /.container -->

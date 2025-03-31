@@ -73,9 +73,6 @@ github_project_repo = "https://github.com/eclipse-sw360/sw360"
 # or specify a new value if you want to reference another branch in your GitHub links
 github_branch = "main"
 
-# Enable Algolia DocSearch
-algolia_docsearch = false
-
 # -----------------------------------
 # User interface configuration
 
@@ -125,7 +122,7 @@ desc = "Development takes place here!"
 
 [[params.links.developer]]
 name = "Slack"
-url = "https://sw360chat.slack.com"
+url = "https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI"
 icon = "fab fa-slack"
 desc = "Chat with other project developers"
 
@@ -138,13 +135,6 @@ desc = "Discuss development issues around the project"
 [params.about]
 enable = true
 title = "About"
-
-[[menu.main]]
-url = "https://github.com/eclipse-sw360/sw360"
-name = "Github"
-pre = "<i class='fab fa-github'></i> "
-weight = 100
-
 
 # THIS NEED TO BE THE  LAST ENTRY
 [module]
