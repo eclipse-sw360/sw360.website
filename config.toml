@@ -13,7 +13,7 @@ enableRobotsTXT = true
 # Will give values to .Lastmod etc.
 enableGitInfo = true
 
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["taxonomy"]
 
 # Highlighting config
 pygmentsCodeFences = true
@@ -40,6 +40,18 @@ defaultContentLanguageInSubdir = true
     languageName = "Français"
     weight = 2
     contentDir = "content/fr"
+
+    [languages.ja]
+    languageName = "日本語"
+    weight = 3
+    
+  [languages.vi]
+    languageName = "Tiếng Việt"
+    weight = 4
+
+  [languages.zh]
+    languageName = "中文"
+    weight = 5
     
   
 
