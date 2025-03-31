@@ -31,9 +31,10 @@ These three main use cases cater to different roles within an organization, incl
 * Enforcing policies.
 * Generating legal documents.
 
-For instance, SW360 can trigger a clearing process in the open-source compliance tool **FOSSology** and import the resulting clearing reports. Data can either be stored in SW360’s database or imported dynamically from external sources. 
+For instance, SW360 can trigger a clearing process in the open-source compliance tool **FOSSology** and import the resulting
+clearing reports. Data can either be stored in SW360’s database or imported dynamically from external sources.
 
-In the future, we plan to establish federations of SW360 instances that share selected information. 
+In the future, we plan to establish federations of SW360 instances that share selected information.
 
 In addition to its web-based UI, all functionalities of SW360 are accessible via an API, allowing seamless integration into existing DevOps tools.
 
