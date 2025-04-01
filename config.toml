@@ -90,6 +90,7 @@ sidebar_menu_compact = true
 sidebar_menu_foldable = true
 # Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
 sidebar_search_disable = false
+sidebar_cache_limit = 10
 
 # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
 # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
@@ -149,3 +150,73 @@ disable = false
 [[module.imports]]
 path = "github.com/google/docsy/dependencies"
 disable = false
+
+[[menu.main]]
+name = "About"
+weight = 10
+url = "/about/"
+
+[[menu.main]]
+name = "Screenshots"
+weight = 20
+url = "/screenshots/"
+
+[[menu.main]]
+name = "GSoC"
+weight = 30
+url = "/gsoc/"
+
+[[menu.main]]
+name = "Documentation"
+weight = 40
+url = "/docs/"
+
+[[menu.main]]
+name = "News"
+weight = 50
+url = "/news/"
+
+[params.ui.sidebar]
+# Enable sidebar navigation
+enable = true
+# Enable auto-expand for active section
+auto_expand = true
+# Enable sidebar tree view
+tree = true
+# Enable sidebar collapse/expand button
+collapse_enable = true
+# Enable generation of sidebar tree index
+generate = true
+
+[params.taxonomy]
+# set taxonomyCloud = [] to hide taxonomy clouds
+taxonomyCloud = ["tags", "categories"] 
+
+[params.sections]
+news = true
+
+# Add news to the menu sections that should show in sidebar
+[[menu.news]]
+name = "Project Updates"
+weight = 10
+url = "/news/project-updates/"
+
+[[menu.news]]
+name = "Events"
+weight = 20
+url = "/news/events/"
+
+[[menu.news]]
+name = "Community"
+weight = 30
+url = "/news/community/"
+
+[[menu.news]]
+name = "Security"
+weight = 40
+url = "/news/security/"
+
+[[menu.news]]
+name = "Features"
+weight = 50
+url = "/news/features/"

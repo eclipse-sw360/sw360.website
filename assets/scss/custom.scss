@@ -1,0 +1,238 @@
+// Custom styles for events
+.featured-events {
+    .featured-card {
+        border: none;
+        background: linear-gradient(to right bottom, #ffffff, #f8f9fa);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        }
+    }
+}
+
+.year-section {
+    .year-header {
+        background-color: #e8f5f3;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        
+        h2 {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .event-count {
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            color: #34495e;
+        }
+    }
+
+    .event-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+        .card-title {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: #6c757d;
+        }
+
+        .event-type-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #e8f5f3;
+            color: #34495e;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .event-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+
+            i {
+                color: #34495e;
+            }
+        }
+
+        .event-tags {
+            .badge {
+                background-color: #f8f9fa;
+                color: #34495e;
+                font-weight: 500;
+                padding: 0.5rem 0.75rem;
+                border-radius: 15px;
+                border: 1px solid #e9ecef;
+            }
+        }
+
+        .btn-primary {
+            background-color: #34495e;
+            border-color: #34495e;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            padding: 0.5rem 1.5rem;
+
+            &:hover {
+                background-color: #2c3e50;
+                border-color: #2c3e50;
+                transform: translateY(-1px);
+            }
+        }
+    }
+}
+
+// Event detail page styles
+.event-article {
+    .display-4 {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+
+    .event-meta, .event-location {
+        i {
+            color: #34495e;
+        }
+    }
+
+    .speaker-card {
+        transition: transform 0.3s ease;
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        
+        &:hover {
+            transform: translateY(-3px);
+            border-color: #34495e;
+        }
+
+        img {
+            border: 2px solid #e8f5f3;
+        }
+    }
+
+    .resources-section {
+        .list-group-item {
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            
+            &:hover {
+                background-color: #f8f9fa;
+                color: #34495e;
+                border-color: #34495e;
+            }
+
+            i {
+                color: #34495e;
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .year-section {
+        .year-header {
+            .display-4 {
+                font-size: 2rem;
+            }
+            
+            .event-count {
+                font-size: 0.875rem;
+            }
+        }
+
+        .card {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .featured-events {
+        .featured-card {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+// Custom styles for news sections
+.news-sidebar {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    
+    .list-group-item {
+        border: none;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        &.active {
+            background-color: #e8f5f3;
+            color: #34495e;
+            border-color: #34495e;
+        }
+        
+        small {
+            font-size: 0.875rem;
+        }
+    }
+}
+
+.news-article {
+    .display-4 {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    .news-meta {
+        i {
+            color: #34495e;
+        }
+    }
+    
+    .news-tags {
+        .badge {
+            background-color: #f8f9fa;
+            color: #34495e;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid #e9ecef;
+            
+            &:hover {
+                background-color: #e8f5f3;
+                border-color: #34495e;
+            }
+        }
+    }
+}
+
+#news-content {
+    min-height: 400px;
+    transition: opacity 0.3s ease;
+    
+    &.loading {
+        opacity: 0.6;
+    }
+} 
