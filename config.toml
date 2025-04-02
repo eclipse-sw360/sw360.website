@@ -41,18 +41,20 @@ defaultContentLanguageInSubdir = true
     weight = 2
     contentDir = "content/fr"
 
-    [languages.ja]
+  [languages.ja]  
     languageName = "日本語"
     weight = 3
-    
+    contentDir = "content/ja"
+
   [languages.vi]
     languageName = "Tiếng Việt"
     weight = 4
+    contentDir = "content/vi"
 
   [languages.zh]
     languageName = "中文"
     weight = 5
-    
+    contentDir = "content/zh"
   
 
 [markup]
