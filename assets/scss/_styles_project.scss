@@ -141,6 +141,14 @@ sections site wide to the original site's background svg.
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  transition: background-color 0.2s ease-in-out;
+  padding: 1rem 2rem;
+}
+
+.js-navbar-scroll.navbar.navbar-scrolled {
+  background-color: rgba(26, 63, 81, 0.95) !important; // Using the $primary color with opacity
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Keep existing styles for other elements */
