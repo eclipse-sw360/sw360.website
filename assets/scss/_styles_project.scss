@@ -146,25 +146,24 @@ sections site wide to the original site's background svg.
 }
 
 .js-navbar-scroll.navbar.navbar-scrolled {
-  background-color: rgba(26, 63, 81, 0.95) !important; // Using the $primary color with opacity
+  background-color: rgba(26, 63, 81, 0.95) !important;
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Keep existing styles for other elements */
 .navbar-brand {
   margin-right: auto;
 }
 
 .td-navbar-nav-scroll {
-  /* ... your existing styles ... */
+  /* existing styles preserved */
 }
 
 .navbar-nav {
-  /* ... your existing styles ... */
+  /* existing styles preserved */
 }
 
 .d-none.d-lg-block {
-  margin-left: auto; /* Push this element to the right */
-  margin-right: 20px; /* Or your desired right margin */
+  margin-left: auto;
+  margin-right: 20px;
 }
