@@ -9,36 +9,65 @@ menu:
     weight: 20
 ---
 
-# Events
-
 ## Overview
 
 The Events section provides information about all SW360-related events, including conferences, workshops, meetups, and online sessions. Stay updated with upcoming events and access materials from past events.
 
-## Event Categories
+## Categories
 
 ### Conferences and Summits
 - Annual SW360 Conference
 - Eclipse Foundation Events
 - Industry Conferences
 
-### Community Events
+### Security and Compliance
+- Security and Compliance Workshops
+- Best Practices Sessions
+- Risk Management Seminars
+- License Compliance Training
+- Security Implementation Updates
+
+### Community Engagement
 - Developer Meetups
 - User Group Meetings
 - Community Workshops
+- Open Source Discussions
+- Collaboration Sessions
+- Knowledge Sharing Events
+
+### Project Development
+- Release Announcements
+- Feature Demonstrations
+- Roadmap Presentations
+- Technical Deep Dives
+- Development Updates
+- Implementation Guides
 
 ### Training and Education
 - Training Sessions
 - Webinars
 - Tutorial Workshops
+- Documentation Workshops
+- Hands-on Labs
 
-## Upcoming Events
+## Event Information
 
-Check back regularly for updates on upcoming events. Each event listing includes:
+Each event listing includes:
 - Date and time
 - Location (physical or virtual)
 - Registration information
 - Agenda and speakers
-- Related materials
+- Related materials and resources
+- Presentation slides and recordings (when available)
+
+## Navigation
+
+Browse events by:
+- Year
+- Event type
+- Topic
+- Location
+
+Check back regularly for updates on upcoming events and access to past event materials.
 
 
