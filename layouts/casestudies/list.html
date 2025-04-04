@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="td-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ .Title }}</h1>
+                <div class="lead">{{ .Content }}</div>
+            </div>
+        </div>
+        <div class="row mt-5 ">
+            {{ range .Pages.ByDate.Reverse }}
+            <div class="col-md-6 col-lg-6 mb-4 ">
+                <div class="card h-100 ">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image | relURL }}" class="card-img-top" alt="{{ .Title }}" style="max-height: 200px; object-fit: cover;">
+                    {{ end }}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ .Title }}</h5>
+                        <p class="card-text">{{ .Description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-bold">{{ .Date.Format "January 2, 2006" }}</small>
+                            <a href="{{ .RelPermalink }}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }} 
