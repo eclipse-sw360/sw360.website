@@ -1,10 +1,10 @@
 ---
-title: "Seoul Copyright Forum 2017"
-date: 2017-11-15
-description: "In this forum, experts from the SW360 project discuss the intersection of copyright law and open source software management. The session focuses on copyright compliance, license management, and best practices for handling open source software in a global context."
-eventDate: "November 15-16, 2017"
-location: "Seoul, South Korea"
-eventType: "Forum"
+title: "Yanking the Chain: Open Source Software Compliance in the Supply Chain"
+date: 2017-09-20
+description: "In this session, experts discuss the challenges and solutions for managing open source software compliance across the software supply chain. The presentation focuses on how SW360 can help organizations ensure compliance throughout their supply chain, from component selection to final product delivery."
+eventDate: "September 20-21, 2017"
+location: "San Francisco, CA, USA"
+eventType: "Conference"
 featured: true
 speakers:
   - name: "Michael C. Jaeger"
@@ -18,54 +18,54 @@ speakers:
     bio: "Steffen Evers leads open source initiatives at Bosch Software Innovations GmbH, focusing on open source strategy and component management solutions. His expertise includes implementing effective open source governance and compliance programs."
     location: "Stuttgart, Germany"
 resources:
-  - name: "Forum Page"
-    url: "https://www.copyright.or.kr/eng/forum/2017"
+  - name: "Conference Page"
+    url: "https://events.linuxfoundation.org/events/open-source-summit-north-america-2017"
     icon: "link"
 tags:
-  - "Copyright"
-  - "Legal"
+  - "Supply Chain"
   - "Compliance"
   - "Open Source"
-  - "Global"
+  - "Risk Management"
+  - "Integration"
 ---
 
-## About the Forum
+## About the Session
 
-This forum provides a comprehensive overview of copyright considerations in open source software management, with a focus on global compliance and best practices. The session explores how organizations can effectively manage copyright issues while leveraging open source software in their projects.
+This session explores the critical aspects of managing open source software compliance across the software supply chain. The presentation demonstrates how SW360 can be used to track, manage, and ensure compliance throughout the entire supply chain process, from initial component selection to final product delivery.
 
 ### Key Topics Covered
 
-#### 1. Copyright Fundamentals
-- Copyright law basics
-- Open source license implications
-- International copyright considerations
-- Fair use and exceptions
-
-#### 2. Compliance Management
-- Copyright compliance workflows
-- License tracking and management
-- Documentation requirements
+#### 1. Supply Chain Challenges
+- Component tracking across vendors
+- License compliance verification
+- Dependency management
 - Risk assessment
 
-#### 3. Global Implementation
-- Cross-border considerations
-- Cultural aspects of compliance
-- Regional variations
-- Best practices
+#### 2. Compliance Solutions
+- SW360 implementation strategies
+- Automated compliance checking
+- Documentation management
+- Risk mitigation
+
+#### 3. Best Practices
+- Vendor management
+- Compliance workflows
+- Integration strategies
+- Continuous monitoring
 
 ### Who Should Attend
-- Legal Professionals
+- Supply Chain Managers
 - Compliance Officers
-- Open Source Program Managers
 - Software Development Managers
-- International Business Leaders
+- Procurement Specialists
+- Legal Teams
 
 ### What You'll Learn
-- Copyright law fundamentals
-- Global compliance strategies
+- Supply chain compliance strategies
 - Risk management techniques
-- Documentation requirements
-- Best practices for international operations
+- Integration approaches
+- Best practices for vendor management
+- Compliance automation methods
 
 ## Speakers
 
@@ -83,7 +83,7 @@ Steffen Evers leads open source initiatives at Bosch Software Innovations GmbH, 
 
 ## Resources
 
-### Forum Materials
-- [Forum Website](https://www.copyright.or.kr/eng/forum/2017)
+### Session Materials
+- [Conference Website](https://events.linuxfoundation.org/events/open-source-summit-north-america-2017)
 
-Join us for this insightful forum to learn about copyright considerations in open source software management. Gain practical knowledge about global compliance and best practices for managing open source software in an international context.
+Join us for this comprehensive session to learn how to effectively manage open source software compliance across your supply chain. Discover practical strategies for implementing compliance programs and ensuring consistent compliance throughout your software development process. 

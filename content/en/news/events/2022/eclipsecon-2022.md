@@ -74,4 +74,19 @@ SW360 is transforming how organizations approach software compliance in the mode
 - Networking opportunities with industry peers
 - Hands-on examples of compliance automation
 
+## Speakers
+
+### Helio Chissini de Castro
+**Software Technologies Lead at CARIAD**  
+*Location: Ulm, Baden-Württemberg, Germany*
+
+Helio is a distinguished expert in software compliance and open source technologies with over 20 years of experience. At CARIAD, he leads initiatives to modernize software development practices and improve compliance workflows.
+
+## Resources
+
+### Session Materials
+- [Official Session Page](https://www.eclipsecon.org/2022/sessions/how-new-life-being-injected-traditional-compliance-software)
+- [Video Recording](https://www.youtube.com/watch?v=sbCwuV6iuOM)
+- [Presentation Slides](https://www.eclipsecon.org/2022/sites/default/files/slides/EclipseCon2022-SW360.pdf)
+
 Join us for this transformative session and discover how SW360 is setting new standards in software compliance management. Learn from real-world implementations and gain practical insights that you can apply to your organization's compliance strategy.

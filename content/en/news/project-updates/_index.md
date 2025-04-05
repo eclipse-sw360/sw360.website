@@ -9,8 +9,6 @@ menu:
     weight: 50
 ---
 
-# Project Updates
-
 ## Overview
 
 Stay informed about the latest developments in the SW360 project, including new features, improvements, and technical updates.

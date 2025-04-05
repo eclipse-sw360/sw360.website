@@ -11,8 +11,6 @@ cascade:
   
 ---
 
-# SW360 News
-
 ## Overview
 
 SW360 News provides comprehensive updates and information about the SW360 project, including project updates, events, community news, security updates, and new features. This section helps you stay informed about all aspects of SW360's development and community activities.

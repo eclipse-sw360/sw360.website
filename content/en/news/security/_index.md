@@ -9,7 +9,6 @@ menu:
     weight: 30
 ---
 
-# Security Updates
 
 ## Overview
 
