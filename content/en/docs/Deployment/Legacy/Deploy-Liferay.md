@@ -1,123 +1,111 @@
 ---
-linkTitle: "Initial Setup of Liferay 6.2 and sw360"
-title: "Initial Setup of Liferay 6.2 and sw360"
+linkTitle: "Initial Setup of Liferay 6.2 and SW360"
+title: "Initial Setup of Liferay 6.2 and SW360"
 weight: 100
 ---
 
-### Liferay administrator steps
+## Liferay Administrator Steps
 
-This part describes how to setup a new liferay instance after you went through the initial Liferay setup: create an admin account, confirm the license and terms and fill out your personal details. Alternatively in the [sw360vagrant](https://github.com/sw360/sw360vagrant) or the [sw360chores](https://github.com/sw360/sw360chores) deployment, the default setup user credentials are `setup@sw360.org` with the unsafe password `sw360fossy`.
+This guide explains how to set up a new Liferay instance after completing the initial setup steps, which include creating an admin account, accepting the license and terms, and providing personal details. If using the [sw360vagrant](https://github.com/sw360/sw360vagrant) or [sw360chores](https://github.com/sw360/sw360chores) deployment, the default setup user credentials are:
 
-1. Login as setup administrator (if you are using the default unsafe password, you should replace it on productive instances)
+- **Username:** `setup@sw360.org`
+- **Password:** `sw360fossy` (Unsafe, must be changed in production)
 
-2. Go to
-     
-     Menu Admin -> Item Control Panel -> Section Users, Password Policies -> Default Password Policy -> Actions -> Edit
- 
-3. Then 
+### Steps to Configure Liferay
 
-     uncheck ```Change Required``` and then 
-     save
+1. **Log in as a setup administrator.** If using the default password, change it for security reasons.
 
-4. Then we need to grant new users the right to see SW360
+2. **Modify the password policy:**  
+   - Navigate to:
+     `Menu Admin -> Item Control Panel -> Section Users, Password Policies`
+   - Click on **Default Password Policy** → Actions → Edit
+   - Uncheck `Change Required` and save.
 
-     Control Panel -> Configuration -> Users(on the right) ->  Default User Associations
+3. **Grant new users access to SW360:**  
+   - Navigate to:
+     `Control Panel -> Configuration -> Users (on the right) -> Default User Associations`
+   - Check `Apply to Existing Users`
+   - Under **Sites**, enter `SW360`
+   - Click **Save**.
 
-     check ```Apply to Existing Users``` 
-     write in Sites: ```SW360 ```
-     save (on the right)
+4. **Disable self-registration and restrict account creation:**  
+   - Navigate to:
+     `Control Panel -> Configuration -> Users (on the right) -> Authentication`
+   - Uncheck:
+     - `Allow strangers to create ...`
+     - `Allow strangers to verify ...`
+   - Click **Save**.
 
-4. Do not allow stranger to create accounts ...
+5. **Ensure self-registration is deactivated:**  
+   - Navigate to:
+     `Control Panel -> Authentication`
+   - Uncheck the options for strangers creating accounts.
+   - Click **Save**.
+   - **Note:** Disabling self-registration is necessary as Liferay does not create backend service accounts automatically.
 
-     Control Panel -> Configuration -> Users(on the right) ->  Authentication
+6. **Import `.lar` files for page setup:**  
+   - Navigate to:
+     `Admin -> Pages`
+   - Import the following files:
+     ```
+     frontend/configuration/public_pages.lar
+     frontend/configuration/private_pages.lar
+     ```
+   - Use the **Public Pages** and **Private Pages** tabs.
+   - **Note:** These `.lar` files are for Liferay 6.2 GA5. If using another version, you may need to add portlets manually.
 
-     uncheck ```Allow strangers to create ...``` 
-     uncheck ```Allow strangers to verify ...```
-     save (on the right)
+7. **Import settings correctly:**  
+   - **Do not check:** `Pages -> Change -> Delete Missing Pages`
+   - On the first page of the import agent:
+     - **Application Configuration**: Choose Applications (leave all checked)
+     - **Permissions**: Assign to Roles
+   - Click **Continue**.
+   - On the second page:
+     - **Update Data**: Select `Mirror with overwriting`
+     - **Authorship of Content**: Use the current user as author
 
+8. **Verify successful import:**  
+   - Navigate to:
+     `Private Pages -> Users`
 
-5. Then, to deactivate self registration
-
-   Control Panel -> Authentication -> remove checkmarks for creating accounts by strangers
-   save (on the right)
-
-   Note, disabling self registration is required because the current Liferay self registration does not create accounts in the backend service. (hence using the importer is required)
-
-6. Then we go to 
-
-    Admin -> Pages
-
-7. and import the lar files from
-
-   ```
-   frontend/configuration/public_pages.lar
-   frontend/configuration/private_pages.lar
-   ```
-   for the respective pages, using the tabs ```Public Pages``` and ```Private Pages```. Please note that the provided *.lar files are for Liferay 6.2 GA5 only (fun!). If you run a different liferay version, you will need to add the portlets manually until the *.lar files are updated manually.
-
-8. ( DO NOT CHECK Pages -> Change -> Delete Missing Pages)
-    
-    We check on first page
-    
-    Application Configuration -> Choose Applications (leave all checked)
-
-    Permissions -> Permissions
-
-    Permissions -> Permissions Assigned to Roles
-
-    => Click Continue
-
-9. We check on second page of the import agent:
-
-     Update Data -> Mirror with overwriting
-
-     Authorship of the Content -> Use the Current User as Author
-
-10. If this was successful we can go to 
-    
-    Private Pages -> users
-    
-11. We can then import a csv file that looks like that
-     
-    ```
+9. **Import user data via CSV:**  
+   - The file format should be:
+     ```
      GivenName,Lastname,Email,Department,UserGroup,GID,isMale,PasswdHash
      user last name, user first name, first.last@sw360.org,TOP ORG CODE TEAM,USER,SW360_0004,true,AAAAoAAB9ACem9mZj9zptlEjFSMEF5MdOSUzgyxFDmKDGQDK
-    ```
+     ```
+   - **Notes:**
+     - `GID` must be unique.
+     - The hash value represents a password.
+     - `GID` corresponds to `External ID` in the thrift-based data model.
 
-   Note that
+## Notes and Troubleshooting
 
-    1. The GID must be unique
-    1. The hash here means "t"
-    1. The GID is called external Id in the thrift-based datamodel
+### Checking Liferay Configuration Options
+Explore settings to customize your Liferay instance:
 
-### Some notes and troubleshooting
+- Auto-login and self-registration
+- Site statistics
+- Password policies
+- Additional configurations available in the **Admin Panel**
 
-#### Check Liferay Configuration Options
+### Common Issues and Fixes
 
-There are plenty of useful settings to setup for your instance - you should check them depending on your desired use. Just a few examples, you could disable or enable:
+#### **Liferay Crashes at Startup (Dockbar Exception)**
+- If the dockbar error occurs, replace the corrupted file mentioned in the error log with its original version.
+- This is a known issue in Liferay 6.2. Search for "Dockbar Liferay problem" for more details.
 
-* Auto login or self registration functionality
-* Site statistics
-* Password policies
-* Configurability options
-* many more, it makes sense to browse the Liferay Admin area (in the optimal case, using the setup-admin login) and check all the options.
+#### **Performance Issues / Long-running Requests**
+- Adjust memory settings in `CATALINA_OPTS` (for Java versions prior to 8):
+  ```
+  CATALINA_OPTS="$CATALINA_OPTS -Xms2048m -Xmx2048m \
+  -XX:NewSize=512m -XX:MaxNewSize=512m \
+  -XX:PermSize=512m -XX:MaxPermSize=512m"
+  ```
 
-#### Liferay crashes at startup with exception: Dockbar
+#### **Blank Page (Null Pointer Exception on Main Page)**
+- If a blank page with a null pointer error appears, delete the `hsql` folder inside the `data` directory in Liferay.
+- Shut down Liferay before deleting the folder and restart after removal.
 
-If the dockbar error occurs, the file named in the error log must be replaced with an original one, because it is corrupted. Note that this represents a bug of the Liferay 6.2 (search in your favorite search engine for dockbar liferay problem ...).
+This completes the initial setup of Liferay 6.2 with SW360. Ensure to follow the steps carefully for a smooth installation and configuration process.
 
-#### Strange behavior
-
-If the server has problems in terms of long running requests, maybe the memory setting is not allright, consider:
-
-```
-CATALINA_OPTS="$CATALINA_OPTS -Xms2048m -Xmx2048m
-- -XX:NewSize=512m -XX:MaxNewSize=512m -XX:PermSize=512m
-- -XX:MaxPermSize=512m"
-```
-
-if you run Java prior to 8.
-
-#### Surfing to the main page shows blank page with exception message
-
-If the "null pointer page" shows up (just a simple white page saying a null pointer exception occurred), remove the hsql folder inside the data folder from the liferay distro (shutdown before and restart after).
