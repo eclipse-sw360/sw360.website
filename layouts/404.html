@@ -1,8 +1,16 @@
-{{ define "main"}}
-    <main id="main">
-      <div>
-       <h1 id="title">Not found</h1>
-       <p>Oops! This page doesn't exist. Try going back to our <a href="{{ "/" | relURL }}">home page</a>.</p>      
-      </div>
-    </main>
+{{ define "main" }}
+<main id="main" class="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+
+  <h1 class="mb-4">
+    404 - Page Not Found!
+  </h1>
+
+  <p class="lead mb-4">
+    Oops! This page doesn't exist. Try going back to our <a href="{{ " /sw360" | relURL }}">home page</a>.
+  </p>
+
+  <a href="{{ " /sw360" | relURL }}" class="btn btn-primary btn-lg px-4 py-2 shadow-sm">
+    BACK TO HOME
+  </a>
+</main>
 {{ end }}

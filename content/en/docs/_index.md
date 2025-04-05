@@ -35,7 +35,7 @@ SW360 is
 
  In order to work with SW360, please note a fundamental setup in the data model when dealing with components:
 
-- A component is a list of releases with metadata. 
+- A component is a list of releases with metadata.
 - A Release is a version of a component with metadata and specific attachments.
 - A project refers to a number of releases of components accordingly, not components.
 - A vendor is separate from a component and releases. The link to the vendor is set at the release. (think of Sun and Oracle where the owner changed with a new release)
@@ -49,5 +49,4 @@ SW360 is
 | Developer mailing list | sw360-dev@eclipse.org | for developers, discussion about developing |
 | Slack Channel | https://sw360chat.slack.com/ | the main chat spot, everybody is welcome |
 | Slack Channel Invitation Link | [Sharable join link to join](https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI) | that should bring you in |
-| sw360 developer meeting | [Meeting Info](Developer-Meetings) | Everyone is welcome!
-
+| sw360 developer meeting | [Meeting Info](Developer-Meetings) | Everyone is welcome! |
