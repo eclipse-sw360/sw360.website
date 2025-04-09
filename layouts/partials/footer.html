@@ -1,36 +1,20 @@
 <footer class="footer py-5 row d-print-none">
   <div class="container-fluid">
     <div class="row w-100 justify-content-center">
-      <div class="col-md-1">
-        <h4>Legal</h4>
-        <ul>
-          <li>
-            <a href="https://www.eclipse.org/legal/privacy.php"
-              >Privacy Policy</a
-            >
-          </li>
-          <li>
-            <a href="https://www.eclipse.org/legal/termsofuse.php"
-              >Terms of Use</a
-            >
-          </li>
-          <li>
-            <a href="https://www.eclipse.org/legal/copyright.php"
-              >Copyright Agent</a
-            >
-          </li>
-          <li>
-            <a href="https://www.eclipse.org/legal/epl-2.0/"
-              >Eclipse Public License</a
-            >
-          </li>
-          <li><a href="https://www.eclipse.org/legal/">Legal Resources </a></li>
-        </ul>
+      <div class="col-md-3 ps-5">
+        <h4 class="mb-3">LEGAL</h4>
+        <div class="d-flex flex-column">
+          <a href="https://www.eclipse.org/legal/privacy.php" style="color: #999" class="mb-2">Privacy Policy</a>
+          <a href="https://www.eclipse.org/legal/termsofuse.php" style="color: #999" class="mb-2">Terms of Use</a>
+          <a href="https://www.eclipse.org/legal/copyright.php" style="color: #999" class="mb-2">Copyright Agent</a>
+          <a href="https://www.eclipse.org/legal/epl-2.0/" style="color: #999" class="mb-2">Eclipse Public License</a>
+          <a href="https://www.eclipse.org/legal/" style="color: #999">Legal Resources</a>
+        </div>
       </div>
 
-      <div class="col-md-9" align="center">
-        <p><strong>Eclipse SW360</strong> is supported by</p>
-        <p>
+      <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
+        <p class="text-center"><strong>Eclipse SW360</strong> is supported by</p>
+        <p class="text-center">
           <a href="https://www.siemens.com/">
             <img
               src="{{ .Site.BaseURL}}/img/clients/Siemens.png"
@@ -48,9 +32,9 @@
         </p>
 
         {{ with .Site.Params.copyright }}
-        <small>&copy; {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>
+        <small class="text-center">&copy; {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>
         {{ end }} 
-        <div style="margin-top: 10px"><a href="http://www.eclipse.org/">
+        <div class="text-center" style="margin-top: 10px"><a href="http://www.eclipse.org/">
           <img
             src="{{ .Site.BaseURL}}/img/clients/Eclipse.png"
             class="footer-img"
@@ -58,7 +42,7 @@
             alt="Eclipse Foundation"
         /></a></div>
       </div>
-
+      <div class="col-md-3"></div>
     </div>
   </div>
   <!-- /.container -->

@@ -20,13 +20,27 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
           const scrollToTopButton = document.getElementById("scrollToTop");
+          const navbar = document.querySelector('.js-navbar-scroll');
+          let lastScrollTop = 0;
       
           window.addEventListener("scroll", () => {
-            if (window.scrollY > 300) {
+            const scrollTop = window.scrollY;
+            
+            // Handle scroll-to-top button visibility
+            if (scrollTop > 300) {
               scrollToTopButton.style.display = "block";
             } else {
               scrollToTopButton.style.display = "none";
             }
+
+            // Handle navbar background
+            if (scrollTop > 0) {
+              navbar.classList.add('navbar-scrolled');
+            } else {
+              navbar.classList.remove('navbar-scrolled');
+            }
+
+            lastScrollTop = scrollTop;
           });
       
           scrollToTopButton.addEventListener("click", () => {
