@@ -35,7 +35,7 @@ The jenkins jobs looks every 15 minutes after changes on the repository. If it d
 
 # SW360 Website Setup Guide
 
-This guide provides instructions to set up and run the SW360 website locally using Docker and Hugo.
+This guide provides instructions to set up and run the SW360 website locally using Docker.
 
 ## Table of Contents
 
@@ -51,41 +51,16 @@ This guide provides instructions to set up and run the SW360 website locally usi
 
 ## Prerequisites
 
-Before starting, ensure the following tools are installed on your system:
+Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is installed and running on your system.
 
-1. **[Docker Desktop](https://www.docker.com/products/docker-desktop/)**
-    - **Windows/macOS**: Download and install from the official Docker website.
-    - **Linux**: Install via your package manager (e.g., `sudo apt install docker.io` on Ubuntu), then start the service with `sudo systemctl start docker`.
-    - **Verify**: Run `docker --version` to confirm installation.
-
-2. **Bash Shell**
-    - **macOS/Linux**: Bash is included by default in the terminal.
-    - **Windows**: Use Git Bash (installed with Git) or Windows Subsystem for Linux (WSL).
-    - **Verify**: Run `bash --version` to ensure Bash is available.
-
-3. **[Go](https://go.dev/doc/install)** (Optional)
-    - Required only for Hugo development or customization (e.g., building from source).
-    - Follow the OS-specific installation instructions on the Go website.
-    - **Verify**: Run `go version` to check the installation.
-
----
+- **Verify installation** by running:
+    ```bash
+    docker --version
+    ```
 
 ## Installation Steps
 
-Follow these steps to clone the repository and serve the SW360 website locally.
-
-### Step 1: Clone the Repository
-
-1. Clone the project repository, replacing `{{your_username}}` with your GitHub username:
-    ```bash
-    git clone [https://github.com/](https://github.com/){{your_username}}/sw360.website.git
-    ```
-2. Navigate into the project directory:
-    ```bash
-    cd sw360.website
-    ```
-
-### Step 2: Set Up the Local Server
+### Set Up the Local Server
 
 #### Linux/macOS Setup
 
@@ -159,38 +134,6 @@ Follow these steps to clone the repository and serve the SW360 website locally.
         ```bash
         bash docker_serve_local.sh
         ```
-
-3. **Docker Daemon Not Running**
-
-    **Issue:** `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the daemon running?` or similar errors
-    **Solution:**
-    1. Ensure the Docker daemon is active:
-        - **macOS/Windows**: Open Docker Desktop and wait for it to fully start (check the status in the bottom left corner).
-        - **Linux**: Start the daemon manually with:
-            ```bash
-            sudo systemctl start docker
-            ```
-    2. Verify the daemon is running:
-        ```bash
-        docker info
-        ```
-    3. If the issue persists, restart Docker:
-        - **Linux**: `sudo systemctl restart docker`
-        - **macOS/Windows**: Restart Docker Desktop from the system tray.
-4. **Port Already in Use**
-
-    **Issue:** Error: `listen tcp 0.0.0.0:1313: bind: address already in use` (indicating port 1313 is occupied)
-    **Solution:**
-    1. Identify the process using the port:
-        ```bash
-        lsof -i :1313  # On macOS/Linux
-        netstat -aon | findstr :1313  # On Windows (Command Prompt)
-        ```
-    2. Stop the conflicting process:
-        - **macOS/Linux**: Kill the process using `kill -9 <PID>` (replace `<PID>` with the process ID from `lsof`).
-        - **Windows**: Use `taskkill /PID <PID> /F` (replace `<PID>` with the process ID from `netstat`).
-
-
 
 
 ## Project Structure
