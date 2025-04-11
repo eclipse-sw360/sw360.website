@@ -49,4 +49,4 @@ SW360 is
 | Developer mailing list | sw360-dev@eclipse.org | for developers, discussion about developing |
 | Slack Channel | https://sw360chat.slack.com/ | the main chat spot, everybody is welcome |
 | Slack Channel Invitation Link | [Sharable join link to join](https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI) | that should bring you in |
-| sw360 developer meeting | [Meeting Info](Developer-Meetings) | Everyone is welcome! |
+| sw360 developer meeting | [Meeting Info](https://github.com/eclipse-sw360/sw360/wiki/Developer-Meetings) | Everyone is welcome! |
