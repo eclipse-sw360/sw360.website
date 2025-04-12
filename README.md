@@ -43,9 +43,7 @@ This guide provides instructions to set up and run the SW360 website locally usi
 - [Installation Steps](#installation-steps)
 - [Troubleshooting](#troubleshooting)
 - [Project Structure](#project-structure)
-- [Contributors](#contributors)
-- [Contributing](#contributing)
-- [License](#license)
+- [Support](#support)
 
 ---
 
