@@ -40,7 +40,7 @@ This guide provides instructions to set up and run the SW360 website locally usi
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Installation Steps](#installation-steps)
+- [Installation Guide Using Docker](#installation-guide-using-docker)
 - [Troubleshooting](#troubleshooting)
 - [Project Structure](#project-structure)
 - [Support](#support)
@@ -56,7 +56,7 @@ Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is ins
     docker --version
     ```
 
-## Installation Steps
+## Installation Guide Using Docker
 
 ### Set Up the Local Server
 
