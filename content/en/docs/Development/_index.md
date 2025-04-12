@@ -27,9 +27,9 @@ Please report issues to the issue tracker, but please keep also in mind that som
 
 Please refer to the following pages for writing issues:
 
-* https://issues.apache.org/bugwritinghelp.html
-* https://developer.mozilla.org/en-US/docs/Mozilla/QA/Bug_writing_guidelines
-* https://www.joelonsoftware.com/2000/11/08/painless-bug-tracking/
+* <https://issues.apache.org/bugwritinghelp.html>
+* <https://developer.mozilla.org/en-US/docs/Mozilla/QA/Bug_writing_guidelines>
+* <https://www.joelonsoftware.com/2000/11/08/painless-bug-tracking/>
 
 ### Contribution Workflow
 

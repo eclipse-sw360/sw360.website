@@ -44,7 +44,7 @@ If a user with user or other access role rights is not entitled to write or chan
 In addition there are ACL-style roles, meaning that per data item access settings can be made:
 
 1. **creator** - a creator can modify in addition to the user's read abilities, a user can be creator of a data item
-2. **moderator** - a creator can define moderators for a data item. Moderators can change a data item as a creator can. 
+2. **moderator** - a creator can define moderators for a data item. Moderators can change a data item as a creator can.
 3. **contributor** (Component) - is a contributor to a component, project, similar (but not the same) to a moderator. In addition to moderator, this role has been added to identify contributors (or that contributors get the fame).
 In contrast, the contributor cannot delete data items.
 5. **project responsible** (Project) - is a contributor, just named differently to identify the responsible person.
@@ -121,6 +121,3 @@ Note that the general application of these permission operations runs in the bac
 |     | contributor | moderator | creator | user | clearing admin | admin |
 | --- | ----------- | --------- | ----- | ---- | -------- | ----- |
 | edit clearing report | - | R | R | - | R? | PCRL |
-
-
-

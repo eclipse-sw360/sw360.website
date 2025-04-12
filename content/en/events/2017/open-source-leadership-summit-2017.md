@@ -1,7 +1,7 @@
 ---
 key: open-source-leadership-summit-2017
 title: Open Source Leadership Summit 2017
-topic: 
+topic:
   - SW360 - An Open Component Hub
 id: open-source-leadership-summit-2017
 format: talk
@@ -15,8 +15,8 @@ speakers:
     address: ""
     linkedin: ""
     github: ""
-presentation: 
-  session_link: "http://events17.linuxfoundation.org/events/open-source-leadership-summit/program/schedule"
+presentation:
+  session_link: "<http://events17.linuxfoundation.org/events/open-source-leadership-summit/program/schedule>"
 draft: false
 description: |
   In this session, Steffen Evers from Bosch Software Innovations GmbH presents SW360, an open component hub designed to streamline the management of open-source components in software projects. The session highlights how SW360 helps manage software components, ensuring compliance, improving transparency, and optimizing workflows across development teams.

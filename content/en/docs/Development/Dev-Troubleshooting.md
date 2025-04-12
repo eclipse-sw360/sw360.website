@@ -8,6 +8,7 @@ description: "List of small issues / tips when developing for SW360"
 ### Development: problems building sw360portal with maven?
 
 Before building the sw360portal with maven, ensure that the following components are installed in the development environment:
+
 * A git client
 * Apache Maven 3.0.X
 * Apache Thrift 0.9.3
@@ -42,42 +43,51 @@ maybe try instead:
 ```
 /opt/apache-tomcat-/bin/startup.sh
 ```
-just this: 
+
+just this:
+
 ```
 CATALINA_OPTS="-Dhttps.proxy..." /opt/apache-tomcat-/bin/startup.sh
 ```
+
 for lucene it might be necessary to add:
+
 ```
 [httpd_global_handlers]
 _fti = {couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8085/couchdblucene">>}
 ```
+
 in lucene.ini of local.d of your CouchDB installation
 
 #### Backend: are thrift services up?
 
 1. Check tomcat manager (if the services are there)
 2. Check if the service is accessible:
+
    ```
    http://your.url.to.server.com:8085/components  
    ```
+
    Should return "Welcome to ...".
 3. Check if the service thrift page is there:
+
    ```
    http://your.url.to.server.com:8085/components/thrift
    ```
+
    Should return HTTP status code 500, because in the browser, no valid thrift message was formed.
 
 #### Backend: org.ektorp.DbAccessException
 
-What do I do if I get: org.ektorp.DbAccessException: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_id" 
+What do I do if I get: org.ektorp.DbAccessException: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "_id"
 
-You add the class you have been trying to serialize to 
+You add the class you have been trying to serialize to
 THRIFT_CLASSES in
 sw360/src/libraries/lib-datahandler/src/main/java/com/siemens/sw360/datahandler/thrift/ThriftUtils.java
 
 #### Backend: maven failed tomcat7 deploy
 
-If the deployment via maven of the backend does fail with an error like this 
+If the deployment via maven of the backend does fail with an error like this
 
 ```Bash
 Uploading: http://localhost:8085/manager/text/deploy?path=%2Flicenses
@@ -142,4 +152,4 @@ If the virtual machine was shut down and started up again, the backend services 
 ```Bash
 /opt/apache-tomcat-.../bin/.startup.sh
 /opt/liferay-.../tomcat-.../bin/.startup.sh
-``` 
+```

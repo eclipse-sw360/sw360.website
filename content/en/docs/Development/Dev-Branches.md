@@ -8,7 +8,7 @@ description: "Helps to see who is responsible and to which issue the Pull Reques
 ## Branches structure
 `<github-nickname>/<issue>/<description>`
 
+### Examples
 
-### Examples:
 - maierthomas/#1/fix-dowload-bundle
 - maierthomas/#3/sw360portal-specific-links

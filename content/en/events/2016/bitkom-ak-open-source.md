@@ -1,7 +1,7 @@
 ---
 key: bitkom-ak-open-source
 title: Bitkom AK Open Source
-topic: 
+topic:
   - SW360 – Your Open Component Hub
 id: bitkom-ak-open-source
 format: talk
@@ -15,8 +15,9 @@ speakers:
     address: ""
     linkedin: ""
     github: ""
-presentation: 
-draft: false
+presentation:
+  session_link: "YOUR_SESSION_LINK_HERE" # Replace with the actual session link
+  draft: false
 description: |
   In this session, Johannes Kristan from Bosch Software Innovations GmbH and Michael C. Jaeger from Siemens AG present SW360 as an open component hub for managing open-source software components. The talk highlights SW360's capabilities in tracking, managing, and ensuring compliance for open-source components across various projects.
   - **Session Highlights**:

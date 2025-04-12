@@ -4,7 +4,10 @@
     "description": "sw360 main website",
     "main": "none.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+       "lint:md": "markdownlint-cli2",
+  "lint:md:check": "markdownlint-cli2 --fix=false"
+
     },
     "repository": {
         "type": "git",
@@ -15,6 +18,8 @@
     "homepage": "https://eclipse.org/sw360",
     "devDependencies": {
         "autoprefixer": "^10.4.21",
+        "markdownlint-cli2": "^0.17.2",
+        "markdownlint-cli2-formatter-default": "^0.0.5",
         "postcss": "^8.5.3",
         "postcss-cli": "^11.0.1"
     }

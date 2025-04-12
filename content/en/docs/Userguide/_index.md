@@ -3,7 +3,7 @@ title: "User Guides"
 linkTitle: "User Guides"
 weight: 10
 icon: fas fa-users
-description: This guide provides an overview of SW360 and how to get started with using it. It covers the basic usage, and tips for configuring SW360 to work with your software development tools.
+description: This guide provides an overview of SW360 and how to get started with using it. It covers the basic usage, and tips for configuring SW360 to work with your software development tools
 ---
 
 # SW360 INTRODUCTION
@@ -12,6 +12,7 @@ SW360 is a comprehensive software catalogue application that helps organizations
 SW360 can also be used with the license scanner, "FOSSology" which provides license clearing, which is then integrated into the workflows. SW360 integrates software artifacts and projects into the related existing infrastructures. SW360 also provides backend services for distinct tasks and a set of portlets to access these services.
 
 Use case areas:
+
 - Handling project information where open-source software components and other third-party software are used.
 - SBOM (Software Bill Of Materials ) Management.
 - Handling component information and its associated processess. E.g.: name, vendor, version, ECCN information, license compliance information.
@@ -22,6 +23,7 @@ Use case areas:
 ## SW360 Functionality
 
 With SW360 you can:
+
 - Manage your components and projects
 - Send source packages to the license scanner, FOSSology
 - Reuse cleared components and release for projects
@@ -59,7 +61,6 @@ Each license obligation will be provided with Clearing Report by the Clearing Ex
 OSS license obligations are typically provided centrally.
 COTS license obligations must be analyzed individually for every commercial contract.
 
-
 ### **Vulnerabilities**
 
 The Security Vulnerability Monitoring (SVM) system is responsible for monitoring a specified list of security vulnerabilities and list all the vulnerabilities in this tab. These vulnerabilities are tracked and can be transferred to other systems or security experts as needed. The SVM has the capability to transfer the vulnerability lists via API to SW360 or the designated security expert responsible for managing them. By utilizing this system, the project can effectively monitor and manage potential security threats, ensuring the integrity and security of the software.
@@ -78,7 +79,6 @@ The project management system includes support for attachments, which are used t
 
 The project management team ensures that all necessary attachments are properly labeled and organized, allowing for easy access and retrieval when needed. By utilizing this system, the project team can effectively manage and track important project-related information, helping to ensure the success and compliance of the project.
 
-
 ### **Clearing Requests**
 
 These are the requests that are raised to the clearing experts to get the OSS license clearing for a project. These requests can only be raised at a project level and must be done once all the linked releases and projects are assigned to the parent project. This should be done in advance to give the clearing experts adequate time to get the license clearing report. The clearing results are further assessed by responsible experts and the project management.
@@ -86,8 +86,6 @@ These are the requests that are raised to the clearing experts to get the OSS li
 ### **Export Controls and Customs (ECC)**
 
 Export Controls and Customs (ECC) numbers are automatically assigned to components, with the exception of Commercial Off-The-Shelf (COTS) components. In the case of COTS components, an ECC expert is responsible for setting the appropriate ECC numbers. By accurately identifying and assigning ECC numbers to components, organizations can prevent potential legal and financial penalties, as well as safeguard national security interests.
-
-
 
 ### **Source Code Bundles**
 
@@ -97,10 +95,10 @@ These are multiple source code packages which are attachments to a specific rele
 
 | Page | URL | Note |
 |------|-----|------|
-|Public Project Homepage | https://www.eclipse.org/sw360/ | Main project homepage |
-|Public project GitHub Page  | https://github.com/eclipse/sw360/ | Main project |
-|Project Information in Eclipse  | https://projects.eclipse.org/projects/technology.sw360 | Information on Eclipse SW360 |
-|Public project home page SW360 Antenna | https://github.com/eclipse/antenna | Antenna Connects to SW360 to exchange information right from the build time |
-|Public project SW360 Vagrant in GitHub | https://github.com/sw360/sw360vagrant | Vagrant Set up for SW360 |
-|Public Project for SW360 chores at GitHub | https://github.com/sw360/sw360chores |Docker setup for SW360 |
-|Public Project SW360 slides in GitHub | https://github.com/sw360/sw360slides | Main slide deck of SW360 published as Git repository |
+|Public Project Homepage | <https://www.eclipse.org/sw360/> | Main project homepage |
+|Public project GitHub Page  | <https://github.com/eclipse/sw360/> | Main project |
+|Project Information in Eclipse  | <https://projects.eclipse.org/projects/technology.sw360> | Information on Eclipse SW360 |
+|Public project home page SW360 Antenna | <https://github.com/eclipse/antenna> | Antenna Connects to SW360 to exchange information right from the build time |
+|Public project SW360 Vagrant in GitHub | <https://github.com/sw360/sw360vagrant> | Vagrant Set up for SW360 |
+|Public Project for SW360 chores at GitHub | <https://github.com/sw360/sw360chores> |Docker setup for SW360 |
+|Public Project SW360 slides in GitHub | <https://github.com/sw360/sw360slides> | Main slide deck of SW360 published as Git repository |

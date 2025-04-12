@@ -8,9 +8,9 @@ Weight: 4
 
 ## 2.01 Introduction
 
-The components page displays the list of components and releases that are available in SW360. A component is a list of releases with metadata. A release is a specific version of a component. 
+The components page displays the list of components and releases that are available in SW360. A component is a list of releases with metadata. A release is a specific version of a component.
 
-To open a component page, click **Components** tab from the main menu. 
+To open a component page, click **Components** tab from the main menu.
 You can find a particular component with Advanced Search, you can also add and edit components in this page.  
 
 {{< figure src="/sw360/img/ImagesBasic/Componentpage/ComponentPage.png" >}}
@@ -26,9 +26,10 @@ You can find a particular component with Advanced Search, you can also add and e
 ## 2.02 Component List
 
 On the component page, you can view all the components that are relevant to you. The components are listed with the following information:
-* **Vendor**: Vendor is organization which is selling the component or the community which is hosting the component. 
-* **Component Name**: All components are listed by their names. 
-* **Main Licenses**: The list of main licenses available for a component are displayed. 
+
+* **Vendor**: Vendor is organization which is selling the component or the community which is hosting the component.
+* **Component Name**: All components are listed by their names.
+* **Main Licenses**: The list of main licenses available for a component are displayed.
 * **Component Type**: Lists all the components by their type. For more information on component types, refer to [A. General Info](#a-general-information).
 * **Actions**: You can perform the following actions for a component:
 
@@ -39,9 +40,9 @@ On the component page, you can view all the components that are relevant to you.
   
 **NOTE: CLICK ON {{< figure src="/sw360/img/ImagesBasic/SortIcon.png" >}} TO SORT LICENSE INFORMATION ALPHABETICALLY.**
 
-## 2.03 Component Search 
+## 2.03 Component Search
 
-**Advanced Search** dialogue box is used to search for a particular component. 
+**Advanced Search** dialogue box is used to search for a particular component.
 
 1. Search the component with **Component Name** and **Categories**.
 2. Search the component with **Component Type**. Select the component type from the drop-down list. For more information on the component types, refer to [A. General Information](#a-general-information).
@@ -51,7 +52,7 @@ On the component page, you can view all the components that are relevant to you.
 
 ## 2.04 Add Component
 
-To add a new component, click **Add Component** from the component page, this will redirect you to another page where you can add component summary information. 
+To add a new component, click **Add Component** from the component page, this will redirect you to another page where you can add component summary information.
 
 ### **1. Summary**
 #### **A. General Information**
@@ -62,13 +63,13 @@ To add a new component, click **Add Component** from the component page, this wi
 1. Enter the **Name** of the component you want to create.</BR>
    ```NOTE: MAKE SURE THAT THERE ARE NO DUPLICATES.```</BR>
 2. Select the **Component Type** from the drop-down list.
-    - OSS: Open-Source Software
-    - COTS: Commercial off-the-shelf
-    - Internal: Internally used
-    - Inner Source: OSS within a particular organization
-    - Services: Developed as a service 
-    - Freeware: Software that is available free of cost
-    - Code snippet: A small code which shows how to accomplish a specific task 
+    * OSS: Open-Source Software
+    * COTS: Commercial off-the-shelf
+    * Internal: Internally used
+    * Inner Source: OSS within a particular organization
+    * Services: Developed as a service
+    * Freeware: Software that is available free of cost
+    * Code snippet: A small code which shows how to accomplish a specific task
 3. The field **Created by** is set automatically to the creator/owner of the component.
 4. Click on **Default Vendor** field.
     * This opens a dialogue box, use the type field to search for the vendors.
@@ -77,10 +78,10 @@ To add a new component, click **Add Component** from the component page, this wi
 5. When you start typing in the **Categories** field, a list of categories that match are displayed to choose from.
 6. Enter the **Homepage URL**, this is the web address for your component.
 7. Enter a **Short Description** for your component.
-8. Enter the **Blog URL**, this is the web address for the blog of your component. 
-9.  **Modified on** date will be set automatically.
+8. Enter the **Blog URL**, this is the web address for the blog of your component.
+9. **Modified on** date will be set automatically.
 10. Enter the **Wiki URL**, this is web address for the wiki page of your component.
-11. **Modified by** will be set automatically. 
+11. **Modified by** will be set automatically.
 12. Enter the **Mailing List URL**, this is the web address of the mailing list of your component.
 
 #### **B. Roles**
@@ -96,14 +97,14 @@ To add a new component, click **Add Component** from the component page, this wi
 
 2. Select a country from the list to assign as **Owner Country**.
 3. Enter the **Owner Accounting Unit**.
-4. **Moderator** is the user responsible for the component. Click on the field to select moderators. 
+4. **Moderator** is the user responsible for the component. Click on the field to select moderators.
     * This opens a dialogue box, use the type field to search for the moderator.
     * Select the users
     * Click on **Select Users**.
 
-``` NOTE: ALL CLEARING EXPERTS, CLEARING ADMINS AND SW360 ADMINS ARE MODERATORS BY DEFAULT.```
-1. Enter the **Owner Billing Group**.
+```NOTE: ALL CLEARING EXPERTS, CLEARING ADMINS AND SW360 ADMINS ARE MODERATORS BY DEFAULT.```
 
+1. Enter the **Owner Billing Group**.
 
 #### **C. Additional Roles**
 
@@ -120,9 +121,7 @@ procedure.
 
    ![](/sw360/img/ImagesBasic/Componentpage/Component_Additional_Role2.png)
 
-
 3. To delete an additional role, click on ![](/sw360/img/ImagesBasic/Delete_Trash.png).
-
 
 #### **D. External Ids**
 
@@ -131,17 +130,18 @@ For more information on how to add an **External ID** for your component, refer 
 #### **E. Additional Data**
 
 For more information on how to add an **Additional Data** for your component, refer to [F. Additional Data](Project.md/#f-additional-data).
- 
+
 After all the summary information is filled click on **Create Component**, which redirects you to another page where you can add more component information. Following are the two new sections to be filled:
-  * **Releases**
-  * **Attachments**
+
+* **Releases**
+* **Attachments**
 
 ### **2. Releases**
 
 A release is a specific version of a component. To add Release information for your component:
 
 1. Click on **Releases**.
-   
+
    ![](/sw360/img/ImagesBasic/Componentpage/Componentreleases.png)
 
 2. Then click on **Add Releases**. You will be redirected to another page to add more information about the release you want to create. Following are the two sections where you must enter information</br>
@@ -169,7 +169,7 @@ A release is a specific version of a component. To add Release information for y
 10. Enter the **Source Code Download URL**. This is the web address from where source code of the release can be downloaded.
 11. Click on the field **Main License** to set other license information for the release. This opens a dialogue box, search and select the licenses and click on **Select Licenses**.
 12. Enter **Binary Download URL**. This is the web address from where binary of the release can be downloaded.
-13. **Clearing state** will be set to "new" by default. 
+13. **Clearing state** will be set to "new" by default.
 14. Select the value for the **Release Mainline State** from the drop-down list.
     * Open: No license clearing
     * Mainline: Permissive license with no specific obligations
@@ -184,7 +184,7 @@ A release is a specific version of a component. To add Release information for y
 17. **Modified on** is set automatically.
 18. Click on the field to select **Contributors**. This opens a dialogue box, search and select the contributors and click on **Select Users**.
 19. **Modified by** is set automatically.
-20. **Moderator** is the user responsible for the release. Click on the field to select moderators. 
+20. **Moderator** is the user responsible for the release. Click on the field to select moderators.
     * This opens a dialogue box, use the type field to search for the moderator.
     * Select the users
     * Click on **Select Users**.
@@ -197,11 +197,11 @@ A release is a specific version of a component. To add Release information for y
 
 **Release Repository**
 
-You can add a release repository URL for your release. To add a release repository: 
+You can add a release repository URL for your release. To add a release repository:
 
 1. Select the **Repository Type** from the drop-down list.
 2. Enter the **Repository URL**.
-   
+
    ![](/sw360/img/ImagesBasic/Componentpage/Releaserepository.png)</br>
 
 #### **B. Linked Releases**
@@ -217,11 +217,10 @@ To add clearing information to your release, click on **Clearing Details**.
 
 ![](/sw360/img/ImagesBasic/Componentpage/Release_Clearing_Details.png)
 
-
 * Check the boxes for all applicable clearing details.
 * Enter the applicable data for **Scanned** and  **Clearing Standard**. For e.g., date or specific version of your License Scanner.
 * Enter **External URL** for the release.
-* Add **Comments**. 
+* Add **Comments**.
 
 **Request Information**
 
@@ -240,20 +239,19 @@ You can enter internal supplier ID and number of security vulnerabilities for yo
 
 * Enter **External Supplier Id** and the count of **Vulnerabilities**.
   
-#### **D. ECC Details** 
+#### **D. ECC Details**
 
 ```NOTE: ECC DETAILS ARE SET AUTOMATICALLY FOR OSS RELEASES.```
 
 ![](/sw360/img/ImagesBasic/Componentpage/Release_ECC_Details.png)
 
-
 To enter ECC details for a release click on **ECC Details**.
 
 * Select the **ECC Status** from the drop-down list.
-    * Open
-    * In progress
-    * Approved
-    * Rejected
+  * Open
+  * In progress
+  * Approved
+  * Rejected
 * Add **ECC Comment**, if required.
 * Enter **Ausfuhrliste**, this is a German ECC number.
 * Enter **ECCN** and **Material Index Number**.
@@ -271,29 +269,27 @@ To delete the release, click on **Delete Release**.
 
 If you do not want to create a release, click on **Cancel**.
 
-
 ## 2.05 Edit Component
 
 1. Search for the components you want to edit or navigate from the component list.
 2. Click on ![](/sw360/img/ImagesBasic/Edit_Pen.png) from the actions column. You can also edit a component by clicking on the component and then clicking on **Edit Component**.
-3. You can view summary, releases, and attachment information of the component. 
+3. You can view summary, releases, and attachment information of the component.
 4. Click on **Summary** to edit component summary information. For more information on the fields to edit, refer to [1. Summary](#1-summary).
 5. Click on **Releases** to view all the releases that are linked to the component. If you want to add more releases to the component click on **Add Releases** at the bottom of the list. For more information on how to add a release, refer to [2. Releases](#2-releases).
-6. Click on **Attachments** to view all the attachments that are linked to the component. If you want to add more attachments to the components, refer to paragraph 4 of [1.06 Edit project](Project.md/#106-edit-project). 
+6. Click on **Attachments** to view all the attachments that are linked to the component. If you want to add more attachments to the components, refer to paragraph 4 of [1.06 Edit project](Project.md/#106-edit-project).
 7. To update the new component information, click on **Update Component**.
 8. To delete the component, click on **Delete Component**.
 9. If you do not want to edit the component, click on **Cancel**.
-
 
 ## 2.06 View Component
 
 To open a view mode for a component:
 
-1. Search for the components you want to edit or navigate from the component list. 
+1. Search for the components you want to edit or navigate from the component list.
 2. Click on the component name.
 3. You are now in view mode of the component, and you can view all the details of the components like summary, release overview, attachments, vulnerabilities and change logs.
 4. You can edit a component, Merge a component, Split a component, Subscribe to a component in this mode.
-   
+
 ### **A. Merge**
 
 This functionality is used when there is a duplication of components, and this functionality helps us to combine all the duplicates into one single component.
@@ -317,7 +313,7 @@ To Split a component, click on **Split**. This action will redirect you to anoth
 
 You can **Subscribe** to a component to get notified with emails when any changes are made to the component.
 
-To not get notified for a particular component, click **Unsubscribe**. 
+To not get notified for a particular component, click **Unsubscribe**.
 
 ### **D. View Component Information**
 
@@ -338,7 +334,8 @@ For more information on these sections, refer to [2. Releases](#2-releases).
 
 #### **Clearing Details**
 
-You can view the following clearing information for the release in view mode: 
+You can view the following clearing information for the release in view mode:
+
 * SPDX Attachments
 * Assessment Summary info
   
@@ -366,11 +363,11 @@ You can view if the clearing expert has added any summary in the clearing report
 All the vulnerabilities that are linked to the release/component are listed in the vulnerability section.
 
 ![](/sw360/img/ImagesBasic/Componentpage/Component_Vulnerability.png)
- 
+
 1. Click on **Vulnerability** on the left to view all the linked vulnerabilities for this release/component.
 2. You can sort the vulnerabilities by their external ids, priority, matched by, title, verification and actions.
 3. To view more information on the vulnerability, click on the external id of the vulnerability. You will be redirected to another page with all the information about the selected vulnerability.
- 
+
 #### **Change Log**
 
 You can see all the changes that are done for the release/component in change log section.
@@ -381,7 +378,6 @@ You can see all the changes that are done for the release/component in change lo
 2. You can now view change date, change log id, change type and user.
 3. Click on ![](/sw360/img/ImagesBasic/Componentpage/Changelog1.png) to view all the changes done for a change log id.
 4. Click on ![](/sw360/img/ImagesBasic/Componentpage/Changelog2.png) to view the moderation request details for a change log id.
-   
 
 ## 2.07 Import SPDX BOM
 

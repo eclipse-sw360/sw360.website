@@ -1,7 +1,7 @@
 ---
 key: linux-foundation-collab-summit-2016
 title: Linux Foundation Collab Summit 2016
-topic: 
+topic:
   - SW360: A Place like Home for OSS
 id: linux-foundation-collab-summit-2016
 format: talk
@@ -15,10 +15,15 @@ speakers:
     address: "Munich, Germany"
     linkedin: ""
     github: ""
-  - Maximilian Huber
-  - TNG Technology Consulting
-presentation: 
-  session_link: "https://collabsummit2016.sched.com/event/6YQh/sw360-a-place-like-home-for-oss-michael-jaeger-siemens-maximilian-huber-tng-technology-consulting"
+  - name: "Maximilian Huber"
+    affiliation: "TNG Technology Consulting"
+    about: "" # Add an about section if you have one
+    speakerimage: "" # Add an image link if you have one
+    address: "" # Add an address if you have one
+    linkedin: "" # Add a linkedin link if you have one
+    github: "" # Add a github link if you have one
+presentation:
+  session_link: "<https://collabsummit2016.sched.com/event/6YQh/sw360-a-place-like-home-for-oss-michael-jaeger-siemens-maximilian-huber-tng-technology-consulting>"
 draft: false
 description: |
   In this session at the Linux Foundation Collab Summit 2016, Michael C. Jaeger from Siemens AG and Maximilian Huber from TNG Technology Consulting discuss SW360, a platform designed as a "home" for open-source software (OSS). They explore how SW360 can be used for managing open-source components, tracking licenses, and ensuring compliance in software development projects.

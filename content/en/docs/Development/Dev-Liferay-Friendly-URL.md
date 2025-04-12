@@ -9,6 +9,7 @@ The normal generated portlet URLs containing a set of internal Liferay request p
 These long URLs of links or forms are mostly not readable and its not easy to share it somewhere else.
 
 General Liferay portlet URL: <br>
+
 ```
 http://localhost:8080/web/guest/examples?p_p_id=example_WAR_ExamplePortlet&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_example_WAR_ExamplePortlet_javax.portlet.action=new
 ```
@@ -29,20 +30,21 @@ How to configure the friendly URL Mapper in Liferay? <br> <br>
 **Configuration of URL routes in XML files** <br>
 
 _CREATE example-friendly-url-routes.xml_ <br>
+
 ```Xml
 <?xml version="1.0"?>
 <!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.2.2//EN"
 "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
 <routes>
-	<route>
-		<pattern>/action/{actionName}</pattern>
-		<generated-parameter name="javax.portlet.action">{actionName}</generated-parameter>
-		<ignored-parameter name="p_auth"/>
-		<ignored-parameter name="p_p_id"/>
-		<implicit-parameter name="p_p_lifecycle">1</implicit-parameter>
-		<implicit-parameter name="p_p_state">normal</implicit-parameter>
-		<implicit-parameter name="p_p_mode">view</implicit-parameter>
-	</route>
+ <route>
+  <pattern>/action/{actionName}</pattern>
+  <generated-parameter name="javax.portlet.action">{actionName}</generated-parameter>
+  <ignored-parameter name="p_auth"/>
+  <ignored-parameter name="p_p_id"/>
+  <implicit-parameter name="p_p_lifecycle">1</implicit-parameter>
+  <implicit-parameter name="p_p_state">normal</implicit-parameter>
+  <implicit-parameter name="p_p_mode">view</implicit-parameter>
+ </route>
 </routes>
 ```
 
@@ -62,25 +64,29 @@ These files should located in the resources folder otherwise they will not be av
 <br>
 _MODIFY liferay-portlet.xml_
 <br>
+
 ```Xml
 <friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 <friendly-url-mapping>example</friendly-url-mapping>
 <friendly-url-routes>com/.../example-friendly-url-routes.xml</friendly-url-routes>
 ```
+
 <br>
 In the next step we need one java implementation class to generate the Liferay friendly URLs. <br>
 
 Liferay provides the _DefaultFriendlyURLMapper_ class to create the URLs based on our rules. <br>
 
-The Liferay Friendly URL Mapper configuration is placed after `<icon/>` and before `<instanceable>` 
+The Liferay Friendly URL Mapper configuration is placed after `<icon/>` and before `<instanceable>`
 tag.
 
 ### Friendly URL Mapper outcome
 
 **Liferay will generate the following friendly URL** <br>
+
 ```Bash
 http://localhost:8080/web/guest/examples/-/example/action/new
 ```
+
 <br>
 
 1. The liferay framework will add "-" (dash)

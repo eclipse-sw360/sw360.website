@@ -93,7 +93,6 @@ Make sure that `Private Pages` is selected. Follow the other selections made as 
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-08-13_20.23.53.png" >}}
 
-
 If you click then the liferay logo_the upper left corner where the SW360 is, you will return to the application and the following screen should appear:
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-08-13_20.24.18.png" >}}

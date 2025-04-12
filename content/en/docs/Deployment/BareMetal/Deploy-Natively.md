@@ -36,7 +36,7 @@ You can go ahead install postgresql:
 sudo apt install postgresql
 ```
 
-or whatever package version is suitable here, for example version 12 for ubuntu 20.04. 
+or whatever package version is suitable here, for example version 12 for ubuntu 20.04.
 
 The configuration for Liferay will come later.
 
@@ -58,7 +58,7 @@ The installer will ask a couple of questions:
 2. Unless you know what you are doing, use standalone install instead of clustered option, for a regular single installation.
 3. Admin user: For fresh installation for sure a very good idea. You can set the password at sw360 for CouchDB in `couchdb.properties` and place it centrally in `/etc/sw360`
 
-In case you added an admin accidentally and would like to remove it, 
+In case you added an admin accidentally and would like to remove it,
 
 ## Thrift
 
@@ -82,6 +82,7 @@ echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_COD
 ## Dependencies
 
 Use the included script located in:
+
 ```bash
 ./scripts/download_dependencies.sh
 ```
@@ -126,9 +127,8 @@ mvn clean package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=/opt/lifera
 
 ## Final Steps in Liferay
 
-Liferay CE 7.3 will need to have some manual steps applied in order to complete the setup. Unfortunately, these steps cannot be automated (if you know how, please let us know). For earlier versions of Liferay, please refer to the main wiki page. 
+Liferay CE 7.3 will need to have some manual steps applied in order to complete the setup. Unfortunately, these steps cannot be automated (if you know how, please let us know). For earlier versions of Liferay, please refer to the main wiki page.
 
 This is the legacy guide for Liferay CE 7.3.3 but is valid for current 7.4.3 deployment:
 
-https://www.eclipse.org/sw360/docs/deployment/legacy/deploy-liferay7.3/
-
+<https://www.eclipse.org/sw360/docs/deployment/legacy/deploy-liferay7.3/>

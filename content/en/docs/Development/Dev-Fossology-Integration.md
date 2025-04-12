@@ -40,7 +40,7 @@ File uploaded from SW360 are placed inside a folder with the same name as the gr
 ### Datamodel and thrift service
 
 * each Release object in SW360 can have only one attachment of type SOURCE.
-* when a Release is sent *for the first time* to FOSSology through the Thrift method `sendToFossology(1: string releaseId, 2: string clearingTeam )` its SOURCE attachement is sent as stdin to the script `uploadFromSW360`. 
+* when a Release is sent *for the first time* to FOSSology through the Thrift method `sendToFossology(1: string releaseId, 2: string clearingTeam )` its SOURCE attachement is sent as stdin to the script `uploadFromSW360`.
 
     The field `map<string, FossologyStatus> clearingTeamToFossologyStatus` is then updated to contain the corresponding entry for the chosen Clearing Team (aka. the name of the FOSSology group which will receives the upload for clearing).
 * when the same Release is *sent again for another team* a new *link* in the corresponding group folder is created and the old upload is made available for the new group (as in giving permission using FO:`fo_chmod`).
@@ -51,5 +51,5 @@ File uploaded from SW360 are placed inside a folder with the same name as the gr
 
 ### Notes
 
-* Releases have a ClearingState field, but this is ignored by the Thrift service and used only in the SW360 user interface. 
+* Releases have a ClearingState field, but this is ignored by the Thrift service and used only in the SW360 user interface.
 * Projects link to Releases and the summary of their FOSSology status can be monitored. This is also ignored by the FOSSology Thrift service and handled by the Component service: the FOSSology service just updates the status of the Release objects.

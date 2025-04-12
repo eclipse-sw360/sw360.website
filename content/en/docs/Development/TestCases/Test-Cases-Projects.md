@@ -38,7 +38,6 @@ Step | Action | Result
 17 | Re-click the _Create Clearing Request_ icon under _Actions_ column | The _View Clearing Request_ dialog is displayed with: <br> - Requesting User: {requested user} <br> - Created on: {created request date} <br> - Preferred Clearing Date: {displayed as input data} <br> - Clearing Team: {email of chosen clearing team} <br> - Priority: LOW <br> - Request Status: NEW
 18 | Click _Close_ button in the dialog | The dialog is closed
 
-
 ## TC03: Add a project with releases, no relations, remove a release
 
 Step | Action | Result
@@ -48,7 +47,7 @@ Step | Action | Result
 3 | Click _Delete_ icon to delete the linked project | Message is displayed: _"Do you really want to remove the link to project {linked project name}?"_
 4 | Click _Delete Link_ button | The project is removed from the list of _Linked Projects_
 5 | Click _Add Releases_ button | _Search Release_ dialog is displayed
-6 | Click _Search_ by name and select a release to be added then click _Link Releases_ button| Dialog is closed and selected release is displayed under _Linked Releases_ section 
+6 | Click _Search_ by name and select a release to be added then click _Link Releases_ button| Dialog is closed and selected release is displayed under _Linked Releases_ section
 7 | Click _Delete_ icon to delete the linked release | Message is displayed: _"Do you really want to remove the link to release  {linked release name}?"_
 8 | Click _Delete Link_ button | The release is removed from the list of _Linked Releases_
 9 | Click _Linked Packages_ link <br> Click _Add Packages_ button | Search Release dialog is displayed
@@ -63,13 +62,13 @@ Step | Action | Result
 
 Step | Action | Result
 ---:|:-----|:----
-1 | Create a new project with name is _Child Project_ | _Child Project_ project is created successfully 
+1 | Create a new project with name is _Child Project_ | _Child Project_ project is created successfully
 2 | Create another project with name is _Parent Project_ and add previously created _Child Project_ as linked project of _Parent Project_ | _Parent Project_ project is created successfully with linked project is _Child Project_ project
 3 | Click _Projects_ tab <br> At _Advanced Search_ area, input _Child Project_ in the _Project Name_ textbox <br> Click _Search_ button| _Child Project_ project display in the result table  
 4 | Click _Delete_ icon to delete _Child Project_ project | Screen display dialog with message: _"Do you really want to delete the project Child Project?"_
 5 | Click _Delete Project_ button | Display message in the dialog: _"The project cannot be deleted, since it is used by another project!"_
 6 | Click _Cancel_ button | Dialog is closed and _Child Project_ project wasn't deleted in the table
-7 | Go to _Parent Project_ project in the project table and delete it <br> Click _Delete_ button | _Parent Project_ project is deleted successfully 
+7 | Go to _Parent Project_ project in the project table and delete it <br> Click _Delete_ button | _Parent Project_ project is deleted successfully
 8 | Go to _Child Project_ project in the project table and re-delete it | _Child Project_ project is deleted successfully
 
 ## TC05: Modify an existing project with relations, releases and send to clearing process

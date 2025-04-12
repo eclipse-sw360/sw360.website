@@ -6,7 +6,6 @@ menu:
     weight: 11
 ---
 
-
 {{< blocks/cover image_anchor="top" height="sm" color="primary" >}}
 {{< page/header >}}
 {{< /blocks/cover >}}
@@ -21,14 +20,13 @@ The SW360 application is divided into several sections around managing a catalog
 
 A dashboard listing the components and projects created by the user logged in. With this overview, the own projects and components can be directly accessed.
 
-{{< gallery/gallery >}} 
+{{< gallery/gallery >}}
 
   {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-home.png" title="Home" >}}
   
   {{< /gallery/card >}}
 
 {{< /gallery/gallery >}}
-
 
 ## Project
 
@@ -41,7 +39,7 @@ For the license compliance, SW360 allows for maintaining a global clearing statu
 
 Not only the clearing status for each use of a release can be captured by SW360. Also, the type of usage (contained, side-by-side installation, etc.) can be saved as attribute.
 
-{{< gallery/gallery >}} 
+{{< gallery/gallery >}}
 
   {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-projectlist.png" title="Main area" >}}
   {{< /gallery/card >}}
@@ -65,7 +63,7 @@ Components in SW360 can have multiple types, such as OSS, commercial component o
 
 At each release, basic attributes can be stored, some of them are informal, but can give relevant input to usage statistics of software in an organisation.
 
-{{< gallery/gallery >}} 
+{{< gallery/gallery >}}
 
   {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-components02.png" title="Component" >}}
   {{< /gallery/card >}}
@@ -78,12 +76,11 @@ At each release, basic attributes can be stored, some of them are informal, but 
 
 {{< /gallery/gallery >}}
 
-
 ## Search
 
 SW360 provides an index for all data, thus searching for keywords will yield results for all different datasets, such as projects, components, licenses, etc. Search for terms can be filtered by data set types.
 
-{{< gallery/gallery >}} 
+{{< gallery/gallery >}}
 
   {{< gallery/card src="/sw360/img/sw360screenshots/sw360screenshot-search.png" title="Search" >}}
   {{< /gallery/card >}}
@@ -91,4 +88,3 @@ SW360 provides an index for all data, thus searching for keywords will yield res
 {{< /gallery/gallery >}}
 
 </div>
-

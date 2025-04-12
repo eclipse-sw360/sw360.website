@@ -45,6 +45,7 @@ The fact that it is "LGPL-3.0+" is confusing for these texts. It should be chang
 - For the referring files, also the different other licenses must be added as conclusions, so the texts are printed out.
 
 ## Quick Checklist
+
 - Shortname: No spaces, No slashses, No unserscore or similar spcial charaters, just use dashes
 - Consider existing SPDX short names
 - Do not use "Or later" but "+" or "-or-later"
@@ -54,6 +55,7 @@ The fact that it is "LGPL-3.0+" is confusing for these texts. It should be chang
 - Avid markup in the license text except it is part of the licensing
 
 ## Multi (DUAL-) Licensing
+
 - VERY Important, as conclusion, use the FOSSology "Dual-license", please do not consider your own candidate just designating "Dual License" (because OR operators will not work in reporting)
 - For Dual License texts use prefix "Dual-"
 - For Triple, use "Triple-" (and for more "Quadruple-")
@@ -61,6 +63,7 @@ The fact that it is "LGPL-3.0+" is confusing for these texts. It should be chang
 - SPDX provides the rule to have this merged with "OR" (in capital letters) like "Dual-MIT-OR-BSD"
 
 ## Examples for Renaming
+
 | Example Licence Short Name | Corrected Licence Short Name | Remarks |
 | --- | --- | --- |
 | BSD-3-Clause-Farin Urlaub | BSD-3-Clause-farin-urlaub | no empty spaces |
@@ -102,12 +105,13 @@ The following text is not a license statement nor a reference to licensing but a
 
 `This product includes also software developed by :`
 
- - `the W3C consortium` ([<span style="color:red">&#8599;</span> http://www.w3c.org](http://www.w3c.org)),
- - `the SAX project` ([<span style="color:red">&#8599;</span> http://www.saxproject.org](http://www.saxproject.org))
+- `the W3C consortium` ([<span style="color:red">&#8599;</span> http://www.w3c.org](http://www.w3c.org)),
+- `the SAX project` ([<span style="color:red">&#8599;</span> http://www.saxproject.org](http://www.saxproject.org))
 
 `Please read the different LICENSE files present in the root directory of this distribution.`
 
 ## Open Questions
+
 - How to deal with notice files
 
 (1) [<span style="color:red">&#8599;</span> https://spdx.org/spdx-specification-21-web-version](https://spdx.org/spdx-specification-21-web-version)

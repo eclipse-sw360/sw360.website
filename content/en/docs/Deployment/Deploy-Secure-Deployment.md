@@ -2,7 +2,7 @@
 linkTitle: "Security"
 title: "Security"
 weight: 100
-description: 
+description:
   SW360 security checklist pre and post deployment
 ---
 
@@ -31,4 +31,3 @@ For the applications, the following very first line measure should be considered
 * Add https access to couchdb
 
 * check that sw360 runtime user does not have sudo rights and config files for sw360 are `600` only.
-

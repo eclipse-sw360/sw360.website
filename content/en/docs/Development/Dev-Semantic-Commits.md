@@ -5,10 +5,12 @@ weight: 10
 ---
 
 ## The reason and benefit of semantic commit messages
+
 - automatic generating of the changelog
 - simple navigation through git history (e.g. ignoring style changes)
 
 ## Semantic commit message structure
+
 ```
 <type>(<scope>): <commit message>
 
@@ -16,6 +18,7 @@ Signed-off-by: Name <email address>
 ```
 
 ## The following <types> are supported
+
 - feat (new feature for the user, not a new feature for build script)
 - fix (bug fix for the user, not a fix to a build script)
 - docs (changes to the documentation)
@@ -25,6 +28,7 @@ Signed-off-by: Name <email address>
 - chore (updating grunt tasks etc; no production code change)
 
 Example <scope> values:
+
 - ui (user interface)
 - rest (REST API)
 - thrift (apache thrift services)
@@ -34,6 +38,7 @@ Example <scope> values:
 - etc.
 
 ## Example of semantic commit message
+
 ```
 fix(rest): change maven plugin order to generate the documentation correctly
 
@@ -54,6 +59,7 @@ the commit type. Additional documentation for the break can be added to the
 commit footer with a `BREAKING CHANGE:` message.
 
 ### Example of commit with breaking change
+
 ```
 fix(rest)!: migrate health endpoint
 

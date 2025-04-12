@@ -22,26 +22,26 @@ In order to have a clean and useful catalogue, data hygiene is very important. T
 
 - What is the name of the vendor, the name of the component and what is the release designator?
 - For the Vendor
-    - Does a CPE entry exist?
-        - Look here: [<span style="color:red">&#8599;</span> https://nvd.nist.gov/cpe.cfm](https://nvd.nist.gov/cpe.cfm) or [<span style="color:red">&#8599;</span> http://scap.nist.gov/specifications/cpe/dictionary.html](http://scap.nist.gov/specifications/cpe/dictionary.html)
-        - Use the same writing as found in the CPE dictionary
-    - A CPE does not exist?
-        - Who is the copyright holder: an organization?
-            - Use this organization name without "inc", "Gmbh", etc.
-        - A person
-            - Look at the CPE dictionaries for example
-            - They use first name last name with "_", for example "Wedge_Antilles
+  - Does a CPE entry exist?
+    - Look here: [<span style="color:red">&#8599;</span> https://nvd.nist.gov/cpe.cfm](https://nvd.nist.gov/cpe.cfm) or [<span style="color:red">&#8599;</span> http://scap.nist.gov/specifications/cpe/dictionary.html](http://scap.nist.gov/specifications/cpe/dictionary.html)
+    - Use the same writing as found in the CPE dictionary
+  - A CPE does not exist?
+    - Who is the copyright holder: an organization?
+      - Use this organization name without "inc", "Gmbh", etc.
+    - A person
+      - Look at the CPE dictionaries for example
+      - They use first name last name with "_", for example "Wedge_Antilles
 - For a component
-    - Again, does a CPE entry exist?
-    - Separate Component name from release designation
+  - Again, does a CPE entry exist?
+  - Separate Component name from release designation
 - For a release
-    - Do not repeat the component name
-    - Use the release designation as provided by the software package
-    - Avoid prefixes, such as "version", "v" etc
+  - Do not repeat the component name
+  - Use the release designation as provided by the software package
+  - Avoid prefixes, such as "version", "v" etc
 - For special cases:
-    - If you upload a part of a release software package, create a **separate** release for this
-    - For example "2.0-MODIFIED"
-    - Consider that leaving items out from a software release is actually a modification
+  - If you upload a part of a release software package, create a **separate** release for this
+  - For example "2.0-MODIFIED"
+  - Consider that leaving items out from a software release is actually a modification
 
 ## How to Create Vendors
 In order to have a vendor record in the sw360, then choosing a name is important. The vendor in SW360 is the real "manufacturer" independently from where you download it.
@@ -50,33 +50,33 @@ There are different cases:
 
 1. COTS:
 
-	- Obvious case: use vendor short name in CPE style and long name for the actual company name (Apple Inc. vs. Apple)
+- Obvious case: use vendor short name in CPE style and long name for the actual company name (Apple Inc. vs. Apple)
 
-	- You could even search for an existing vendor entry in the CPE dictionary to get existing vendor naming rules and use this as short name.
+- You could even search for an existing vendor entry in the CPE dictionary to get existing vendor naming rules and use this as short name.
 
-	- Consider the following link: [<span style="color:red">&#8599;</span>  https://nvd.nist.gov/products/cpe/search](https://nvd.nist.gov/products/cpe/search)
+- Consider the following link: [<span style="color:red">&#8599;</span>  https://nvd.nist.gov/products/cpe/search](https://nvd.nist.gov/products/cpe/search)
 
-	- Vendor is actually entity that is contract partner, but is confusing: for Microsoft products, there could be a Microsoft certified solution partner which is the vendor, this must mapped differently in the SW360.
+- Vendor is actually entity that is contract partner, but is confusing: for Microsoft products, there could be a Microsoft certified solution partner which is the vendor, this must mapped differently in the SW360.
 
-	- **General rule**: Vendor is meant to be manufacturing party not distributing / delivering party.
+- **General rule**: Vendor is meant to be manufacturing party not distributing / delivering party.
 
 2. Freeware
 
-	- Problem is that freeware has an author, but also different "vendors" in terms of where it could be downloaded from. This is difficult because different download Web site may involve different licensing conditions.
+- Problem is that freeware has an author, but also different "vendors" in terms of where it could be downloaded from. This is difficult because different download Web site may involve different licensing conditions.
 
 3. OSS:
 
-	- Community name, e.g. zlib project for zlib.
+- Community name, e.g. zlib project for zlib.
 
-	- Or the org name of the github orgname or sourceforge group name
+- Or the org name of the github orgname or sourceforge group name
 
-	- Do not use "Github" or "Sourceforge" as vendor
+- Do not use "Github" or "Sourceforge" as vendor
 
-	- However, foundations, publishing the software would be a vendor, e.g. "Apache", "Eclipse"
+- However, foundations, publishing the software would be a vendor, e.g. "Apache", "Eclipse"
 
-	- But eclipse has a github organization anyway, for example
+- But eclipse has a github organization anyway, for example
 
-	- With single author projects should you take the author name. A "john_doe" from John Doe as short name.
+- With single author projects should you take the author name. A "john_doe" from John Doe as short name.
 
 Note that very release has its own vendor. as a consequence:
 

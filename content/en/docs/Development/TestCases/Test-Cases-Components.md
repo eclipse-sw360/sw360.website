@@ -18,7 +18,7 @@ Step | Action | Result
 8 | Click _Create Release_ button | - Create a release successfully.<br>- Redirect to the edit new release page.<br>- The message _Success:You are editing the original document._ is displayed
 9 | Click _Vendor_ field | _Search Vendor_ dialog is displayed
 10 | Click _Add Vendor_ button | _Create new Vendor_ dialog display
-11 | Input data in fields<br>- Full Name: add vendor 01<br>-Short Name: add vendor01<br>-URL: https://github.com/eclipse-sw360/sw360 | Values are entered in the fields.
+11 | Input data in fields<br>- Full Name: add vendor 01<br>-Short Name: add vendor01<br>-URL: <https://github.com/eclipse-sw360/sw360> | Values are entered in the fields.
 12 | Click _Add Vendor_ button | The vendor is added in Vendor field of the release with full name is _add vendor 01_
 13 | Click _Attachments_ tab | _Attachments_ page is displayed
 14 | Click _Add Attachment_ button | _Upload Attachment_ dialog is displayed
@@ -34,7 +34,7 @@ Step | Action | Result
 1 | Search for the component is created in TC01:<br>- Click _Components_ portlet<br>- At Advanced Search area, input _Component 1@1_ in the _Component Name_ textbox.<br>- Click _Search_ button | The new component display in the table with:<br>- Vendor: add vendor01<br>- Component Name: _Component 1@1_ is displayed with hyper link.<br>- Main licenses: blank<br>- Component Type: OSS
 2 | Click hyper link of name _Component 1@1_ | Redirect to view component _Component 1@1_ page
 3 | Click _Release Overview_ tab | The release display with:<br>- Name: Component 1@1<br>- Version displays with hyper link: version1.0.0.x<br>- Clearing State: New<br>- Clearing Report: no report<br>- Release Mainline State: Open
-4 | Click hyper link _version1.0.0.x_ | Redirect to view screen of release _Component 1@1 version1.0.0.x_<br>Data of the release:<br>- Summary tab:<br>+ display text with: COMPONENT 1@1 VERSION1.0.0.X<br>+ CPE ID: UUID_1002<br>+ Created on: date of created.<br>+ Created by: user created.<br>+ Modified On: date of modified.<br>+ Modified By: user modified.<br>+ Clearing State: New<br>+ Release Mainline State: Open<br>+ Release Vendor with:<br> &emsp; Full Name:	add vendor 01<br> &emsp; Short Name: add vendor01<br> &emsp; URL: https://github.com/eclipse-sw360/sw360
+4 | Click hyper link _version1.0.0.x_ | Redirect to view screen of release _Component 1@1 version1.0.0.x_<br>Data of the release:<br>- Summary tab:<br>+ display text with: COMPONENT 1@1 VERSION1.0.0.X<br>+ CPE ID: UUID_1002<br>+ Created on: date of created.<br>+ Created by: user created.<br>+ Modified On: date of modified.<br>+ Modified By: user modified.<br>+ Clearing State: New<br>+ Release Mainline State: Open<br>+ Release Vendor with:<br> &emsp; Full Name: add vendor 01<br> &emsp; Short Name: add vendor01<br> &emsp; URL: <https://github.com/eclipse-sw360/sw360>
 5 | Click _Attachments_ tab | Display file name _attachment1.xlsx_ in the table.
 
 ## TC03: Modify a component and release with vendor present
@@ -139,7 +139,7 @@ Step | Action | Result
 4 | Fill in a release _Version_ and _CPE ID_<br>_Eg:_<br>     + Version: @1.0.2<br>     + CPE ID: moshiano_002 | Values are entered in the fields
 5 | Click _Vendor_ field | _Search Vendor_ dialog is displayed
 6 | Click _Add Vendor_ | _Create New Vendor_ dialog is displayed
-7 | Fill in _Full name_, _Short name_ and _URL_<br>_Eg:_<br>Full Name: Fullvendor_0909<br>Short Name: Short_ven090<br>URL: https://github.com/ | Values are entered in the fields
+7 | Fill in _Full name_, _Short name_ and _URL_<br>_Eg:_<br>Full Name: Fullvendor_0909<br>Short Name: Short_ven090<br>URL: <https://github.com/> | Values are entered in the fields
 8 | Click _Add Vendor_ | Dialog closes and the new vendor is displayed in release _Vendor_ field with full name _Fullvendor_0909_
 9 | Click _Create Release_ | Redirect to edit release page with the message _Success:You are editing the original document._ is displayed
 10 | Click component name link on top of the page | Summary page for the component is displayed. The new vendor for the new release, as well as existing vendors from previous releases are listed under _Vendors_ field for the component

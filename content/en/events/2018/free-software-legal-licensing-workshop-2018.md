@@ -1,13 +1,12 @@
 ---
 key: free-software-legal-licensing-workshop-2018
 title: The Free Software Legal and Licensing Workshop 2018
-topic: 
+topic:
   - Eclipse SW360: Generating License Information for Products with SPDX Docs
 id: free-software-legal-licensing-workshop-2018
 format: talk
 tags:
   - talk
-speakers:
 speakers:
   - name: "Michael C. Jaeger"
     affiliation: "Project Lead, Siemens AG"
@@ -16,8 +15,8 @@ speakers:
     address: "Munich, Germany"
     linkedin: ""
     github: ""
-presentation: 
-  session_link: "https://fsfe.org/activities/ftf/legal-conference.en.html"
+presentation:
+  session_link: "<https://fsfe.org/activities/ftf/legal-conference.en.html>"
 draft: false
 description: |
   In this session, Michael C. Jaeger from Siemens AG explores how Eclipse SW360 can be used to generate license information for products using SPDX documents. The talk highlights the importance of license tracking and compliance, especially in open-source software products.

@@ -8,7 +8,7 @@ weight: 10
 
 Please note that database migrations are done now in python scripts at
 
-> https://github.com/eclipse/sw360/tree/master/scripts/migrations
+> <https://github.com/eclipse/sw360/tree/master/scripts/migrations>
 
 keeping the following page because Costco might be useful for development / testing / quick adaptations.
 
@@ -27,14 +27,15 @@ Use costco, an open source project that
 
 More information
 
-* Project website: https://github.com/harthur/costco
-* Useful examples: http://harthur.github.io/costco/
+* Project website: <https://github.com/harthur/costco>
+* Useful examples: <http://harthur.github.io/costco/>
 
 Note that costco does not allow to perform operations involving several documents at once, for example, setting values in one document that results from querying from several other documents. Costco is perfect for corrections on the couchdb document 'schema' (not in the classic sense as there is no schema in couchdb).
 
 ### Troubleshooting
 
 If you try to install costco, you try to install couchapp mst likely. However, it might be that some python packages are missing which results in a 'not-so-obvious' python error during install of couchapp. The following line could be th dependencies that you might need:
+
 ```Bash
 sudo apt-get install python-dev libxml2-dev libxslt-dev
 ```
@@ -44,11 +45,11 @@ sudo apt-get install python-dev libxml2-dev libxslt-dev
 OK, if you read until here, to make it easy for you just the few lines to have executed to install costco when youi have a machine that is deployed with our vagrant:
 
 ```Bash
-$ sudo apt-get install python-dev libxml2-dev libxslt-dev
-$ sudo pip install couchapp
-$ git clone http://github.com/harthur/costco.git
-$ cd costco
-$ couchapp push . http://localhost:5984/sw360db
+sudo apt-get install python-dev libxml2-dev libxslt-dev
+sudo pip install couchapp
+git clone http://github.com/harthur/costco.git
+cd costco
+couchapp push . http://localhost:5984/sw360db
 ```
 
 ### Examples in sw360

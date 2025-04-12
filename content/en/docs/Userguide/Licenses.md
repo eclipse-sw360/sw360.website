@@ -4,12 +4,11 @@ title: "Licenses"
 Weight: 5
 ---
 
-
 # 3.0 Licenses
 
-## 3.1 Introduction 
- 
-A software license is a document that provides legally binding guidelines for the use and distribution of software. Licenses page lists all the available licenses in SW360. 
+## 3.1 Introduction
+
+A software license is a document that provides legally binding guidelines for the use and distribution of software. Licenses page lists all the available licenses in SW360.
 
 To open the License page, click on the **License tab** from the main menu bar. You can also add licenses in this page.
 
@@ -30,16 +29,16 @@ You can use the Quick Filter to search for a License. To search for a particular
 
 On the License page you can view all the licenses available in SW360. The licenses are listed with the following information:
 
-* **License Shortname**: Short name given for the license. 
-* **License Fullname**: Full name given for the license. 
-* **Is checked**: This column indicates if the license is checked or unchecked. 
+* **License Shortname**: Short name given for the license.
+* **License Fullname**: Full name given for the license.
+* **Is checked**: This column indicates if the license is checked or unchecked.
   
     | Symbol                                                  | Status|
 ---------------------------------------------------------|:----:|:----:|
     | {{< figure src="/sw360/img/ImagesBasic/Checked.png" >}} | Checked |
     | {{< figure src="/sw360/img/ImagesBasic/Unchecked.png" >}} | Unchecked |
 
-* **License Type**: Type of the License. 
+* **License Type**: Type of the License.
 
 **NOTE: CLICK ON ![](/sw360/img/ImagesBasic/SortIcon.png) TO SORT LICENSE INFORMATION ALPHABETICALLY.**
 

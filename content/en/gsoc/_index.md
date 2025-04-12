@@ -12,10 +12,8 @@ menu:
 
 <div class="container l-container--padded">
 
-
 <div class="row">
 <div class="col-12 col-lg-8">
-
 
 ## Google Summer of Code 2025
 

@@ -2,7 +2,7 @@
 linkTitle: "System Requirements"
 title: "System Requirements"
 weight: 100
-description: 
+description:
   SW360 minimal system requirements based on system class
 ---
 
@@ -67,7 +67,7 @@ Overview about the *additional* outbound ports:
 
 Outbound ports for http / https may be required for downloading system updates. Ports for ssh may not be required outbound.
 
-## Software:
+## Software
 
 As for the software, the sw360 can be run on many platforms, even on Windows seven. We have the following reference platform for development:
 
@@ -86,4 +86,4 @@ after 11:
 * openjdk 11
 * ubuntu 18.04 LTS
 
-More information about requirements can be found here: https://github.com/sw360/sw360vagrant/wiki
+More information about requirements can be found here: <https://github.com/sw360/sw360vagrant/wiki>

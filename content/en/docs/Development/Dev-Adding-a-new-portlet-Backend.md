@@ -16,6 +16,7 @@ This explanation follows bottom up approach where we first add the backend metho
 #### Thrift
 
 First we add some methods to the thrift files, components.thrift
+
 ```java
 //new Methods to ensure uniqueness of Identifiers
 map <string, list<string>> getDuplicateComponents();
@@ -41,8 +42,8 @@ public Map<String, List<String>> getDuplicateReleases() throws TException {
 
 #### Implementation
 
-The methods there are only a reference to the ComponentDatabaseHandler.java. 
-In the ComponentHandler we only assert that the input is correct. 
+The methods there are only a reference to the ComponentDatabaseHandler.java.
+In the ComponentHandler we only assert that the input is correct.
 Since we implement methods without parameters, there is nothing else for us to do.
 In the ComponentDatabaseHandler.java we actually do some work and implement the methods
 

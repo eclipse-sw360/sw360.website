@@ -13,7 +13,7 @@ Step | Action | Result
 3 | Activate _First_ browser instance | Instance is active
 4 | Create a new project visible for _Second_ user <br> Eg: <br> - Name: Project is created by First user <br> - Project visibility: Everyone | Project is created successfully
 5 | Activate _Second_ browser instance | Instance is active
-6 | Search for the above created project and click _Edit_ button | _"Success: You will create a moderation request if you update"_ message is displayed 
+6 | Search for the above created project and click _Edit_ button | _"Success: You will create a moderation request if you update"_ message is displayed
 7 | Edit _Description_ field or other fields <br> Eg: <br> Description: "Update description to create a moderation request!!" <br> Click _Update Project_ button| Create moderation request dialog is displayed
 8 | Fill in _Please comment your changes_ field <br> Eg: I want to update this project. Please accept for me. Thanks @@. <br> Click _Send moderation request_ button | Show message: _"Success: Moderation request was sent to update the Project {nameProject} {(version)}!"_
 9 | Activate _First_ browser instance | Instance is active

@@ -4,12 +4,14 @@ linkTitle: "Add frontend portlet"
 weight: 10
 ---
 
-We create a class in 
+We create a class in
+
 ```
 sw360/src/frontend/sw360-portlets/src/main/java/com/siemens/sw360/portal/portlets/admin/
 ```
 
 called
+
 ```
 DatabaseSanitation.java
 ```
@@ -30,7 +32,8 @@ public void doView(RenderRequest request, RenderResponse response) throws IOExce
 }
 ```
 
-This method is used to render different pages, a common pattern would be to have if/else tree like 
+This method is used to render different pages, a common pattern would be to have if/else tree like
+
 ```java
 //! VIEW and helpers
 @Override
@@ -46,14 +49,16 @@ public void doView(RenderRequest request, RenderResponse response) throws IOExce
 }
 ```
 
-but since we only have one page this is all we need. The jsp that is rendered by super.doView is set in 
+but since we only have one page this is all we need. The jsp that is rendered by super.doView is set in
 
 ```java
 sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/portlet.xml
 ```
+
 but more on that later.
 
 The next method in DatabaseSanitation handles resource requests, which are responses to AJAX calls:
+
 ```
 @Override
 public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
@@ -66,8 +71,7 @@ public void serveResource(ResourceRequest request, ResourceResponse response) th
 
 similar to the PAGENAME tree, here we have an ACTION if/else block. We only have one action, so this is simple.
 
-
-Let's have a look at 
+Let's have a look at
 
 ```java
 private void serveDuplicates(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
@@ -92,7 +96,7 @@ private void serveDuplicates(ResourceRequest request, ResourceResponse response)
         include("/html/admin/databaseSanitation/duplicatesAjax.jsp", request, response, PortletRequest.RESOURCE_PHASE);
     }
 }
-```    
+```
 
 The member variable thriftClients is inherited from the Sw360Portlet. This is how we talk to the backend.
 We call the methods that we wrote in the first part of the tutorial.
@@ -126,6 +130,7 @@ sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/liferay-portlet.xml
     <header-portlet-javascript>/js/external/jquery-1.11.1.min.js</header-portlet-javascript>
 </portlet>
 ```
+
 Note that here it is important to include things like jquery in this way so that on multiple portlet pages there are no namespace conflicts.
 
 ```
@@ -161,16 +166,18 @@ sw360/src/frontend/sw360-portlets/src/main/webapp/WEB-INF/portlet.xml
 ```
 
 After these changes we compile the frontend and then we have to add new page to the Layout and add it to the lar file.
-We sign in as admin, 
-go to 
+We sign in as admin,
+go to
+
 ```
 Admin -> Site administration 
 -> Private Pages
 
 ```
+
 To add the portlet to the page, we first change the theme of Private Pages to Classic, then select Add Page. We can drag and drop it under the Admin Page.
 Then we select the Private Pages under My Sites.
-We can then go to the page we have just created. 
+We can then go to the page we have just created.
 On the left side there is a plus sign, which opens a side menu with the available portlets that we can add to our page.
 Under SW360 we find the portlet DatabaseSanitation and we click add.
 Then we can change the option (The cog symbol on the right) Look and Feel  to Show Borders -> No and we save that.

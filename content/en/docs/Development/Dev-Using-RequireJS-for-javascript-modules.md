@@ -7,7 +7,8 @@ weight: 10
 Today most of the javascript code runs in the global namespace. This increases the risk of overwriting symbols in the global namespace due to different libraries and snippets.
 
 # Goal
-We want to use RequireJS (http://requirejs.org/) to modularize our code and to have clear namespaces for each component. In addition some of the code may be reused more easily. Other advantages:
+We want to use RequireJS (<http://requirejs.org/>) to modularize our code and to have clear namespaces for each component. In addition some of the code may be reused more easily. Other advantages:
+
 - libraries like jquery or datatables can be imported by name but without a specified version
 - if necessary, specific versions can be imported for parts of the page
 - it is very easy to only load needed dependencies
@@ -105,7 +106,3 @@ There are several javascript files and functions below `/html/js'. They can be m
 
 **Note** The legacy function should be moved inside the module as soon as the function is no longer accessed directly but via RequireJS only.
 **Note** You can also require legacy javascript files if you need them as dependency as pointed out in the examples above.
-
-
-
- 

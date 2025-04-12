@@ -125,13 +125,14 @@ https://<my_sw360_server>/authorization/oauth/token -k
  Second you need to parameterize your request with this token. Pls. see the link at the very top 'Technical Information': [Rest API]({{< ref "Dev-REST-API.md" >}} "Rest API") for more information.
 
 ### FAQ
+
 - When I use the JWT approach I used curl to retrieve the token and get
 
-	{"error":"unauthorized","error_description":"No AuthenticationProvider found for org.springframework.security.authentication.UsernamePasswordAuthenticationToken"}
+ {"error":"unauthorized","error_description":"No AuthenticationProvider found for org.springframework.security.authentication.UsernamePasswordAuthenticationToken"}
 
 - Your password seems to be wrong.
 
-	Note, that with curl - you have to escape special characters in your password. E.g. password
+ Note, that with curl - you have to escape special characters in your password. E.g. password
 123$abc
 results in the following request
 

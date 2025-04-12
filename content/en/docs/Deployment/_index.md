@@ -29,7 +29,7 @@ After successful , Then if you open the server with the URL `https://localhost:8
 {{< figure src="/sw360/img/sw360screenshots/deploy74/1.png" >}}
 
 Note that the actual image changes with every liferay version. If there is weird html output without images and plain text, then likely some port settings did not work and the pages generated have wrong URLs inside.
-The default sw360 login username is *setup@sw360.org* and default password is *sw360fossy*.
+The default sw360 login username is *<setup@sw360.org>* and default password is *sw360fossy*.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/2.png" >}}
 
@@ -100,10 +100,9 @@ After successful importing, the same steps shall be repeated for the `Private_Pa
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/16.png" >}}
 
-Make sure that `Private_Pages_7_4_3_18_GA18.lar ` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
+Make sure that `Private_Pages_7_4_3_18_GA18.lar` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/17.png" >}}
-
 
 If you click then the liferay logo_the upper left corner where the SW360 is, you will return to the application and the following screen should appear:
 
@@ -154,5 +153,5 @@ After the successful login, SW360 will look as follows.
 
 After install and setup sw360, this are possible topice to be considered:
 
-* [Special Coverage of Country Codes](deploy-configuration-country-codes), when countries are displayed, then it uses country codes in the DB 
+* [Special Coverage of Country Codes](deploy-configuration-country-codes), when countries are displayed, then it uses country codes in the DB
 * [How to export data and import it to a new instance](deploy-export-and-import)

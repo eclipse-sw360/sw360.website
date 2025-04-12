@@ -1,7 +1,7 @@
 ---
 key: bitkom-forum-open-source-2018
 title: Bitkom Forum Open Source 2018
-topic: 
+topic:
   - Eclipse SW360 – Lessons Learned From Automated License Compliance
 id: bitkom-forum-open-source-2018
 format: talk
@@ -22,9 +22,9 @@ speakers:
     address: "Munich, Germany"
     linkedin: ""
     github: ""
-presentation: 
-  session_link: "https://www.bitkom.org/bfoss18/"
-draft: false
+presentation:
+  session_link: "<https://www.bitkom.org/bfoss18/>"
+  draft: false
 description: |
   In this session, Johannes Kristan from Bosch Software Innovations GmbH and Michael C. Jaeger from Siemens AG share their experiences and lessons learned from implementing automated license compliance with Eclipse SW360. The talk focuses on the challenges and benefits of automating compliance management in open-source projects using SW360.
   - **Session Highlights**:

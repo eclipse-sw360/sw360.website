@@ -16,7 +16,7 @@ weight: 21
 
 **A**: It might be that you have tried to change something that needs to be review by someone else. In such cases a so called 'Moderation Request' is generated. A Moderator needs to approve your changes. Go to the Home view an check the box 'My Task Submissions', the project, component, or release should be listed there.
 
-##### **Q**: What should I enter in the field 'Visibility'.
+##### **Q**: What should I enter in the field 'Visibility'
 
 **A**: Visibility controls which group of people is allowed to see a project. The default setting is 'Everyone', i.e. everyone within an organisation can see the project and all its releases.
 
@@ -28,7 +28,7 @@ weight: 21
 
 **A**: You can sort each column by clicking on the column name, i.e. you can sort the entries by name, project origin, clearing state, mainline state or project mainline state – normally that helps finding a certain release.
 
-##### **Q**: I can't delete my component called 'Tom's Test Component'.
+##### **Q**: I can't delete my component called 'Tom's Test Component'
 
 **A**: Do not use special characters like single or double quotes. To be able to delete such a component or release you'll first have to rename it…
 
@@ -36,7 +36,7 @@ weight: 21
 
 **A**: **Copyleft** effect is the reverse idea of **copyright**. Goal is that software licensed under such license is always free and can never get a privatised software asset. The user gets the freedom to run, copy, modify and distribute the software, but it is not possible to add any further restrictions. This implies that **modified software** must also be free and becomes available to the community.
 
-##### **Q**: Different Classification of the Open Source Licenses.
+##### **Q**: Different Classification of the Open Source Licenses
 
 **A**: There are hundreds of OSS licenses, the following table will give a brief overview about the most common OSS licenses, the risks and the obligations that need to be fulfilled when using them:
 

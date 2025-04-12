@@ -11,30 +11,29 @@ This part describes how to setup a new liferay instance after you went through t
 1. Login as setup administrator (if you are using the default unsafe password, you should replace it on productive instances)
 
 2. Go to
-     
-     Menu Admin -> Item Control Panel -> Section Users, Password Policies -> Default Password Policy -> Actions -> Edit
- 
-3. Then 
 
-     uncheck ```Change Required``` and then 
+     Menu Admin -> Item Control Panel -> Section Users, Password Policies -> Default Password Policy -> Actions -> Edit
+
+3. Then
+
+     uncheck ```Change Required``` and then
      save
 
 4. Then we need to grant new users the right to see SW360
 
      Control Panel -> Configuration -> Users(on the right) ->  Default User Associations
 
-     check ```Apply to Existing Users``` 
-     write in Sites: ```SW360 ```
+     check ```Apply to Existing Users```
+     write in Sites: ```SW360```
      save (on the right)
 
 4. Do not allow stranger to create accounts ...
 
      Control Panel -> Configuration -> Users(on the right) ->  Authentication
 
-     uncheck ```Allow strangers to create ...``` 
+     uncheck ```Allow strangers to create ...```
      uncheck ```Allow strangers to verify ...```
      save (on the right)
-
 
 5. Then, to deactivate self registration
 
@@ -43,7 +42,7 @@ This part describes how to setup a new liferay instance after you went through t
 
    Note, disabling self registration is required because the current Liferay self registration does not create accounts in the backend service. (hence using the importer is required)
 
-6. Then we go to 
+6. Then we go to
 
     Admin -> Pages
 
@@ -53,12 +52,13 @@ This part describes how to setup a new liferay instance after you went through t
    frontend/configuration/public_pages.lar
    frontend/configuration/private_pages.lar
    ```
-   for the respective pages, using the tabs ```Public Pages``` and ```Private Pages```. Please note that the provided *.lar files are for Liferay 6.2 GA5 only (fun!). If you run a different liferay version, you will need to add the portlets manually until the *.lar files are updated manually.
+
+   for the respective pages, using the tabs ```Public Pages``` and ```Private Pages```. Please note that the provided *.lar files are for Liferay 6.2 GA5 only (fun!). If you run a different liferay version, you will need to add the portlets manually until the*.lar files are updated manually.
 
 8. ( DO NOT CHECK Pages -> Change -> Delete Missing Pages)
-    
+
     We check on first page
-    
+
     Application Configuration -> Choose Applications (leave all checked)
 
     Permissions -> Permissions
@@ -73,12 +73,12 @@ This part describes how to setup a new liferay instance after you went through t
 
      Authorship of the Content -> Use the Current User as Author
 
-10. If this was successful we can go to 
-    
+10. If this was successful we can go to
+
     Private Pages -> users
-    
+
 11. We can then import a csv file that looks like that
-     
+
     ```
      GivenName,Lastname,Email,Department,UserGroup,GID,isMale,PasswdHash
      user last name, user first name, first.last@sw360.org,TOP ORG CODE TEAM,USER,SW360_0004,true,AAAAoAAB9ACem9mZj9zptlEjFSMEF5MdOSUzgyxFDmKDGQDK

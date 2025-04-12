@@ -4,14 +4,11 @@ title: "Search"
 Weight: 7
 ---
 
-
 # 7. Search
 
 On the search page, you can search for Projects, Components, Licenses, Releases, Obligations, Users, Vendors, etc. in SW360.
 
-
 ![](/sw360/img/ImagesBasic/Search_Page.png)
-
 
 To search for a particular (object), click on Search tab and follow the procedure:
 
@@ -23,5 +20,3 @@ To search for a particular (object), click on Search tab and follow the procedur
 ### Wildcards
 
 The user can search with wildcards. A wildcard is a character which substitue for zero or more characters in a string. For a single character users can use '?' and for multiple character wildcard he can use '*'. The Wildcard can stand in the middle of characters or at the end, but not at the beginning.
-
- 

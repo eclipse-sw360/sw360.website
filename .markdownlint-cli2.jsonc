@@ -14,7 +14,7 @@
   },
 
   // Fix any fixable errors
-  "fix": false,
+  "fix": true,
 
   // Define a custom front matter pattern
   "frontMatter": "<head>[^]*</head>",

@@ -2,14 +2,14 @@
 linkTitle: "Configurable Property Keys"
 title: "Configurable Property Keys"
 weight: 100
-description: 
+description:
   SW360 Configurable property keys
 ---
-
 
 ### Introduction
 
 List of all applicable property files in sw360:
+
 - sw360.properties
 - fossology.properties
 - couchdb.properties
@@ -18,7 +18,6 @@ List of all applicable property files in sw360:
 - databasetest.properties
 - authorization/application.yml
 - rest/application.yml
-
 
 ### SW360.properties (/etc/sw360/sw360.properties)
 
@@ -33,9 +32,9 @@ The following table shall give an overview about the general sw360 configuration
 | key.auth.givenname | GIVENNAME |
 | key.auth.surname | SURNAME |
 | key.auth.department | DEPARTMENT |
-| backend.url | http://127.0.0.1:8080 |
+| backend.url | <http://127.0.0.1:8080> |
 | cvesearch.vendor.threshold | 1 |
-| cvesearch.product.threshold | 0 | 
+| cvesearch.product.threshold | 0 |
 | cvesearch.cutoff | 6 |
 | combined.cli.parser.external.id.correlation.key | - |
 | schedule.cvesearch.firstOffset.seconds | 0 |
@@ -62,7 +61,7 @@ The following table shall give an overview about the general sw360 configuration
 | release.externalkeys | org.maven.id,com.github.id,com.gitlab.id,purl.id |
 | projectimport.hosts | - |
 | preferred.country.codes | DE,AT,CH,US |
-| MailUtil_from | _No_Reply__@sw360.org |
+| MailUtil_from | <_No_Reply__@sw360.org> |
 | MailUtil_host | - |
 | MailUtil_port | 25 |
 | MailUtil_enableStarttls | false |
@@ -77,7 +76,6 @@ The following table shall give an overview about the general sw360 configuration
 | unsubscribeNoticeBefore | - |
 | unsubscribeNoticeAfter | - |
 
-
 ### fossology.properties (/etc/sw360/fossology.properties)
 
 These configuration parameters are necessary to connect to a fossology server.
@@ -90,15 +88,13 @@ These configuration parameters are necessary to connect to a fossology server.
 | fossology.key.file | /fossology.id_rsa |
 | fossology.key.pub.file | [fossology.key.file] + .pub |
 
-
-
 ### couchdb.properties (/etc/sw360/couchdb.properties)
 
 CouchDB and Lucene search configuration properties.
 
 | Property Key | Default|
 |:-----------|:------------|
-| couchdb.url | http://localhost:5984 |
+| couchdb.url | <http://localhost:5984> |
 | couchdb.database | sw360db |
 | couchdb.user | - |
 | couchdb.password | - |
@@ -109,10 +105,9 @@ CouchDB and Lucene search configuration properties.
 | lucenesearch.limit | 25 | desc |
 | lucenesearch.leading.wildcard* | false |
 
-> \* If you enable lucene leading wildcards you have to enable this configuration also in couchdb-lucene.ini! Leading wildcard search is disabled as default because its a expensive operation. _(couchdb-lucene.ini is part of the couchdb-lucene .war package)_ <br>
+> \* If you enable lucene leading wildcards you have to enable this configuration also in couchdb-lucene.ini! Leading wildcard search is disabled as default because its a expensive operation. *(couchdb-lucene.ini is part of the couchdb-lucene .war package)* <br>
 > [lucene] <br>
 > allowLeadingWildcard=true
-
 
 ### search.properties (/etc/sw360/search.properties)
 
@@ -121,8 +116,6 @@ The following table shall give an overview about the specific search properties
 | Property Key | Default|
 |:-----------|:------------|
 | search.name.max.length | 64 |
-
-
 
 ### orgmapping.properties (/etc/sw360/orgmapping.properties)
 
@@ -133,14 +126,13 @@ This configuration file is used to activate the sw360 orgmapping feature.
 | match.prefix | false |
 | enable.custom.mapping | false |
 
-
 ### databasetest.properties (/etc/sw360/databasetest.properties)
 
 Just for couchdb database test purpose.
 
 | Property Key | Default|
 |:-----------|:------------|
-| couch_db_url | http://localhost:5984 |
+| couch_db_url | <http://localhost:5984> |
 | couch_db_database | datahandlertestdb |
 | couchdb.username | - |
 | couchdb.password | - |

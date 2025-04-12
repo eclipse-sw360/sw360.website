@@ -1,7 +1,7 @@
 ---
 key: bitkom-ak-open-source
 title: Bitkom AK Open Source
-topic: 
+topic:
   - Eclipse SW360 – Automatisierte License Compliance
 id: bitkom-ak-open-source
 format: talk
@@ -22,9 +22,9 @@ speakers:
     address: "Munich, Germany"
     linkedin: ""
     github: ""
-presentation: 
-  session_link: "https://www.bitkom.org/veranstaltungen"
-draft: false
+presentation:
+  session_link: "<https://www.bitkom.org/veranstaltungen>"
+  draft: false
 description: |
   In this session, Johannes Kristan from Bosch Software Innovations GmbH and Michael C. Jaeger from Siemens AG discuss how Eclipse SW360 automates license compliance management. The session focuses on streamlining the process of tracking and managing open-source licenses and ensuring compliance within software projects.
   - **Session Highlights**:

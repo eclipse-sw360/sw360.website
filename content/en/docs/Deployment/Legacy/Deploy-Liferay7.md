@@ -81,11 +81,11 @@ Mirror with overwriting, use the current author ...
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-01-24_14.53.04.png" >}}
 
-Then the successful result should be shown like this: 
+Then the successful result should be shown like this:
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-01-24_14.54.14.png" >}}
 
-If you click then the liferay logo_the upper left corner where the SW360 is, you will return to the application and the following screen should appear. Click `Start` to open the private pages. You are still logged in, so the setup account is used to view the pages. 
+If you click then the liferay logo_the upper left corner where the SW360 is, you will return to the application and the following screen should appear. Click `Start` to open the private pages. You are still logged in, so the setup account is used to view the pages.
 
 __Important__ The setup account does not belong to a group. Thus, not all view are functional because they require a group membership to work correctly.
 

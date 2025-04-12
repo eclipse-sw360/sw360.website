@@ -1,7 +1,7 @@
 ---
 key: eclipsecon-europe-2017
 title: EclipseCon Europe 2017
-topic: 
+topic:
   - Leveraging Open Source Projects for Open Source Management
 id: eclipsecon-europe-2017
 format: talk
@@ -15,10 +15,10 @@ speakers:
     address: ""
     linkedin: ""
     github: ""
-presentation: 
-  session_link: "https://www.eclipsecon.org/europe2017"
-  slides_link: "https://www.eclipsecon.org/europe2017/sites/default/files/slides/Leveraging_Open_Source_Projects_for_OSM_EclipseCon.pdf"
-  video_link: "https://youtu.be/z19ifXKAkgE"
+presentation:
+  session_link: "<https://www.eclipsecon.org/europe2017>"
+  slides_link: "<https://www.eclipsecon.org/europe2017/sites/default/files/slides/Leveraging_Open_Source_Projects_for_OSM_EclipseCon.pdf>"
+  video_link: "<https://youtu.be/z19ifXKAkgE>"
 draft: false
 description: |
   In this session, Marcel Kurzmann from Bosch Software Innovations GmbH discusses how open-source projects can be leveraged for effective open-source management. The talk highlights strategies for managing open-source software in projects and the benefits of using open-source tools for governance, compliance, and collaboration.

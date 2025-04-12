@@ -17,9 +17,10 @@ API Documentation is available on the instances deployed:
 - `https://<my_sw360_server>/resource/docs/api-guide.html`
 
 ## Brief Specs
+
 | | |
 | --- | --- |
-| Implementation Technology	| Java-based Spring-framework based |
-| REST Flavor |	Hypermedia-driven |
+| Implementation Technology | Java-based Spring-framework based |
+| REST Flavor | Hypermedia-driven |
 | Authentication | Now: Token by user token store. Previously: Spring Security using JWT and SW360 user management. Note that technically, both ways are possible |
 |  More Technical Information | [Rest API]({{< ref "Dev-REST-API.md" >}} "Rest API") |

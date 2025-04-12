@@ -32,4 +32,3 @@ In addition there are ACL-style roles, meaning that per data item access setting
 5. **Lead Architect** (Project) - Is a contributor, just named differently to identify the responsible person. an architect refers to the person who has that role of the project or product. This role has been added to identify architects to have a contact person for technical questions.
 6. **Project Responsible** (Project) - Is a contributor, just named differently to identify the responsible person.
 7. **Security Responsible** - Users responsible for the security of the project.
-

@@ -2,15 +2,15 @@
 linkTitle: "Native-Install v17"
 title: "Native Install v17"
 weight: 100
-description: 
+description:
   Native-Install-Version-17
 ---
 
 # How to install and run SW360 v17.0.0
-# These instructions worked on Ubuntu 20.04 and has detailed explanations for newcomers.
+# These instructions worked on Ubuntu 20.04 and has detailed explanations for newcomers
 
-## This is a guide with detailed explanation of how to install and run SW360 natively on you local machine.
-## It includes installation of all dependencies manually, which will not use docker or other container system during the installation or run.
+## This is a guide with detailed explanation of how to install and run SW360 natively on you local machine
+## It includes installation of all dependencies manually, which will not use docker or other container system during the installation or run
 
 SW360 is an Open Source project. The [SW360] repository and [SW360 website] repositories are published on GitHub.
 ## 1. Overview
@@ -21,11 +21,11 @@ A software component catalogue application - designed to work with FOSSology.
 SW360 is a server with a REST interface and a Liferay CE portal application to maintain your projects / products and the software components within.
 It can manage SPDX files for maintaining the license conditions and maintain license information.
 
-This material helps user to install SW360 17.0.0 
+This material helps user to install SW360 17.0.0
 
 ### 1.2 Environment
 
-| Package Name  | Version  | 
+| Package Name  | Version  |
 |:--------------|:--------:|
 |   Ubuntu      |  20.04   |
 |   Apt         |  2.0.2   |
@@ -36,6 +36,7 @@ This material helps user to install SW360 17.0.0
 |   OpenJDK     |  11.0.5  |
 
 ## 2.Install & Config proxy for Environment
+
 ```
 2.1 Apt
 2.2 Wget
@@ -44,40 +45,48 @@ This material helps user to install SW360 17.0.0
 2.5 Maven
 2.6 OpenJDK 
 ```
+
 ### 2.1 Apt
 #### Create file with name proxy.conf in folder `/etc/apt/apt.conf.d`
 
-   - `$  sudo gedit /etc/apt/apt.conf.d/proxy.conf`
+- `$  sudo gedit /etc/apt/apt.conf.d/proxy.conf`
 
-#### Add the following line few files `proxy.conf` 
+#### Add the following line few files `proxy.conf`
+
 ```
     Acquire {
         HTTP::proxy "http://username:password@server:port";
         HTTPS::proxy "http://username:password@server:port";
     }
 ```
+
 ### 2.2 Wget
 #### Create file `~/.wgetrc`
 
-   - `$  sudo gedit ~/.wgetrc`
+- `$  sudo gedit ~/.wgetrc`
 
-####  Add the following line few files `~/.wgetrc` 
+#### Add the following line few files `~/.wgetrc`
+
 ```
-	use_proxy=yes
-	  http_proxy=http://username:password@server:port
-	  https_proxy=http://username:password@server:port
+ use_proxy=yes
+   http_proxy=http://username:password@server:port
+   https_proxy=http://username:password@server:port
 ```
+
 ### 2.3 Curl
 #### 2.3.1 Install Curl
-   - `$ sudo apt update`
-   - `$ sudo apt install curl`
+
+- `$ sudo apt update`
+- `$ sudo apt install curl`
 
 #### 2.3.2 Config proxy
-* Create file `~/.curlrc`
 
-   - `$  sudo gedit ~/.curlrc`
+- Create file `~/.curlrc`
 
-*  Add the following line few files `~/.curlrc` 
+  - `$  sudo gedit ~/.curlrc`
+
+- Add the following line few files `~/.curlrc`
+
 ```
     proxy=http://username:password@server:port/
 ```
@@ -85,14 +94,18 @@ This material helps user to install SW360 17.0.0
 ### 2.4 Git
 
 #### 2.4.1 Install Git
--   `$ sudo apt update`
--   `$ sudo apt install git`
+
+- `$ sudo apt update`
+- `$ sudo apt install git`
+
 #### 2.4.2 Config proxy
-* Create file `~/.gitconfig`
 
-   - `$  sudo gedit ~/.gitconfig`
+- Create file `~/.gitconfig`
 
-* Add the following line few files `~/.gitconfig`
+  - `$  sudo gedit ~/.gitconfig`
+
+- Add the following line few files `~/.gitconfig`
+
    ```
     [http]
         proxy = http://username:password@server:port
@@ -100,24 +113,27 @@ This material helps user to install SW360 17.0.0
     [https]
         proxy = http://username:password@server:port
 
-   ```     
+   ```
+
 ### 2.5 Maven
 #### 2.5.1 Install Maven
 *Go to back Home in Terminal
 
--   `$ sudo apt update`
--   `$ sudo apt install maven`
+- `$ sudo apt update`
+- `$ sudo apt install maven`
 
 #### 2.5.2 Config proxy for Maven
 
-* Create Folder with  path `/home/user/.m2`
--   `$ mkdir /home/user/.m2`
+- Create Folder with  path `/home/user/.m2`
 
-* Create File in Folder `.m2` 
--   `$ touch /home/user/.m2/settings.xml`
+- `$ mkdir /home/user/.m2`
 
-* Copy the following lines into tag <proxies></proxies>
-        
+- Create File in Folder `.m2`
+
+- `$ touch /home/user/.m2/settings.xml`
+
+- Copy the following lines into tag <proxies></proxies>
+
             <settings>
                 <proxies>
                     <proxy>
@@ -161,22 +177,27 @@ This material helps user to install SW360 17.0.0
                     </proxy>
                 </proxies>
             </settings>
-### 2.6 OpenJDK 11 
 
-* And install OpenJDK 11
-    - `$ sudo apt install openjdk-11-jdk`
-* Check version: 
-    - `$ java --version`
-    - Output: 
+### 2.6 OpenJDK 11
+
+- And install OpenJDK 11
+  - `$ sudo apt install openjdk-11-jdk`
+- Check version:
+  - `$ java --version`
+  - Output:
+
     ```
           openjdk version "11.0.15" 2022-04-19
           OpenJDK Runtime Environment (build 11.0.15+10-Ubuntu-0ubuntu0.18.04.1)
           OpenJDK 64-Bit Server VM (build 11.0.15+10-Ubuntu-0ubuntu0.18.04.1, mixed mode, sharing)
     ```
-    - Install JDK successfully                
+
+  - Install JDK successfully
+
 ## 3. Native install 17.0.0 (without docker-compose)
 
-### The installation consists of some tasks::
+### The installation consists of some tasks
+
 ```
 3.1 Install A Liferay Community Edition bundled with Tomcat and download dependencies as OSGi modules
 3.2 Install Couchdb version 3.2.2 
@@ -186,25 +207,26 @@ This material helps user to install SW360 17.0.0
 3.6 Compiling and deploying
 3.7 Version Management Table
 ```
+
 ### 3.1 Install A Liferay Community Edition bundled with Tomcat
 
-* Make folder `work` in path of work: `/home/user`
+- Make folder `work` in path of work: `/home/user`
 
-    - `$ mkdir work` 
-    
-* Download Liferay Portal CE 7.4.3.18 GA18
-    - `$ cd work`
-    - `$ wget  https://github.com/liferay/liferay-portal/releases/download/7.4.3.18-ga18/liferay-ce-portal-tomcat-7.4.3.18-ga18-20220329092001364.tar.gz -O liferay-ce-portal-tomcat-7.4.3.18-ga18.tar.gz`
+  - `$ mkdir work`
 
-* Extract downloaded file
-    - `$ tar -xzf liferay-ce-portal-tomcat-7.4.3.18-ga18.tar.gz`
+- Download Liferay Portal CE 7.4.3.18 GA18
+  - `$ cd work`
+  - `$ wget  https://github.com/liferay/liferay-portal/releases/download/7.4.3.18-ga18/liferay-ce-portal-tomcat-7.4.3.18-ga18-20220329092001364.tar.gz -O liferay-ce-portal-tomcat-7.4.3.18-ga18.tar.gz`
 
-* Set Environment for `${LIFERAY_INSTALL}`
-    - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+- Extract downloaded file
+  - `$ tar -xzf liferay-ce-portal-tomcat-7.4.3.18-ga18.tar.gz`
 
-* Create `portal-ext.properties` file in `liferay-ce-portal-7.4.3.18-ga18` folder
+- Set Environment for `${LIFERAY_INSTALL}`
+  - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
-* Copy content from  https://github.com/eclipse/sw360/blob/sw360-17.0.0-M1/frontend/configuration/portal-ext.properties to portal-ext.properties
+- Create `portal-ext.properties` file in `liferay-ce-portal-7.4.3.18-ga18` folder
+
+- Copy content from  <https://github.com/eclipse/sw360/blob/sw360-17.0.0-M1/frontend/configuration/portal-ext.properties> to portal-ext.properties
 
 - Edit `portal-ext.properties`: uncomment below lines  
 
@@ -229,6 +251,7 @@ This material helps user to install SW360 17.0.0
 ```
 
 - Add lines to setup passsword policies
+
 ```
     # Passsword policies
     passwords.default.policy.change.required=false
@@ -240,104 +263,119 @@ This material helps user to install SW360 17.0.0
     company.security.strangers.verify=false
 ```
 
-* Remove files in folder `hypersonic` with path: `/home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic`
-    - `$ rm -rf /home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic/*`
+- Remove files in folder `hypersonic` with path: `/home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic`
+  - `$ rm -rf /home/user/work/liferay-ce-portal-7.4.3.18-ga18/data/hypersonic/*`
 
-* Move folder `liferay-ce-portal-7.4.3.18-ga18` to `/opt`
+- Move folder `liferay-ce-portal-7.4.3.18-ga18` to `/opt`
 
-    - `$ sudo mv liferay-ce-portal-7.4.3.18-ga18 /opt`
+  - `$ sudo mv liferay-ce-portal-7.4.3.18-ga18 /opt`
 
-### 3.2 Install Database 
+### 3.2 Install Database
 
 #### 3.2.1 Install Couch DB
 
-* To install from aptitute  type:
+- To install from aptitute  type:
 
 ```sh
-$ sudo apt update
-$ sudo apt install -y couchdb
+sudo apt update
+sudo apt install -y couchdb
 ```
 
-* You may refer to the bottom Native Installation 14 version CouchDB manual configuration for setting credentials.
+- You may refer to the bottom Native Installation 14 version CouchDB manual configuration for setting credentials.
 
-* After, run CouchDb service, check if it's working:
+- After, run CouchDb service, check if it's working:
 
 ```sh
-$ sudo systemctl start couchdb.service
+sudo systemctl start couchdb.service
 ```
-* Check if CouchDB is responding:
-```sh
-$ curl localhost:5984
-```
-* This should return json containing version information
-* You can use "start/stop/status/restart" command with systemctl for controlling CouchDB service.
 
+- Check if CouchDB is responding:
+
+```sh
+curl localhost:5984
+```
+
+- This should return json containing version information
+- You can use "start/stop/status/restart" command with systemctl for controlling CouchDB service.
 
 #### Install Couchdb Lucene
 
-* SW360 uses for searching the contents of the couchdb databases a lucene-based server named couchdb-lucene
+- SW360 uses for searching the contents of the couchdb databases a lucene-based server named couchdb-lucene
 
-* Run command download Couchdb Lucene
-    - `wget --no-check-certificate https://github.com/rnewson/couchdb-lucene/archive/v2.1.0.tar.gz -O couchdb-lucene.tar.gz`
+- Run command download Couchdb Lucene
+  - `wget --no-check-certificate https://github.com/rnewson/couchdb-lucene/archive/v2.1.0.tar.gz -O couchdb-lucene.tar.gz`
 
-* Note extract couchdb-lucene to folder `work` with path of work: `/home/user/work`
-    - `tar -xzf couchdb-lucene.tar.gz`
+- Note extract couchdb-lucene to folder `work` with path of work: `/home/user/work`
+  - `tar -xzf couchdb-lucene.tar.gz`
 
-* Run command: 
-    - `cd couchdb-lucene-2.1.0`
-    - `sed -i "s/allowLeadingWildcard=false/allowLeadingWildcard=true/" ./src/main/resources/couchdb-lucene.ini `
-    - `sed -i "s/localhost:5984/admin:password@localhost:5984/" ./src/main/resources/couchdb-lucene.ini `
-    - `wget https://raw.githubusercontent.com/sw360/sw360vagrant/master/shared/couchdb-lucene.patch `
-    - `patch -p1 < couchdb-lucene.patch `
-    - `mvn clean install war:war`
-    - `cp target/couchdb-lucene-*.war /opt/liferay-ce-portal-7.4.3.18-ga18/tomcat-9.0.56/webapps/couchdb-lucene.war`
+- Run command:
+  - `cd couchdb-lucene-2.1.0`
+  - `sed -i "s/allowLeadingWildcard=false/allowLeadingWildcard=true/" ./src/main/resources/couchdb-lucene.ini`
+  - `sed -i "s/localhost:5984/admin:password@localhost:5984/" ./src/main/resources/couchdb-lucene.ini`
+  - `wget https://raw.githubusercontent.com/sw360/sw360vagrant/master/shared/couchdb-lucene.patch`
+  - `patch -p1 < couchdb-lucene.patch`
+  - `mvn clean install war:war`
+  - `cp target/couchdb-lucene-*.war /opt/liferay-ce-portal-7.4.3.18-ga18/tomcat-9.0.56/webapps/couchdb-lucene.war`
 
 ### 3.2.2 Install PostgreSQL
 
-* Install PostgerSQL manually, you can install through "apt install" too:
+- Install PostgerSQL manually, you can install through "apt install" too:
+
 ```sh
-$ sudo apt install zlib1g-dev -y
-$ sudo apt install libreadline-dev -y
-$ wget https://download.postgresql.org/pub/source/v10.14/postgresql-10.14.tar.gz
-$ tar -xvf postgresql-10.14.tar.gz 
-$ cd postgresql-10.14/
-$ mkdir -p  /PATH_TO/sw360postgres
-$ ./configure -prefix=/PATH_TO/sw360postgres
-$ make
-$ sudo make install
+sudo apt install zlib1g-dev -y
+sudo apt install libreadline-dev -y
+wget https://download.postgresql.org/pub/source/v10.14/postgresql-10.14.tar.gz
+tar -xvf postgresql-10.14.tar.gz 
+cd postgresql-10.14/
+mkdir -p  /PATH_TO/sw360postgres
+./configure -prefix=/PATH_TO/sw360postgres
+make
+sudo make install
 ```
-* Set the paths for Postgres in the .bashrc otherwise you have to export them each time. Use same procedure as before in 3rd step.
+
+- Set the paths for Postgres in the .bashrc otherwise you have to export them each time. Use same procedure as before in 3rd step.
+
 ```sh
-$ vim ~/.bashrc
+vim ~/.bashrc
 ```
-* Got to the end of the .bashrc file and add following lines, make sure to add correct paths of previously configured sw360postgres. Here $HOME is the absolute path of your user, such as "/home/username":
+
+- Got to the end of the .bashrc file and add following lines, make sure to add correct paths of previously configured sw360postgres. Here $HOME is the absolute path of your user, such as "/home/username":
+
 ```sh
-$ export PATH=$HOME/sw360postgres/bin:$PATH
-$ export PGDATA=$HOME/sw360postgres/data
-$ export LD_LIBRARY_PATH=$HOME/sw360postgres/lib
-$ export PGPORT=5432
+export PATH=$HOME/sw360postgres/bin:$PATH
+export PGDATA=$HOME/sw360postgres/data
+export LD_LIBRARY_PATH=$HOME/sw360postgres/lib
+export PGPORT=5432
 ```
-* Check if paths have been set, result must be the absolute paths:
+
+- Check if paths have been set, result must be the absolute paths:
+
 ```sh
-$ echo $PATH
-$ echo $PGDATA
-$ echo $LD_LIBRARY_PATH
-$ echo $PGPORT
+echo $PATH
+echo $PGDATA
+echo $LD_LIBRARY_PATH
+echo $PGPORT
 ```
-* After paths are set, postgres service can be run:
+
+- After paths are set, postgres service can be run:
+
 ```sh
-$  cd /PATH_TO/sw360postgres/bin
-$ ./initdb --encoding=UTF8 --no-locale
-$ ./pg_ctl start
+cd /PATH_TO/sw360postgres/bin
+./initdb --encoding=UTF8 --no-locale
+./pg_ctl start
 ```
-* You will see that the server has started.
-* Note: If you installed through "apt install" then start the postgres service by following command, where after @ comes the installed version, if postgres isn't running you won't be able to connect to the server, and the error message is not explaining well that server isn't actually running at the moment:
+
+- You will see that the server has started.
+- Note: If you installed through "apt install" then start the postgres service by following command, where after @ comes the installed version, if postgres isn't running you won't be able to connect to the server, and the error message is not explaining well that server isn't actually running at the moment:
+
 ```sh
 sudo systemctl status postgresql@12-main.service
 sudo systemctl start postgresql@12-main.service
 ```
-* Postgres will create an user with username ${ubuntu_user} (username login to ubuntu)
-* Use theses command to change password of user ${ubuntu_user} in postgres sql.
+
+- Postgres will create an user with username ${ubuntu_user} (username login to ubuntu)
+- Use theses command to change password of user ${ubuntu_user} in postgres sql.
+
 ```sh
 $ psql postgres
 postgres=# \du
@@ -346,80 +384,90 @@ postgres=# ALTER USER ${ubuntu_user} WITH PASSWORD 'sw360fossy';
 postgres=# ALTER ROLE ${ubuntu_user} with superuser;
 postgres=# \q
 ```
-* Connect to postgres shell, and check users information
+
+- Connect to postgres shell, and check users information
+
 ```sh
 $ psql -d lportal
 # \du
 # \dt
 # \l
 ```
+
 ### 3.3 Install CVE-Search
 
-* Follow these detailed instructions:
+- Follow these detailed instructions:
 
 ```sh
 [https://github.com/cve-search/cve-search/blob/master/docs/source/getting_started/installation.rst]
 ```
 
-* To connect it to SW360, see following instructions:
+- To connect it to SW360, see following instructions:
 
 ```sh
 https://www.eclipse.org/sw360/docs/deployment/deploy-cve-search/
 ```
-##### Notes:
+
+##### Notes
+
 - In the instruction be careful with setting apt link for mongodb, if somehow it destroys your "sudo apt update" command, go to "/etc/apt/sources.list" file and comment out the broken line, that's probably the one you lately added at the end of the file. This happens because some PPA are outdated but remain in the instructions.
 
 ### 3.4 Clone sw360 with version 17.0.0
 
-* Clone sw360 source code to folder `work` with path: `/home/user/work`
+- Clone sw360 source code to folder `work` with path: `/home/user/work`
 
-    - `$ git clone https://github.com/eclipse/sw360`
+  - `$ git clone https://github.com/eclipse/sw360`
 
-* Checkout to tag 17.0.0 version
-    - `$ cd sw360`
-    - `$ git checkout  sw360-17.0.0-M1`
+- Checkout to tag 17.0.0 version
+  - `$ cd sw360`
+  - `$ git checkout  sw360-17.0.0-M1`
 
-* export path to repository sw360
-    - `$ export SW360_REPOSITORY=/home/user/work/sw360`
+- export path to repository sw360
+  - `$ export SW360_REPOSITORY=/home/user/work/sw360`
+
 ### 3.5 Install Thrift version 0.16
 
-* For thrift, we need version 0.16. The installation script in Path: `${SW360_REPOSITORY}/scripts/install-thrift.sh`
+- For thrift, we need version 0.16. The installation script in Path: `${SW360_REPOSITORY}/scripts/install-thrift.sh`
 
-* Run command to install libraries:
-    - `$ sudo apt-get install -y clang-tidy`
-    - `$ sudo apt-get install flex`
-    - `$ sudo apt-get install -y clang-tools`
-    - `$ sudo apt-get install bison`
-    - `$ sudo apt-get install cmake`
+- Run command to install libraries:
+  - `$ sudo apt-get install -y clang-tidy`
+  - `$ sudo apt-get install flex`
+  - `$ sudo apt-get install -y clang-tools`
+  - `$ sudo apt-get install bison`
+  - `$ sudo apt-get install cmake`
 
-* Run command:
-    - `$ chmod +x install-thrift.sh`
-    - `$ sudo ./install-thrift.sh`
+- Run command:
+  - `$ chmod +x install-thrift.sh`
+  - `$ sudo ./install-thrift.sh`
 
 In case there is thrift in the package management of the OS you re running on, just make sure, you have version 0.16
-* Check version thrift
 
-    - `$ thrift --version`
-    
-    - Output: 
+- Check version thrift
+
+  - `$ thrift --version`
+
+  - Output:
+
     ```
         Thrift version 0.16.0
 
     ```
-    - Install Thrift successfully     
+
+  - Install Thrift successfully
 
 ### 3.6 Config properties files with Sw360 (sw360 17.0.0)
 
-* Create folder `sw360` in path `/etc/`
+- Create folder `sw360` in path `/etc/`
 
-    - `sudo mkdir sw360`
+  - `sudo mkdir sw360`
 
-* Create 2 folder `authorization` and `rest` in path `/etc/sw360`
+- Create 2 folder `authorization` and `rest` in path `/etc/sw360`
 
-    - `sudo mkdir authorization`
-    - `sudo mkdir rest`
+  - `sudo mkdir authorization`
+  - `sudo mkdir rest`
 
-*  Create file `application.yml` in path `/etc/sw360/authorizaton` with content: 
+- Create file `application.yml` in path `/etc/sw360/authorizaton` with content:
+
 ```
 #
 # Copyright Siemens AG, 2017, 2019. Part of the SW360 Portal Project.
@@ -480,7 +528,9 @@ security:
       id: sw360-REST-API
 
 ```
-*  Create file `application.yml` in path `/etc/sw360/rest` with content:
+
+- Create file `application.yml` in path `/etc/sw360/rest` with content:
+
 ```
 #
 # Copyright Siemens AG, 2017. Part of the SW360 Portal Project.
@@ -545,7 +595,7 @@ sw360:
     allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
 ```
 
-* Create file `couchdb.properties` in path `/etc/sw360` with content:
+- Create file `couchdb.properties` in path `/etc/sw360` with content:
 
 ```
 #
@@ -567,7 +617,8 @@ couchdb.attachments = sw360attachments
 lucenesearch.limit = 10000
 
 ```
-* Create file `sw360.properties` and `/etc/sw360` with content:
+
+- Create file `sw360.properties` and `/etc/sw360` with content:
 
 ```
 # Copyright Siemens AG, 2016-2017. Part of the SW360 Portal Project.
@@ -653,9 +704,11 @@ sw360changelog.output.path=sw360changelog/sw360changelog
 
 ```
 
-* Configure the sw360ChangeLog path
+- Configure the sw360ChangeLog path
+
 #### 1. Create log4j2.xml file
-- Based on log4j2.xml file from https://github.com/eclipse/sw360/blob/main/build-configuration/resources/log4j2.xml, update the content as below, then place this file to etc/sw360 folder.
+
+- Based on log4j2.xml file from <https://github.com/eclipse/sw360/blob/main/build-configuration/resources/log4j2.xml>, update the content as below, then place this file to etc/sw360 folder.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -698,142 +751,145 @@ sw360changelog.output.path=sw360changelog/sw360changelog
     </Loggers>
 </Configuration>
 ```
-* Set the environment variable for the changelog directory (`${env:FILE_PATH}/sw360changelog.log`)
-    - Create Folder `sw360changelog` in `var/log/`:
-        - `$ sudo mkdir sw360changelog `
-    - If `/var/log/sw360changelog` folder requires permission, set permission for this folder:
-        - `$ sudo chown -R $USER:$USER /var/log/sw360changelog`
 
-    - `$ export FILE_PATH=/var/log/sw360changelog`
+- Set the environment variable for the changelog directory (`${env:FILE_PATH}/sw360changelog.log`)
+  - Create Folder `sw360changelog` in `var/log/`:
+    - `$ sudo mkdir sw360changelog`
+  - If `/var/log/sw360changelog` folder requires permission, set permission for this folder:
+    - `$ sudo chown -R $USER:$USER /var/log/sw360changelog`
 
-* NOTE: I suggest the path ${env:FILE_PATH} to use LIFERAY_INSTALL env variable
+  - `$ export FILE_PATH=/var/log/sw360changelog`
+
+- NOTE: I suggest the path ${env:FILE_PATH} to use LIFERAY_INSTALL env variable
 
 #### 2. Enable changelog config
 
 Add the following lines to the sw360.properties file (or uncomment if they are existing)
 
-* `sw360changelog.config.file.location=/etc/sw360/log4j2.xml`
-* `enable.sw360.change.log=true`
+- `sw360changelog.config.file.location=/etc/sw360/log4j2.xml`
+- `enable.sw360.change.log=true`
 
 #### 3. Compile and deploy
 
-   * Set `sw360.liferay.company.id = 20099` in `sw360.properties` file
+- Set `sw360.liferay.company.id = 20099` in `sw360.properties` file
 
-   * Set the environment variable for the LIFERAY_INSTALL directory
+- Set the environment variable for the LIFERAY_INSTALL directory
 
-      - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+  - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
-   * Note: Should add -DskipTests when building sw360 to avoid test data write to log file
+- Note: Should add -DskipTests when building sw360 to avoid test data write to log file
 
-   * To clean everything and install without running the tests
+- To clean everything and install without running the tests
 
-      - `$ mvn clean install -DskipTests`
+  - `$ mvn clean install -DskipTests`
 
-   * For deployment, run the command
+- For deployment, run the command
 
-      - `$ cd /home/user/work/sw360`
-      - `$ mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -DskipTests`
+  - `$ cd /home/user/work/sw360`
+  - `$ mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -DskipTests`
 
 #### 4. Start and configure Liferay
 
-* Set the environment variable for the LIFERAY_INSTALL directory
+- Set the environment variable for the LIFERAY_INSTALL directory
 
-    - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+  - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
-* Start liferay
+- Start liferay
 
-    - `$ ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/startup.sh`
+  - `$ ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/startup.sh`
 
-* Log
+- Log
 
-    - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/*`
+  - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/*`
 
-* SW360 URL: `https://localhost:8080`
+- SW360 URL: `https://localhost:8080`
 
 #### 5. How to check the logs
+
 - Edit (update) a project, component, or release in SW360.
 - Then check the logs in `${FILE_PATH}/sw360changelog/sw360changelog.log` file
 \
 
 ### 3.7 Compile and deploy
 
-* Start Database
-* Turn on the CouchDB and Postgres services
+- Start Database
+- Turn on the CouchDB and Postgres services
 
 ```sh
-$ sudo systemctl start couchdb.service
-$ sudo systemctl start postgres@@12-main.service
+sudo systemctl start couchdb.service
+sudo systemctl start postgres@@12-main.service
 ```
 
-* Check if both are running:
+- Check if both are running:
 
 ```sh
-$ sudo systemctl status couchdb.service
-$ sudo systemctl status postgres@@12-main.service
+sudo systemctl status couchdb.service
+sudo systemctl status postgres@@12-main.service
 ```
 
-* You should be able to see something like this:
+- You should be able to see something like this:
 
 ```sh
 ... systemd[1]: Started PostgreSQL Cluster 12-main.
 ...
 ... halt systemd[1]: Started Apache CouchDB.
 ```
-* install python and pip
-    - `$ sudo apt-get install python3 -y`
-    - `$ sudo -E apt-get install python3-pip -y`
-* install mkdocs
-    - Without proxy:
-        + `$ sudo -E pip3 install mkdocs`
-        + `$ sudo -E pip3 install mkdocs-material`
-    - Via proxy:
-        + `$ sudo -E pip3 install --proxy="http://username:password@hostname:port" mkdocs`
-        + `$ sudo -E pip3 install --proxy="http://username:password@hostname:port" mkdocs-material`
 
-* Set Environment for `${LIFERAY_INSTALL}`
-    - `$ cd /home/user/work/sw360`
-    - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+- install python and pip
+  - `$ sudo apt-get install python3 -y`
+  - `$ sudo -E apt-get install python3-pip -y`
+- install mkdocs
+  - Without proxy:
+    - `$ sudo -E pip3 install mkdocs`
+    - `$ sudo -E pip3 install mkdocs-material`
+  - Via proxy:
+    - `$ sudo -E pip3 install --proxy="http://username:password@hostname:port" mkdocs`
+    - `$ sudo -E pip3 install --proxy="http://username:password@hostname:port" mkdocs-material`
+
+- Set Environment for `${LIFERAY_INSTALL}`
+  - `$ cd /home/user/work/sw360`
+  - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
 1. To clean everything and  install without running the tests
-    - `$ mvn clean install -DskipTests `
+    - `$ mvn clean install -DskipTests`
 
-2. For deployment run the command 
+2. For deployment run the command
     - `mvn clean package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL}/tomcat-9.0.56/webapps -Dtest=org/eclipse/sw360/rest/resourceserver/restdocs/* -Dhelp-docs=true -Dsurefire.failIfNoSpecifiedTests=false`
-    
-#### 3.7.1 Start and Configure Liferay 
 
-* Set Environment for `${LIFERAY_INSTALL}`
-    - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
+#### 3.7.1 Start and Configure Liferay
 
-* After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work/sw360/utils/jars` to  `${LIFERAY_INSTALL}/osgi/modules`
+- Set Environment for `${LIFERAY_INSTALL}`
+  - `$ export LIFERAY_INSTALL=/opt/liferay-ce-portal-7.4.3.18-ga18`
 
-    - `$ cd /home/user/work/sw360/utils/jars`
-    - `$ sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/osgi/modules/`
+- After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work/sw360/utils/jars` to  `${LIFERAY_INSTALL}/osgi/modules`
 
-* We also suggest you change the environment settings (frontend/configuration/setenv.sh) to avoid the lack of memory before making and building SW360.
+  - `$ cd /home/user/work/sw360/utils/jars`
+  - `$ sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/osgi/modules/`
 
-    - `$ sudo rm -rf ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/setenv.sh`
-    - `$ sudo cp /home/user/work/sw360/frontend/configuration/setenv.sh ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/`
+- We also suggest you change the environment settings (frontend/configuration/setenv.sh) to avoid the lack of memory before making and building SW360.
 
-* Start liferay    
-    - `$ ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/startup.sh`
-* Log    
-    - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/catalina.out`
+  - `$ sudo rm -rf ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/setenv.sh`
+  - `$ sudo cp /home/user/work/sw360/frontend/configuration/setenv.sh ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/`
 
-* Url SW360 : `https://localhost:8080`
+- Start liferay
+  - `$ ${LIFERAY_INSTALL}/tomcat-9.0.56/bin/startup.sh`
+- Log
+  - `$ tail -f ${LIFERAY_INSTALL}/tomcat-9.0.56/logs/catalina.out`
+
+- Url SW360 : `https://localhost:8080`
 
 #### 3.7.2 Configure Liferay Portal
 
-* Can follow the steps in the following link https://www.eclipse.org/sw360/docs/deployment/legacy/deploy-liferay7.3 or follow these steps:
+- Can follow the steps in the following link <https://www.eclipse.org/sw360/docs/deployment/legacy/deploy-liferay7.3> or follow these steps:
 
 - Import users
-    1. 	Open the panel on the left side by clicking the button on the top left.
-    2. 	Click on `SW360` on the top right to go to the homepage.
-    3.	Click on `Start` inside the "Welcome" section.
-    4.	Go to `Admin` -> `User` (URL: `/group/guest/users`).
-    5.	Scroll down to section `UPLOAD USERS`, select a user file from the very
+    1. Open the panel on the left side by clicking the button on the top left.
+    2. Click on `SW360` on the top right to go to the homepage.
+    3. Click on `Start` inside the "Welcome" section.
+    4. Go to `Admin` -> `User` (URL: `/group/guest/users`).
+    5. Scroll down to section `UPLOAD USERS`, select a user file from the very
         beginning and click `Upload Users` on the right side. [A user file can be found here in the sw360vagrant project](https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv)
-        * Download: `$ wget https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv`
+        - Download: `$ wget https://github.com/sw360/sw360vagrant/blob/master/shared/test_users_with_passwords_12345.csv`
 
 - Setup liferay:
 
@@ -873,8 +929,8 @@ Then, in `Configuration` >  `Instance Settings` > `User Authentication` > `Gener
 
 Finally, sice Liferay 7.4 some of the bundled modules need to be activated:
 
-* jquery
-* font awesome
+- jquery
+- font awesome
 
 In oder to do this, please select from the `Configuration` >  `System Settings` > `Third Party` and go to jquery, select the enablement and click on Update:
 
@@ -912,10 +968,9 @@ After successful importing, the same steps shall be repeated for the `Private_Pa
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/16.png" >}}
 
-Make sure that `Private_Pages_7_4_3_18_GA18.lar ` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
+Make sure that `Private_Pages_7_4_3_18_GA18.lar` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/17.png" >}}
-
 
 If you click then the liferay logo_the upper left corner where the SW360 is, you will return to the application and the following screen should appear:
 
@@ -957,7 +1012,7 @@ After the successful login, SW360 will look as follows.
 
 ### 3.8 Version Management Table (sw360 17.0.0)
 
-| Package Name  | Version  | 
+| Package Name  | Version  |
 |:--------------|:--------:|
 |   Liferay     |  7.4.3.18|
 |   Tomcat      |  9.0.56  |
@@ -966,10 +1021,8 @@ After the successful login, SW360 will look as follows.
 |   Thrift      |  0.16.0  |
 |   SW360       |  17.0.0  |
 
-
-
-
 ## References for more information
+
 - [SW360]
 - [CVE-Search]
 - [Java]
@@ -979,15 +1032,11 @@ After the successful login, SW360 will look as follows.
 - [PostgreSQL]
 - [CouchDB]
 
-
 ## License
 
 [SPDX-License-Identifier: EPL-2.0]
 
 [//]: # (These are reference links used in the body of this instructions markdown file.)
-   [Check SW360]: <http://localhost:8080>
-   [Check CouchDB]: <http://localhost:5984>
-   [Check PostgreSQL]: <http://localhost:5432>
    [SW360]: <https://www.eclipse.org/sw360/docs/>
    [SW360 website]: <https://github.com/eclipse/sw360.website>
    [CVE-Search]: <https://github.com/cve-search/cve-search>

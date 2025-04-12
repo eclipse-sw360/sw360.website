@@ -9,7 +9,7 @@ description: "The definition of done helps to set a common understanding for sol
 
 * Review points should involve one person from another angle (not just the person you were sitting together with anyways)
 * No self merging of pull requests
-* Limit items in review to 5, try to coordinate 
+* Limit items in review to 5, try to coordinate
 * Using Github assignments to issues or pull requests
 * Open review items require conversation
 * Every change must be proposed in the form of a pull request (no commits to main without review)
@@ -74,6 +74,7 @@ If a file has relevant functionality, note that we should move to Eclipse 2.0
  * http://www.eclipse.org/legal/epl-v20.html
  */
 ```
+
 (please adapt comment characters usage)
 
 For small files such as property files, configuration files or standard XML files:

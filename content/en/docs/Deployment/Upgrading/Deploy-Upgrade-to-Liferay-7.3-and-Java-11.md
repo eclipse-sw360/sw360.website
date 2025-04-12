@@ -2,16 +2,15 @@
 linkTitle: "Liferay 7.3 and Java 11"
 title: "Liferay 7.3 and Java 11"
 weight: 100
-description: 
+description:
   Upgrading previous sw360 instances to Liferay 7.3.x and Java 11
 ---
-
 
 ## Introduction
 
 We are covering the update for ubuntu here, because that is our main / agreed base system for running sw360. sw360 may run on a varienty of other linux distributions or OSes such as macosx, but in order to avoid problem we agreed on having a reference OS, which are the ubuntu long term releases.
 
-With the update to Java 11, we upgraded from Ubuntu 16.04 to Ubuntu 18.04, both LTS version. This OS is used for example by the https://github.com/sw360/sw360vagrant project.
+With the update to Java 11, we upgraded from Ubuntu 16.04 to Ubuntu 18.04, both LTS version. This OS is used for example by the <https://github.com/sw360/sw360vagrant> project.
 
 So the update covers the following:
 
@@ -80,7 +79,7 @@ Postgresql 9.5 should be the only installed. The old postgresql 9.5 must stay in
 
 `sudo apt install postgresql-10`
 
-Then, apply the instruction to update from 9.5 to 10.0 from this page: https://stackoverflow.com/questions/47029055/how-do-i-upgrade-my-postgresql-9-5-to-postgresql-10-on-ubuntu-16-04
+Then, apply the instruction to update from 9.5 to 10.0 from this page: <https://stackoverflow.com/questions/47029055/how-do-i-upgrade-my-postgresql-9-5-to-postgresql-10-on-ubuntu-16-04>
 
 ```
 # service postgresql stop
@@ -95,6 +94,7 @@ Then, apply the instruction to update from 9.5 to 10.0 from this page: https://s
 ...
 # service postgresql start
 ```
+
 (note that # means you need to be root or execute with sudo)
 
 ## Migration of CouchDB
@@ -133,8 +133,8 @@ As a preparation: the CouchDB migration works by copying the databases, so the f
 
 CouchDB offers a migration utility. It is advised that you remove all test databases as they do not seem to work with the migration utility. Important links are:
 
-* https://docs.couchdb.org/en/2.3.1/install/upgrading.html
-* https://github.com/apache/couchdb/pull/483
+* <https://docs.couchdb.org/en/2.3.1/install/upgrading.html>
+* <https://github.com/apache/couchdb/pull/483>
 
 For some reason after installation, the `couchup`utility is not part of the path, so execute:
 
@@ -156,7 +156,7 @@ For thrift, we need version 0.13. The installation script `scripts/install-thrif
 
 `sudo ./install-thrift.sh --uninstall`
 
-and then install 
+and then install
 
 `sudo ./install-thrift.sh`
 
@@ -193,7 +193,7 @@ Then the `$JAVA_HOME` needs to be updated, most likely it is defined in `/etc/en
 
 Download Liferay from this link
 
-https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.3.3%20GA4/liferay-ce-portal-tomcat-7.3.3-ga4-20200701015330959.tar.gz
+<https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.3.3%20GA4/liferay-ce-portal-tomcat-7.3.3-ga4-20200701015330959.tar.gz>
 
 and unpack it, ideally in the `/opt` directory, so resulting path would look like `liferay-ce-portal-7.3.3-ga4`.
 
@@ -310,13 +310,13 @@ Start with downloading the couchdb-lucene and rename the archive so the resultin
 
 Please refer to the script in sw360vagrant how to apply the patch to couchdb-lucene:
 
-https://github.com/sw360/sw360vagrant/blob/master/shared/scripts/install-lucene.sh
+<https://github.com/sw360/sw360vagrant/blob/master/shared/scripts/install-lucene.sh>
 
 Please note that the patching issue is well known in the project and it is unclear why it is not merged:
 
-* https://github.com/rnewson/couchdb-lucene/issues/161 "allow context-root other than "/" when running in servlet container"
-* https://github.com/rnewson/couchdb-lucene/pull/162
-* https://github.com/rnewson/couchdb-lucene/pull/152
+* <https://github.com/rnewson/couchdb-lucene/issues/161> "allow context-root other than "/" when running in servlet container"
+* <https://github.com/rnewson/couchdb-lucene/pull/162>
+* <https://github.com/rnewson/couchdb-lucene/pull/152>
 
 Now, for CouchDB 2.X the hook for integration of a search component has chaned compared to CouchDB 1.X. Accordingly, the old couchdb-lucene component must be replaced with the latest version.
 
@@ -355,4 +355,4 @@ Right after updating, the sw360 will not show up data at all, but sometimes noth
 
 ### E-Mail Verification Trap
 
-Liferay has automatically enabled password verification for all accounts right after migration. Not sure what motivates persons to enable such feature by default right after migration from an instance where it was not there? In case you have attached the system to an external login solution, but your liferay is not configured to send mails, then it is a trap, because you cannot verify the e-mail address and thus, cannot login. You need to disable the external login solution and use the original initial setup user to login (which is not asked for verification by e-mail) to disable this feature (see above). 
+Liferay has automatically enabled password verification for all accounts right after migration. Not sure what motivates persons to enable such feature by default right after migration from an instance where it was not there? In case you have attached the system to an external login solution, but your liferay is not configured to send mails, then it is a trap, because you cannot verify the e-mail address and thus, cannot login. You need to disable the external login solution and use the original initial setup user to login (which is not asked for verification by e-mail) to disable this feature (see above).

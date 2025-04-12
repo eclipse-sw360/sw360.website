@@ -2,15 +2,13 @@
 linkTitle: "Ubuntu 18.04 and Java 11"
 title: "Ubuntu 18.04 LTS, Java 11"
 weight: 100
-description: 
+description:
   Bare metal deployment with Ubuntu 18.04 LTS and Java 11
 ---
 
 ## Introduction
 
 We are covering the update for Ubuntu 18.04 LTS here because it is our main and agreed-upon base system for running SW360. While SW360 may run on a variety of other Linux distributions or operating systems such as macOS, we have agreed to use Ubuntu Long-Term Releases as a reference OS to avoid compatibility issues. The author of this guide also uses macOS with Homebrew, which works fairly well.
-
-
 
 Please note that during the time, the dependencies are updated and the version info might change.
 
@@ -44,7 +42,7 @@ You can go ahead install postgresql 10:
 
 `sudo apt install postgresql-10`
 
-or whatever package version is suitable here, for example version 12 for ubuntu 20.04. 
+or whatever package version is suitable here, for example version 12 for ubuntu 20.04.
 
 The configuration for Liferay will come later.
 
@@ -71,7 +69,7 @@ The installer will ask a couple of questions:
 1. Bind address: for CouchDB and SW360 `127.0.0.1` (localhost) is a good bind address, if you would like to access the server from a remote computer because your sw360 runs as a server in the network, you would need to change accordingly.
 2. Admin user: For fresh installation for sure a very good idea. You can set the password at sw360 for CouchDB in `couchdb.properties` and place it centrally in `/etc/sw360`
 
-In case you added an admin accidentally and would like to remove it, 
+In case you added an admin accidentally and would like to remove it,
 
 ## Thrift
 
@@ -81,7 +79,7 @@ For thrift, we need version 0.13. The installation script in `scripts/install-th
 
 In case there is thrift in the package management of the OS you re running on, just make sure, you have version 0.13
 
-## OpenJDK 11 
+## OpenJDK 11
 
 First check, what is installed.
 
@@ -101,7 +99,7 @@ Then the `$JAVA_HOME` needs to be updated, most likely in `/etc/environment`. Pl
 
 Download Liferay from this link
 
-https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.3.3%20GA4/liferay-ce-portal-tomcat-7.3.3-ga4-20200701015330959.tar.gz
+<https://sourceforge.net/projects/lportal/files/Liferay%20Portal/7.3.3%20GA4/liferay-ce-portal-tomcat-7.3.3-ga4-20200701015330959.tar.gz>
 
 and unpack it, ideally in the `/opt` directory, so resulting path would look like `/opt/liferay-ce-portal-7.3.3-ga4`.
 
@@ -149,21 +147,21 @@ When you have downloaded the liferay distribution, Tomcat is likely configured w
 
 ### PostgreSQL instead of Hypersonic
 
-Liferay CE comes with the hypersonic database. Just for making a long-term setup in the berginning, we are advising to use postgresql from the start. The settings for postgrsql can be found in `portal-ext.properties`. Please do not forget to create the user and the database in the database server first. 
+Liferay CE comes with the hypersonic database. Just for making a long-term setup in the berginning, we are advising to use postgresql from the start. The settings for postgrsql can be found in `portal-ext.properties`. Please do not forget to create the user and the database in the database server first.
 
 ## Install Prerequisites
 
 There are some install libraries to be downloaded and installed as OSGi modules. You can check the download script from the sw360vaghrant project for list of URLs that help you.
 
-https://github.com/sw360/sw360vagrant/blob/master/download-packages.sh
+<https://github.com/sw360/sw360vagrant/blob/master/download-packages.sh>
 
 An URL for libtrift is:
 
-https://repo1.maven.org/maven2/org/apache/thrift/libthrift/0.13.0/libthrift-0.13.0.jar
+<https://repo1.maven.org/maven2/org/apache/thrift/libthrift/0.13.0/libthrift-0.13.0.jar>
 
 An URL for commons-compress is:
 
-https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.20/commons-compress-1.20.jar
+<https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.20/commons-compress-1.20.jar>
 
 If you have downloaded every thing, copy them to the `deploy` folder of your liferay installation:
 
@@ -183,7 +181,7 @@ If you have downloaded every thing, copy them to the `deploy` folder of your lif
 # cp jackson-databind-2.11.3.jar $LIFERAY_HOME/deploy
 ```
 
-if you use PostgreSQL as your database, you need to install  postgres.jar in Liferay. 
+if you use PostgreSQL as your database, you need to install  postgres.jar in Liferay.
 
 ```
 # wget https://jdbc.postgresql.org/download/postgresql-42.2.9.jar postgresql-42.2.9.jar
@@ -202,13 +200,13 @@ Start with downloading the couchdb-lucene and rename the archive so the resultin
 
 Please refer to the script in sw360vagrant how to apply the patch to couchdb-lucene:
 
-https://github.com/sw360/sw360vagrant/blob/master/shared/scripts/install-lucene.sh
+<https://github.com/sw360/sw360vagrant/blob/master/shared/scripts/install-lucene.sh>
 
 Please note that the patching issue is well known in the project and it is unclear why it is not merged:
 
-* https://github.com/rnewson/couchdb-lucene/issues/161 "allow context-root other than "/" when running in servlet container"
-* https://github.com/rnewson/couchdb-lucene/pull/162
-* https://github.com/rnewson/couchdb-lucene/pull/152
+* <https://github.com/rnewson/couchdb-lucene/issues/161> "allow context-root other than "/" when running in servlet container"
+* <https://github.com/rnewson/couchdb-lucene/pull/162>
+* <https://github.com/rnewson/couchdb-lucene/pull/152>
 
 ## Deploy New SW360
 
@@ -233,5 +231,4 @@ Skipping tests has the reason that usually, the sw360 is tested in the CI and th
 
 Liferay CE 7.3 will need to have some manual steps applied in order to complete the setup. Unfortunately, these cannot be automated (if you know how, please let us know). For earlier versions of Liferay, please refer to the main wiki page. For Liferay CE 7.3.3 please continue here:
 
-https://github.com/eclipse/sw360/wiki/Deploy-Liferay7.3
-
+<https://github.com/eclipse/sw360/wiki/Deploy-Liferay7.3>

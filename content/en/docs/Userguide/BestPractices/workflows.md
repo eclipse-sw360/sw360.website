@@ -46,7 +46,7 @@ The moderation is the basic way of applying changes if the document is not creat
 * Admins
 * Clearing admins
 * Moderators of this document
-* Other special roles, such as project responsible 
+* Other special roles, such as project responsible
 
 Please see the page [about the Role Authorization Model]({{< ref "../../Development/Dev-Role-Authorisation-Model.md" >}} "Dev Role" ) for more information.
 

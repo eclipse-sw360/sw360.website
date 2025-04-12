@@ -4,7 +4,6 @@ title: "Upgrade SW360 from 16.0 to 17.0"
 weight: 100
 ---
 
-
 [Checkout source code SW360 to Tag Version 17](#ref1)
 
 [Version of libraries](#ref2)
@@ -14,7 +13,6 @@ weight: 100
 [Build and deploy SW360 Version 17](#ref4)
 
 [Start and Configure Liferay](#ref5)
-
 
 ## Prepare source code to use release 17 {#ref1}
 
@@ -63,7 +61,6 @@ Link contains source: <https://github.com/eclipse/sw360.git>
 
 ## Liferay Database Migration
 
-
 * Go to `liferay-ce-portal-7.4.3.18-ga18/tools/portal-tools-db-upgrade-client` folder
 
 * Edit `app-server.properties` to add the following parameters:
@@ -94,7 +91,7 @@ Link contains source: <https://github.com/eclipse/sw360.git>
 * Finally, you can run the script with the following command:
 
 ```
-$ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
+./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
 ```
 
 * Move folder `liferay-ce-portal-7.4.3.18-ga18` to `/opt`
@@ -112,15 +109,15 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
 * After run command "mvn clean install -DskipTests" above, copy dependency in folder `/home/user/work16to17/sw360/deploy/jars` to  `${LIFERAY_INSTALL_7_4}/deploy`
 
   ```bash
-     $ cd /home/user/work16to17/sw360/deploy/jars
-     $ sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/deploy/
+     cd /home/user/work16to17/sw360/deploy/jars
+     sudo cp *.jar /opt/liferay-ce-portal-7.4.3.18-ga18/deploy/
   ```
 
 * We also suggest you change the environment settings (frontend/configuration/setenv.sh) to avoid the lack of memory before making and building SW360 or can reuse 7.3.4's setenv.sh.
 
   ```bash
-     $ sudo rm -rf ${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/bin/setenv.sh
-     $ sudo cp /home/user/work16to17/sw360/frontend/configuration/setenv.sh ${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/bin/
+     sudo rm -rf ${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/bin/setenv.sh
+     sudo cp /home/user/work16to17/sw360/frontend/configuration/setenv.sh ${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/bin/
   ```
 
 ## Install Couchdb Lucene
@@ -128,31 +125,32 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
 * SW360 uses for searching the contents of the couchdb databases a lucene-based server named couchdb-lucene
 
 * Run command download Couchdb Lucene
-    - `wget --no-check-certificate https://github.com/rnewson/couchdb-lucene/archive/v2.1.0.tar.gz -O couchdb-lucene.tar.gz`
+  * `wget --no-check-certificate https://github.com/rnewson/couchdb-lucene/archive/v2.1.0.tar.gz -O couchdb-lucene.tar.gz`
 
 * Note extract couchdb-lucene to folder `work` with path of work: `/home/user/work`
-    - `tar -xzf couchdb-lucene.tar.gz`
+  * `tar -xzf couchdb-lucene.tar.gz`
 
 * Run command:
-    - `cd couchdb-lucene-2.1.0`
-    - `sed -i "s/allowLeadingWildcard=false/allowLeadingWildcard=true/" ./src/main/resources/couchdb-lucene.ini `
-    - `sed -i "s/localhost:5984/admin:password@localhost:5984/" ./src/main/resources/couchdb-lucene.ini `
-    - `wget https://raw.githubusercontent.com/sw360/sw360vagrant/master/shared/couchdb-lucene.patch `
-    - `patch -p1 < couchdb-lucene.patch `
-    - `mvn clean install war:war`
-    - `sudo cp target/couchdb-lucene-*.war /opt/liferay-ce-portal-7.4.3.18-ga18/tomcat-9.0.56/webapps/couchdb-lucene.war`
+  * `cd couchdb-lucene-2.1.0`
+  * `sed -i "s/allowLeadingWildcard=false/allowLeadingWildcard=true/" ./src/main/resources/couchdb-lucene.ini`
+  * `sed -i "s/localhost:5984/admin:password@localhost:5984/" ./src/main/resources/couchdb-lucene.ini`
+  * `wget https://raw.githubusercontent.com/sw360/sw360vagrant/master/shared/couchdb-lucene.patch`
+  * `patch -p1 < couchdb-lucene.patch`
+  * `mvn clean install war:war`
+  * `sudo cp target/couchdb-lucene-*.war /opt/liferay-ce-portal-7.4.3.18-ga18/tomcat-9.0.56/webapps/couchdb-lucene.war`
 
 ## Version of libraries {#ref2}
 
-| Package Name  | Version  | 
+| Package Name  | Version  |
 |:--------------|:--------:|
 |   Liferay     |  7.4.3   |
-|   Tomcat      |  9.0.56  | 
+|   Tomcat      |  9.0.56  |
 |   Couchdb     |  3.2.2   |
 |   Open JDK    |  11.0.15 |
 |   Thrift      |  0.16.0  |
 
 * To check couchdb version: run `curl http://localhost_or_yourcouchdbserver:5984 | json_pp`
+
 ## Migrate database {#ref3}
 
 * Check migrate scripts from 16.0 to 17.0 by <https://github.com/eclipse/sw360/tree/master/scripts/migrations>
@@ -164,14 +162,13 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
   * `https://github.com/eclipse/sw360/blob/main/scripts/migrations/052_migrate_clearing_request_status.py`
   * `https://github.com/eclipse/sw360/blob/main/scripts/migrations/053_remove_whitespace_component_name.py`
 
-
 * Install pip for python 3
 
    if there is no proxy, skip option `--proxy=http://username:password@hostname:port`
 
      ```bash
-        $ sudo apt update
-        $ sudo apt install python3-pip
+        sudo apt update
+        sudo apt install python3-pip
      ```
 
 * Import package couchdb
@@ -202,17 +199,17 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
                 couch.resource.credentials=(DB_USER_NAME, DB_USER_PASSWORD)
               ```
        * Need to update 052 for python script
-          - Python 2.x code with Python 3.x. In Python 2, print is a statement and can be used without parentheses. However, in Python 3, print is a function and therefore always requires parentheses.
-        - Install library `pandas` of python.
-          - ```$ pip3 install pandas ```
+          * Python 2.x code with Python 3.x. In Python 2, print is a statement and can be used without parentheses. However, in Python 3, print is a function and therefore always requires parentheses.
+        * Install library `pandas` of python.
+          * ```$ pip3 install pandas```
 
-        - Run command:
+        * Run command:
 
          ```bash
-            $ python3 050_cleanup_eccinformation_duplicate_attributes.py
-            $ python3 051_change_eccStatus.py
-            $ python3 052_migrate_clearing_request_status.py
-            $ python3 053_remove_whitespace_component_name.py
+            python3 050_cleanup_eccinformation_duplicate_attributes.py
+            python3 051_change_eccStatus.py
+            python3 052_migrate_clearing_request_status.py
+            python3 053_remove_whitespace_component_name.py
          ```
 
          Check data change in file log:
@@ -232,7 +229,7 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
   `mvn clean install -DskipTests`
 
 * For deployment run the command
-  `mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL_7_4}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/webapps -Dtest=org/eclipse/sw360/rest/resourceserver/restdocs/* -Dsurefire.failIfNoSpecifiedTests=false -DRunRestIntegrationTest=true `
+  `mvn package -P deploy -Dbase.deploy.dir=. -Dliferay.deploy.dir=${LIFERAY_INSTALL_7_4}/deploy -Dbackend.deploy.dir=${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/webapps -Drest.deploy.dir=${LIFERAY_INSTALL_7_4}/tomcat-9.0.56/webapps -Dtest=org/eclipse/sw360/rest/resourceserver/restdocs/* -Dsurefire.failIfNoSpecifiedTests=false -DRunRestIntegrationTest=true`
 
 ## Start and Configure Liferay {#ref5}
 
@@ -249,8 +246,7 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
 
 * Url SW360 : `https://localhost:8080`
 
-
-### Re-indexing search indexes is required for major version upgrades. Here’s how to re-index:
+### Re-indexing search indexes is required for major version upgrades. Here’s how to re-index
 
 ```
 1. Click on the Global Menu (Global Menu icon) and select the Control Panel tab. The Control Panel appears.
@@ -260,15 +256,13 @@ $ ./db_upgrade.sh -j "-Xmx8000m -Dfile.encoding=UTF-8 -Duser.timezone=GMT"
 
 {{< figure src="/sw360/img/sw360screenshots/ReIndexSearch.png" >}}
 
-
 ### Setup SW360 for Liferay: Import *.lar Files
 
-- ```You need over-import *.lar files to the portet can show the sw360 icons/images```
+* ```You need over-import *.lar files to the portet can show the sw360 icons/images```
 
 For the setup of SW360 in Liferay, the portal description files, `*.lar` files need not be imported. There is no way except from doing this in the UI. If we are wrong with this, please let us know, because it is very annoying that these ever occurring steps cannot be automated with Liferay.
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-01-24_14.49.41.png" >}}
-
 
 The go into >  `Publishing` > `Import` which shows like this:
 
@@ -288,6 +282,6 @@ After successful importing, the same steps shall be repeated for the `Private_Pa
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/16.png" >}}
 
-Make sure that `Private_Pages_7_4_3_18_GA18.lar ` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
+Make sure that `Private_Pages_7_4_3_18_GA18.lar` is selected. Follow the other selections made as shown on the screenshot ... importing permissions ... mirror with overwriting, use the current author ...
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/17.png" >}}

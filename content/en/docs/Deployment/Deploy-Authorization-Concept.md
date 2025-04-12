@@ -2,7 +2,7 @@
 linkTitle: "Authorization Concept"
 title: "Authorization Concept"
 weight: 100
-description: 
+description:
   Describe different roles of authorization concepts on SW360
 ---
 

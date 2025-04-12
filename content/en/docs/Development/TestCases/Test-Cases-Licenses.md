@@ -13,7 +13,7 @@ Step | Action | Result
 3 | Click _Add License_ button | _New License_ page is displayed
 4 | Fill in _Fullname_ and _Shortname_ fields<br>_Eg:_<br> - Fullname: Open Logistics Foundation License v1.3 <br> - Shortname: OLFL-1.3 | Values are entered in the fields
 5 | Click _Create License_ button | - Navigate to the license list page and the message "Success:License added successfully!" is displayed <br> - The new license should be added to the licenses list
-6 | At _Details_ tab, update _External link for more information_ field <br> _Eg:_ https://eclipse.dev/sw360/docs/development/testcases/test-cases-licenses/ <br> Click _Save_ button| - The page remains the same and the message _"Success:SUCCESS"_ is displayed <br> - Data of the _"External link for more information"_ field is updated correctly
+6 | At _Details_ tab, update _External link for more information_ field <br> _Eg:_ <https://eclipse.dev/sw360/docs/development/testcases/test-cases-licenses/> <br> Click _Save_ button| - The page remains the same and the message _"Success:SUCCESS"_ is displayed <br> - Data of the _"External link for more information"_ field is updated correctly
 
 ## TC02: Create a license with all fields
 
@@ -67,6 +67,7 @@ Step | Action | Result
 3 | Click _Delete License_ button in the dialog | - Navigate to the license portlet and the message _"Success:License removed successfully!"_ is displayed <br> - The removed license has been removed to the license table
 
 ## TC06: Check Export Licenses
+
 Step | Action | Result
 ---:|:-----|:----
 1 | Sign In with a known user | User successfully signed in and _Home_ page is displayed

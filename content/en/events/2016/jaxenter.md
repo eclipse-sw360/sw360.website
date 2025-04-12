@@ -1,7 +1,7 @@
 ---
 key: jaxenter
 title: JAXenter
-topic: 
+topic:
   - Neu im Eclipse-Universum: SW360 – das Katalogisierungsprogramm für Software-Komponenten
 id: jaxenter
 format: article
@@ -14,9 +14,9 @@ speakers:
     speakerimage: ""
     address: ""
     linkedin: ""
-    github: ""  
-presentation: 
-  article_link: "https://jaxenter.de/eclipse-sw360-44641"
+    github: ""
+presentation:
+  article_link: "<https://jaxenter.de/eclipse-sw360-44641>"
 draft: false
 description: |
   In this article, Dominik Mohilo from JAXenter introduces SW360, a new cataloging tool for software components within the Eclipse ecosystem. The article explores how SW360 can help manage software components, track licenses, and ensure compliance across software development projects.

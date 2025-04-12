@@ -6,11 +6,13 @@ weight: 10
 
 The license portlet is different from the other portlets as there is no Details/Edit page for each element. There is only a combined edit/view page.
 We will add the license text to licenses in the thrift file:
+
 ```thrift
 13: optional string text;
 ```
 
 To update the text we write a liferay Action in the LicensesPortlet:
+
 ```java
     @UsedAsLiferayAction
     public void changeText(ActionRequest request, ActionResponse response) throws PortletException, IOException {
@@ -40,11 +42,13 @@ To update the text we write a liferay Action in the LicensesPortlet:
 ```
 
 To integrate it in the jsp we make the according changes, important to note is the ActionUrl that we define:
+
 ```html
 <portlet:actionURL var="changeLicenseTextURL" name="changeText">
     <portlet:param name="<%=PortalConstants.LICENSE_ID%>" value="${licenseDetail.id}" />
 </portlet:actionURL>
 ```
+
 A good practice to name fields in jsps is to use the thrift field names:
 
 ```html

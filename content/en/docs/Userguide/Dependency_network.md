@@ -2,7 +2,7 @@
 linkTitle: "Dependency-Network-Feature"
 title: "Dependency Network Feature"
 weight: 100
-description: 
+description:
   Dependency-Network-Feature
 ---
 
@@ -37,12 +37,11 @@ Now the “Linked Releases” table could show all dependencies of a project (bo
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/new_edit_GUI.png" >}}
 
 ## **2.1. The changes of edit project GUI**
-In this section, we will introduce the changes in GUI behaviors. We modified or added 5 sub-functions below: 
- 
+In this section, we will introduce the changes in GUI behaviors. We modified or added 5 sub-functions below:
+
 #### **a. Modify the “Add Releases” button: This button will add a direct dependency (release) in the dependency graph of this project.**
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Add_root_release_button.png" >}}
-
 
 #### **b. A new icon button to add a dependency (release) to another dependency (release) in the dependency graph. Note that this dependency added is seen as the transitive dependency of this project.**
 
@@ -56,11 +55,9 @@ In this section, we will introduce the changes in GUI behaviors. We modified or 
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Select_version_box.png" >}}
 
-
 #### **e. The “Check Dependency Network” button will compare and show the different dependency information which is not consistent with the default one stored on the component page by highlighting them. The inconsistency usually happens after users modified the dependency graph or imported an old project.**
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Check_diff_button.png" >}}
-
 
 ## **2.3 Rest API changes**
 
@@ -69,6 +66,7 @@ In this section, we will introduce the changes in GUI behaviors. We modified or 
 **a. 3.3.35. Get a single project with dependencies network**
 
 The response will include the dependencyNetwork field(It will show the dependency network of project (direct and indirect releases)):
+
 ```
 {
   "name" : "Emerald Web",

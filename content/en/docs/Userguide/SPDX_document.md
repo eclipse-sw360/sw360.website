@@ -2,7 +2,7 @@
 linkTitle: "SPDX Document"
 title: "SPDX Document"
 weight: 100
-description: 
+description:
   SPDX Document
 ---
 
@@ -21,18 +21,18 @@ The following changes will work when **spdx.document.enabled = true** only.
 SPDX Document manages Document Creation Information, Package Information, Other Licensing Information Detected, Relationships between SPDX Elements, Annotations
 
 # **2. How to use?**
-**1. File Test Import**: https://github.com/spdx/tools-java/blob/master/testResources/SPDXRdfExample-v2.3.spdx.rdf
+**1. File Test Import**: <https://github.com/spdx/tools-java/blob/master/testResources/SPDXRdfExample-v2.3.spdx.rdf>
 
 **2. Import SPDX in Page Component**
 
 #### Import
 
-- Support RDF/XML, SPDX. 
+- Support RDF/XML, SPDX.
 - Import all Packages in the SPDX file (main package and dependent packages)
 - Import relationships related to Packages and SPDX Documents (relationships related to File and Snippet are not imported)
 
-
 #### Steps
+
 1. Go to component page
 2. Click "Import SPDX BOM" button
 3. Upload SPDXRdfExample-v2.3.spdx.rdf
@@ -49,9 +49,8 @@ SPDX Document manages Document Creation Information, Package Information, Other 
 
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Full_Page_of_Release_Glibc.png" >}}
 
-##### Tab SPDX Document - Lite Page of Release Glibc(2.11.1) 
+##### Tab SPDX Document - Lite Page of Release Glibc(2.11.1)
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Lite_Page_of_Release_Glibc(2.11.1).png" >}}
-
 
 ##### Tab SPDX Document  - Full Page of Release Jena (3.12.0)
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Full_Page_of_Release_Jena_(3.12.0).png" >}}
@@ -59,13 +58,11 @@ SPDX Document manages Document Creation Information, Package Information, Other 
 ##### Tab SPDX Document - Lite Page of Release  Jena (3.12.0)
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Lite_Page_of_Release_Jena_(3.12.0).png" >}}
 
-
 ##### Tab SPDX Document  - Full Page of Release Saxon (8.8)
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Full_Page_of_Release_Saxon_(8.8).png" >}}
 
 ##### Tab SPDX Document - Lite Page of Release  Saxon (8.8)
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Lite_Page_of_Release_Saxon_(8.8).png" >}}
-
 
 **3. Feature: Edit , Add tab SPDX Document in Release**
 
@@ -74,7 +71,6 @@ SPDX Document manages Document Creation Information, Package Information, Other 
 
 ##### Edit tab SPDX Document - Lite Page
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Edit_tab_SPDX_Document_Lite_Page.png" >}}
-
 
 ##### Add tab SPDX Document
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Add_tab_SPDX_Document.png" >}}

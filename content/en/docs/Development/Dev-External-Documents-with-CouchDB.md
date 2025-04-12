@@ -11,11 +11,13 @@ However these attachments may be used by other documents as well, e.g. license i
 In such cases an external document might be the better model. For example the attachment usage can be stored along the metadata without touching the owner document on update.
 
 ## Advantages of external documents
+
 * single documents with a clear separation to other documents
 * easy identification
 * might be loaded and updated standalone
 
 ## Advantages of internal documents
+
 * Very fast loading along with the owner
 * Easy handling since only the owner must be loaded or updated
 
@@ -30,6 +32,7 @@ In any case it is highly dependent on the use case whether external documents ar
 
 #### Couch-DB theory
 At the time of writing, support of external (or linked) documents in Couch-DB is limited. Consider the following documents:
+
 ```javascript
 project = {
    _id: "p1",
@@ -53,7 +56,9 @@ attachment2 = {
     sha1: "fed9876"
 }
 ```
+
 Unfortunately there is no way to get the project document with the attachments directly included. With the correct view you are able to retrieve all these documents in a single request:
+
 ```javascript
 function(doc) {
     if(doc.type === "attachment") {
@@ -64,7 +69,9 @@ function(doc) {
     }
 }
 ```
+
 You might see the trick: the project document as well as the attachment documents are indexed with the id of the project. This way you get all three documents when querying the view with the id of the project:
+
 ```javascript
 {
    "total_rows":5,
@@ -103,29 +110,33 @@ You might see the trick: the project document as well as the attachment document
     ]
 }
 ```
+
 **Note** is will only work if you query the view with `include_docs` set to `true`.
-**Note** include_docs will only work at the top level of a value. In other words it will only recognize the following to situations: 
+**Note** include_docs will only work at the top level of a value. In other words it will only recognize the following to situations:
+
 * null: if the value is null, the document which is identified by the key is included
 * { _id: "..." }: the document identified by the given id is included.
 To be clear: transitive inclusions will not work!
-**Note** See also https://wiki.apache.org/couchdb/Introduction_to_CouchDB_views#Linked_documents.
+**Note** See also <https://wiki.apache.org/couchdb/Introduction_to_CouchDB_views#Linked_documents>.
 
 ### Implementation with Ektorp
-https://github.com/eclipse/sw360/pull/596 show an implementation to transparently read such results from Couch-DB. It consists of:
+<https://github.com/eclipse/sw360/pull/596> show an implementation to transparently read such results from Couch-DB. It consists of:
+
 * new methods in the database connector which are aware of loading linked documents
 * a response handler used for parsing the results when requesting linked documents
 * two annotation classes to mark fields which contain ids for linked documents
 After the branch was merged, the new feature can be used in only three steps. You need:
+
 1. A view that loads the "main" documents along with their linked documents
 1. A special method in your database handler / database repository which calls the new method from the connector
 1. A mixin for your data object which annotates the fields which contain ids to linked documents
 
-#### Notes for 1.
+#### Notes for 1
 Have a look at mapping function above in the theory section. Of course you may add more than one type of linked documents, e.g. not only attachments but releases as well.
 You may also emit whole objects instead of ids only. This way Couch-DB does not have to lookup each entry. However including ids over objects is an own topic.
-#### Notes for 2.
+#### Notes for 2
 You should write methods in your repository as well as in your database handler that uses the new methods from the database connector.
-#### Notes for 3.
+#### Notes for 3
 Be sure that the used object mapper in your database handler is aware of the mixin. Of course you can annotate more than one field. All annotated fields will be respected on loading. However, if the view does not contain an object that should be resolved, it will be replaced by null. The LinkedDocuments-annotation even allows you to name a different destination field for the resolved objects for easier integration into the existing code.
 
 ## Usage with Ektorp
@@ -147,6 +158,7 @@ Internally Ektorp is also using special views for getting linked documents to wo
 
 This method works just like the Ektorp way. In addition a slow transition from internal to external documents is possible, since the custom serialization methods will handle both cases directly. Any embedded documents will be externalized on first update of the owner object.
 The following classes are needed:
+
 1. Repository for the new external documents
 1. DatabaseHandler for the new external documents
 1. Mixin-Class to add annotations to the field with external documents
@@ -155,7 +167,8 @@ The following classes are needed:
 
 #### Example for externalizing attachments
 ##### Mixin-Class
-This will configure Ektorp to use a special class for this field. We use a special serializer for the field instead of for the type (in this case Attachment), so we can do serialization/deserialization for all attachments at once. If we would use a special serializer, every 
+This will configure Ektorp to use a special class for this field. We use a special serializer for the field instead of for the type (in this case Attachment), so we can do serialization/deserialization for all attachments at once. If we would use a special serializer, every
+
 ```java
 public abstract class SplitAttachmentsMixin extends DatabaseMixIn {
     @JsonSerialize(using = AttachmentSetSerializer.class)
@@ -165,6 +178,7 @@ public abstract class SplitAttachmentsMixin extends DatabaseMixIn {
 ```
 
 ##### Mapper factory
+
 ```java
 public class SplitAttachmentsMapperFactory extends MapperFactory {
 
@@ -207,6 +221,7 @@ public class SplitAttachmentsMapperFactory extends MapperFactory {
 ```
 
 ##### Serializer
+
 ```java
 public class AttachmentSetSerializer extends JsonSerializer<Set<Attachment>> {
 
@@ -242,6 +257,7 @@ public class AttachmentSetSerializer extends JsonSerializer<Set<Attachment>> {
 ```
 
 #### Deserializer
+
 ```java
 public class AttachmentSetDeserializer extends JsonDeserializer<Set<Attachment>> {
 
