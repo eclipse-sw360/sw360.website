@@ -5,22 +5,30 @@ weight: 12
 ---
 
 **Frontend Properties**: All the sw360 frontend properties are mentioned in [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/resources/sw360.properties) file.
-For example;
-https://github.com/eclipse/sw360/wiki/
- - Different categories for components,
 
+For example:  
+[SW360 Wiki](https://github.com/eclipse/sw360/wiki/)
+
+- Different categories for components,
+
+    ```properties
     component.categories=[ "framework", "SDK", "big-data", "build-management", "cloud", "content", "database", "graphics", "http", "javaee", "library", "mail", "mobile", "network-client", "network-server", "osgi", "security", "testing", "virtual-machine", "web-framework", "xml"]
+    ```
 
- - Dropdown for project type,
+- Dropdown for project type,
 
+    ```properties
     project.type=[ "Customer Project", "Internal Project", "Product", "Service", "Inner Source" ]
+    ```
 
- - API Token generation,
+- API Token generation,
 
+    ```properties
     rest.apitoken.generator.enable=false
+    ```
 
- - Activation of portlets and components
+- Activation of portlets and components
 
-**Backend Properties**: This, [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/backend/common/src/main/resources/sw360.properties) file contains the sw360 backend properties. This file contains the common properties for the backend services and also holds the setting for the mail utility.
+**Backend Properties**: This [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/backend/common/src/main/resources/sw360.properties) file contains the sw360 backend properties. This file contains the common properties for the backend services and also holds the setting for the mail utility.
 
-You can change these default values by mentioning it in the sw360.properties file, present in /etc/sw360 folder. This path is to be created by the admin. After changing the properties, server needs to be restarted in order to make the changes effective. If the properties file is not present in the required folder, the default values will be selected.
+You can change these default values by mentioning them in the `sw360.properties` file, present in `/etc/sw360` folder. This path is to be created by the admin. After changing the properties, the server needs to be restarted in order to make the changes effective. If the properties file is not present in the required folder, the default values will be selected.

@@ -30,6 +30,7 @@ The SW360 is a software catalogue application with which you can:
 - Browse licenses and their obligations
 
 SW360 is
+
 - Based on the Open Source Liferay portal server
 - Integrated with Fossology
 
@@ -44,9 +45,9 @@ SW360 is
 
 | Name | URL | Remarks |
 | --- | --- | --- |
-| Main home page | https://www.eclipse.org/sw360/ | main home page with general info |
-| Project @ Github | https://github.com/eclipse/sw360 | where the music plays |
-| Developer mailing list | sw360-dev@eclipse.org | for developers, discussion about developing |
-| Slack Channel | https://sw360chat.slack.com/ | the main chat spot, everybody is welcome |
+| Main home page | [https://www.eclipse.org/sw360/](https://www.eclipse.org/sw360/) | main home page with general info |
+| Project @ Github | [https://github.com/eclipse/sw360](https://github.com/eclipse/sw360) | where the music plays |
+| Developer mailing list | [sw360-dev@eclipse.org](mailto:sw360-dev@eclipse.org) | for developers, discussion about developing |
+| Slack Channel | [https://sw360chat.slack.com/](https://sw360chat.slack.com/) | the main chat spot, everybody is welcome |
 | Slack Channel Invitation Link | [Sharable join link to join](https://join.slack.com/t/sw360chat/shared_invite/enQtNzg5NDQxMTQyNjA5LThiMjBlNTRmOWI0ZjJhYjc0OTk3ODM4MjBmOGRhMWRmN2QzOGVmMzQwYzAzN2JkMmVkZTI1ZjRhNmJlNTY4ZGI) | that should bring you in |
 | sw360 developer meeting | [Meeting Info](https://github.com/eclipse-sw360/sw360/wiki/Developer-Meetings) | Everyone is welcome! |
