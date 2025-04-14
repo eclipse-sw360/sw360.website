@@ -6,7 +6,7 @@ linkTitle: "License Naming"
 ## Guidelines
 Generally the license naming should conform with the SPDX Spec and the SPDX License List
 
-Please see the "License List Fields" from [<span style="color:red">&#8599;</span> https://spdx.org/spdx-license-list/license-list-overview#fields](https://spdx.org/spdx-license-list/license-list-overview#fields)
+Please see the "License List Fields" from [<span style="color:red">&#8599;</span> https://github.com/spdx/license-list-XML/blob/main/DOCS/license-fields.md](https://github.com/spdx/license-list-XML/blob/main/DOCS/license-fields.md)
 
 where there is especially for identifier:
 
@@ -110,4 +110,4 @@ The following text is not a license statement nor a reference to licensing but a
 ## Open Questions
 - How to deal with notice files
 
-(1) [<span style="color:red">&#8599;</span> https://spdx.org/spdx-specification-21-web-version](https://spdx.org/spdx-specification-21-web-version)
+(1) [<span style="color:red">&#8599;</span> https://spdx.dev/use/specifications/](https://spdx.dev/use/specifications/)
