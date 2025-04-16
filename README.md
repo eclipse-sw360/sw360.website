@@ -33,72 +33,106 @@ The result of the jenkins build is pushed to: http://git.eclipse.org/c/www.eclip
 
 The jenkins jobs looks every 15 minutes after changes on the repository. If it detects changes it will start the hugo build and copy the generated static html files to git.eclipse.org. From there another job fetches the files and copies them to the actual static webspace of the Eclipse Foundation.
 
+# SW360 Website Setup Guide
+
+This guide provides instructions to set up and run the SW360 website locally using Docker.
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Local Development Using Docker](#local-development-using-docker)
+- [Installation Guide Using Docker](#installation-guide-using-docker)
 - [Troubleshooting](#troubleshooting)
 - [Project Structure](#project-structure)
 - [Support](#support)
 
+---
+
 ## Prerequisites
 
-Ensure you have the following installed before proceeding:
+Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is installed and running on your system.
 
-- **Docker** (Check installation by running `docker --version` in the terminal)
-- **Bash** (Available by default on macOS and Linux; for Windows, use Git Bash or WSL)
+- **Verify installation** by running:
+    ```bash
+    docker --version
+    ```
 
-## Local Development Using Docker
+## Installation Guide Using Docker
 
-If you have Docker installed on your system, you can quickly set up a local development environment and test changes in real time.
+### Set Up the Local Server
 
-## Setting Up the Local Server
+#### Linux/macOS Setup
 
-1. Open a terminal and navigate to the project root directory.
-
-2. Run the following command to start the local server:
-
-   ```sh
-   bash docker_serve_local.sh
-   ```
-
+1. Open a terminal and ensure you’re in the project root directory.
+2. Run the Docker script to start the local server:
+    ```bash
+    bash docker_serve_local.sh
+    ```
 3. Once the server starts, open your browser and visit:
+    ```text
+    http://localhost:1313/sw360
+    ```
+4. Changes to the code will automatically reload in the browser.
 
-   ```sh
-   http://localhost:1313/sw360
-   ```
+#### Windows Setup
 
-4. Any changes made to the code will automatically reflect in the browser.
+1. Ensure Docker Desktop is Running: Open Docker Desktop and confirm the Docker engine is active.
+2. Choose one of the following methods:
+
+**1: Using Git Bash**
+
+1. Make the script executable (if needed):
+    ```bash
+    chmod +x docker_serve_local.sh
+    ```
+2. Run the script:
+    ```bash
+    bash docker_serve_local.sh
+    ```
+
+**2: Using WSL**
+
+1. Ensure WSL is installed and Docker Desktop is configured for WSL 2 integration:
+    - In Docker Desktop, go to Settings > Resources > WSL Integration and enable your Linux distribution.
+2. Make the script executable (if needed):
+    ```bash
+    chmod +x docker_serve_local.sh
+    ```
+3. Run the script:
+    ```bash
+    bash docker_serve_local.sh
+    ```
+4. Once running, access the site at `http://localhost:1313/sw360` (check the script output for the exact port).
+
+**Note:** The Hugo development server includes live reload functionality. Any changes to content or layouts will update in real-time, enabling rapid development and testing.
 
 ## Troubleshooting
 
-### 1. Docker is not running
+1. **Permission Denied**
 
-**Issue:** `bash: docker: command not found`
+    **Issue:** Permission denied when running `docker_serve_local.sh`
+    **Solution:**
+    1. Grant execute permissions:
+        ```bash
+        chmod +x docker_serve_local.sh
+        ```
+    2. Retry:
+        ```bash
+        bash docker_serve_local.sh
+        ```
 
-**Solution:**
+2. **Line Ending Errors**
 
-- Ensure Docker is installed and running.
-- On macOS or Windows, open Docker Desktop.
-- On Linux, start Docker with:
-  ```sh
-  sudo systemctl start docker
-  ```
+    **Issue:** `$'r': command not found` (common when the script has Windows-style line endings)
+    **Solution:**
+    1. Convert the script to Unix format:
+        ```bash
+        dos2unix docker_serve_local.sh
+        ```
+    2. Run it again:
+        ```bash
+        bash docker_serve_local.sh
+        ```
 
-### 2. Permission issues running the script
-
-**Issue:** `Permission denied` error when executing `docker_serve_local.sh`. 
-
-**Solution:**
-
-- Give execution permission to the script:
-  ```sh
-  chmod +x docker_serve_local.sh
-  ```
-- Run it again:
-  ```sh
-  bash docker_serve_local.sh
-  ```
 
 ## Project Structure
 ```
@@ -110,6 +144,7 @@ sw360.website/
 ├── docker_serve_local.sh  # Docker development script
 └── README.md              # Project documentation and contribution guidelines
 ```
+
 ## Support
 
 - Report issues: [GitHub Issues](https://github.com/eclipse/sw360.website/issues)
