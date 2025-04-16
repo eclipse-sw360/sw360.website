@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # For Go modules (used by Hugo modules)
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # For npm packages (JS-based assets)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # For Git submodules (e.g. Hugo themes)
+  - package-ecosystem: "gitsubmodule"
+    directory: "/themes/docsy"
+    schedule:
+      interval: "weekly"
