@@ -20,6 +20,7 @@ Information regarding source code management, builds, coding standards, and
 more.
 
 * https://projects.eclipse.org/projects/technology.sw360/developer
+* https://eclipse.dev/sw360/docs/development/dev-semantic-commits/
 
 The project maintains the following source code repositories
 
