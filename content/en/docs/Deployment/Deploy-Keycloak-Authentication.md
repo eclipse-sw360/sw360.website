@@ -272,46 +272,8 @@ sw360-keycloak-user-storage-provider.jar
 
 ## Clone SW360 Frontend Repository
 
-* Run the git clone command,
-  `git clone git@github.com:eclipse-sw360/sw360-frontend.git`
-* Create `.env` file inside the repository and add the following data:
-```
-NEXTAUTH_SECRET = 'secret'
-NEXT_PUBLIC_SW360_API_URL = 'http://localhost:8080'
-NEXTAUTH_URL='http://localhost:3000'
-NEXT_PUBLIC_SW360_REST_CLIENT_ID='trusted-sw360-client'
-NEXT_PUBLIC_SW360_REST_CLIENT_SECRET='sw360-secret'
-NEXT_PUBLIC_ENABLE_SW360_OAUTH_PROVIDER='true'
-#possible values are sw360basic, sw360oauth, keycloak
-NEXT_PUBLIC_SW360_AUTH_PROVIDER='keycloak'
-SW360_KEYCLOAK_CLIENT_ID=
-SW360_KEYCLOAK_CLIENT_SECRET=
-AUTH_ISSUER=http://localhost:8083/realms/sw360
-```
-* Get `SW360_KEYCLOAK_CLIENT_ID` and `SW360_KEYCLOAK_CLIENT_SECRET` from
-  Keycloak console
-  * `SW360_KEYCLOAK_CLIENT_ID` will be present in your client's *Settings* page.
-  * `SW360_KEYCLOAK_CLIENT_SECRET` will be present in your client's
-    *Credentials* page
-
-## Install NVM
-
-* Installs NVM (Node Version Manager)
-  `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash`
-* Download and Install Node.js
-  `nvm install 20.5.1`
-* Verifies the right Node.js version is in the environment
-  `node -v` # should print `v20.5.1`
-* Verifies the right NPM version is in the environment
-  `npm -v` # should print `10.2.4`
-
-## Build the Frontend
-```
-npm install
-npm run build
-npm run start
-/usr/bin/google-chrome-stable --disable-web-security --user-data-dir="/home/${USER}/cors" --allow-file-access-from-files
-```
+Follow the instructions to setup the frontend using keycloak from
+[Version 19.x on Debian 12 guide, section 3.3.3](../baremetal/deploy-19-natively/#333-configure-frontend-to-use-keycloak).
 
 ## Token Creation for REST
 
