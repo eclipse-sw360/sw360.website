@@ -110,4 +110,4 @@ The following text is not a license statement nor a reference to licensing but a
 ## Open Questions
 - How to deal with notice files
 
-(1) [<span style="color:red">&#8599;</span> https://spdx.dev/use/specifications/](https://spdx.dev/use/specifications/)
+(1) [<span style="color:red">&#8599;</span> https://spdx.github.io/spdx-spec/v2.3/](https://spdx.github.io/spdx-spec/v2.3/)
