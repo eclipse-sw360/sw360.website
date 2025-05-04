@@ -108,7 +108,7 @@ You might see the trick: the project document as well as the attachment document
 * null: if the value is null, the document which is identified by the key is included
 * { _id: "..." }: the document identified by the given id is included.
 To be clear: transitive inclusions will not work!
-**Note** See also https://wiki.apache.org/couchdb/Introduction_to_CouchDB_views#Linked_documents.
+**Note** See also [https://wiki.apache.org/couchdb/Introduction_to_CouchDB_views#Linked_documents](https://docs.couchdb.org/en/stable/ddocs/views/joins.html).
 
 ### Implementation with Ektorp
 https://github.com/eclipse/sw360/pull/596 show an implementation to transparently read such results from Couch-DB. It consists of:
