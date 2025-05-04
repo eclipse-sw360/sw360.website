@@ -1,9 +1,9 @@
-<footer class="footer py-5 row d-print-none">
+<footer class="footer py-5 row d-print-none px-5">
   <div class="container-fluid">
-    <div class="row w-100 justify-content-center">
-      <div class="col-md-3 ps-5">
+    <div class="row w-100 justify-content-center align-items-start flex-column flex-lg-row">
+      <div class="col-12 col-lg-3 text-center order-1 order-lg-0 mb-5 mb-lg-0">
         <h4 class="mb-3">LEGAL</h4>
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column align-items-center">
           <a href="https://www.eclipse.org/legal/privacy.php" style="color: #999" class="mb-2">Privacy Policy</a>
           <a href="https://www.eclipse.org/legal/termsofuse.php" style="color: #999" class="mb-2">Terms of Use</a>
           <a href="https://www.eclipse.org/legal/copyright.php" style="color: #999" class="mb-2">Copyright Agent</a>
@@ -12,41 +12,46 @@
         </div>
       </div>
 
-      <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
-        <p class="text-center"><strong>Eclipse SW360</strong> is supported by</p>
-        <p class="text-center">
+      <div class="col-12 col-lg-4 d-flex flex-column align-items-center justify-content-center text-center order-2 order-lg-1">
+        <p><strong>Eclipse SW360</strong> is supported by</p>
+        <p class="d-flex align-items-center justify-content-center gap-3">
           <a href="https://www.siemens.com/">
             <img
               src="{{ .Site.BaseURL}}/img/clients/Siemens.png"
               class="footer-img"
-              width="100"
+              width="90"
               alt="Siemens"
-          /></a>
+            />
+          </a>
           <a href="https://cariad.technology">
             <img
               src="{{ .Site.BaseURL}}/img/clients/Cariad.png"
               class="footer-img"
-              width="140"
+              width="120"
               alt="Cariad"
-          /></a>
+            />
+          </a>
         </p>
 
         {{ with .Site.Params.copyright }}
-        <small class="text-center">&copy; {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>
-        {{ end }} 
-        <div class="text-center" style="margin-top: 10px"><a href="http://www.eclipse.org/">
-          <img
-            src="{{ .Site.BaseURL}}/img/clients/Eclipse.png"
-            class="footer-img"
-            width="100"
-            alt="Eclipse Foundation"
-        /></a></div>
+        <small>© {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>
+        {{ end }}
+        <div style="margin-top: 10px">
+          <a href="http://www.eclipse.org/">
+            <img
+              src="{{ .Site.BaseURL}}/img/clients/Eclipse.png"
+              class="footer-img"
+              width="100"
+              alt="Eclipse Foundation"
+            />
+          </a>
+        </div>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-12 col-lg-3 order-3 order-lg-2"></div>
     </div>
   </div>
-  <!-- /.container -->
 </footer>
+
 {{ define "footer-links-block" }}
 <ul class="list-inline mb-0">
   {{ range . }}
