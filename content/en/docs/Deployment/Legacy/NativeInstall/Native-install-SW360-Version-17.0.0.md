@@ -7,12 +7,13 @@ description:
 ---
 
 # How to install and run SW360 v17.0.0
-# These instructions worked on Ubuntu 20.04 and has detailed explanations for newcomers.
+These instructions worked on Ubuntu 20.04 and has detailed explanations for newcomers.
 
-## This is a guide with detailed explanation of how to install and run SW360 natively on you local machine.
-## It includes installation of all dependencies manually, which will not use docker or other container system during the installation or run.
+This is a guide with detailed explanation of how to install and run SW360 natively on you local machine.
+It includes installation of all dependencies manually, which will not use docker or other container system during the installation or run.
 
 SW360 is an Open Source project. The [SW360] repository and [SW360 website] repositories are published on GitHub.
+
 ## 1. Overview
 ### 1.1 SW360 Portal
 
