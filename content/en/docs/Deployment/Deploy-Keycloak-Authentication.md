@@ -115,6 +115,24 @@ sw360-keycloak-event-listener.jar
 sw360-keycloak-user-storage-provider.jar
 ```
 
+### Setup Provider to use external thrift server
+The KeyCloak providers use thrift clients to connect to the SW360 backend. By default, they look for the thrift
+client to be listening on `http://localhost:8080`, which will be true for if KeyCloak and SW360 backend are running on
+the same server. However, if they are not, you need to set the thrift client URL by providing SPI configuration value
+via KeyCloak's [Configuration provider](https://www.keycloak.org/server/configuration-provider#_configuration_option_format).
+
+1. If you are using `keycloak.conf` to store your configuration, add the following
+    line to the file:
+    ```
+    spi-events-listener-sw360-add-user-to-couchdb-thrift=http://<thrift-backend-server>:<thrift-backend-port>
+    spi-storage-sw360-user-storage-jpa-thrift=http://<thrift-backend-server>:<thrift-backend-port>
+    ```
+2. If you are using environment variables, configuration can be set with variables:
+    ```
+    KC_SPI_EVENTS_LISTENER_SW360_ADD_USER_TO_COUCHDB_THRIFT=http://<thrift-backend-server>:<thrift-backend-port>
+    KC_SPI_STORAGE_SW360_USER_STORAGE_JPA_THRIFT=http://<thrift-backend-server>:<thrift-backend-port>
+    ```
+
 ## Keycloak Admin Console
 
 * Login to Keycloak admin console.
