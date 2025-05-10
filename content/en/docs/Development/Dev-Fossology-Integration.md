@@ -8,7 +8,7 @@ description: "Basis of communication between SW360 and FOSSology"
 Basic communication with the FOSSology server is done over an SSH connection: the fossology service of SW360 executes remote commands on the FOSSology server.
 
 The commands that are executed are the bash scripts found inside `src-fossology/src/main/resources/scripts/`, they are copied into the home directory of the ssh user (either manually or through the admin portlet).
-See [Setup of connection with Fossology](Fossology-Setup) for configuration details.
+See [Setup of connection with Fossology](./Dev-Fossology-Integration.md) for configuration details.
 
 ```
 \- src-fossology/src/main/resources/
