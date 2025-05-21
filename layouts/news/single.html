@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <article class="news-article bg-white p-4 rounded shadow-sm">
+                    <h1 class="display-4 mb-4">{{ .Title }}</h1>
+                    
+                    {{ if .Params.date }}
+                    <div class="news-meta mb-4">
+                        <div class="d-flex align-items-center text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            <span>{{ .Date.Format "January 2, 2006" }}</span>
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.description }}
+                    <div class="news-description mb-4">
+                        <p class="lead">{{ .Params.description }}</p>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Content }}
+                    <div class="news-content">
+                        {{ .Content }}
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.tags }}
+                    <div class="news-tags mt-4">
+                        {{ range .Params.tags }}
+                        <span class="badge bg-light text-dark me-2">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }} 
