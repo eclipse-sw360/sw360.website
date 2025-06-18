@@ -130,5 +130,4 @@ Liferay CE 7.3 will need to have some manual steps applied in order to complete 
 
 This is the legacy guide for Liferay CE 7.3.3 but is valid for current 7.4.3 deployment:
 
-https://www.eclipse.org/sw360/docs/deployment/legacy/deploy-liferay7.3/
-
+[Liferay Deployment](/sw360/docs/deployment/legacy/deploy-liferay7.3/)
