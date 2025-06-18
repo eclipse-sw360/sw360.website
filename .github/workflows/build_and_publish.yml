@@ -89,12 +89,6 @@ jobs:
         with:
           name: website
 
-      - name: Commit files
-        run: |
-          git config --local user.email "sw360-actions[bot]@users.noreply.github.com"
-          git config --local user.name "SW360 Bot [bot]"
-          git commit -a -m "Website build ${{ github.workflow }}-${{ github.run_number }}"
-
       - name: Push changes
         uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4.7.3
         with:
