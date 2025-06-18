@@ -2,6 +2,8 @@ name: Build and Archive
 on:
   push:
     tags: v*
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -24,7 +26,7 @@ jobs:
   build_website:
     name: Build and Archive
     runs-on: ubuntu-24.04
-    needs: ["linter_check"]
+    needs: [ "linter_check" ]
     env:
       PROJECT_NAME: sw360
       PROJECT_BOT_NAME: SW360 Bot
@@ -62,19 +64,53 @@ jobs:
         shell: bash
         run: |
           mkdir -p themes/docsy
-          hugo --minify -b 'https://www.eclipse.org/sw360/'
+          hugo --minify -b 'https://eclipse.dev/sw360/'
 
       - name: Archive
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
         with:
           name: website
           path: ./public
+
+  main_publish:
+    if: github.ref == 'refs/heads/main'
+    name: Archive and Published Builds on main
+    runs-on: ubuntu-latest
+    needs: [ build_website ]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: 'eclipse-sw360/sw360.website.published'
+
+      - name: Download Artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: website
+
+      - name: Commit files
+        run: |
+          git config --local user.email "sw360-actions[bot]@users.noreply.github.com"
+          git config --local user.name "SW360 Bot [bot]"
+          git commit -a -m "Website build ${{ github.workflow }}-${{ github.run_number }}"
+
+      - name: Push changes
+        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4.7.3
+        with:
+          folder: .
+          branch: main
+          git-config-name: "SW360 Bot [bot]"
+          git-config-email: "sw360-actions[bot]@users.noreply.github.com"
+          repository-name: "eclipse-sw360/sw360.website.published"
+          commit-message: "Website build ${{ github.workflow }}-${{ github.run_number }}"
+          token: ${{ secrets.GH_PUBLISH_TOKEN }}
 
   create_release:
     if: startsWith(github.ref, 'refs/tags/')
     name: Archive and Published Tagged Build
     runs-on: ubuntu-latest
-    needs: [build_website]
+    needs: [ build_website ]
     steps:
       - name: Create Release
         id: create_release

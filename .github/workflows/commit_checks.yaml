@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    name: Validade Pull Request Commits
+    name: Validate Pull Request Commits
     runs-on: ubuntu-latest
 
     steps:
