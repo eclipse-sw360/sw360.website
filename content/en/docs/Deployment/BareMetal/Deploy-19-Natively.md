@@ -121,7 +121,7 @@ Get the latest version of [Apache Tomcat 11](https://tomcat.apache.org/download-
 and install it in `/opt`
 
 ```shell
-curl -L 'https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.4/bin/apache-tomcat-11.0.4.tar.gz' -o ~/Downloads/tomcat-11.0.4.tar.gz
+curl -L 'https://archive.apache.org/tomcat/tomcat-11/v11.0.8/bin/apache-tomcat-11.0.8.tar.gz' -o ~/Downloads/tomcat-11.0.8.tar.gz
 sudo tar -xzvf ~/Downloads/tomcat-11.0.4.tar.gz -C /opt
 sudo chown -R $USER:$USER /opt/apache-tomcat-11.0.4/
 ```
