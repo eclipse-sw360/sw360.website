@@ -1,0 +1,74 @@
+{{ define "main" }}
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="news-sidebar bg-white p-4 rounded shadow-sm">
+                    <h4 class="mb-4">{{ .Title }}</h4>
+                    <div class="list-group">
+                        {{ $currentPage := . }}
+                        {{ range .Pages.ByDate.Reverse }}
+                        <a href="#" 
+                           class="list-group-item list-group-item-action news-link" 
+                           data-content-url="{{ .RelPermalink }}"
+                           onclick="loadNewsContent(event, '{{ .RelPermalink }}')">
+                            {{ .Title }}
+                            {{ if .Date }}
+                            <small class="d-block text-muted">{{ .Date.Format "January 2, 2006" }}</small>
+                            {{ end }}
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-9">
+                <div id="news-content" class="bg-white p-4 rounded shadow-sm">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function loadNewsContent(event, url) {
+    event.preventDefault();
+    
+    // Update active state
+    document.querySelectorAll('.news-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    event.currentTarget.classList.add('active');
+    
+    // Fetch and update content
+    fetch(url)
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const content = doc.querySelector('.news-article');
+            if (content) {
+                document.getElementById('news-content').innerHTML = content.outerHTML;
+            }
+        })
+        .catch(error => {
+            console.error('Error loading content:', error);
+        });
+    
+    // Update URL without page reload
+    history.pushState({}, '', url);
+}
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', () => {
+    const currentUrl = window.location.href;
+    const link = document.querySelector(`[data-content-url="${currentUrl}"]`);
+    if (link) {
+        link.click();
+    }
+});
+</script>
+{{ end }} 

@@ -1,125 +1,82 @@
 {{ define "main" }}
-<div class="container py-5">
-    <!-- Event Header -->
-    <header class="text-center m-5">
-        <h1 class="display-3 fw-bold mb-2">{{ .Title | default "Untitled Event" }}</h1>
-        <p class="lead text-muted">
-            {{ with .Params.format }}{{ . | title }}{{ else }}N/A{{ end }}
-            {{ with .Params.tags }}| {{ range . }}{{ . | title }} {{ end }}{{ end }}
-            {{ with .Params.topic }}| {{ index . 0 | default "No Topic" }}{{ end }}
-        </p>
-    </header>
-
-    <!-- Main Content -->
-    <div class="row g-5">
-        <!-- Left Column: Event Details -->
-        <div class="col-lg-8">
-            <!-- Event Image -->
-            {{ with .Params.eventimage }}
-            <figure class="mb-4">
-                <img src="{{ . | relURL }}" class="img-fluid rounded shadow" alt="{{ $.Title }}">
-            </figure>
-            {{ end }}
-
-            <!-- Description -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <h2 class="h4 mb-3 fw-bold">About the Session</h2>
-                    <div class="content">
-                        {{ .Params.description | default "No description available." | markdownify }}
-                    </div>
-                </div>
-            </div>
-
-            <!-- Presentation Resources -->
-            {{ with .Params.presentation }}
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <h2 class="h4 mb-3 fw-bold">Resources</h2>
-                    <div class="d-flex flex-column gap-3">
-                        {{ with .session_link }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary d-flex align-items-center gap-2">
-                            <i class="bi bi-link"></i> Session Page
-                        </a>
-                        {{ end }}
-                        {{ with .slides_link }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary d-flex align-items-center gap-2">
-                            <i class="bi bi-file-earmark-slides"></i> Slides (PDF)
-                        </a>
-                        {{ end }}
-                        {{ with .video_link }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary d-flex align-items-center gap-2">
-                            <i class="bi bi-camera-video"></i> Video Recording
-                        </a>
-                        {{ end }}
-                    </div>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-
-        <!-- Right Column: Speakers and Additional Info -->
-        <div class="col-lg-4">
-            <!-- Speakers -->
-            {{ with .Params.speakers }}
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <h2 class="h4 mb-3 fw-bold">Speakers</h2>
-                    {{ range $index, $speaker := . }}
-                    <div class="d-flex align-items-start mb-3 pb-3 {{ if ne $index (sub (len $.Params.speakers) 1) }}border-bottom{{ end }}">
-                        {{ if eq (printf "%T" $speaker) "string" }}
-                        <!-- Handle string case -->
-                        <div class="rounded-circle bg-light me-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
-                            <span class="text-muted">{{ substr $speaker 0 1 }}</span>
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <article class="event-article bg-white p-4 rounded shadow-sm">
+                    <h1 class="display-4 mb-4">{{ .Title }}</h1>
+                    
+                    {{ if .Params.eventDate }}
+                    <div class="event-meta mb-4">
+                        <div class="d-flex align-items-center text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            <span>{{ .Params.eventDate }}</span>
                         </div>
-                        <div class="flex-grow-1">
-                            <h3 class="h5 mb-1">{{ $speaker }}</h3>
-                        </div>
-                        {{ else }}
-                        <!-- Handle object case -->
-                        {{ if and $speaker.speakerimage (ne $speaker.speakerimage "") }}
-                        <img src="{{ $speaker.speakerimage | relURL }}" class="rounded-circle me-3" alt="{{ $speaker.name | default "Speaker" }}" style="width: 70px; height: 70px; object-fit: cover;">
-                        {{ else }}
-                        <div class="rounded-circle bg-light me-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
-                            <span class="text-muted">{{ substr ($speaker.name | default "S") 0 1 }}</span>
-                        </div>
-                        {{ end }}
-                        <div class="flex-grow-1">
-                            <h3 class="h5 mb-1">{{ $speaker.name | default "Unnamed Speaker" }}</h3>
-                            {{ with $speaker.affiliation }}{{ if ne . "" }}
-                            <p class="small text-muted mb-1">{{ . }}</p>
-                            {{ end }}{{ end }}
-                            {{ with $speaker.address }}{{ if ne . "" }}
-                            <p class="small text-muted mb-1"><i class="bi bi-geo-alt me-1"></i>{{ . }}</p>
-                            {{ end }}{{ end }}
-                            <div class="d-flex gap-2">
-                                {{ with $speaker.linkedin }}{{ if ne . "" }}
-                                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-muted" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                                {{ end }}{{ end }}
-                                {{ with $speaker.github }}{{ if ne . "" }}
-                                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-muted" aria-label="GitHub"><i class="bi bi-github"></i></a>
-                                {{ end }}{{ end }}
-                            </div>
-                        </div>
-                        {{ end }}
                     </div>
                     {{ end }}
-                </div>
-            </div>
-            {{ end }}
 
-            <!-- Topic Image -->
-            {{ with .Params.topicimage }}
-            <figure class="mb-4">
-                <img src="{{ . | relURL }}" class="img-fluid rounded shadow" alt="Topic Image">
-            </figure>
-            {{ end }}
+                    {{ if .Params.location }}
+                    <div class="event-location mb-4">
+                        <div class="d-flex align-items-center text-muted">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            <span>{{ .Params.location }}</span>
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.description }}
+                    <div class="event-description mb-4">
+                        <h2 class="h4">About the Session</h2>
+                        <p class="lead">{{ .Params.description }}</p>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.speakers }}
+                    <div class="speakers-section mb-4">
+                        <h2 class="h4 mb-3">Speakers</h2>
+                        <div class="row g-4">
+                            {{ range .Params.speakers }}
+                            <div class="col-md-6">
+                                <div class="speaker-card p-3 border rounded">
+                                    <div class="d-flex align-items-center">
+                                        {{ if .avatar }}
+                                        <img src="{{ .avatar }}" alt="{{ .name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                        {{ end }}
+                                        <div>
+                                            <h3 class="h5 mb-1">{{ .name }}</h3>
+                                            {{ if .title }}<p class="text-muted mb-0">{{ .title }}</p>{{ end }}
+                                            {{ if .organization }}<p class="text-muted mb-0">{{ .organization }}</p>{{ end }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Content }}
+                    <div class="event-content">
+                        {{ .Content }}
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.resources }}
+                    <div class="resources-section mt-5">
+                        <h2 class="h4 mb-3">Resources</h2>
+                        <div class="list-group">
+                            {{ range .Params.resources }}
+                            <a href="{{ .url }}" class="list-group-item list-group-item-action">
+                                <i class="fas fa-external-link-alt me-2"></i>
+                                {{ .name }}
+                            </a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </article>
+            </div>
         </div>
     </div>
-
-    <!-- Navigation -->
-    <nav class="text-center mt-5">
-        <a href="/sw360/events/" class="btn btn-outline-primary px-4 py-2">Back to Events</a>
-    </nav>
 </div>
 {{ end }}
