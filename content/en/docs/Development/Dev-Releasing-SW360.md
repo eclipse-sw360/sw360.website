@@ -87,11 +87,9 @@ $ cd sw360
 ``` 
 
 ### 1. Write the version of the release into the poms
-<pre>
+```shell
 $ mvn versions:set -DnewVersion=<b>1.2.0</b>
-$ git add pom.xml **/pom.xml
-$ git commit -sS -m "chore(release): set version to <b>1.2.0</b>"
-</pre>
+```
 This will actually edit all pom.xml files and change the versions to **1.2.0**.
 
 ### 2. Test the project
@@ -99,8 +97,38 @@ This will actually edit all pom.xml files and change the versions to **1.2.0**.
 $ mvn install
 ```
 
-### 3. Create and push the tag
+### 3. Update the Changelog
+
+After changing the versions in pom files, update the CHANGELOG.md file with the information about the new releases and
+add a summary of significant changes since the last release. Following are helper scripts to create the changelog
+portions for annotating the authors and commits. Change the `<last_tag>` in scripts to the
+[last tag from git](https://github.com/eclipse-sw360/sw360/tags), example: `sw360-9.2.0`.
+
+#### 3.1. Listing authors
 ```shell
+git log --no-merges --format="format:> %an <%ae>" <last_tag>..HEAD | sort --unique --ignore-case > new-authors
+```
+
+#### 3.2. Listing feature commits
+```shell
+git log --no-merges --format="format:* \`%h\` %s" --grep="feat(\\(|:)" --extended-regexp --regexp-ignore-case <last_tag>..HEAD > feature-changelog
+```
+
+#### 3.3. Listing correction commits
+```shell
+git log --no-merges --format="format:* \`%h\` %s" --grep="(hot)?fix(\\(|:)" --extended-regexp --regexp-ignore-case <last_tag>..HEAD > correction-changelog
+```
+
+#### 3.4. Listing infra commits
+```shell
+git log --no-merges --format="format:* \`%h\` %s" --grep="((hot)?fix|feat)(\\(|:)" --extended-regexp --regexp-ignore-case --invert-grep <last_tag>..HEAD > infra-changelog
+```
+
+### 4. Create and push the tag
+```shell
+$ git add pom.xml **/pom.xml
+$ git add CHANGELOG.md
+$ git commit -sS -m "chore(release): set version to <b>1.2.0</b>"
 $ mvn scm:tag
 ```
 This creates the tag and **pushes it to GitHub**.
