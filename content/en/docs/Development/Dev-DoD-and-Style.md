@@ -5,7 +5,7 @@ weight: 10
 description: "The definition of done helps to set a common understanding for solving a ticket."
 ---
 
-### Policy
+## Policy
 
 * Review points should involve one person from another angle (not just the person you were sitting together with anyways)
 * No self merging of pull requests
@@ -14,7 +14,7 @@ description: "The definition of done helps to set a common understanding for sol
 * Open review items require conversation
 * Every change must be proposed in the form of a pull request (no commits to main without review)
 
-# Definition of Done
+## Definition of Done
 
 * File headers in file OK
   * EPL-2.0 license header
@@ -44,7 +44,7 @@ description: "The definition of done helps to set a common understanding for sol
   * try to squash commits. In the ideal case, a feature is contained in one commit.
   * try to use conventional changelog for commit messages. [Dev-Semantic-Commits]({{< relref path="Dev-Semantic-Commits.md" >}})
 
-# Review
+## Review
 
 Review basically checks for the D-o-D items, in particular
 
@@ -53,7 +53,7 @@ Review basically checks for the D-o-D items, in particular
 * Community contribution suitability
 * Issue coverage (does it actually solve the problem?)
 
-# Licensing and File Header
+## Licensing and File Header
 
 All files contributed require headers - this will ensure the license and copyright clearing at the end. Also, all
 contributions must have the same license as the original source.
@@ -87,7 +87,7 @@ For small files such as property files, configuration files or standard XML file
 # http://www.eclipse.org/org/documents/edl-v10.php
 ```
 
-# Code style
+## Code style
 
 Just use the standard Java formatting rules of your IDE and **do not reformat** code from others, because you like to
 correct formatting of other's code.

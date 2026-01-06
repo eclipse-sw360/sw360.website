@@ -6,7 +6,7 @@ description:
   SPDX Document
 ---
 
-# **How to enable this feature**
+## How to enable this feature
 
 To use this function, please:
 
@@ -16,14 +16,15 @@ To use this function, please:
 
 The following changes will work when **spdx.document.enabled = true** only.
 
-# **1. Introduction**
+## Introduction
 
 SPDX Document manages Document Creation Information, Package Information, Other Licensing Information Detected, Relationships between SPDX Elements, Annotations
 
-# **2. How to use?**
-**1. File Test Import**: https://github.com/spdx/tools-java/blob/master/testResources/SPDXRdfExample-v2.3.spdx.rdf
+## How to use?
+### File Test Import
+ https://github.com/spdx/tools-java/blob/master/testResources/SPDXRdfExample-v2.3.spdx.rdf
 
-**2. Import SPDX in Page Component**
+### Import SPDX in Page Component
 
 #### Import
 
@@ -67,7 +68,7 @@ SPDX Document manages Document Creation Information, Package Information, Other 
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Lite_Page_of_Release_Saxon_(8.8).png" >}}
 
 
-**3. Feature: Edit , Add tab SPDX Document in Release**
+### Feature: Edit, Add tab SPDX Document in Release
 
 ##### Edit tab SPDX Document - Full Page
 {{< figure src="/sw360/img/sw360screenshots/spdx_document/Edit_tab_SPDX_Document_Full_Page.png" >}}

@@ -4,7 +4,7 @@ title: "Initial Setup of Liferay 7.2 and sw360"
 weight: 100
 ---
 
-# Starting SW360 for the First Time
+## Starting SW360 for the First Time
 
 So, the vagrant setup has deployed sw360, but unfortunately, there is some major issue: With Liferay, certain configuration need to be applied manually in the UI. If you would know how to import *.lar files and apply some setting from the command line (without implementing an approach based on HTML testing frameworks, like selenium), please let us know.
 
@@ -15,7 +15,7 @@ Until then, some tasks need to be done manually, after everything has been built
 * set the default area to be SW360 when users login to liferay
 * apply some more settings, like users cannot create accounts on their own
 
-# Setup Login
+## Setup Login
 
 After successful installation, the screen should look like this. If there is weird html output without images and plain text, then likely some port settings did not work and the pages generated have wrong URLs inside.
 
@@ -25,7 +25,7 @@ Sign in_the icon_the upper left corner. If you did not change the values in `con
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-01-24_14.39.06.png" >}}
 
-# User Settings in SW360
+## User Settings in SW360
 
 Go into the control panel area which can be unfold by clicking in the upper left corner. In this area, go for Users > Password Policies and disable `change Required` if you wish to do so. Click on Save to save the selection.
 
@@ -43,7 +43,7 @@ Depending on your preferences make appropriate selections according to the scree
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-01-24_14.47.03.png" >}}
 
-# Import *.lar Files
+## Import *.lar Files
 
 Then, in the `SW360` area >  `Publishing` > `Import` klick on the plus sign in order to import the *.lar file for public pages.
 
@@ -91,7 +91,7 @@ __Important__ The setup account does not belong to a group. Thus, not all view a
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-01-24_14.54.38.png" >}}
 
-# Import User Accounts for Testing
+## Import User Accounts for Testing
 
 Assuming you are still logged in, the main view of SW360 looks as follows:
 
@@ -115,7 +115,7 @@ After the user have been imported successfully, they should appear in the table 
 
 After the user have been imported successfully, they should appear in the table view.
 
-# Real Login
+## Real Login
 
 One example user is `user@sw360.org` with the password `12345`. Note that in the import file with the example accounts, the passwort is provided with a hash. If you would like to generate new (salted) hashes, you can change your password and export the user list using the same portlet where you have imported the users. This functionality can be also used to migrate accounts between users.
 
