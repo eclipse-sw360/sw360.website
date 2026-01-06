@@ -22,7 +22,7 @@ After login the sw360 is not setup, thus the server does not display much, but a
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-08-13_20.09.33.png" >}}
 
-# User and Login Settings in Liferay
+## User and Login Settings in Liferay
 
 Go into the control panel area by clicking the items icon (nine small cubes) in the upper right corner and select the control panel tab:
 
@@ -63,7 +63,7 @@ Do the same for Font Awesome:
 
 Note that you need to reload the browser or load a new browser window to take changes to effect.
 
-# Setup SW360 for Liferay: Import *.lar Files
+## Setup SW360 for Liferay: Import *.lar Files
 
 For the setup of SW360 in Liferay, the portal description files, `*.lar` files need not be imported. there is no way except from doing this in the UI. If we are wrong with this, please let us know, because it is very annoying that these ever occurring steps cannot be automated with Liferay.
 
@@ -108,7 +108,7 @@ __Important__ The setup account does not belong to a group. Thus, not all view a
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-08-13_20.24.31.png" >}}
 
-# Import User Accounts for Testing
+## Import User Accounts for Testing
 
 Click the SW360 `Admin` menu which is_the right and selection the `User` item.
 
@@ -122,7 +122,7 @@ After the user have been imported successfully, they should appear in the table 
 
 {{< figure src="/sw360/img/sw360screenshots/deploy73/2020-08-13_20.24.58.png" >}}
 
-# Real Login
+## Real Login
 
 One example user is `user@sw360.org` with the password `12345`. Note that in the import file with the example accounts, the passwort is provided with a hash. If you would like to generate new (salted) hashes, you can change your password and export the user list using the same portlet where you have imported the users. This functionality can be also used to migrate accounts between servers.
 

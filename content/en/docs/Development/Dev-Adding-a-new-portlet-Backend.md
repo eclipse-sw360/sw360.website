@@ -13,7 +13,7 @@ This explanation follows bottom up approach where we first add the backend metho
 1. Add implementation
 1. Add tests
 
-#### Thrift
+## Thrift
 
 First we add some methods to the thrift files, components.thrift
 ```java
@@ -22,7 +22,7 @@ map <string, list<string>> getDuplicateComponents();
 map <string, list<string>> getDuplicateReleases();
 ```
 
-#### Datahandler
+## Datahandler
 
 then we install lib-datahandler. That way we see which methods we have to implement.
 We have chosen to change the interface of the ComponentService. That means we need to implement them in the ComponentHandler.
@@ -39,7 +39,7 @@ public Map<String, List<String>> getDuplicateReleases() throws TException {
 }
 ```
 
-#### Implementation
+## Implementation
 
 The methods there are only a reference to the ComponentDatabaseHandler.java. 
 In the ComponentHandler we only assert that the input is correct. 
@@ -67,7 +67,7 @@ public Map<String, List<String>> getDuplicateReleases() {
 }
 ```
 
-#### Tests
+## Tests
 
 We then write some tests in ComponentDatabaseHandlerTest.java
 
