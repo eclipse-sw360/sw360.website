@@ -4,7 +4,8 @@ title: "Properties"
 weight: 12
 ---
 
-**Frontend Properties**: All the sw360 frontend properties are mentioned in [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/resources/sw360.properties) file.
+## Frontend Properties
+All the sw360 frontend properties are mentioned in [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/resources/sw360.properties) file.
 For example;
 https://github.com/eclipse/sw360/wiki/
  - Different categories for components,
@@ -21,6 +22,8 @@ https://github.com/eclipse/sw360/wiki/
 
  - Activation of portlets and components
 
-**Backend Properties**: This, [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/backend/common/src/main/resources/sw360.properties) file contains the sw360 backend properties. This file contains the common properties for the backend services and also holds the setting for the mail utility.
+## Backend Properties
+This [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/backend/common/src/main/resources/sw360.properties) file contains the sw360 backend properties. This file contains the common properties for the backend services and also holds the setting for the mail utility.
 
+## Modifying Properties
 You can change these default values by mentioning it in the sw360.properties file, present in /etc/sw360 folder. This path is to be created by the admin. After changing the properties, server needs to be restarted in order to make the changes effective. If the properties file is not present in the required folder, the default values will be selected.

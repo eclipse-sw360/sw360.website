@@ -6,7 +6,7 @@ description:
   Dependency-Network-Feature
 ---
 
-# **How to enable this feature**
+## How to enable this feature
 
 To use this function, please:
 
@@ -26,43 +26,43 @@ The following changes will work when **enable.flexible.project.release.relations
 
  ```admin``` and ```password``` should be your username and password for CouchDB.
 
-# **1. Introduction**
+## Introduction
 
 The dependency network feature is a new function to make the dependency management of a project more flexible by allowing the users to customize the dependency graphs of their projects.
 
-# **2. How to use?**
+## How to use?
 This feature modify the GUI of the “Linked Releases And Projects” on the “project edits” page.
 Now the “Linked Releases” table could show all dependencies of a project (both direct and transitive ones). Users can modify these dependencies as well.
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/new_edit_GUI.png" >}}
 
-## **2.1. The changes of edit project GUI**
+### GUI Behaviors
 In this section, we will introduce the changes in GUI behaviors. We modified or added 5 sub-functions below: 
  
-#### **a. Modify the “Add Releases” button: This button will add a direct dependency (release) in the dependency graph of this project.**
+#### a. Add Releases button
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Add_root_release_button.png" >}}
 
 
-#### **b. A new icon button to add a dependency (release) to another dependency (release) in the dependency graph. Note that this dependency added is seen as the transitive dependency of this project.**
+#### b. Add Transitive Releases button
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Add_transitive_releases_buttons.png" >}}
 
-#### **c. A new icon button to load the default dependency graph of a dependency (release) by importing the dependency information stored on the component page. Note that this button will load all dependencies (both direct and transitive ones) of the corresponding dependency (release).**
+#### c. Load Default Network button
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Load_default_network_from_releases.png" >}}
 
-#### **d. The combo box allows the user to modify the version of a dependency.**
+#### d. Select Version combo box
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Select_version_box.png" >}}
 
 
-#### **e. The “Check Dependency Network” button will compare and show the different dependency information which is not consistent with the default one stored on the component page by highlighting them. The inconsistency usually happens after users modified the dependency graph or imported an old project.**
+#### e. Check Dependency Network button
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Check_diff_button.png" >}}
 
 
-## **2.3 Rest API changes**
+## Rest API Changes
 
 ### New Rest APIs
 

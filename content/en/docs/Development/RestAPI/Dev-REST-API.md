@@ -6,7 +6,7 @@ weight: 30
 
 The sw360 REST API provides access to sw360 resources for external clients. It consists currently of three Maven modules aggregated in one parent module `rest` in the sw360 distribution.
 
-# Module Structure
+## Module Structure
 
 The `rest` module provides a REST API infrastructure for sw360 including:
 * Module `authorization-server` - OAuth2 Authorization Server, offering typical authorization steps of an OAuth2 workflow.
@@ -17,9 +17,9 @@ The REST API implementation uses:
 * Module `authorization-server` uses the Liferay user management via the Liferay REST API to authenticate users and the users thrift backend service to access user profile data.
 * Module `resource-server` uses thrift backend services for accessing sw360 data to deliver it to the external clients.
 
-# API Principles
+## API Principles
 
-## Security Principles
+### Security Principles
 
 The basic security principles are following the OAuth2 standards. So there should be an authorization server which can be the one contained in this project. That one provides access tokens after it authenticated the client and the user using this client. In addition it checks which authorities this client should receive for operating in the user's name.
 With this OAuth2 access token the client can query the resource server which will restrict access to the given authorities.
@@ -30,7 +30,7 @@ There are currently three different possibilities for an OAuth2 authorization se
 * Using the contained authorization-server inside an SSO network where an existing proxy can take care of the authentication and passing authenticated user information in configurable headers to the authorization-server which then performs authorization on top.
 * Using keycloak as authorization-server. This case is not part of this wiki page and might need special configuration.
 
-## Data Principles
+### Data Principles
 
 The REST API provides Hypermedia using [HAL](http://stateless.co/hal_specification.html) (Hypertext Application Language).
 The following example shows some ideas of the REST API. It can be obtained by
@@ -84,15 +84,15 @@ Note that the response below is maybe not the exact same response of your curren
 }
 ```
 
-# API Installation
+## API Installation
 
 Both, the `authorization-server` and the `resource-server` can be build using Maven like the rest of the project. Each is generating a Spring Boot server that can be deployed in an application container, e.g. Tomcat.
 
-# API Configuration
+## API Configuration
 
 Since the `authorization-server` and the `resource-server` are Spring Boot servers, they are configured as usual via `/src/main/resources/application.yml`. In addition some configuration comes historically from `sw360.properties`. Please note that all configurations could be provided centrally in the `/etc/sw360/` directory. As such, the `sw360.properties` sits directly in `/etc/sw360/`. For rest-specific configurations the application considers the location `/etc/sw360/rest`.
 
-## Authorization Server Configuration
+### Authorization Server Configuration
 
 ### Special Liferay Credentials Configuration
 
@@ -301,7 +301,7 @@ authentication of the `authorization-server` properly:
 </Location>
 ```
 
-# Resource Server Configuration
+## Resource Server Configuration
 
 Now that access tokens can be generated, the resource server has to be configured. The same general ideas of [general config](#general-config) apply. The properties of the `application.yml` are
 
@@ -315,7 +315,7 @@ Now that access tokens can be generated, the resource server has to be configure
 
 The REST API is now completely usable via an own client or testwise with integrated tools.
 
-# Tools
+## Tools
 
 To get data and interact with the sw360 REST API the HAL-Browser is recommended. Currently, the HAL-Browser is also deployed on the sw360 development instance, but this is likely to change once the REST API has evolved more. Currently the URL of HAL-Browser is:
 
@@ -340,7 +340,7 @@ will return the following response:
 
 ![rest-explorer2](https://user-images.githubusercontent.com/29916928/39579586-6b1d1736-4ee7-11e8-8faf-da71c8776680.png)
 
-# API Documentation
+## API Documentation
 
 sw360 deploys a REST API documentation at every instance. There are the following URLs offered at each instance
 
@@ -350,7 +350,7 @@ sw360 deploys a REST API documentation at every instance. There are the followin
 | https://[hostname]:[port]/resource/docs/api-guide.html | The API description for the currently running server |
 | https://[hostname]:[port]/resource/api/browser/index.html#/resource/api | Integrated HAL browser to directly use the API |
 
-# Known Problems
+## Known Problems
 
 If you use Nginx or Apache as request front end server there maybe some configuration caveats: The REST API objects provides self links to reference to other objects also including the protocol prefix. These links are realized on Hypertext Application Language (HAL) for example you will find in REST responses:
 
