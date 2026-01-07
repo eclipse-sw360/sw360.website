@@ -62,7 +62,7 @@ The combo box allows the user to modify the version of a dependency.
 
 
 #### e. Check Dependency Network button
-will compare and show the different dependency information which is not consistent with the default one stored on the component page by highlighting them. The inconsistency usually happens after users modified the dependency graph or imported an old project.
+Will compare and show the different dependency information which is not consistent with the default one stored on the component page by highlighting them. The inconsistency usually happens after users modified the dependency graph or imported an old project.
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Check_diff_button.png" >}}
 
