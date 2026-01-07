@@ -40,24 +40,29 @@ Now the “Linked Releases” table could show all dependencies of a project (bo
 In this section, we will introduce the changes in GUI behaviors. We modified or added 5 sub-functions below: 
  
 #### a. Add Releases button
+Modify the “Add Releases” button: This button will add a direct dependency (release) in the dependency graph of this project.
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Add_root_release_button.png" >}}
 
 
 #### b. Add Transitive Releases button
+A new icon button to add a dependency (release) to another dependency (release) in the dependency graph. Note that this dependency added is seen as the transitive dependency of this project.
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Add_transitive_releases_buttons.png" >}}
 
 #### c. Load Default Network button
+A new icon button to load the default dependency graph of a dependency (release) by importing the dependency information stored on the component page. Note that this button will load all dependencies (both direct and transitive ones) of the corresponding dependency (release).
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Load_default_network_from_releases.png" >}}
 
 #### d. Select Version combo box
+The combo box allows the user to modify the version of a dependency.
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Select_version_box.png" >}}
 
 
 #### e. Check Dependency Network button
+will compare and show the different dependency information which is not consistent with the default one stored on the component page by highlighting them. The inconsistency usually happens after users modified the dependency graph or imported an old project.
 
 {{< figure src="/sw360/img/sw360screenshots/dependency_network/Check_diff_button.png" >}}
 
