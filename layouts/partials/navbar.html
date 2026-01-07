@@ -32,9 +32,28 @@
 			{{ end }}
 		</ul>
 	</div>
+	<div class="navbar-search-container">
+		{{ partial "search.html" . }}
+	</div>
 	<div class="d-none d-lg-block">
 	  {{ with .Site.Params.links }} {{ with index . "developer"}} {{ template
 	  "footer-links-block" . }} {{ end }} {{ end }}
 	</div>
 	<!-- <div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div> -->
 </nav>
+
+<style>
+.navbar-search-container {
+    flex: 1;
+    max-width: 350px;
+    margin: 0 20px;
+		margin-left: 300px;
+}
+
+@media (max-width: 768px) {
+    .navbar-search-container {
+        margin: 10px 0;
+        max-width: 100%;
+    }
+}
+</style>
