@@ -3,6 +3,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: $text_primary;
+  overflow-x: hidden;
 }
 
 a {
@@ -13,13 +14,57 @@ a {
 
 footer {
   min-height: auto;
-  img {
-    margin-left: 15px;
-    margin-right: 15px;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+  // Responsive images globally
+  img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 
-  background: $primary;
+  // Footer images (logo strip)
+  .footer-img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+  }
+// Responsive container fix for homepage and general layout
+.container-fluid, .td-outer, .td-main {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+// Responsive fix for columns and padding on small screens
+@media (max-width: 480px) {
+  .container-fluid, .td-outer, .td-main {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  .row, [class*="col-"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .display-2, .display-cover {
+    font-size: 1.3rem !important;
+    padding: 10px !important;
+  }
+  footer img, .footer-img {
+    max-width: 90vw;
+    height: auto;
+  }
+}
+
+ body {
+  background-color: $primary;
   color: #999999;
+}
 
   ul {
     padding-left: 0;
@@ -46,7 +91,6 @@ footer {
   li {
     text-align: -webkit-match-parent;
   }
-}
 
 .display-cover {
   font-size: 1.5rem;
