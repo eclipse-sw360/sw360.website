@@ -419,7 +419,7 @@ information to make smart decisions. As an add-on, SW360 can be allowed to
 completely disallow changes in deprecated Components and use the alternative
 instead to create new Releases.
 
-{{< figure src="/img/GSoC/component-alternative.png" >}}
+{{< figure src="/sw360/img/GSoC/component-alternative.png" >}}
 
 | Category               | Rating                            |
 |:-----------------------|:----------------------------------|
