@@ -1,7 +1,7 @@
 ---
 linkTitle: "GSoC 2025"
 title: "GSoC Idea List - 2025"
-Weight: 1
+Weight: 3
 ---
 
 {{< blocks/cover image_anchor="top" height="sm" color="primary" >}}
