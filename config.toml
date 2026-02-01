@@ -5,7 +5,6 @@ theme = ["docsy"]
 # Language settings
 contentDir = "content/en"
 defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
 
@@ -28,14 +27,35 @@ resampleFilter = "CatmullRom"
 quality = 75
 anchor = "smart"
 
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
 
 [languages]
-[languages.en]
-title = "Eclipse SW360"
-description = "Eclipse SW360 official website"
-languageName = "English"
-# Weight used for sorting.
-weight = 1
+  [languages.en]
+    languageName = "English"
+    weight = 1
+    contentDir = "content/en"
+    
+  [languages.fr]
+    languageName = "Français"
+    weight = 2
+    contentDir = "content/fr"
+
+  [languages.ja]  
+    languageName = "日本語"
+    weight = 3
+    contentDir = "content/ja"
+
+  [languages.vi]
+    languageName = "Tiếng Việt"
+    weight = 4
+    contentDir = "content/vi"
+
+  [languages.zh]
+    languageName = "中文"
+    weight = 5
+    contentDir = "content/zh"
+  
 
 [markup]
 [markup.goldmark]
