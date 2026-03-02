@@ -169,34 +169,38 @@ sections site wide to the original site's background svg.
 
 // Hero section responsive images - Fix for mobile overflow (Issue #178)
 .hero-logo {
+  width: 400px;
   max-width: 100%;
-  height: auto;
-  width: 400px; // Default width for larger screens
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
   
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 300px;
+    width: 300px;
   }
   
   @media (max-width: 576px) {
-    width: 100%;
-    max-width: 280px;
+    width: 280px;
   }
 }
 
 .hero-screenshot {
+  width: 500px;
   max-width: 100%;
-  height: auto;
-  width: 500px; // Default width for larger screens
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
   
   @media (max-width: 768px) {
-    width: 100%;
-    max-width: 400px;
+    width: 400px;
   }
   
   @media (max-width: 576px) {
-    width: 100%;
-    max-width: 300px;
+    width: 300px;
   }
 }
 
