@@ -210,6 +210,7 @@ difficulty in maintaining a single, accurate view of license compliance.
 This project aims to change how SW360 manages this data by integrating it
 directly with LicenseDB. The successful completion of this project will
 involve:
+
 1. Removing Redundant Data Entry Methods: All existing functionalities within
    SW360 that allow for manual license creation or direct import from
    OSADL/SPDX will be deprecated and removed.
@@ -223,13 +224,13 @@ involve:
       licenses and obligations.
    3. Data Persistence: Ensuring that the fetched data is correctly saved and
       updated within SW360's database for ongoing use and reference.
-3. Adapting Existing Workflows: Review and modify existing SW360 CLI (Command 
+3. Adapting Existing Workflows: Review and modify existing SW360 CLI (Command
    Line Interface) and XML-based workflows. These workflows currently create
    licenses and obligations if they don't already exist. They must be updated
    to leverage the new LicenseDB integration, ensuring they now fetch and sync
    data from LicenseDB rather than creating it independently.
 
-Checkout LicenseDB at: https://github.com/fossology/LicenseDb
+Checkout LicenseDB at: <https://github.com/fossology/LicenseDb>
 
 | Category               | Rating                 |
 |:-----------------------|:-----------------------|
@@ -255,6 +256,7 @@ tight binary coupling. Migrate to Spring-managed services with direct injection
 for in-process calls and REST for external integrations.
 
 #### Current state vs Expected state
+
 | Aspect          | Current State                                   | Expected State                              |
 |-----------------|-------------------------------------------------|---------------------------------------------|
 | Service Layer   | Thrift IDL (.thrift files) generates interfaces | Plain Java interfaces with Spring @Service  |
@@ -295,10 +297,11 @@ reducing index size, speeds up UI responsiveness, and saves significant disk
 space.
 
 Feature points to consider:
-* Comprehensive Data Bundling (The "Snapshot")
-* Database Cleanup & Performance Optimization
-* Seamless Re-Import & Restoration
-* Archival Metadata Registry
+
+- Comprehensive Data Bundling (The "Snapshot")
+- Database Cleanup & Performance Optimization
+- Seamless Re-Import & Restoration
+- Archival Metadata Registry
 
 | Category               | Rating                          |
 |:-----------------------|:--------------------------------|
@@ -320,37 +323,37 @@ source of compliance truth
 
 Project 360° View delivers a holistic compliance dashboard for both parent and
 child projects, offering complete visibility into software usage, security
-risks, and license obligations. 
+risks, and license obligations.
 
 It consolidates vulnerability data across the entire project hierarchy, clearly
 highlighting severity levels, affected components, and overall compliance
-impact. 
+impact.
 All license and obligation information is aggregated to identify notice,
-disclosure, and copyleft requirements, ensuring legal and regulatory adherence. 
+disclosure, and copyleft requirements, ensuring legal and regulatory adherence.
 
 The view also presents approved and pending releases, along with clearing
 request and legal approval status, giving product owners a clear picture of
-release readiness. 
+release readiness.
 Additionally, all compliance-relevant changes since the last release—including
 newly introduced components, license changes, new vulnerabilities, and removed
-items—are tracked and visualized. 
+items—are tracked and visualized.
 
 By unifying security, legal, and release data into a single interface, Project
 360° View enables faster audits, reduces compliance risk, and supports
-confident, data-driven release decisions. 
+confident, data-driven release decisions.
 
-- Provide a good overview of the project to the product owners. 
+- Provide a good overview of the project to the product owners.
 - Project 360° View provides a hierarchical compliance view of parent and child
-  projects, ensuring full traceability of software usage. 
-  + It consolidates vulnerability data across the project hierarchy,
-    highlighting severity, affected components, and compliance impact. 
-  + License information and obligation data are aggregated to identify notice,
-    disclosure, and copyleft requirements. 
-  + The page presents approved and pending releases, including clearing request
-    and legal approval status. 
-  + Compliance-relevant changes since the last release—new components,
-    licenses, vulnerabilities, and removals—are clearly tracked. 
-  + This enables faster, audit-ready compliance verification and release
+  projects, ensuring full traceability of software usage.
+  - It consolidates vulnerability data across the project hierarchy,
+    highlighting severity, affected components, and compliance impact.
+  - License information and obligation data are aggregated to identify notice,
+    disclosure, and copyleft requirements.
+  - The page presents approved and pending releases, including clearing request
+    and legal approval status.
+  - Compliance-relevant changes since the last release—new components,
+    licenses, vulnerabilities, and removals—are clearly tracked.
+  - This enables faster, audit-ready compliance verification and release
     approval decisions.
 
 | Category               | Rating                          |

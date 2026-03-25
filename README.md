@@ -20,16 +20,16 @@
   </p>
 </p>
 
-The website is based on the Hugo static page generator. 
+The website is based on the Hugo static page generator.
 All relevant source files can be found at [github.com/eclipse/sw360.website](https://github.com/eclipse/sw360.website).
 The page is published at eclipse.org/sw360 and built with a Jenkins job, which is configured in a jenkins file in the repository of the website.
 
-If you want to add content to the page, please checkout the git repository (https://github.com/eclipse/sw360.website.git) and add your content.
+If you want to add content to the page, please checkout the git repository (<https://github.com/eclipse/sw360.website.git>) and add your content.
 
-The page will be build as soon as you push to upstream main branch. There is also a staging area at the Eclipse Foundation page at staging.eclipse.org/sw360, which is protected by your Eclipse Foundation user credentials and filled with the content that is found at the staging branch in https://github.com/eclipse/sw360.website. If you want to check out your changes first, just push to the staging branch. The content is published the same way as with the main branch.
+The page will be build as soon as you push to upstream main branch. There is also a staging area at the Eclipse Foundation page at staging.eclipse.org/sw360, which is protected by your Eclipse Foundation user credentials and filled with the content that is found at the staging branch in <https://github.com/eclipse/sw360.website>. If you want to check out your changes first, just push to the staging branch. The content is published the same way as with the main branch.
 
-The Jenkins instance is operated by the Eclipse Foundation and can be found here: https://jenkins.eclipse.org/sw360/job/sw360.website/.
-The result of the Jenkins build is pushed to: http://git.eclipse.org/c/www.eclipse.org/sw360.git.
+The Jenkins instance is operated by the Eclipse Foundation and can be found here: <https://jenkins.eclipse.org/sw360/job/sw360.website/>.
+The result of the Jenkins build is pushed to: <http://git.eclipse.org/c/www.eclipse.org/sw360.git>.
 
 The Jenkins job checks for changes in the repository every 15 minutes.If it detects changes it will start the Hugo build and copy the generated static html files to git.eclipse.org. From there another job fetches the files and copies them to the actual static webspace of the Eclipse Foundation.
 
@@ -52,6 +52,7 @@ This guide provides instructions to set up and run the SW360 website locally usi
 Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is installed and running on your system.
 
 - **Verify installation** by running:
+
     ```bash
     docker --version
     ```
@@ -64,13 +65,17 @@ Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is ins
 
 1. Open a terminal and ensure you’re in the project root directory.
 2. Run the Docker script to start the local server:
+
     ```bash
     bash docker_serve_local.sh
     ```
+
 3. Once the server starts, open your browser and visit:
+
     ```text
     http://localhost:1313/sw360
     ```
+
 4. Changes to the code will automatically reload in the browser.
 
 #### Windows Setup
@@ -78,29 +83,36 @@ Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is ins
 1. Ensure Docker Desktop is Running: Open Docker Desktop and confirm the Docker engine is active.
 2. Choose one of the following methods:
 
-**1: Using Git Bash**
+### 1: Using Git Bash
 
 1. Make the script executable (if needed):
+
     ```bash
     chmod +x docker_serve_local.sh
     ```
+
 2. Run the script:
+
     ```bash
     bash docker_serve_local.sh
     ```
 
-**2: Using WSL**
+### 2: Using WSL
 
 1. Ensure WSL is installed and Docker Desktop is configured for WSL 2 integration:
     - In Docker Desktop, go to Settings > Resources > WSL Integration and enable your Linux distribution.
 2. Make the script executable (if needed):
+
     ```bash
     chmod +x docker_serve_local.sh
     ```
+
 3. Run the script:
+
     ```bash
     bash docker_serve_local.sh
     ```
+
 4. Once running, access the site at `http://localhost:1313/sw360` (check the script output for the exact port).
 
 **Note:** The Hugo development server includes live reload functionality. Any changes to content or layouts will update in real-time, enabling rapid development and testing.
@@ -112,10 +124,13 @@ Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is ins
     **Issue:** Permission denied when running `docker_serve_local.sh`
     **Solution:**
     1. Grant execute permissions:
+
         ```bash
         chmod +x docker_serve_local.sh
         ```
+
     2. Retry:
+
         ```bash
         bash docker_serve_local.sh
         ```
@@ -125,17 +140,20 @@ Before you begin, make sure [Docker](https://docs.docker.com/get-docker/) is ins
     **Issue:** `$'r': command not found` (common when the script has Windows-style line endings)
     **Solution:**
     1. Convert the script to Unix format:
+
         ```bash
         dos2unix docker_serve_local.sh
         ```
+
     2. Run it again:
+
         ```bash
         bash docker_serve_local.sh
         ```
 
-
 ## Project Structure
-```
+
+```text
 sw360.website/
 ├── content/               # Website content (pages, posts, etc.)
 ├── layouts/               # Custom layout templates

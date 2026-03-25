@@ -7,20 +7,22 @@ weight: 12
 ## Frontend Properties
 All the sw360 frontend properties are mentioned in [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/resources/sw360.properties) file.
 For example;
-https://github.com/eclipse/sw360/wiki/
- - Different categories for components,
+
+<https://github.com/eclipse/sw360/wiki/>
+
+- Different categories for components,
 
     component.categories=[ "framework", "SDK", "big-data", "build-management", "cloud", "content", "database", "graphics", "http", "javaee", "library", "mail", "mobile", "network-client", "network-server", "osgi", "security", "testing", "virtual-machine", "web-framework", "xml"]
 
- - Dropdown for project type,
+- Dropdown for project type,
 
     project.type=[ "Customer Project", "Internal Project", "Product", "Service", "Inner Source" ]
 
- - API Token generation,
+- API Token generation,
 
     rest.apitoken.generator.enable=false
 
- - Activation of portlets and components
+- Activation of portlets and components
 
 ## Backend Properties
 This [sw360.properties](https://github.com/eclipse-sw360/sw360/blob/main/backend/common/src/main/resources/sw360.properties) file contains the sw360 backend properties. This file contains the common properties for the backend services and also holds the setting for the mail utility.
