@@ -6,25 +6,24 @@ icon: fas fa-truck
 description: SW360 Deployment Guides
 ---
 
-## Recommended SW360 Deployment
+## Recommended SW360 Deployment (Version 20.x)
 
-For current SW360 deployment is recommended use docker compose, as base setup of the necessary third party tools are present.
+The recommended method for deploying the modern SW360 version 20 stack is using containers (compatible with both Docker and Podman). This containerized setup provides the complete ecosystem including the new Next.js frontend, Keycloak authentication, CouchDB, and the Spring Boot backend out-of-the-box.
 
-You can find [SW360 official docker-compose reference here](https://github.com/eclipse-sw360/sw360/raw/main/docker-compose.yml).
+👉 **[Start Here: SW360 v20.x Container Deployment Guide](containers/deploy-20-containers/)**
 
-This docker compose comes with default admin passwords for couchdb and postgres. Is recommended for production to customize this file.
+*If you are looking for bare metal or legacy deployments, please consult the guides available in the sidebar.*
 
-Donload the file mentioned above an just run:
+## Legacy: Setup Liferay
 
-```bash
-docker compose up -d
-```
+> [!WARNING]
+> **Deprecated:** As of SW360 version 20, the Liferay UI has been entirely
+> replaced by the new React/Next.js frontend. The Liferay setup instructions
+> below are retained strictly for legacy purposes (versions 18.x and earlier)
+> and are **no longer recommended** for new deployments. Please use the v20.x
+> guides referenced above.
 
-Three nested docker containers will be created for sw360, couchdb and postgres, and the respective volumes for the containers. They run in a closed sw360 docker network.
-
-## Next steps: Setup liferay
-
-After successful , Then if you open the server with the URL `https://localhost:8080/` the following screen should appear:
+After successful deployment of the backend, if you open the server with the URL `https://localhost:8080/` the following screen should appear:
 
 {{< figure src="/sw360/img/sw360screenshots/deploy74/1.png" >}}
 
