@@ -1,8 +1,8 @@
 ---
-linkTitle: "Ubuntu 22.04 / Debian 11"
-title: "Ubuntu 22.04 / Debian 11"
+linkTitle: "Legacy (v18.x) on Ubuntu / Debian"
+title: "Legacy (v18.x) on Ubuntu / Debian"
 weight: 102
-description: Bare metal deployment with Debian based Linux
+description: Legacy bare metal deployment with Debian based Linux for SW360 v18.x
 ---
 
 ## Introduction

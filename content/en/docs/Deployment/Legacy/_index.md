@@ -4,4 +4,5 @@ linkTitle: "Legacy Guides"
 weight: 20
 oem_ignore: true
 description: SW360 Legacy deployment guides
+icon: fas fa-box-archive
 ---
