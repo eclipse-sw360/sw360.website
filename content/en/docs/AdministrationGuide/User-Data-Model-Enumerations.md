@@ -5,32 +5,31 @@ description: "SW360 enumeration values for the internal thrift API"
 Weight: 12
 ---
 
-
 SW360 thrift API is comprised of the following methods:
 
-* attachments 
-* codescoop 
-* components 
-* cvesearch 
-* fossology 
-* importstatus 
-* licenseinfo 
-* licenses 
-* moderation 
-* projectimport 
-* projects 
-* schedule 
-* search 
-* sw360 
-* users 
-* vendors 
-* vulnerabilities 
+* attachments
+* codescoop
+* components
+* cvesearch
+* fossology
+* importstatus
+* licenseinfo
+* licenses
+* moderation
+* projectimport
+* projects
+* schedule
+* search
+* sw360
+* users
+* vendors
+* vulnerabilities
 
-Reference: https://github.com/eclipse-sw360/sw360/tree/main/libraries/datahandler/src/main/thrift
+Reference: <https://github.com/eclipse-sw360/sw360/tree/main/libraries/datahandler/src/main/thrift>
 
 ## Attachments
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/attachments.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/attachments.thrift>
 
 ### AttachmentType
 
@@ -54,7 +53,7 @@ https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/
 | SCREENSHOT  | Screenshot, usually screenshot of the Website with licensing information |
 | OTHER  |  anything that dos not match to the given above |
 
-### CheckStatus 
+### CheckStatus
 
 | Value  | Description.  |
 |---|---|
@@ -64,15 +63,15 @@ https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/
 
 ## CodeScoop Thrift File
 
-https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/codescoop.thrift
+<https://github.com/eclipse/sw360/blob/master/libraries/lib-datahandler/src/main/thrift/codescoop.thrift>
 
-## Components 
+## Components
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/components.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/components.thrift>
 
-## cvesearch 
+## cvesearch
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/cvesearch.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/cvesearch.thrift>
 
 | Value  | Description |
 |---|---|
@@ -81,23 +80,23 @@ https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/
 | OLD | ...  |
 | FAILED | ...  |
 
-## Fossology 
+## Fossology
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/fossology.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/fossology.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
-## Importstatus 
+## Importstatus
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/importstatus.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/importstatus.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
-## License Info 
+## License Info
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/licenseinfo.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/licenseinfo.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
 ### LicenseInfoRequestStatus
 
@@ -114,17 +113,17 @@ _No enumerations provided_
 | REPORT | ...  |
 | DISCLOSURE | ...  |
 
-## Licenses 
+## Licenses
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/licenses.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/licenses.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
-## Moderation 
+## Moderation
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/moderation.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/moderation.thrift>
 
-### DocumentType 
+### DocumentType
 
 | Value  | Description |
 |---|---|
@@ -134,15 +133,15 @@ https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/
 | LICENSE | ...  |
 | USER | ...  |
 
-## Project Import 
+## Project Import
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/projectimport.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/projectimport.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
-## Projects 
+## Projects
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/projects.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/projects.thrift>
 
 ### Project State
 
@@ -179,17 +178,17 @@ https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/
 | IN_PROGRESS | ... |
 | CLOSED | ... |
 
-## Schedule 
+## Schedule
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/schedule.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/schedule.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
-## Search 
+## Search
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/search.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/search.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
 ## General SW360 Thrift
 
@@ -199,20 +198,7 @@ _No enumerations provided_
 |---|---|
 | OPEN   | Not decided so far  |
 | MAINLINE   | Organisation or person thinks that use of this software is recommended, which included multiple versions.  |
-| SPECIFIC   | The software is not recommended in general, but for special use case or for this particular version it is acceptable.  | 
-| PHASE_OUT   | The software has issues, please consider removing it soon, if in use.   |
-| DENIED   | Software which is not allowed for use. For example, software that does not have licensing. |
-
-
-## General SW360 Thrift
-
-### Software Mainline States
-
-| Value  | Description.  |
-|---|---|
-| OPEN   | Not decided so far  |
-| MAINLINE   | Organisation or person thinks that use of this software is recommended, which included multiple versions.  |
-| SPECIFIC   | The software is not recommended in general, but for special use case or for this particular version it is acceptable.  | 
+| SPECIFIC   | The software is not recommended in general, but for special use case or for this particular version it is acceptable.  |
 | PHASE_OUT   | The software has issues, please consider removing it soon, if in use.   |
 | DENIED   | Software which is not allowed for use. For example, software that does not have licensing. |
 
@@ -222,16 +208,16 @@ _No enumerations provided_
 |---|---|
 | PENDING | Not opened so far.  |
 | APPROVED | A person who has received the moderation request (which could be creator of the document, a clearing admin, a moderator, etc.) has approved the moderation request. It could be deleted then. |
-| REJECTED | A person who has received the moderation request (which could be creator of the document, a clearing admin, a moderator, etc.) has rejected the moderation request.  | 
+| REJECTED | A person who has received the moderation request (which could be creator of the document, a clearing admin, a moderator, etc.) has rejected the moderation request.  |
 | INPROGRESS | A person who has received the moderation request (which could be creator of the document, a clearing admin, a moderator, etc.) has opened / viewed the moderation request, but did not decide. |
 
-### Visibility 
+### Visibility
 
 | Value  | Description  |
 |---|---|
 | PRIVATE | Only visible by creator (and admin which applies to all visibility levels). |
 | ME_AND_MODERATORS | Visible by creator and moderators. |
-| BUISNESSUNIT_AND_MODERATORS | All users of the same group and the moderators. | 
+| BUISNESSUNIT_AND_MODERATORS | All users of the same group and the moderators. |
 | EVERYONE | Every user who is logged into the system. |
 
 ### Verification State
@@ -240,7 +226,7 @@ _No enumerations provided_
 |---|---|
 | NOT_CHECKED | No one has yet looked at this and verified it. |
 | CHECKED  | It is verified. |
-| INCORRECT  | It was decided that the verification should be rejected. | 
+| INCORRECT  | It was decided that the verification should be rejected. |
 
 ### Release Relationship
 
@@ -257,18 +243,18 @@ _No enumerations provided_
 | OPTIONAL   | Is not mandatory part of the installation.   | Yes |
 | TO_BE_REPLACED | Is there but should be moved out. | Yes |
 
-## Users 
+## Users
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/users.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/users.thrift>
 
-## Vendors 
+## Vendors
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/vendors.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/vendors.thrift>
 
-_No enumerations provided_
+No enumerations provided
 
-## Vulnerabilities 
+## Vulnerabilities
 
-https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/vulnerabilities.thrift
+<https://github.com/eclipse-sw360/sw360/blob/main/libraries/datahandler/src/main/thrift/vulnerabilities.thrift>
 
-_No enumerations provided_
+No enumerations provided
