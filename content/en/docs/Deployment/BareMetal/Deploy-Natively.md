@@ -1,7 +1,7 @@
 ---
 linkTitle: "Ubuntu 22.04 / Debian 11"
 title: "Ubuntu 22.04 / Debian 11"
-weight: 100
+weight: 102
 description: Bare metal deployment with Debian based Linux
 ---
 

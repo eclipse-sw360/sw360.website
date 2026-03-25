@@ -4,4 +4,5 @@ linkTitle: "Upgrade"
 weight: 11
 oem_ignore: true
 description: SW360 Bare Metal Deployment
+icon: fas fa-arrow-up-right-dots
 ---

@@ -133,7 +133,43 @@ via KeyCloak's [Configuration provider](https://www.keycloak.org/server/configur
     KC_SPI_STORAGE_SW360_USER_STORAGE_JPA_THRIFT=http://<thrift-backend-server>:<thrift-backend-port>
     ```
 
-## Keycloak Admin Console
+## Recommended: Automated Realm Configuration using Terraform / OpenTofu
+
+Configuring the Keycloak realm manually is error-prone and tedious. SW360
+provides a Terraform/OpenTofu script to fully automate the creation of the
+realm, clients, scopes, groups, and even identity providers like Azure AD.
+
+**This is the officially recommended approach to keep your authentication setup
+up-to-date and in sync with SW360 requirements.**
+
+1. Clone the repository and navigate to the Terraform directory:
+    ```bash
+    git clone https://github.com/eclipse-sw360/sw360.git
+    cd sw360/third-party/keycloak-tf
+    ```
+2. Following the [Keycloak Terraform/OpenTofu README](https://github.com/eclipse-sw360/sw360/blob/main/third-party/keycloak-tf/README.md), log into your Keycloak master realm and create an initial OIDC client to allow Terraform to authenticate.
+3. Copy the template `local.tfvars` to `prod.auto.tfvars`. 
+4. Configure the necessary variables inside `prod.auto.tfvars`. Key variables include:
+   - `kc_client_id` & `kc_client_secret`: Used for the frontend client.
+   - `redirect_uris` & `frontend_base_url`: URLs to your SW360 frontend.
+   - `tenant`, `azure_client_id`, `azure_client_secret`: *(Optional)* Provides
+     out-of-the-box Azure AD integration without manual configuration.
+5. Run `terraform apply` (or `tofu apply`) to provision all required Keycloak
+   scopes, roles, clients, and identity providers automatically.
+
+Once applied, your Keycloak instance is fully configured and ready for SW360!
+    You can cleanly skip the manual configuration sections below.
+
+---
+
+## Legacy / Manual Configuration (Keycloak Admin Console)
+
+*(Not Recommended for production environments. Use the Terraform instructions
+above if possible.)*
+
+These guides are here for understanding the Keycloak configuration. But the most
+up-to-date and recommended way to configure Keycloak is using
+Terraform/OpenTofu.
 
 * Login to Keycloak admin console.
 
