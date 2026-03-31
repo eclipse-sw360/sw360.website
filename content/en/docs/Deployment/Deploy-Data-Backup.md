@@ -1,7 +1,7 @@
 ---
 title: "Data Backup Strategy"
 linkTitle: "Data Backup"
-weight: 30
+weight: 90
 description:
   "Guidelines for backing up and restoring SW360 data across container and bare metal deployments."
 ---

@@ -1,7 +1,7 @@
 ---
 linkTitle: "System Requirements"
 title: "System Requirements"
-weight: 100
+weight: 20
 description: 
   SW360 minimal system requirements based on system class
 ---

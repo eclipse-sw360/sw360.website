@@ -1,7 +1,7 @@
 ---
 linkTitle: "Authorization Concept"
 title: "Authorization Concept"
-weight: 100
+weight: 60
 description: 
   Modernized authorization roles and visibility concepts for SW360 v20
 ---

@@ -1,7 +1,7 @@
 ---
 linkTitle: "Security Best Practices"
 title: "Security Best Practices"
-weight: 100
+weight: 80
 description: 
   SW360 security checklist pre and post deployment for v20+
 ---

@@ -1,7 +1,7 @@
 ---
 linkTitle: "SW360 Configurations"
 title: "SW360 Configurations"
-weight: 100
+weight: 50
 description:
   SW360 Configurable Property Keys (Files and Database)
 ---
