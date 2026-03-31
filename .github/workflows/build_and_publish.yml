@@ -80,16 +80,21 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
       - name: Download Artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: website
-          path: .
+          path: build_output
 
       - name: Push changes
         uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
         with:
-          folder: .
+          folder: build_output
           branch: main
           git-config-name: "SW360 Bot [bot]"
           git-config-email: "sw360-actions[bot]@users.noreply.github.com"
