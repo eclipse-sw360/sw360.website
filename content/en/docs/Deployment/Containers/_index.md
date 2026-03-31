@@ -1,7 +1,7 @@
 ---
 title: "Containers"
 linkTitle: "Containers"
-weight: 10
+weight: 30
 description: "Documentation for container-based deployments (Docker and Podman)"
 icon: fab fa-docker
 ---

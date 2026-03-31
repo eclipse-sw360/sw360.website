@@ -1,7 +1,7 @@
 ---
 linkTitle: "Keycloak Authentication"
 title: "Keycloak Authentication"
-weight: 101
+weight: 70
 description: 
   Modern Keycloak authentication setup for SW360 using Terraform automation.
 ---
