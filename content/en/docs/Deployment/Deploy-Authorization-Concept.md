@@ -3,48 +3,107 @@ linkTitle: "Authorization Concept"
 title: "Authorization Concept"
 weight: 100
 description: 
-  Describe different roles of authorization concepts on SW360
+  Modernized authorization roles and visibility concepts for SW360 v20
 ---
 
-The authorization concept describes the different roles of the solution - mainly for documentation of the authorization of different roles of the sw360. It is not focusing for the roles like being a moderator, it is described on a separate page for users: [role and access model](https://github.com/eclipse/sw360/wiki/Dev-Role-Authorisation-Model)
+SW360 uses a tiered authorization model that balances global roles with
+granular, record-level access. In v20, the architecture clearly separates
+**Authentication** (handled by **Keycloak** or an OIDC provider) from
+**Authorization** (handled by the **SW360 Backend** using CouchDB as the
+source of truth).
 
-## Roles Overview
+## Role Management
 
-SW360 offers two choices for doing the roles: one is setting access rights at every record individually. Another are general roles that can be set for every user. An admin of SW360 can set user roles at the Liferay Users and Roles UI.
+Role management is performed through the SW360 Frontend in the **Admin > Users**
+section. An administrator can search for users and modify their primary and
+secondary roles. These changes are stored in CouchDB and synchronized to Keycloak
+(if enabled) via federation.
 
-#### Setup Admin (Liferay Role)
+---
 
-The setup admin is the Liferay administrator, which can configure the entire liferay app, such as which portlets are shown on which page.
+## 1. The Visibility Foundation: Departments & Business Units
 
-#### SW360 Admin (Liferay Role)
+Visibility in SW360 is largely driven by a user's **Department** and a project's
+**Business Unit (BU)**.
 
-The SW360 admin can change all data and promote users for more access rights, such as promoting a user to role `CLEARING_ADMIN`. So its use case is to promote users to clearing admins after some time without always asking the site administrator to do this. To enhance the `SW360_ADMIN` role to allow users of this role to promote other users's roles, follow these steps:
+### Department/BU Matching
+There is a **1-to-1 relationship** between a user's department and the project's
+business unit. For projects with `BUSINESSUNIT_AND_MODERATORS` visibility (the
+default), users can view records belonging to their own department.
 
-1. Go to control panel
-2. Select the `Users` section
-3. To subsection `Roles`
-4. Select row for `SW360 Admin` and select action `Define permissions`.
+### Secondary Identities (Multi-Tenancy)
+Users can act within multiple departments with different roles. This is stored as
+a map of `secondaryDepartmentsAndRoles`. For example:
+* **Primary**: `Clearance Expert` in *Department A*.
+* **Secondary**: `Clearing Admin` in *Department B*.
+* **Secondary**: `ECC Admin` in *Department C*.
 
-When defining permissions the idea is to reduce the permissions to the lowest level possible. Just allow for changing users.
+A user's effective permissions for a specific record are determined by the
+project's Business Unit and the user's role within that corresponding
+department.
 
-#### Clearing Admin (Liferay Role)
+---
 
-The clearing admin can change all component and release records and project records of the same group.
+## 2. Core Roles Overview
 
-#### Security Admin (Liferay Role)
+### SW360 Admin
+The SW360 Admin is a global administrative role responsible for system
+maintenance and user promotion.
+* **Capabilities**: Promote users, manage global configurations, and view system
+  logs.
+* **Private Access Toggle**: By default, admins are restricted from viewing
+  `PRIVATE` projects of other users. However, the configuration
+  `IS_ADMIN_PRIVATE_ACCESS_ENABLED` can be toggled to allow admins to manage
+  orphaned or locked private projects.
 
-In addition to the user rights, the security admin can set security vulnerabilities to irrelevant
+### Clearing Admin vs. Clearing Expert
+These roles manage the clearance status of components and releases.
+* **Clearing Admin**: A high-level role for managing clearance across a
+  department or globally. Actions taken by a Clearing Admin **do not** generate
+  moderation requests.
+* **Clearing Expert**: A subject matter expert who can perform clearings. Their
+  actions may still be subject to moderation depending on specific backend
+  configurations.
 
-#### ECC Admin (Liferay Role)
+### Security Admin vs. Security User
+These roles are dedicated to vulnerability management.
+* **Security Admin**: Can view all vulnerabilities across the instance and has
+  the authority to **suppress** or resolve them.
+* **Security User**: A read-only security practitioner. They can view
+  vulnerability data but cannot suppress findings. They also have a "limited
+  view" of all projects in their department to assess risk without seeing
+  proprietary project details.
 
-In addition to the user rights, the ECC admin can manipulate ECC data.
+### ECC Admin
+The Export Control and Customs (ECC) Admin has the authority to manipulate and
+verify ECC-specific data within component and release records.
 
-#### User
+### User
+A standard user can create, modify, and delete their own records. If a user
+attempts to change a record they do not own (and they lack a higher
+administrative role), a **Moderation Request** is automatically generated.
 
-A user can create, modify and delete all own (=self created) records. A user cannot change records of others
+---
 
-#### Summary
+## 3. Record-Level Access (ACLs)
 
-### Moderation Requests
+An owner of a record (Component, Release, or Project) can delegate `WRITE`
+access to other specific users without administrator intervention.
 
-If a user with user or other access role rights is not entitled to write or change a record, a moderation request will be created. The moderation request contains the changes an will be routed for approval to the users who can write this record.
+### Moderators and Contributors
+* **Moderators**: Users in this list have full "owner-equivalent" rights for
+  that specific record, including the ability to add other moderators.
+* **Contributors**: Users who are granted the right to edit the record but
+  cannot manage the ACLs or delete the record.
+
+---
+
+## 4. Moderation Workflow
+
+If a user lacks the necessary role or ownership rights to modify a record, the
+SW360 Backend creates a **Moderation Request**. 
+1. The request contains the proposed changes.
+2. It is routed to the authorized moderators of the record (or Clearing Admins
+   for clearance data).
+3. The change is only applied to the primary record once a moderator approves
+   the request.
