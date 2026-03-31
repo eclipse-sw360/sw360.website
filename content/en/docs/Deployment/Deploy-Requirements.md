@@ -6,84 +6,104 @@ description:
   SW360 minimal system requirements based on system class
 ---
 
-For deploying the SW360, there are the following hardware requirements below. Please note that the main memory consumer is the tomcat application container. Accordingly, this requires different settings (see `$TOMCAT_HOME/bin/setenv.sh`).
+For deploying SW360 v20, the following hardware and software requirements apply.
+Note that the architecture has shifted from a monolithic Liferay setup to a
+microservices-based stack (Spring Boot Backend, Next.js Frontend, Keycloak
+Authentication).
 
-Please note that you can review the current memory situation of the application in the liferay administration section as well (see `Configuration`-> `Server Administration`).
+Recommended deployment method is [container-based](./Containers/_index.md) for
+ease of management.
 
 ## Hardware and Infrastructure
 
-### CD-based test instances
+### Development / Test instances
 
-When there is a continuous deployment and continuous delivery directly deployed to machine the following machine is recommended:
+For personal development or small test instances with minimal data:
 
-* 1 core
-* 4GB RAM
-* 40GB normal file system
-* 10Mbit Ethernet link
-
-In this case, the sw360 solution runs fairly well for clicking around and creation of a few data sets. Note that Tomcat should have 2GB.
+* **CPU**: 2 cores
+* **RAM**: 8GB (4GB for Tomcat/Backend, 1GB for Keycloak, 1GB for Frontend,
+  2GB for OS/CouchDB)
+* **Storage**: 40GB SSD
+* **Network**: 10Mbit Ethernet link
 
 ### Staging instances
 
-Testing and working with normal data sets for staging and pre-productive testing. Pre productive does not need to have the same execution speed of the machine, however, requires enough RAM and file system to run a clone on the data set.
+Testing and working with medium data sets for staging and pre-productive
+testing. Requires enough RAM to run a full stack including Keycloak and
+monitoring services.
 
-* 2 cores
-* 8GB RAM
-* 500GB normal file system
-* 100Mbit Ethernet link
-
-The tomcat should be adjusted to 4GB RAM
+* **CPU**: 4 cores
+* **RAM**: 16GB
+* **Storage**: 100GB SSD
+* **Network**: 100Mbit Ethernet link
 
 ### Productive instances
 
-Productive with for example: 10K releases, 2k users which deploys the entire solution onto a single larger machine. It does not apply to a docker based setup.
+For a production environment with e.g. 8K+ projects and 2K+ users, it is
+recommended to split the database and the application server.
 
-* 4 cores
-* 16GB RAM
-* 500GB SSD based file system
-* 1GBit link Ethernet link
+#### Application Server (SW360 + Keycloak + Frontend)
+* **CPU**: 8+ cores
+* **RAM**: 16GB - 24GB (At least **8GB** must be allocated to the SW360
+  Backend/Tomcat)
+* **Storage**: 500GB SSD
+* **Network**: 1GBit Ethernet link
 
-Tomcat should be adjusted to 10-12GB RAM. Note: normally, you could also run Tomcat with significantly lees RAM, if you put common dependencies in a shared lib folder.
+#### Database Server (CouchDB + Postgres)
+> [!IMPORTANT]
+> For production, it is highly recommended to run **CouchDB on a separate
+> machine** rather than inside a container on the same host.
+
+* **CPU**: 4 cores
+* **RAM**: 15GB+ (CouchDB requires significant memory for indexing large
+  datasets)
+* **Storage**: 500GB SSD (Database grade)
+* **Network**: 1GBit Ethernet link
 
 ### Network
 
-The following table shall give an overview about the inbound ports
+The following table gives an overview of the required inbound ports:
 
-| Port | Service | Remarks|
-|:-----------|:------------|:------------|
-| 443 | https | Accessing the application |
-| 22  | ssh | Administering the application |
-| 80 | http | if you would like to access the solution over http |
-| 5984/5985 | http/https | if access to the couchdb (admin) interface is required |
+| Port | Service | Description |
+| :--- | :--- | :--- |
+| `443` | HTTPS (Nginx Proxy) | Main access to the SW360 Frontend and Keycloak |
+| `3000` | SW360 Frontend | Internal: The Next.js application |
+| `8080` | SW360 Backend | Internal: The Spring Boot Resource Server |
+| `8443` | Keycloak | Authentication service |
+| `5984` | CouchDB | Direct access to database (if required for admin) |
+| `5432` | Postgres | Database for Keycloak |
+| `22` | SSH | Remote administration |
 
-Overview about the *additional* outbound ports:
+Overview of required outbound ports:
 
-| Port | Service | Remarks|
-|:-----------|:------------|:------------|
-| 3269 | sldap | If you do authentication using secure LDAP |
-| 443 | sldap | If you do consume services over https (e.g. vulnerabilty pulling) |
-| 53 | dns | ... |
-| 22 | ssh | the old way of calling a fossology server |
+| Port | Service | Description |
+| :--- | :--- | :--- |
+| `443` | HTTPS | External service consumption (e.g., Vulnerability pulling, Fossology) |
+| `53` | DNS | Domain Name System |
+| `123` | NTP | Time synchronization |
 
-Outbound ports for http / https may be required for downloading system updates. Ports for ssh may not be required outbound.
+## Software
 
-## Software:
+SW360 v20 is built on a modern Java and Node.js stack. The recommended platforms
+for deployment are:
 
-As for the software, the sw360 can be run on many platforms, even on Windows seven. We have the following reference platform for development:
+### Operating System
+* **Ubuntu 24.04 LTS (or later)**: Highly recommended for production
+  (includes commercial ESM support).
+* **Debian 12 (or later)**: Lightweight and stable, ideal for general
+  deployments.
 
-until 5:
+### Runtime Stack
+* **Java**: OpenJDK **21**
+* **Tomcat**: Tomcat **11**
+* **Node.js**: **20+** (LTS versions 20, 22, and 24 are tested)
+* **Keycloak**: Version **26+**
 
-* OpenJDK 8
-* Unbunu 16.04 LTS
+### Persistence & Search
+* **CouchDB**: Version **3.5**
+* **CouchDB Nouveau**: **Mandatory**. Nouveau must be installed and enabled for
+  search functionality to work.
+* **Postgres**: Version **15+** (Required for Keycloak authentication storage)
 
-after 5:
-
-* openjdk 8
-* ubuntu 18.04 LTS
-
-after 11:
-
-* openjdk 11
-* ubuntu 18.04 LTS
-
-More information about requirements can be found here: https://github.com/sw360/sw360vagrant/wiki
+More information can be found in the
+[Release Notes](https://github.com/eclipse-sw360/sw360/releases).
