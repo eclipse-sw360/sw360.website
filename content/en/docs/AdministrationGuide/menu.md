@@ -1,7 +1,7 @@
 ---
 linkTitle: "Administrator Menu"
 title: "Administrator Menu"
-weight: 9
+weight: 10
 ---
 
 The **Administrator Menu** provides centralized access to system management

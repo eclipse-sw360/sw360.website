@@ -1,7 +1,7 @@
 ---
 linkTitle: "User Management Roles"
 title: "User Management Roles"
-weight: 10
+weight: 30
 ---
 
 Every user can create records and edit their own records. However, to change
