@@ -1,7 +1,7 @@
 ---
 linkTitle: "Configurations"
 title: "Configurations"
-weight: 12
+weight: 20
 ---
 
 In SW360 v20, system administrators can manage most application settings

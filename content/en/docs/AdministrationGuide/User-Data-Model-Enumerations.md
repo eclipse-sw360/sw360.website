@@ -2,7 +2,7 @@
 linkTitle: "Enumerations"
 title: "Enumerations"
 description: "SW360 enumeration values for the internal thrift API"
-Weight: 12
+weight: 40
 ---
 
 SW360 thrift API is comprised of the following methods:
