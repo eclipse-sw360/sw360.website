@@ -10,20 +10,29 @@ description: SW360 Deployment Guides
 
 The recommended method for deploying the modern SW360 version 20 stack is using containers (compatible with both Docker and Podman). This containerized setup provides the complete ecosystem including the new Next.js frontend, Keycloak authentication, CouchDB, and the Spring Boot backend out-of-the-box.
 
-👉 **[Start Here: SW360 v20.x Container Deployment Guide](containers/deploy-20-containers/)**
+👉 **[Start Here: SW360 v20.x Container Deployment Guide](./Containers/)**
 
 *If you are looking for bare metal or legacy deployments, please consult the guides available in the sidebar.*
 
 ## General Topics
 
-* [Deployment Authorization Concept](deploy-authorization-concept)
-* [Properties explained](deploy-configuration-files)
-* [Deployment Requirements](deploy-requirements)
-* [Secure Deployment Notes](deploy-secure-deployment)
+* [System Requirements](./Deploy-Requirements.md)
+* [Configuration Files](./Deploy-Configuration-Files.md)
+* [Authorization Concept](./Deploy-Authorization-Concept.md)
+* [Keycloak Authentication](./Deploy-Keycloak-Authentication.md)
+* [Security Best Practices](./Deploy-Secure-Deployment.md)
+
+## Operations & Maintenance
+
+* [Data Backup Strategy](./Deploy-Data-Backup.md)
+* [Export and Import](./Deploy-Export-and-Import.md)
+* [CVE Search](./Deploy-CVE-search.md)
+* [Upgrading SW360](./Upgrading/)
+
+---
 
 ## Special Topics
 
-After install and setup sw360, this are possible topice to be considered:
+After installing and setting up SW360, these are additional topics to be considered:
 
-* [Special Coverage of Country Codes](deploy-configuration-country-codes), when countries are displayed, then it uses country codes in the DB 
-* [How to export data and import it to a new instance](deploy-export-and-import)
+* [Special Deployment Guides](./Deploy-SpecialDeployment.md)
