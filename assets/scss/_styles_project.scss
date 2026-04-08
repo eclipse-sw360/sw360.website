@@ -166,3 +166,49 @@ sections site wide to the original site's background svg.
   margin-left: auto; /* Push this element to the right */
   margin-right: 20px; /* Or your desired right margin */
 }
+
+// Hero section responsive images - Fix for mobile overflow (Issue #178)
+.hero-logo {
+  max-width: 100%;
+  height: auto;
+  width: 400px; // Default width for larger screens
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.hero-screenshot {
+  max-width: 100%;
+  height: auto;
+  width: 500px; // Default width for larger screens
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  @media (max-width: 576px) {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+// Ensure hero section doesn't overflow on mobile
+.td-cover-block {
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  
+  @media (max-width: 576px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
