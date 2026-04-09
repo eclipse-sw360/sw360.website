@@ -11,47 +11,56 @@ a {
   text-shadow: none;
 }
 
-footer {
+// Explicit color definitions to ensure UI fixes apply correctly
+$eclipse-dark-blue-local: #000966;
+$sw360-orange-local: #f49523;
+$white-local: #ffffff;
+
+footer.footer,
+footer.td-footer {
   min-height: auto;
-  img {
-    margin-left: 15px;
-    margin-right: 15px;
+  background-color: $eclipse-dark-blue-local !important;
+  color: $white-local !important;
+  display: block !important;
+  padding: 3rem 2rem !important;
+
+  .container-fluid {
+    background-color: transparent !important;
   }
 
-  background: $primary;
-  color: #999999;
+  p,
+  small,
+  span,
+  div,
+  li {
+    color: $white-local !important;
+  }
 
-  ul {
-    padding-left: 0;
-    list-style: none;
+  a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: underline !important;
 
-    a {
-      color: #999999;
-      &:hover {
-        color: #5d8ea9;
-        text-decoration: none;
-      }
+    &:hover {
+      color: $sw360-orange-local !important;
+      text-decoration: none !important;
     }
   }
 
-  
-  h4 {
-    color: #eeeeee;
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  li {
-    text-align: -webkit-match-parent;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $sw360-orange-local !important;
+    font-weight: 700 !important;
   }
 }
 
 .display-cover {
   font-size: 1.5rem;
   text-shadow: 1px 1px 1px black;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
   border-radius: 5px;
   padding: 20px;
 
@@ -69,12 +78,15 @@ footer {
 .td-page-meta--edit {
   display: none !important;
 }
+
 .td-page-meta--child {
   display: none !important;
 }
+
 .td-page-meta--print {
   display: none !important;
 }
+
 .td-page-meta--project-issue {
   display: none !important;
 }
@@ -98,8 +110,8 @@ sections site wide to the original site's background svg.
 }
 
 .td-box--secondary {
-    color: #fff;
-    background-color: #162c37;
+  color: #fff;
+  background-color: #162c37;
 }
 
 .vision-description {
@@ -109,6 +121,7 @@ sections site wide to the original site's background svg.
 .vision-title {
   font-weight: 700;
 }
+
 .scroll-to-top {
   display: none;
   position: fixed;
@@ -129,40 +142,58 @@ sections site wide to the original site's background svg.
 .scroll-to-top:hover {
   background-color: #e5e7ea;
 }
-.topArrow{
+
+.topArrow {
   font-size: 40px;
   position: relative;
   bottom: 15px;
   color: black;
 }
 
+.td-navbar.navbar,
 .js-navbar-scroll.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  transition: background-color 0.3s ease;
-  
+  background-color: $eclipse-dark-blue-local !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+
   &.navbar-scrolled {
-    background-color: rgba(26, 63, 81, 0.95) !important; // Using the $primary color with opacity
-    backdrop-filter: blur(8px);
+    background-color: rgba($eclipse-dark-blue-local, 0.98) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .nav-link,
+  .nav-item,
+  .navbar-brand,
+  .td-navbar-nav-scroll {
+    color: $white-local !important;
+    font-weight: 600 !important;
+
+    &:hover {
+      color: $sw360-orange-local !important;
+    }
+  }
+
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
   }
 }
 
 /* Keep existing styles for other elements */
 .navbar-brand {
-  margin-right: auto;
-}
+  padding-left: 1.5rem !important;
+  margin-right: 2rem;
 
-.td-navbar-nav-scroll {
-  /* ... your existing styles ... */
-}
-
-.navbar-nav {
-  /* ... your existing styles ... */
+  img {
+    height: 40px;
+    width: auto;
+  }
 }
 
 .d-none.d-lg-block {
-  margin-left: auto; /* Push this element to the right */
-  margin-right: 20px; /* Or your desired right margin */
+  margin-left: auto;
+  /* Push this element to the right */
+  margin-right: 20px;
+  /* Or your desired right margin */
 }
