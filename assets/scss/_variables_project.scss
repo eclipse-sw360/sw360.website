@@ -1,7 +1,18 @@
 $td-enable-google-fonts: false;
 
-$primary: #1a3f51!default;
-$secondary: #102129 !default;
-$text_primary: #555555 !default;
-$btn-primary: #fe7740;
-$btn-secondary: #fe7740;
+// Project Colors
+$sw360-orange: #f49523;
+$sw360-blue: #5c8da7;
+$white: #ffffff;
+
+// Eclipse Colors
+$eclipse-dark-blue: #000966;
+$eclipse-orange: #F06C02;
+$eclipse-blue: #2C1CD8;
+$black: #000000;
+
+$primary: $eclipse-dark-blue !default;
+$secondary: $sw360-blue !default;
+$text_primary: #333333 !default;
+$btn-primary: $sw360-orange;
+$btn-secondary: $eclipse-orange;
