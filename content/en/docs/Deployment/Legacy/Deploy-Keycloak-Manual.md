@@ -40,8 +40,8 @@ up-to-date and recommended way to configure Keycloak is using Terraform/OpenTofu
       `jwks_uri`. It will look something like
       `http://localhost:8083/realms/sw360/protocol/openid-connect/certs`
       {{< figure src="/sw360/img/keycloak/keycloak-jwks.png" >}}
-    * Update the `issuer-uri` and `jwk-set-uri` in the `application.yml` file
-      with this copied `jwks_uri`.
+    * Update the `issuer-uri` as `http://localhost:8083/realms/sw360` and
+      `jwk-set-uri` in the `application.yml` file with this copied `jwks_uri`.
     * Build and install the backend one more time.
 
 * Create Client in Keycloak.
