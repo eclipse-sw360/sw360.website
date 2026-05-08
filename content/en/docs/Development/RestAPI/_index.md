@@ -8,9 +8,20 @@ Using the Web interface makes sense for some use cases, for some other cases the
 
 ## Methods of Authentication
 
-1. OAuth workflow involving consumer / client secret and user token using user name and password from LDAP / Exchange accounts (very early)
-2. Access key obtained in the SW360 UI
-3. OAuth workflow involving consumer token / client secret and signed Java Web Tokens involving user authentication from OpenID Connect service for the first token and then using the OAuth refresh tokens.
+Current authentication mechanisms:
+
+1. Basic Auth (`Authorization: Basic ...`)
+2. API Token with read/write capabilities (`Authorization: Token ...`)
+3. OAuth2 via SW360 Authorization Server (`Authorization: Bearer ...`)
+4. Keycloak OIDC/OAuth2 (`Authorization: Bearer ...`)
+
+See the practical guide here:
+
+- [API Access]({{< relref path="access.md" >}})
+
+Legacy workflows are kept separately:
+
+- [Legacy REST API Guides]({{< relref path="Legacy/_index.md" >}})
 
 API Documentation is available on the instances deployed:
 
@@ -19,7 +30,7 @@ API Documentation is available on the instances deployed:
 ## Brief Specs
 | | |
 | --- | --- |
-| Implementation Technology	| Java-based Spring-framework based |
-| REST Flavor |	Hypermedia-driven |
-| Authentication | Now: Token by user token store. Previously: Spring Security using JWT and SW360 user management. Note that technically, both ways are possible |
-|  More Technical Information | [Rest API]({{< ref "Dev-REST-API.md" >}} "Rest API") |
+| Implementation Technology | Java-based Spring framework |
+| REST Flavor | Hypermedia-driven (HAL) |
+| Authentication | Multi-mechanism: Basic Auth, API Token, OAuth2, Keycloak |
+| More Technical Information | [SW360 Rest API]({{< relref path="Dev-REST-API.md" >}}) |

@@ -6,76 +6,194 @@ weight: 30
 
 The sw360 REST API provides access to sw360 resources for external clients. It consists currently of three Maven modules aggregated in one parent module `rest` in the sw360 distribution.
 
+> For access setup and request examples, see [API Access]({{< relref path="access.md" >}}).
+> Legacy workflows are kept in [Legacy REST API Guides]({{< relref path="Legacy/_index.md" >}}).
+
+## Resource Server Authentication and Authorization Flow
+
+This section describes how `resource-server` identifies the principal and
+evaluates effective permissions.
+
+### Security Pipeline (High-Level)
+
+```mermaid
+flowchart TD
+    A[Incoming HTTP request] --> B{Authorization header}
+    B -->|Basic ...| C[Basic Authentication Provider]
+    B -->|Token ...| D[API Token Filter + Provider]
+    B -->|Bearer ...| E[JWT Authentication Provider + JWT Converter]
+    C --> F[Authenticated principal + authorities]
+    D --> F
+    E --> F
+    F --> G[Resolve SW360 user in RestControllerHelper]
+    G --> H[Endpoint + method authorization checks]
+```
+
+### How principal identity is resolved
+
+`RestControllerHelper.getSw360UserFromAuthentication()` resolves the SW360 user
+from authentication context using this order:
+
+1. Cached `User` in authentication details (fast path).
+2. JWT claims (`email`, fallback `mapped_user_email`, `user_name`) depending on
+   token style.
+3. Basic-auth principal (`Sw360UserDetails` or username string).
+
+If the user cannot be resolved, the request fails with authentication error.
+
+### How roles and scopes become authorities
+
+The resource server merges:
+
+- **User group authorities** (for example `READ`, `WRITE`, `ADMIN`) based on the
+  SW360 user group configuration.
+- **Token capability authorities** (`TOKEN_READ`, `TOKEN_WRITE`) based on token
+  scope/capability metadata.
+
+Scope mapping behavior:
+
+- `READ` (or `SCOPE_READ`) => `TOKEN_READ`
+- `WRITE` (or `SCOPE_WRITE`) => `TOKEN_READ` + `TOKEN_WRITE`
+- Missing/unknown scope defaults to read/write capabilities for compatibility.
+
+### Endpoint capability checks
+
+HTTP method checks apply to `/api/**`:
+
+- `GET` requires `TOKEN_READ`
+- `POST`, `PUT`, `PATCH`, `DELETE` require `TOKEN_WRITE`
+
+These checks are evaluated in addition to controller/service-level security.
+
 ## Module Structure
 
 The `rest` module provides a REST API infrastructure for sw360 including:
-* Module `authorization-server` - OAuth2 Authorization Server, offering typical authorization steps of an OAuth2 workflow.
-* Module `resource-server` - REST API Gateway, providing access to the data for authenticated and authorized users / clients.
-* Module `rest-common` - only library code that is shared between the other rest modules.
+* Module `authorization-server` - OAuth2/OIDC authorization server that authenticates SW360 users and issues JWT access tokens.
+* Module `resource-server` - REST API gateway that validates credentials/tokens and exposes SW360 resources.
+* Module `rest-common` - shared support library code used by both REST applications.
 
 The REST API implementation uses:
-* Module `authorization-server` uses the Liferay user management via the Liferay REST API to authenticate users and the users thrift backend service to access user profile data.
-* Module `resource-server` uses thrift backend services for accessing sw360 data to deliver it to the external clients.
+* Module `authorization-server` stores OAuth client registrations in CouchDB database `sw360oauthclients` and authenticates users against SW360 user data from `sw360users` through the backend user service.
+* Module `resource-server` uses Thrift clients to reach the respective SW360 backend services and serialize the resulting data as REST/HAL responses.
+
+## Request Flow from Client to Backend Service
+
+```mermaid
+flowchart LR
+    C[Client / Script / Frontend] --> RS[REST resource-server]
+    RS --> TC[ThriftClients]
+    TC --> TS[Thrift Server]
+    TS --> BS[SW360 Backend Service Module]
+    BS --> DB[(CouchDB)]
+```
 
 ## API Principles
 
 ### Security Principles
 
-The basic security principles are following the OAuth2 standards. So there should be an authorization server which can be the one contained in this project. That one provides access tokens after it authenticated the client and the user using this client. In addition it checks which authorities this client should receive for operating in the user's name.
-With this OAuth2 access token the client can query the resource server which will restrict access to the given authorities.
-Every client gets an access token as well as an refresh token. As long as the refresh token is valid, the client can gather a new access token without the need of re-authorization of the user.
+The `resource-server` supports multiple authentication mechanisms and uses a
+single capability model (`TOKEN_READ` / `TOKEN_WRITE`) for endpoint protection.
+Tokens are validated, converted to authorities, merged with user-group
+authorities, and then evaluated against endpoint and method-level rules.
 
-There are currently three different possibilities for an OAuth2 authorization server implemented:
-* Using the contained authorization-server with username/password that are known by Liferay, no matter if Liferay is hosting the credentials itself or is attached to some central user management which it uses to authenticate users.
-* Using the contained authorization-server inside an SSO network where an existing proxy can take care of the authentication and passing authenticated user information in configurable headers to the authorization-server which then performs authorization on top.
-* Using keycloak as authorization-server. This case is not part of this wiki page and might need special configuration.
+For user-facing setup details of each mechanism, see
+[API Access]({{< relref path="access.md" >}}).
 
 ### Data Principles
 
-The REST API provides Hypermedia using [HAL](http://stateless.co/hal_specification.html) (Hypertext Application Language).
-The following example shows some ideas of the REST API. It can be obtained by
+The REST API provides Hypermedia using [HAL](https://stateless.co/hal_specification.html) (Hypertext Application Language).
+The following abbreviated example shows the root HAL response shape:
 
 ```
-https://[hostname]:[port]/resource/api/browser/index.html#/resource/api
+curl -u '<sw360-user>:<password>' 'https://<my_sw360_server>/resource/api'
 ```
-Note that the response below is maybe not the exact same response of your current version:
+
 ```json
 {
   "_links": {
+    "sw360:attachmentCleanUp": {
+      "href": "http://localhost:8080/resource/api/attachmentCleanUp"
+    },
+    "sw360:fossology": {
+      "href": "http://localhost:8080/resource/api/fossology"
+    },
     "sw360:attachments": {
-      "href": "https://dev.sw360.siemens.com/resource/api/attachments{?sha1}",
+      "href": "http://localhost:8080/resource/api/attachments{?sha1}",
       "templated": true
     },
+    "sw360:cacheAdmin": {
+      "href": "http://localhost:8080/resource/api/admin/cache"
+    },
+    "sw360:changeLogs": {
+      "href": "http://localhost:8080/resource/api/changelog/document/{id}",
+      "templated": true
+    },
+    "sw360:clearingRequests": {
+      "href": "http://localhost:8080/resource/api/clearingrequest"
+    },
     "sw360:components": {
-      "href": "https://dev.sw360.siemens.com/resource/api/components"
+      "href": "http://localhost:8080/resource/api/components"
+    },
+    "sw360:configurations": {
+      "href": "http://localhost:8080/resource/api/configurations"
+    },
+    "sw360:databaseSanitation": {
+      "href": "http://localhost:8080/resource/api/databaseSanitation"
+    },
+    "sw360:department": {
+      "href": "http://localhost:8080/resource/api/departments"
+    },
+    "sw360:ecc": {
+      "href": "http://localhost:8080/resource/api/ecc"
+    },
+    "sw360:importExport": {
+      "href": "http://localhost:8080/resource/api/importExport"
     },
     "sw360:licenses": {
-      "href": "https://dev.sw360.siemens.com/resource/api/licenses"
+      "href": "http://localhost:8080/resource/api/licenses"
     },
     "sw360:licenseinfo": {
-      "href": "https://dev.sw360.siemens.com/resource/api/licenseinfo"
+      "href": "http://localhost:8080/resource/api/licenseinfo"
+    },
+    "sw360:moderationRequests": {
+      "href": "http://localhost:8080/resource/api/moderationrequest"
+    },
+    "sw360:obligations": {
+      "href": "http://localhost:8080/resource/api/obligations"
+    },
+    "sw360:packages": {
+      "href": "http://localhost:8080/resource/api/packages"
     },
     "sw360:projects": {
-      "href": "https://dev.sw360.siemens.com/resource/api/projects"
+      "href": "http://localhost:8080/resource/api/projects"
     },
     "sw360:releases": {
-      "href": "https://dev.sw360.siemens.com/resource/api/releases"
+      "href": "http://localhost:8080/resource/api/releases"
+    },
+    "sw360:reports": {
+      "href": "http://localhost:8080/resource/api/reports"
+    },
+    "sw360:schedule": {
+      "href": "http://localhost:8080/resource/api/schedule"
+    },
+    "sw360:searches": {
+      "href": "http://localhost:8080/resource/api/search"
     },
     "sw360:users": {
-      "href": "https://dev.sw360.siemens.com/resource/api/users"
+      "href": "http://localhost:8080/resource/api/users"
     },
     "sw360:vendors": {
-      "href": "https://dev.sw360.siemens.com/resource/api/vendors"
+      "href": "http://localhost:8080/resource/api/vendors"
     },
     "sw360:vulnerabilities": {
-      "href": "https://dev.sw360.siemens.com/resource/api/vulnerabilities"
+      "href": "http://localhost:8080/resource/api/vulnerabilities"
     },
     "profile": {
-      "href": "https://dev.sw360.siemens.com/resource/api/profile"
+      "href": "http://localhost:8080/resource/api/profile"
     },
     "curies": [
       {
-        "href": "https://dev.sw360.siemens.com/resource/docs/{rel}.html",
+        "href": "http://localhost:8080/resource/docs/{rel}.html",
         "name": "sw360",
         "templated": true
       }
@@ -94,111 +212,51 @@ Since the `authorization-server` and the `resource-server` are Spring Boot serve
 
 ### Authorization Server Configuration
 
-### Special Liferay Credentials Configuration
+The authorization server is responsible for:
 
-In addition to the general properties in [here](#general-config) the following needs to be configured in the `application.yml` when the authentication via Liferay username/password credentials should be possible:
+- authenticating SW360 users against the SW360 user data set (`sw360users`)
+- storing OAuth client registrations in CouchDB database `sw360oauthclients`
+- issuing JWT access tokens and refresh tokens
+- exposing OIDC/JWKS metadata used by clients and the resource server
 
-| Key | Values | Default |
+#### Authorization Server `application.yml`
+
+| Property | Description | Example / Default |
 | --- | --- | --- |
-| sw360:sw360-portal-server-url | the url of the Liferay instance | n/a (but could be given if environment variable is used like `${SW360_PORTAL_SERVER_URL:http://127.0.0.1:8080}`) |
-| sw360:sw360-liferay-company-id | the id of the company in Liferay that sw360 is run for |(but could be given if environment variable is used like `${SW360_LIFERAY_COMPANY_ID:20155}`) |
+| `couchdb.url` | CouchDB base URL used for OAuth client storage | `http://localhost:5984` |
+| `couchdb.database` | OAuth client database | `sw360oauthclients` |
+| `couchdb.username` | CouchDB username for OAuth client database | `sw360` |
+| `couchdb.password` | CouchDB password for OAuth client database | `sw360fossie` |
+| `sw360.cors.allowed-origin` | Allowed CORS origin | environment-specific |
+| `security.oauth2.resource.id` | Resource identifier embedded into issued tokens | `sw360-REST-API` |
+| `security.accesstoken.validity` | Access token validity | `30` |
 
-### Special SSO Configuration
+#### Authorization Server shared `sw360.properties`
 
-In addition to the general properties in [here](#general-config) the following needs to be configured in the `application.yml` when the authentication via SSO should be possible:
-
-| Key | Values | Default |
+| Property | Description | Default |
 | --- | --- | --- |
-| security:customheader:enabled | Flag if the components needed for SSO should be active | false |
-| security:customheader:headername:intermediateauthstore | the name of the header that can be used for internal data transfer inside one roundtrip - it can be configured here because the proxy has to make sure that this header will not be passed from clients and will be used truly internal only | custom-header-auth-marker |
-| security:customheader:headername:email | the name of the header that holds the email of the authenticated user (should be set be the proxy and must never be passed from clients) | authenticated-email |
-| security:customheader:headername:extid | the name of the header that holds the extid of the authenticated user (should be set be the proxy and must never be passed from clients) | authenticated-extid |
-
-:heavy_exclamation_mark: Please configure your SSO server and the proxy accordingly. In general, no unauthenticated request should reach the authorization server. And the configured headers should only be set by the proxy. If they are already contained in client requests, they must be removed!
-
-#### Removing Headers in Apache
-
-In Apache you may use the [`mod_headers`](https://httpd.apache.org/docs/current/mod/mod_headers.html) module to remove headers from the client. Using the default values from the table above, at least the following directives should be present in your configuration for all requests that are routed to the `authorization-server`:
-
-```
-RequestHeader unset custom-header-auth-marker
-RequestHeader unset authenticated-email
-RequestHeader unset authenticated-extid
-```
+| `rest.write.access.usergroup` | Minimum SW360 user group that gets write authority | `SW360_ADMIN` |
+| `rest.admin.access.usergroup` | Minimum SW360 user group that gets admin authority for client management | `SW360_ADMIN` |
 
 ### <a name="general-config"></a>General Configuration
 
-Possible properties in `sw360.properties` file are:
+Shared properties commonly used by the REST applications:
 
-| Key | Values | Default |
+| Property | Description | Default |
 | --- | --- | --- |
-| backend.url | the url where the thrift services can be found | http://127.0.0.1:8080 |
-| rest.write.access.usergroup | the user group level (`USER|CLEARING_ADMIN|...`) that is at least required for getting `WRITE` authority (if client has this scope as well) | `ADMIN` |
-| rest.admin.access.usergroup | the user group level (`USER|CLEARING_ADMIN|...`) that is at least required for getting `WRITE` authority (is required for managing OAuth2 clients | `ADMIN` |
-
-The values in `sw360.properties` should be migrated to the `application.yml` in the future.
-
-Further important properties in `application.yml` file are:
-
-| Key | Values | Default |
-| --- | --- | --- |
-| couchdb:url | the url of the CouchDB to use as client store | n/a |
-| couchdb:database | the database name of the CouchDB database to use as client store | n/a |
-| couchdb:username | if the CouchDB database needs authentication, enter the username here - if it does not need authentication, do not set this property at all, not even with an empty value | null |
-| couchdb:password | if the CouchDB database needs authentication, enter the password here - if it does not need authentication, do not set this property at all, not even with an empty value | null |
-| sw360:cors:allowed-origin | value for cross origin resource sharing | n/a |
-| security:oauth2:resource:id | should just be the same then in the resource server | n/a |
+| `backend.url` | URL where backend/thrift services can be reached | `http://127.0.0.1:8080` |
+| `rest.write.access.usergroup` | Minimum user group that should receive write authority | `SW360_ADMIN` |
+| `rest.admin.access.usergroup` | Minimum user group that should receive admin authority | `SW360_ADMIN` |
 
 After this configuration is done the normal REST service for client management should be usable. This one is only accessible for authenticated users that get the `ADMIN` authority (remember, the therefore necessary sw360 usergroup has just been configured). So the clients can be configured now.
 
-# Client Management
+## Client Management
 
 In the scenarios of this page, the shipped authorization server is used. So the next step is to configure a valid OAuth2 client in this authorization server. There should be one OAuth2 client per external REST API client (which in turn can have many different users). Therefore the authorization server offers a REST API for basic CRUD operations for configuring the clients that are stored in the just configured CouchDB. Since sw360-`ADMIN` privileges are needed for client management, an authentication is needed to work with this API.
 
-For SSO users (basic-auth Liferay users can use other tools as well because other tools can handle basic auth - but they can also use this workflow):
-1. Open a browser with developer tools capabilities
-2. Open
-    ```
-    https://[hostname]:[port]/authorization/client-management
-    ```
-    This page always shows the currently configured clients and can be refreshed after every manipulation of a client.
-
-3. To add a new client, enter the following javascript in the dev tools console in the current browser tab - of course after manipulating the client data to suit your needs
-    ```
-    xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('POST', '/authorization/client-management', false);
-    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpRequest.setRequestHeader('Accept', 'application/json');
-    xmlHttpRequest.send(JSON.stringify(
-      {
-        "description" : "my first test client",
-        "authorities" : [ "BASIC" ],
-        "scope" : [ "READ" ],
-        "access_token_validity" : 3600,
-        "refresh_token_validity" : 3600
-      }
-    ));
-    console.log(xmlHttpRequest.responseText);
-    ```
-4. to manipulate an existing client, do the same but add the clientid to the data object
-    ```
-        "client_id" : "9e358ca832ce4ce99a770c7bd0f8e066"
-    ```
-5. to remove an existing client, enter the following javascript in the dev tools console
-    ```
-    xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('DELETE', '/authorization/client-management/9e358ca832ce4ce99a770c7bd0f8e066', false);
-    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpRequest.setRequestHeader('Accept', 'application/json');
-    xmlHttpRequest.send();
-    console.log(xmlHttpRequest.responseText);
-    ```
-
-This way the session cookie of the SSO login will be used for the REST calls. This might also be possible in postman or curl or similar tools if you want to try to copy cookies (depending also on the SSO configuration). As said before, if Liferay username/password credentials can be used to authenticate then a tool like postman or curl can be used for the whole process. Just pass the credentials as basic-auth.
-
 ### Client Management via Curl
 
-The above described call to create a rest client can also be done directly via one curl call:
+The client-management API can be used directly via curl:
 
 ```bash
 SW360_USER=[admin sw360 user]
@@ -219,53 +277,111 @@ curl -s -S \
 EOF
 ```
 
-This only works with the liferay basic-auth mechanism, SSO is not supported via curl.
+Live response format from local server (`POST /authorization/client-management`):
+
+```json
+{
+  "access_token_validity": 3600,
+  "authorities": [
+    "BASIC"
+  ],
+  "client_id": "<generated-client-id>",
+  "client_secret": "<hashed-client-secret>",
+  "description": "my first test client",
+  "refresh_token_validity": 3600,
+  "scope": [
+    "READ"
+  ]
+}
+```
 
 ## OAuth2 Access Token
 
-Now with a configured client it is possible to retrieve an access token for the REST API from the authorization server. There is again a difference in SSO environments and Liferay username/password environments.
+With a configured OAuth client it is possible to retrieve an access token for
+the REST API from the authorization server.
 
-### SSO Backed Access Token
+Current token endpoint metadata can be discovered from:
 
-Probably the browser has to be used again because many SSO environments are based on certificates that are read from keycards and the necessary libs are often built into the browser. So just call the URL
+```bash
+curl -sS 'https://<my_sw360_server>/authorization/.well-known/oauth-authorization-server'
 ```
-https://[hostname]:[port]/authorization/oauth/token?grant_type=password&client_id=[clientid]&client_secret=[clientsecret]
-```
-Of course the client id and the client secret should be replaced by the values of the configured client. The received response should look similar to
+
+Live local discovery response includes:
+
 ```json
 {
-  "access_token" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsiUkVBRCJdLCJleHAiOjE1NjM4MDYwNDQsImF1dGhvcml0aWVzIjpbIlJFQUQiXSwianRpIjoiZDY4ZWY1YWEtZTQ5My00Y2YxLWI2NGQtNWE5MTdkY2M2ZTYwIiwiY2xpZW50X2lkIjoiMTcyMmZmYzdkZWE3MTU3OGQ5ZWE1ZTZhNmMwMDA4NzMifQ.iO5sLrqRcZfzvMP5gjaJhk3caWyZLkUesdbMfqCGy4V5rbnU9QP1LjdybY0Udh8hvAvhlpqPfaxeKe1c3-gQs5MYlqG0lNQCyWcb7NRHj8VFlwLPuJRZJNk3tybvgITVm9r14pfAXogpVE0S4KihD2W1_SoKH4NzTa2vOEG0CK4VzCLetxUlUuePxZH8ugouqbS2d0SpyeeMTm-PzxzzeTb_4ulGpg63eE1v7GvTsI23uh2WfIgHBa1GRr5jWtE0Meq-5UFCVQkhMm8P-r8wO2iuRblCu6a-bWwy7bfdj3S2VDnqSQskE2dVrC_qMs-V2AGvCV1xvlF0P8A4tgwL-w",
-  "token_type" : "bearer",
-  "refresh_token" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsiUkVBRCJdLCJhdGkiOiJkNjhlZjVhYS1lNDkzLTRjZjEtYjY0ZC01YTkxN2RjYzZlNjAiLCJleHAiOjE1NjM4MDYwNDQsImF1dGhvcml0aWVzIjpbIlJFQUQiXSwianRpIjoiM2VkZDcxODAtMTBlYi00Y2MwLTg0NTUtMGYwZmIyMWMwYmU0IiwiY2xpZW50X2lkIjoiMTcyMmZmYzdkZWE3MTU3OGQ5ZWE1ZTZhNmMwMDA4NzMifQ.iMGfdHWpJNseoxIk7tKCNTyC1w4_AJ4cSv6kO64_BkF54MLudvyf9uVSIHpAeHhSFdvhbjksynRqq_u78vW8ptY1la65Qx8glHz0sktWBfMDJsUA4ynU2iZbKU92f2OOf3wQRVt38-Y1mBUsDMIStyKTDeIXGT3LJr_8k5dRAGvayixaezxDFw3dWK2M6P9h-ZnfEP47HpIUZrG8cgwPmNCZ9gBXsqVnueDYZth6TaEKIvWbkZtwY0ikWKyJL2xLm78O1ii3lA5ENt5I0DTfTm8QuK_zcm679W9jF0jvwIR71fM0JSWjkBoXd2h9oLmE2CF2sFVaJor_ermk-L0LsA",
-  "expires_in" : 3599,
-  "scope" : "READ",
-  "jti" : "d68ef5aa-e493-4cf1-b64d-5a917dcc6e60"
+  "issuer": "http://localhost:8080/authorization",
+  "token_endpoint": "http://localhost:8080/authorization/oauth2/token",
+  "jwks_uri": "http://localhost:8080/authorization/oauth2/jwks",
+  "grant_types_supported": [
+    "authorization_code",
+    "client_credentials",
+    "refresh_token",
+    "urn:ietf:params:oauth:grant-type:token-exchange"
+  ]
 }
 ```
-From this response the value of the `access_token` and probably `refresh_token` field is the one to copy-paste for later usage.
 
-### Liferay Backed Access Token
-
-With a Liferay backed authentication all REST clients that offer basic auth support can be used. For example `curl`:
+Example token request (client credentials):
 
 ```Bash
-curl -X POST --user '[clientid]:[clientsecret]' -d 'grant_type=password&username=[username]&password=[password]' https://[hostname]:[port]/authorization/oauth/token -k
+curl -X POST \
+  --user '[clientid]:[clientsecret]' \
+  -d 'grant_type=client_credentials&scope=READ' \
+  'https://<my_sw360_server>/authorization/oauth2/token'
 ```
 
-Example response:
+Live response format from local server:
 
 ```json
 {
-  "access_token" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsiUkVBRCJdLCJleHAiOjE1NjM4MDYwNDQsImF1dGhvcml0aWVzIjpbIlJFQUQiXSwianRpIjoiZDY4ZWY1YWEtZTQ5My00Y2YxLWI2NGQtNWE5MTdkY2M2ZTYwIiwiY2xpZW50X2lkIjoiMTcyMmZmYzdkZWE3MTU3OGQ5ZWE1ZTZhNmMwMDA4NzMifQ.iO5sLrqRcZfzvMP5gjaJhk3caWyZLkUesdbMfqCGy4V5rbnU9QP1LjdybY0Udh8hvAvhlpqPfaxeKe1c3-gQs5MYlqG0lNQCyWcb7NRHj8VFlwLPuJRZJNk3tybvgITVm9r14pfAXogpVE0S4KihD2W1_SoKH4NzTa2vOEG0CK4VzCLetxUlUuePxZH8ugouqbS2d0SpyeeMTm-PzxzzeTb_4ulGpg63eE1v7GvTsI23uh2WfIgHBa1GRr5jWtE0Meq-5UFCVQkhMm8P-r8wO2iuRblCu6a-bWwy7bfdj3S2VDnqSQskE2dVrC_qMs-V2AGvCV1xvlF0P8A4tgwL-w",
-  "token_type" : "bearer",
-  "refresh_token" : "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3czNjAtUkVTVC1BUEkiXSwidXNlcl9uYW1lIjoiYWRtaW5Ac3czNjAub3JnIiwic2NvcGUiOlsiUkVBRCJdLCJhdGkiOiJkNjhlZjVhYS1lNDkzLTRjZjEtYjY0ZC01YTkxN2RjYzZlNjAiLCJleHAiOjE1NjM4MDYwNDQsImF1dGhvcml0aWVzIjpbIlJFQUQiXSwianRpIjoiM2VkZDcxODAtMTBlYi00Y2MwLTg0NTUtMGYwZmIyMWMwYmU0IiwiY2xpZW50X2lkIjoiMTcyMmZmYzdkZWE3MTU3OGQ5ZWE1ZTZhNmMwMDA4NzMifQ.iMGfdHWpJNseoxIk7tKCNTyC1w4_AJ4cSv6kO64_BkF54MLudvyf9uVSIHpAeHhSFdvhbjksynRqq_u78vW8ptY1la65Qx8glHz0sktWBfMDJsUA4ynU2iZbKU92f2OOf3wQRVt38-Y1mBUsDMIStyKTDeIXGT3LJr_8k5dRAGvayixaezxDFw3dWK2M6P9h-ZnfEP47HpIUZrG8cgwPmNCZ9gBXsqVnueDYZth6TaEKIvWbkZtwY0ikWKyJL2xLm78O1ii3lA5ENt5I0DTfTm8QuK_zcm679W9jF0jvwIR71fM0JSWjkBoXd2h9oLmE2CF2sFVaJor_ermk-L0LsA",
-  "expires_in" : 3599,
-  "scope" : "READ",
-  "jti" : "d68ef5aa-e493-4cf1-b64d-5a917dcc6e60"
+  "access_token": "<jwt-access-token>",
+  "scope": "READ",
+  "token_type": "Bearer",
+  "expires_in": 299
 }
 ```
 
-Of course, the username and password must be your user credentials and the client id and secret have to be replaced with the configured values. And again, the wanted value is the value of the field `access_token` and probably `refresh_token`.
+The `access_token` is then sent to `resource-server` as `Authorization: Bearer <token>`.
+
+### Keycloak Access Token (Client Credentials)
+
+Keycloak OIDC metadata can be discovered with:
+
+```bash
+curl -sS 'https://<keycloak-host>/realms/<realm>/.well-known/openid-configuration'
+```
+
+Live local discovery response includes:
+
+```json
+{
+  "issuer": "http://localhost:8083/realms/sw360",
+  "token_endpoint": "http://localhost:8083/realms/sw360/protocol/openid-connect/token",
+  "jwks_uri": "http://localhost:8083/realms/sw360/protocol/openid-connect/certs"
+}
+```
+
+Token request template:
+
+```bash
+curl -X POST 'https://<keycloak-host>/realms/<realm>/protocol/openid-connect/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&scope=openid email READ WRITE'
+```
+
+Live success response format (local Keycloak):
+
+```json
+{
+  "access_token": "<jwt-access-token>",
+  "expires_in": 3600,
+  "refresh_expires_in": 0,
+  "token_type": "Bearer",
+  "not-before-policy": 0,
+  "scope": "email READ WRITE profile"
+}
+```
 
 More Links:
 
@@ -276,69 +392,69 @@ More Links:
 
 The authorization server supports so called refresh tokens to generate new access tokens after they have been expired. New access tokens can be generated with the use of the `refresh_token` without further re-authorization of the user. The following url must be used:
 ```
-  http://localhost/authorization/oauth/token?grant_type=refresh_token&refresh_token=<REFRESH_TOKEN>
+  https://<my_sw360_server>/authorization/oauth2/token?grant_type=refresh_token&refresh_token=<REFRESH_TOKEN>
 ```
 The client must pass its credentials via basic authentication. Though a user authentication is not necessary. 
-If you are authentication your users on a proxy, you have to configure that proxy in a way that it does not block requests to the above url. As marker the 'grant_type=refresh_token' query parameter may be used.
-
-## Example Apache configuration
-The following example shows the relevant part for an Apache proxy to configure
-authentication of the `authorization-server` properly:
-```apache
-<Location /authorization/oauth/token>
-    Order allow,deny
-    Allow from all
-
-    <If "%{QUERY_STRING} =~ /^grant_type=refresh_token\&/">
-        # No authentication needed
-    </If>
-    <Else>
-        # Configure your authentication here
-    </Else>
-
-    ProxyPass https://localhost:8443/authorization/oauth/token
-    ProxyPassReverse https://localhost:8443/authorization/oauth/token
-</Location>
-```
 
 ## Resource Server Configuration
 
-Now that access tokens can be generated, the resource server has to be configured. The same general ideas of [general config](#general-config) apply. The properties of the `application.yml` are
+Now that access tokens can be generated, the resource server has to be configured.
 
-| Key | Values | Default |
+#### Resource Server `application.yml`
+
+| Property | Description | Example / Default |
 | --- | --- | --- |
-| sw360:thrift-server-url  | the url where the thrift services can be found, e.g. http://localhost:8080 | |
-| sw360:test-user-id  | only for developing, simple test user short cut, must be pulled off for productive | |
-| sw360:test-user-passwors | see above | |
-| sw360:couchdb-url  | the url of the CouhDB server for attachment handling, e.g. https://localhost:5984 | |
-| sw360:cors:allowed-origin | value for cross origin resource sharing | n/a |
+| `spring.security.oauth2.resourceserver.jwt.issuer-uri` | Expected JWT issuer | `https://<my_sw360_server>/authorization/oauth2/jwks` |
+| `spring.security.oauth2.resourceserver.jwt.jwk-set-uri` | JWKS endpoint used to verify JWT signatures | `https://<my_sw360_server>/authorization/oauth2/jwks` |
+| `jwt.auth.converter.principle-attribute` | JWT claim used as principal name | `email` |
+| `sw360.thrift-server-url` | Backend/thrift server URL | `https://<my_sw360_server>` |
+| `sw360.base-url` | Base URL used for generated HAL links (`SW360_BASE_URL` env var) | `https://<my_sw360_server>` |
+| `sw360.couchdb-url` | CouchDB URL used for attachments and related services | `https://<couchdb-host>:5984` |
+| `sw360.cors.allowed-origin` | Allowed CORS origin | environment-specific |
+
+#### Resource Server `sw360.properties`
+
+| Property | Description | Default |
+| --- | --- | --- |
+| `rest.apitoken.write.generator.enable` | Enables write-token generation | `true` |
+| `rest.apitoken.read.validity.days` | Default/maximum read-token validity | `90` |
+| `rest.apitoken.write.validity.days` | Default/maximum write-token validity | `30` |
+| `rest.apitoken.hash.salt` | Salt used for API token hashing | implementation default |
+| `jwks.validation.enabled` | Enables explicit SW360 JWKS validation path | `false` |
+| `jwks.issuer.url` | Expected issuer for explicit SW360 JWKS validation | unset |
+| `jwks.endpoint.url` | JWKS URL for explicit SW360 JWKS validation | unset |
+| `jwt.claim.aud` | Expected audience claim for explicit SW360 JWKS validation | empty |
 
 The REST API is now completely usable via an own client or testwise with integrated tools.
 
 ## Tools
 
-To get data and interact with the sw360 REST API the HAL-Browser is recommended. Currently, the HAL-Browser is also deployed on the sw360 development instance, but this is likely to change once the REST API has evolved more. Currently the URL of HAL-Browser is:
+Swagger UI is available on deployed instances for interactive API exploration.
+The typical URL is:
 
 ```
-https://[hostname]:[port]/resource/api/browser/index.html#/resource/api
+https://<my_sw360_server>/resource/swagger-ui/index.html
 ```
-An example for a screenshot is as follows:
 
-![rest-hal-explorer](https://user-images.githubusercontent.com/29916928/39576770-90b2b576-4edf-11e8-9d1b-742c10d88b8e.png)
+![Swagger UI](/sw360/img/SW360RESTfulAPIImages/ToolsSwaggerUI.png)
 
-When using other tools the access token has to be set as header parameter in the REST request. Please add a new header:
-- Key: Authorization
-- As value you need to enter: `Bearer [ACCESS_TOKEN]` where `[ACCESS_TOKEN]` actually contains the token
+When using other tools, set the `Authorization` header according to the chosen
+mechanism:
 
-## Example – Get a list of projects
+- `Authorization: Basic <base64(user:password)>`
+- `Authorization: Token <api-token>`
+- `Authorization: Bearer <access-token>`
 
-Here is an example how to query for all projects as HTTP GET Request. As for the resource endpoint, the request:
+## Example - Get a project
+
+Here is an example how to query for a project as HTTP GET Request. As for the
+resource endpoint, the request:
 ```
-https://sw360.org/resource/api/projects (or /resource/api/projects)
+https://sw360.org/resource/api/projects/{id} (or /resource/api/projects/{id})
 ```
 will return the following response:
 
-![rest-explorer2](https://user-images.githubusercontent.com/29916928/39579586-6b1d1736-4ee7-11e8-8faf-da71c8776680.png)
+![Swagger UI Get Project](/sw360/img/SW360RESTfulAPIImages/ToolsSwaggerUIProject.png)
 
 ## API Documentation
 
@@ -348,30 +464,51 @@ sw360 deploys a REST API documentation at every instance. There are the followin
 | --- | --- |
 | https://[hostname]:[port]/resource/docs/index.html | Small overview page |
 | https://[hostname]:[port]/resource/docs/api-guide.html | The API description for the currently running server |
-| https://[hostname]:[port]/resource/api/browser/index.html#/resource/api | Integrated HAL browser to directly use the API |
+| https://[hostname]:[port]/resource/swagger-ui/index.html | Swagger UI for interactive API usage |
 
-## Known Problems
+## Generated Link Base URL
 
-If you use Nginx or Apache as request front end server there maybe some configuration caveats: The REST API objects provides self links to reference to other objects also including the protocol prefix. These links are realized on Hypertext Application Language (HAL) for example you will find in REST responses:
+### Original issue (why this needed a fix)
 
-```json  
-"_links": {
-  "self": {
-    "href": "https://localhost:8443/resource/api/projects/065f3aa45c2683297fd1bb39296f519d"
-  }
-}
+In reverse-proxy deployments, clients often access SW360 via HTTPS while the
+application container runs with local HTTP defaults. In that situation, HAL
+responses could expose internal/non-canonical links.
+
+Example of the mismatch:
+
+```text
+Request URL seen by client:
+https://sw360.example.com/resource/api/projects
+
+HAL link returned by server:
+"href": "http://localhost:8080/resource/api/projects/065f3aa45c2683297fd1bb39296f519d"
 ```
 
-The REST spring boot applications are using the Tomcat environment configuration to generate the HAL links. If the Tomcat is only configured as HTTP, the generated links will contain the `http` protocol and port - which is a problem if the server should be contacted over `https`only. This problem occurs, if tomcat is used together with Nginx, Apache httpd or other Web servers, which are configured to repsond only to `https`.
+This is problematic for clients because links are generated with the wrong
+scheme/host, and they do not match the public API origin.
 
-Solution is to set for example in Nginx HTTP 'X-Forward-*' headers on a reverse proxy, for example:
+### Previous workaround and why it was changed
 
-```nginx
- location / {
-   ...
-   proxy_set_header        X-Forwarded-Port   443;
-   proxy_set_header        X-Forwarded-Proto  https;
- }
+Historically, this was often mitigated with reverse-proxy `X-Forward-*` headers
+so the app could infer external scheme/port. That approach is operationally
+fragile and security-sensitive because it depends on trusted header handling
+across proxy boundaries. If a malicious actor injected header values, it could
+generate emails with links to arbitrary hosts and was detected as a security
+vulnerability in the past and fixed via PR
+[#3726](https://github.com/eclipse-sw360/sw360/pull/3726).
+
+### Current solution
+
+Configure the canonical SW360 base URL in `resource-server` `application.yml`
+via `sw360.base-url`.
+
+`sw360.base-url` reads the environment variable `SW360_BASE_URL`:
+
+```yaml
+sw360:
+  base-url: ${SW360_BASE_URL:http://localhost:8080}
 ```
 
-For other Web severs, there might a similar solution.
+For HTTPS deployments, set `SW360_BASE_URL` to the externally reachable HTTPS
+origin (for example `https://<my_sw360_server>`). Generated HAL links then use
+the configured base URL consistently.
