@@ -406,6 +406,57 @@ For robust deployment in a true production environment, it is highly
 recommended to adapt the application stack from a manual layout to a
 service-based architecture guarded by a reverse proxy.
 
+### 4.0. Security Hardening
+
+Before going live, review and apply the following security flags.
+
+#### Disable HTTP Basic Authentication
+
+HTTP Basic authentication is useful for development and testing but should
+be disabled in production. When Basic auth is active, credentials are
+transmitted with every request and browser-based clients may be exposed to
+additional risks.
+
+SW360 ships with **Basic auth enabled by default** (so the bare-metal
+development workflow works out of the box). Disable it by activating the
+`prod` Spring profile on Tomcat startup, or by setting the property
+explicitly.
+
+**Option A - Spring `prod` profile (recommended)**
+
+Add the `prod` profile to the Tomcat JVM options so it picks up
+`application-prod.yml` which sets `sw360.security.http-basic.enabled=false`:
+
+```shell
+# In /etc/systemd/system/tomcat.service (or catalina.sh / setenv.sh)
+Environment="JAVA_OPTS=-Dspring.profiles.active=prod"
+```
+
+Or set the environment variable:
+```shell
+export SPRING_PROFILES_ACTIVE=prod
+```
+
+**Option B - Explicit property override**
+
+Alternatively, add the property directly to `/etc/sw360/rest/application.yml`
+and `/etc/sw360/authorization/application.yml`:
+
+```yaml
+sw360:
+  security:
+    http-basic:
+      enabled: false
+```
+
+After disabling Basic auth, all clients (including the frontend) must
+authenticate via:
+- OAuth2/JWT from the built-in authorization server (see
+  [3.2](#32-oauth2-authentication-with-builtin-authorization-server)), or
+- OAuth2/JWT from Keycloak (see
+  [3.3](#33-oauth2-authentication-with-keycloak)), or
+- SW360 API tokens (generated per-user via the UI or REST API).
+
 ### 4.1. Process Management (systemd)
 
 Instead of running components like Tomcat, Keycloak, or the Next.js `pnpm dev`
