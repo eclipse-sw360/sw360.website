@@ -37,11 +37,10 @@ up-to-date and recommended way to configure Keycloak is using Terraform/OpenTofu
   `rest/resource-server/src/main/resources/application.yml` and reinstall the
   backend. Restart the Tomcat server.
     * Select "OpenID Endpoint Configuration" from the "Realm Settings" and copy
-      `jwks_uri`. It will look something like
-      `http://localhost:8083/realms/sw360/protocol/openid-connect/certs`
+      `issuer`. It will look something like `http://localhost:8083/realms/sw360`
       {{< figure src="/sw360/img/keycloak/keycloak-jwks.png" >}}
-    * Update the `issuer-uri` as `http://localhost:8083/realms/sw360` and
-      `jwk-set-uri` in the `application.yml` file with this copied `jwks_uri`.
+    * Update the `issuer-uri` as `http://localhost:8083/realms/sw360` and in the
+      `application.yml`.
     * Build and install the backend one more time.
 
 * Create Client in Keycloak.

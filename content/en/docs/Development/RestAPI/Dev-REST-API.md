@@ -394,7 +394,7 @@ The authorization server supports so called refresh tokens to generate new acces
 ```
   https://<my_sw360_server>/authorization/oauth2/token?grant_type=refresh_token&refresh_token=<REFRESH_TOKEN>
 ```
-The client must pass its credentials via basic authentication. Though a user authentication is not necessary. 
+The client must pass its credentials via basic authentication. Though a user authentication is not necessary.
 
 ## Resource Server Configuration
 
@@ -404,8 +404,7 @@ Now that access tokens can be generated, the resource server has to be configure
 
 | Property | Description | Example / Default |
 | --- | --- | --- |
-| `spring.security.oauth2.resourceserver.jwt.issuer-uri` | Expected JWT issuer | `https://<my_sw360_server>/authorization/oauth2/jwks` |
-| `spring.security.oauth2.resourceserver.jwt.jwk-set-uri` | JWKS endpoint used to verify JWT signatures | `https://<my_sw360_server>/authorization/oauth2/jwks` |
+| `spring.security.oauth2.resourceserver.jwt.issuer-uri` | OAuth issuer URI | `https://<my_sw360_server>/authorization` |
 | `jwt.auth.converter.principle-attribute` | JWT claim used as principal name | `email` |
 | `sw360.thrift-server-url` | Backend/thrift server URL | `https://<my_sw360_server>` |
 | `sw360.base-url` | Base URL used for generated HAL links (`SW360_BASE_URL` env var) | `https://<my_sw360_server>` |
@@ -420,10 +419,6 @@ Now that access tokens can be generated, the resource server has to be configure
 | `rest.apitoken.read.validity.days` | Default/maximum read-token validity | `90` |
 | `rest.apitoken.write.validity.days` | Default/maximum write-token validity | `30` |
 | `rest.apitoken.hash.salt` | Salt used for API token hashing | implementation default |
-| `jwks.validation.enabled` | Enables explicit SW360 JWKS validation path | `false` |
-| `jwks.issuer.url` | Expected issuer for explicit SW360 JWKS validation | unset |
-| `jwks.endpoint.url` | JWKS URL for explicit SW360 JWKS validation | unset |
-| `jwt.claim.aud` | Expected audience claim for explicit SW360 JWKS validation | empty |
 
 The REST API is now completely usable via an own client or testwise with integrated tools.
 
