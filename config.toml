@@ -76,6 +76,9 @@ github_branch = "main"
 # -----------------------------------
 # User interface configuration
 
+[params.mermaid]
+enable = true
+
 [params.ui]
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
