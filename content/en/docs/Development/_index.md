@@ -46,6 +46,7 @@ More topics regarding "how" to develop:
 1. [Creating a sw360 release](Dev-Releasing-SW360)
 1. [Brief notes on the jgiven testing](Dev-Testing-Frameworks)
 1. [For help with problems, you might want to check that](Dev-Troubleshooting)
+1. [Configuring backend logging (Log4j2)](Dev-Backend-Logging)
 
 ### Architecture
 

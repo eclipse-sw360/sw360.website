@@ -56,6 +56,8 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `svm.sw360.api.url` | SVM: Base URL for SVM if not configuring individual SVM endpoints above | - |
 | `schedule.svmsync.firstOffset.seconds` | Time offset for SVM sync job (seconds) since 00:00 | `3600` |
 | `schedule.svmsync.interval.seconds` | Interval for SVM sync job (seconds) | `86400` |
+| `schedule.svmsync.delta.offset.days` | Delta sync overlap window in days; `modified_after` for each delta call is calculated as last sync end-date minus this value | `1` |
+| `schedule.svmsync.cleanup.frequency.days` | Days between full syncs; after this many days the next run is a full sync (without `modified_after`) so SVM-side deletions can be purged locally | `7` |
 | `schedule.svmmatch.firstOffset.seconds` | Time offset for SVM matching job (seconds) since 00:00 | `7200` |
 | `schedule.svmmatch.interval.seconds` | Interval for SVM matching job (seconds) | `86400` |
 | `schedule.svmlistupdate.interval.seconds` | Interval for SVM list updates (seconds) | `86400` |
