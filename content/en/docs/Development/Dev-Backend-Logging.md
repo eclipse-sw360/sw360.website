@@ -207,28 +207,28 @@ logger.changelog.appenderRef.console.ref = Console
 
 ## Architecture summary
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│ Tomcat JVM                                                       │
-│                                                                  │
-│  -Dlog4j2.configurationFile=/etc/sw360/log4j2.properties         │
-│                                                                  │
-│  ┌─────────────────────────────┐ ┌──────────────────────────────┐│
-│  │ resource.war (Spring Boot)  │ │ vmcomponents.war (Servlet)   ││
-│  │                             │ │                              ││
-│  │ Logging config:             │ │ Logging config:              ││
-│  │  Option A: application.yml  │ │  /etc/sw360/log4j2.properties││
-│  │  Option B: log4j2.properties│ │  (via -D system property)    ││
-│  │  (via -D system property)   │ │                              ││
-│  └─────────────────────────────┘ └──────────────────────────────┘│
-│                                                                  │
-│  ┌──────────────────────────┐  ┌───────────────────────────┐     │
-│  │ authorization.war (SB)   │  │ components.war (Servlet)  │     │
-│  │ (same as resource.war)   │  │ schedule.war (Servlet)    │     │
-│  │                          │  │ licenses.war (Servlet)    │     │
-│  │                          │  │ ... (all other .war)      │     │ 
-│  └──────────────────────────┘  └───────────────────────────┘     │
-└──────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph TomcatJVM["Tomcat JVM"]
+        direction TB
+        SYS["-Dlog4j2.configurationFile=<br/>/etc/sw360/log4j2.properties"]
+
+        subgraph SB["Spring Boot WARs"]
+            RES["resource.war<br/>Config: /etc/sw360/rest/application.yml<br/>or log4j2.properties via -D"]
+            AUTH["authorization.war<br/>Config: /etc/sw360/authorization/application.yml<br/>or log4j2.properties via -D"]
+        end
+
+        subgraph Thrift["Thrift Servlet WARs"]
+            VM["vmcomponents.war"]
+            COMP["components.war"]
+            SCHED["schedule.war"]
+            LIC["licenses.war"]
+            OTHER["... all other .war"]
+        end
+    end
+
+    SYS -->|overrides LoggingSystem| SB
+    SYS -->|sole config source| Thrift
 ```
 
 ---
