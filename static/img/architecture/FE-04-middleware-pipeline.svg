@@ -1,0 +1,56 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" font-family="Inter, Arial, sans-serif" font-size="12">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#475569"/></marker>
+    <marker id="arrGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#16a34a"/></marker>
+    <marker id="arrRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#dc2626"/></marker>
+  </defs>
+  <text x="410" y="25" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">SW360 Frontend — Middleware Pipeline (proxy.ts)</text>
+  <rect x="20" y="170" width="120" height="50" rx="8" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="80" y="192" text-anchor="middle" font-weight="bold" fill="#3730a3">Incoming</text>
+  <text x="80" y="208" text-anchor="middle" fill="#3730a3">Request</text>
+  <line x1="140" y1="195" x2="185" y2="195" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="190" y="160" width="130" height="70" rx="35" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="255" y="192" text-anchor="middle" font-weight="bold" fill="#92400e" font-size="11">Is login page?</text>
+  <text x="255" y="208" text-anchor="middle" fill="#92400e" font-size="10">(pathname === '/')</text>
+  <line x1="255" y1="160" x2="255" y2="80" stroke="#16a34a" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <text x="268" y="125" fill="#16a34a" font-weight="bold" font-size="11">Yes</text>
+  <rect x="190" y="40" width="130" height="40" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="255" y="64" text-anchor="middle" font-weight="bold" fill="#1e40af">intlMiddleware</text>
+  <line x1="320" y1="60" x2="720" y2="60" stroke="#16a34a" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <line x1="320" y1="195" x2="380" y2="195" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="348" y="185" fill="#64748b" font-weight="bold" font-size="11">No</text>
+  <rect x="385" y="170" width="140" height="50" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="455" y="192" text-anchor="middle" font-weight="bold" fill="#166534">authMiddleware</text>
+  <text x="455" y="208" text-anchor="middle" fill="#166534" font-size="10">(NextAuth withAuth)</text>
+  <line x1="455" y1="220" x2="455" y2="260" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="390" y="265" width="130" height="60" rx="30" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="455" y="292" text-anchor="middle" font-weight="bold" fill="#92400e" font-size="11">Token</text>
+  <text x="455" y="308" text-anchor="middle" fill="#92400e" font-size="11">present?</text>
+  <line x1="390" y1="295" x2="300" y2="295" stroke="#dc2626" stroke-width="2"/>
+  <line x1="300" y1="295" x2="300" y2="358" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)"/>
+  <text x="340" y="285" fill="#dc2626" font-weight="bold" font-size="11">No</text>
+  <rect x="240" y="362" width="120" height="30" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="300" y="382" text-anchor="middle" font-weight="bold" fill="#991b1b" font-size="11">Redirect to Login</text>
+  <line x1="520" y1="295" x2="575" y2="295" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="545" y="285" fill="#16a34a" font-weight="bold" font-size="11">Yes</text>
+  <rect x="580" y="265" width="130" height="60" rx="30" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="645" y="289" text-anchor="middle" font-weight="bold" fill="#92400e" font-size="11">Role</text>
+  <text x="645" y="305" text-anchor="middle" fill="#92400e" font-size="11">allowed?</text>
+  <line x1="645" y1="325" x2="645" y2="358" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)"/>
+  <text x="660" y="346" fill="#dc2626" font-weight="bold" font-size="11">No</text>
+  <rect x="585" y="362" width="120" height="30" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="645" y="382" text-anchor="middle" font-weight="bold" fill="#991b1b" font-size="11">403 Access Denied</text>
+  <line x1="710" y1="295" x2="750" y2="295" stroke="#16a34a" stroke-width="2"/>
+  <line x1="750" y1="295" x2="750" y2="80" stroke="#16a34a" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <text x="762" y="190" fill="#16a34a" font-weight="bold" font-size="11">Yes</text>
+  <rect x="718" y="110" width="85" height="25" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="760" y="127" text-anchor="middle" fill="#1e40af" font-size="9">locale detect</text>
+  <rect x="720" y="40" width="90" height="40" rx="8" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+  <text x="765" y="65" text-anchor="middle" font-weight="bold" fill="#065f46" font-size="13">Render</text>
+  <rect x="20" y="340" width="170" height="55" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="30" y="357" fill="#1e293b" font-weight="bold" font-size="10">Legend</text>
+  <line x1="30" y1="370" x2="55" y2="370" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="60" y="374" fill="#475569" font-size="10">Allowed path</text>
+  <line x1="30" y1="386" x2="55" y2="386" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="60" y="390" fill="#475569" font-size="10">Blocked / redirect</text>
+</svg>
