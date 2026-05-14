@@ -30,13 +30,16 @@ token capability authorities (`TOKEN_READ`, `TOKEN_WRITE`) before endpoint check
 
 ## JWT Validation
 
-Bearer JWTs used with the REST API are validated by the Spring framework.
+Bearer JWTs used with the REST API are validated by the Spring framework. This
+applies to Bearer tokens issued either by the SW360 `authorization-server` or by
+Keycloak.
 
-This applies to Bearer tokens issued either by the SW360 `authorization-server`
-or by Keycloak.
-
-Spring uses `spring.security.oauth2.resourceserver.jwt.issuer-uri` from
-`resource-server`'s `application.yml`.
+The Resource Server can trust multiple JWT issuers via
+`sw360.security.jwt.trusted-issuers` in `resource-server`'s `application.yml`.
+The issuer in the token's `iss` claim selects the matching issuer metadata and
+JWKS. If the trusted issuer list is not configured, SW360 falls back to the
+single Spring Boot property
+`spring.security.oauth2.resourceserver.jwt.issuer-uri`.
 
 Scope values are then translated into `TOKEN_READ` and `TOKEN_WRITE`
 capabilities.

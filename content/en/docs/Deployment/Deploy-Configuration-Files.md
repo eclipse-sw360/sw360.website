@@ -163,6 +163,61 @@ logging:
     org.springframework.security: DEBUG
 ```
 
+#### Getting a REST API Token via `client_credentials`
+
+Clients created in the SW360 Authorization Server can request REST API access
+tokens via the OAuth2 `client_credentials` grant. Use the client ID and the
+one-time client secret shown when the client was created.
+
+```bash
+AUTH_URL=http://localhost:8080/authorization
+CLIENT_ID='<client-id>'
+CLIENT_SECRET='<client-secret>'
+
+# Read-only token: usable for GET requests and read-side permission checks.
+READ_TOKEN=$(curl -s -u "$CLIENT_ID:$CLIENT_SECRET" \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=client_credentials' \
+  -d 'scope=READ' \
+  "$AUTH_URL/oauth2/token" | jq -r '.access_token')
+
+# Read/write token: required for POST, PUT, PATCH, and DELETE requests.
+WRITE_TOKEN=$(curl -s -u "$CLIENT_ID:$CLIENT_SECRET" \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=client_credentials' \
+  -d 'scope=READ WRITE' \
+  "$AUTH_URL/oauth2/token" | jq -r '.access_token')
+```
+
+Use the token against the Resource Server with the standard Bearer scheme:
+
+```bash
+# Standalone Resource Server: http://localhost:8091/api
+# Tomcat/WAR deployment:     http://localhost:8080/resource/api
+RESOURCE_API_URL=http://localhost:8091/api
+
+curl -i \
+  -H "Authorization: Bearer $READ_TOKEN" \
+  "$RESOURCE_API_URL/projects?page=0&page_entries=5"
+```
+
+The token scope limits HTTP method access at the Resource Server:
+
+| Scope | Intended REST API access |
+| :--- | :--- |
+| `READ` | `GET` requests only |
+| `READ WRITE` | `GET`, `POST`, `PUT`, `PATCH`, and `DELETE` requests |
+
+User roles are still evaluated separately. For example, a read-only token for an
+admin user can access admin-restricted read endpoints, but it still cannot use
+write HTTP methods unless the token also contains `WRITE` scope.
+
+For a more detailed REST API flow description, see
+[API Access](../Development/RestAPI/access.md) and
+[REST API](../Development/RestAPI/Dev-REST-API.md#oauth2-access-token).
+For Keycloak-issued client-credentials tokens, see
+[Keycloak Token](../Userguide/Keycloak-Token.md).
+
 ### rest/application.yml (/etc/sw360/rest/application.yml)
 
 The Resource Server provides the SW360 REST API.
@@ -236,6 +291,13 @@ sw360:
   couchdb-url: ${SW360_COUCHDB_URL:http://localhost:5984}
   cors:
     allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
+  security:
+    http-basic:
+      enabled: true
+    jwt:
+      trusted-issuers:
+        - http://localhost:8080/authorization
+        - http://localhost:8083/realms/sw360
 
 blacklist:
   sw360:
@@ -259,6 +321,55 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/hal+json
 ```
+
+#### Multi-Issuer JWT Setup
+
+The Resource Server can trust JWTs from more than one issuer. This is useful
+when the deployment accepts tokens from both:
+
+* the SW360 Authorization Server, for SW360-managed OAuth clients and
+  `client_credentials` tokens; and
+* Keycloak, for browser login and externally managed OIDC clients.
+
+Configure all trusted issuer URLs under `sw360.security.jwt.trusted-issuers`:
+
+```yaml
+sw360:
+  security:
+    jwt:
+      trusted-issuers:
+        - https://sw360.example.org/authorization
+        - https://keycloak.example.org/realms/sw360
+```
+
+The issuer value must exactly match the token's `iss` claim, including scheme,
+host, port, context path, and absence or presence of a trailing slash. The
+Resource Server uses issuer discovery to obtain the corresponding JWKS, so each
+issuer must publish its OpenID Connect or OAuth2 Authorization Server metadata.
+The full `rest/application.yml` example above shows the equivalent local
+development values.
+
+If `sw360.security.jwt.trusted-issuers` is not configured, the Resource Server
+falls back to the single Spring Boot issuer property:
+
+```yaml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/authorization
+```
+
+After changing issuer configuration, restart the Resource Server. Once both
+issuers are configured, switching between SW360 Authorization Server tokens and
+Keycloak tokens does not require another Resource Server restart.
+
+HTTP Basic authentication is controlled by
+`sw360.security.http-basic.enabled`. The example above keeps the development
+default (`true`). For production hardening guidance, including disabling Basic
+auth via the `prod` profile or an explicit property override, see
+[Disable HTTP Basic Authentication](BareMetal/Deploy-20-Natively.md#disable-http-basic-authentication).
 
 ## Database Configurations
 
