@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 680" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="11">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc"/>
+      <stop offset="100%" style="stop-color:#f1f5f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="860" height="680" fill="url(#bg)" rx="12"/>
+  <text x="430" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="bold" fill="#1e293b">SW360 Frontend — Project Structure</text>
+
+  <!-- Root -->
+  <text x="30" y="55" fill="#334155" font-weight="bold">sw360-frontend/</text>
+
+  <!-- src/ -->
+  <text x="50" y="80" fill="#2563eb" font-weight="bold">src/</text>
+
+  <!-- app/ -->
+  <rect x="70" y="90" width="380" height="200" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="80" y="108" fill="#1d4ed8" font-weight="bold">app/</text>
+  <text x="420" y="108" fill="#94a3b8" font-size="10">Next.js App Router</text>
+
+  <text x="100" y="128" fill="#1e40af">[locale]/</text>
+  <text x="300" y="128" fill="#94a3b8" font-size="10">Locale-aware pages</text>
+  <text x="120" y="146" fill="#475569">admin/ components/ ecc/ home/</text>
+  <text x="120" y="162" fill="#475569">licenses/ packages/ preferences/</text>
+  <text x="120" y="178" fill="#475569">projects/ requests/ search/</text>
+  <text x="120" y="194" fill="#475569">vulnerabilities/</text>
+  <text x="120" y="212" fill="#64748b">layout.tsx  page.tsx</text>
+
+  <text x="100" y="236" fill="#1e40af">api/</text>
+  <text x="200" y="236" fill="#94a3b8" font-size="10">auth/ session/ (NextAuth endpoints)</text>
+
+  <text x="100" y="256" fill="#64748b">provider.tsx</text>
+  <text x="250" y="256" fill="#64748b">uiConfigProvider.tsx</text>
+
+  <text x="100" y="278" fill="#1e40af">config/permissions/</text>
+  <text x="300" y="278" fill="#94a3b8" font-size="10">RBAC capabilities &amp; route permissions</text>
+
+  <!-- components/ -->
+  <rect x="70" y="295" width="380" height="60" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="80" y="313" fill="#166534" font-weight="bold">components/</text>
+  <text x="420" y="313" fill="#94a3b8" font-size="10">Reusable UI</text>
+  <text x="100" y="333" fill="#475569">sw360/ AccessControl/ Attachments/ ChangeLog/</text>
+  <text x="100" y="349" fill="#475569">LinkedReleases/ LinkedObligations/ ... (~25 modules)</text>
+
+  <!-- contexts/ hooks/ -->
+  <rect x="70" y="362" width="380" height="45" rx="6" fill="#fefce8" stroke="#fde68a" stroke-width="1"/>
+  <text x="80" y="380" fill="#854d0e" font-weight="bold">contexts/</text>
+  <text x="200" y="380" fill="#475569">PermissionContext  UiConfigContext  SW360BackendConfigContext</text>
+  <text x="80" y="398" fill="#854d0e" font-weight="bold">hooks/</text>
+  <text x="200" y="398" fill="#475569">useLocalStorage  useSW360BackendConfig  useUiConfig</text>
+
+  <!-- object-types/ -->
+  <rect x="70" y="414" width="380" height="45" rx="6" fill="#fdf4ff" stroke="#e9d5ff" stroke-width="1"/>
+  <text x="80" y="432" fill="#7e22ce" font-weight="bold">object-types/</text>
+  <text x="420" y="432" fill="#94a3b8" font-size="10">TypeScript interfaces</text>
+  <text x="100" y="450" fill="#475569">Component Release Project License Vulnerability Package ...</text>
+
+  <!-- services/ utils/ -->
+  <rect x="70" y="466" width="380" height="45" rx="6" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+  <text x="80" y="484" fill="#9a3412" font-weight="bold">services/</text>
+  <text x="200" y="484" fill="#475569">auth  async.storage  download  message</text>
+  <text x="80" y="504" fill="#9a3412" font-weight="bold">utils/</text>
+  <text x="200" y="504" fill="#475569">api/  common.utils  env  permission.utils</text>
+
+  <!-- other src items -->
+  <text x="80" y="530" fill="#475569">styles/  i18n/  navigation.ts  proxy.ts</text>
+
+  <!-- Root-level dirs -->
+  <rect x="30" y="545" width="800" height="120" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="568" fill="#334155" font-weight="bold">messages/</text>
+  <text x="200" y="568" fill="#475569">en.json  de.json  ja.json  ko.json  fr.json  es.json  vi.json  zh-CN.json  ...</text>
+  <text x="750" y="568" fill="#94a3b8" font-size="10">10 locales</text>
+
+  <text x="50" y="592" fill="#334155" font-weight="bold">tests/</text>
+  <text x="200" y="592" fill="#475569">e2e/  (Playwright test suites)</text>
+
+  <text x="50" y="616" fill="#334155" font-weight="bold">config/</text>
+  <text x="200" y="616" fill="#475569">Docker/deployment configuration</text>
+
+  <text x="50" y="640" fill="#334155" font-weight="bold">Root files:</text>
+  <text x="150" y="640" fill="#475569">next.config.ts  biome.json  tsconfig.json  package.json  playwright.config.ts  Dockerfile</text>
+
+  <!-- Right side legend -->
+  <rect x="480" y="90" width="350" height="200" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="500" y="112" fill="#1e293b" font-weight="bold" font-family="Inter, sans-serif" font-size="12">Key Directories</text>
+  <rect x="500" y="120" width="12" height="12" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="520" y="131" fill="#475569" font-size="10">app/ — Routing &amp; pages (Next.js App Router)</text>
+  <rect x="500" y="140" width="12" height="12" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="520" y="151" fill="#475569" font-size="10">components/ — Shared UI components</text>
+  <rect x="500" y="160" width="12" height="12" fill="#fefce8" stroke="#fde68a"/>
+  <text x="520" y="171" fill="#475569" font-size="10">contexts/hooks/ — State &amp; side-effects</text>
+  <rect x="500" y="180" width="12" height="12" fill="#fdf4ff" stroke="#e9d5ff"/>
+  <text x="520" y="191" fill="#475569" font-size="10">object-types/ — Domain model (TypeScript)</text>
+  <rect x="500" y="200" width="12" height="12" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="520" y="211" fill="#475569" font-size="10">services/utils/ — Business logic &amp; helpers</text>
+
+  <text x="500" y="240" fill="#1e293b" font-weight="bold" font-family="Inter, sans-serif" font-size="12">RBAC Infrastructure</text>
+  <text x="500" y="258" fill="#475569" font-size="10">• contexts/PermissionContext.tsx</text>
+  <text x="500" y="274" fill="#475569" font-size="10">• components/AccessControl/ (RoleGate, CapabilityGate)</text>
+  <text x="500" y="290" fill="#475569" font-size="10">• config/permissions/ (capabilities, routes)</text>
+</svg>
+

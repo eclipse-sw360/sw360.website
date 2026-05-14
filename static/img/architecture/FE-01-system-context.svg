@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 320" font-family="Inter, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow1" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#555"/></marker>
+  </defs>
+  <!-- User -->
+  <rect x="20" y="120" width="120" height="60" rx="8" fill="#f0f4ff" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="80" y="145" text-anchor="middle" font-weight="bold" fill="#333">👤 User</text>
+  <text x="80" y="163" text-anchor="middle" fill="#666">Browser</text>
+  <!-- Frontend -->
+  <rect x="200" y="100" width="160" height="100" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="280" y="135" text-anchor="middle" font-weight="bold" fill="#1e40af">SW360 Frontend</text>
+  <text x="280" y="155" text-anchor="middle" fill="#3b82f6">Next.js 16</text>
+  <text x="280" y="175" text-anchor="middle" fill="#666">:3000</text>
+  <!-- Backend -->
+  <rect x="440" y="100" width="160" height="100" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="520" y="135" text-anchor="middle" font-weight="bold" fill="#166534">SW360 Backend</text>
+  <text x="520" y="155" text-anchor="middle" fill="#22c55e">Spring Boot 4.x</text>
+  <text x="520" y="175" text-anchor="middle" fill="#666">:8080</text>
+  <!-- CouchDB -->
+  <rect x="680" y="120" width="140" height="60" rx="8" fill="#f3f4f6" stroke="#6b7280" stroke-width="2"/>
+  <text x="750" y="148" text-anchor="middle" font-weight="bold" fill="#374151">CouchDB</text>
+  <text x="750" y="166" text-anchor="middle" fill="#666">:5984</text>
+  <!-- Keycloak -->
+  <rect x="280" y="250" width="140" height="60" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="350" y="278" text-anchor="middle" font-weight="bold" fill="#92400e">Keycloak</text>
+  <text x="350" y="296" text-anchor="middle" fill="#666">:8083</text>
+  <!-- Arrows -->
+  <line x1="140" y1="150" x2="195" y2="150" stroke="#555" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="167" y="140" text-anchor="middle" fill="#666" font-size="10">HTTPS</text>
+  <line x1="360" y1="150" x2="435" y2="150" stroke="#555" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="397" y="140" text-anchor="middle" fill="#666" font-size="10">REST API</text>
+  <line x1="600" y1="150" x2="675" y2="150" stroke="#555" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="637" y="140" text-anchor="middle" fill="#666" font-size="10">HTTP</text>
+  <line x1="310" y1="200" x2="340" y2="245" stroke="#d97706" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="290" y="225" text-anchor="middle" fill="#d97706" font-size="10">OAuth2/OIDC</text>
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2937">SW360 Frontend — System Context</text>
+</svg>
+

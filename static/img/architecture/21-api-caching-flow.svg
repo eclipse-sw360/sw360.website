@@ -1,0 +1,171 @@
+<svg id="my-svg" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 1200px; background-color: white;" viewBox="-50 -10 1200 850" role="graphics-document document" aria-roledescription="sequence">
+  <style>
+    #my-svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}
+    #my-svg .actor{stroke:#666;fill:#eaeaea;}
+    #my-svg text.actor>tspan{fill:#333;stroke:none;}
+    #my-svg .actor-line{stroke:#999;}
+    #my-svg .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}
+    #my-svg .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}
+    #my-svg #arrowhead path{fill:#333;stroke:#333;}
+    #my-svg .sequenceNumber{fill:#f4f4f4;}
+    #my-svg .messageText{fill:#333;stroke:none;}
+    #my-svg .labelBox{stroke:hsl(205.3846153846, 46.6666666667%, 84.1176470588%);fill:#e3f2fd;}
+    #my-svg .labelText{fill:#333;stroke:none;}
+    #my-svg .loopText{fill:#333;stroke:none;}
+    #my-svg .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(205.3846153846, 46.6666666667%, 84.1176470588%);fill:hsl(205.3846153846, 46.6666666667%, 84.1176470588%);}
+    #my-svg .note{stroke:hsl(52.6829268293, 60%, 73.9215686275%);fill:#fff5ad;}
+    #my-svg .noteText{fill:#333;stroke:none;}
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" refX="7.9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M -1 0 L 10 5 L 0 10 z"/>
+    </marker>
+    <marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto">
+      <circle cx="15" cy="15" r="6"/>
+    </marker>
+  </defs>
+
+  <!-- Actor boxes (top) -->
+  <g id="actors-top">
+    <rect x="0" y="0" fill="#eaeaea" stroke="#666" width="120" height="65" rx="3" ry="3"/>
+    <text x="60" y="32.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">Client/User</text>
+    
+    <rect x="170" y="0" fill="#eaeaea" stroke="#666" width="120" height="65" rx="3" ry="3"/>
+    <text x="230" y="32.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">CacheReadFilter</text>
+    
+    <rect x="340" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3"/>
+    <text x="415" y="32.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">FileBasedCache</text>
+    
+    <rect x="540" y="0" fill="#eaeaea" stroke="#666" width="140" height="65" rx="3" ry="3"/>
+    <text x="610" y="32.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">ReleaseController</text>
+    
+    <rect x="730" y="0" fill="#eaeaea" stroke="#666" width="160" height="65" rx="3" ry="3"/>
+    <text x="810" y="32.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">CacheBodyAdvice</text>
+    
+    <rect x="940" y="0" fill="#eaeaea" stroke="#666" width="140" height="65" rx="3" ry="3"/>
+    <text x="1010" y="32.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">Cache File (Disk)</text>
+  </g>
+
+  <!-- Actor lines -->
+  <line x1="60" y1="65" x2="60" y2="770" stroke-width="0.5px" stroke="#999"/>
+  <line x1="230" y1="65" x2="230" y2="770" stroke-width="0.5px" stroke="#999"/>
+  <line x1="415" y1="65" x2="415" y2="770" stroke-width="0.5px" stroke="#999"/>
+  <line x1="610" y1="65" x2="610" y2="770" stroke-width="0.5px" stroke="#999"/>
+  <line x1="810" y1="65" x2="810" y2="770" stroke-width="0.5px" stroke="#999"/>
+  <line x1="1010" y1="65" x2="1010" y2="770" stroke-width="0.5px" stroke="#999"/>
+
+  <!-- Actor boxes (bottom) -->
+  <g id="actors-bottom">
+    <rect x="0" y="770" fill="#eaeaea" stroke="#666" width="120" height="65" rx="3" ry="3"/>
+    <text x="60" y="802.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">Client/User</text>
+    
+    <rect x="170" y="770" fill="#eaeaea" stroke="#666" width="120" height="65" rx="3" ry="3"/>
+    <text x="230" y="802.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">CacheReadFilter</text>
+    
+    <rect x="340" y="770" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3"/>
+    <text x="415" y="802.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">FileBasedCache</text>
+    
+    <rect x="540" y="770" fill="#eaeaea" stroke="#666" width="140" height="65" rx="3" ry="3"/>
+    <text x="610" y="802.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">ReleaseController</text>
+    
+    <rect x="730" y="770" fill="#eaeaea" stroke="#666" width="160" height="65" rx="3" ry="3"/>
+    <text x="810" y="802.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">CacheBodyAdvice</text>
+    
+    <rect x="940" y="770" fill="#eaeaea" stroke="#666" width="140" height="65" rx="3" ry="3"/>
+    <text x="1010" y="802.5" dominant-baseline="central" text-anchor="middle" style="font-size: 16px;">Cache File (Disk)</text>
+  </g>
+
+  <!-- Message 1: Client to Filter -->
+  <text x="145" y="95" text-anchor="middle" class="messageText" style="font-size: 16px;">GET /api/releases?allDetails=true</text>
+  <line x1="67" y1="109" x2="223" y2="109" class="messageLine0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="60" cy="109" r="8" fill="#333"/><text x="60" y="113" fill="white" text-anchor="middle" style="font-size: 10px;">1</text>
+
+  <!-- Message 2: Filter self - Resolve variant -->
+  <text x="230" y="130" text-anchor="middle" class="messageText" style="font-size: 14px;">Resolve variant (ADMIN from JWT)</text>
+  <line x1="237" y1="144" x2="260" y2="144" class="messageLine0" stroke-width="2"/>
+  <line x1="260" y1="144" x2="260" y2="164" stroke-width="1.5" stroke="#333"/>
+  <line x1="260" y1="164" x2="237" y2="164" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="230" cy="154" r="8" fill="#333"/><text x="230" y="158" fill="white" text-anchor="middle" style="font-size: 10px;">2</text>
+
+  <!-- Message 3: Filter to Cache - Check cache -->
+  <text x="322" y="185" text-anchor="middle" class="messageText" style="font-size: 14px;">Check cache</text>
+  <line x1="237" y1="199" x2="408" y2="199" class="messageLine0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="230" cy="199" r="8" fill="#333"/><text x="230" y="203" fill="white" text-anchor="middle" style="font-size: 10px;">3</text>
+
+  <!-- Alt box: Cache HIT -->
+  <rect x="50" y="220" width="1010" height="240" fill="none" stroke="#90caf9" stroke-width="2" stroke-dasharray="5,5"/>
+  <polygon points="50,220 100,220 100,233 91.6,240 50,240" fill="#e3f2fd" stroke="#90caf9"/>
+  <text x="75" y="233" text-anchor="middle" style="font-size: 14px; font-weight: bold;">alt</text>
+  <text x="550" y="238" text-anchor="middle" class="loopText" style="font-size: 14px;">[Cache HIT]</text>
+
+  <!-- Message 4: Cache to Disk - Read JSON -->
+  <text x="712" y="260" text-anchor="middle" class="messageText" style="font-size: 14px;">Read JSON from disk</text>
+  <line x1="422" y1="274" x2="1003" y2="274" class="messageLine0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="415" cy="274" r="8" fill="#333"/><text x="415" y="278" fill="white" text-anchor="middle" style="font-size: 10px;">4</text>
+
+  <!-- Message 5: Disk to Cache - JSON content -->
+  <text x="712" y="295" text-anchor="middle" class="messageText" style="font-size: 14px;">JSON content</text>
+  <line x1="1003" y1="309" x2="422" y2="309" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="1010" cy="309" r="8" fill="#333"/><text x="1010" y="313" fill="white" text-anchor="middle" style="font-size: 10px;">5</text>
+
+  <!-- Message 6: Cache to Filter - Cached response -->
+  <text x="322" y="330" text-anchor="middle" class="messageText" style="font-size: 14px;">Cached response (~10ms)</text>
+  <line x1="408" y1="344" x2="237" y2="344" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="415" cy="344" r="8" fill="#333"/><text x="415" y="348" fill="white" text-anchor="middle" style="font-size: 10px;">6</text>
+
+  <!-- Note: Skip controller -->
+  <rect x="250" y="355" width="180" height="30" fill="#fff5ad" stroke="#d4c36a"/>
+  <text x="340" y="375" text-anchor="middle" class="noteText" style="font-size: 13px;">Skip controller entirely</text>
+
+  <!-- Message 7: Filter to Client - 200 OK cached -->
+  <text x="145" y="400" text-anchor="middle" class="messageText" style="font-size: 14px;">200 OK (cached JSON)</text>
+  <line x1="223" y1="414" x2="67" y2="414" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="230" cy="414" r="8" fill="#333"/><text x="230" y="418" fill="white" text-anchor="middle" style="font-size: 10px;">7</text>
+
+  <!-- Alt divider line -->
+  <line x1="50" y1="455" x2="1060" y2="455" stroke="#90caf9" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="550" y="478" text-anchor="middle" class="loopText" style="font-size: 14px;">[Cache MISS]</text>
+
+  <!-- Message 8: Cache to Filter - No cache -->
+  <text x="322" y="495" text-anchor="middle" class="messageText" style="font-size: 14px;">No cache / expired</text>
+  <line x1="408" y1="509" x2="237" y2="509" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="415" cy="509" r="8" fill="#333"/><text x="415" y="513" fill="white" text-anchor="middle" style="font-size: 10px;">8</text>
+
+  <!-- Message 9: Filter to Controller -->
+  <text x="420" y="530" text-anchor="middle" class="messageText" style="font-size: 14px;">Proceed to controller</text>
+  <line x1="237" y1="544" x2="603" y2="544" class="messageLine0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="230" cy="544" r="8" fill="#333"/><text x="230" y="548" fill="white" text-anchor="middle" style="font-size: 10px;">9</text>
+
+  <!-- Message 10: Controller self - Execute business logic -->
+  <text x="610" y="560" text-anchor="middle" class="messageText" style="font-size: 13px;">Execute business logic (3-5 min)</text>
+  <line x1="617" y1="574" x2="640" y2="574" class="messageLine0" stroke-width="2"/>
+  <line x1="640" y1="574" x2="640" y2="594" stroke-width="1.5" stroke="#333"/>
+  <line x1="640" y1="594" x2="617" y2="594" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="610" cy="584" r="8" fill="#333"/><text x="610" y="588" fill="white" text-anchor="middle" style="font-size: 10px;">10</text>
+
+  <!-- Message 11: Controller to Advice -->
+  <text x="710" y="615" text-anchor="middle" class="messageText" style="font-size: 14px;">Response body</text>
+  <line x1="617" y1="629" x2="803" y2="629" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="610" cy="629" r="8" fill="#333"/><text x="610" y="633" fill="white" text-anchor="middle" style="font-size: 10px;">11</text>
+
+  <!-- Message 12: Advice to Disk - Write JSON async -->
+  <text x="910" y="650" text-anchor="middle" class="messageText" style="font-size: 14px;">Write JSON to cache (async)</text>
+  <line x1="817" y1="664" x2="1003" y2="664" class="messageLine0" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="810" cy="664" r="8" fill="#333"/><text x="810" y="668" fill="white" text-anchor="middle" style="font-size: 10px;">12</text>
+
+  <!-- Note: Atomic write -->
+  <rect x="920" y="675" width="170" height="30" fill="#fff5ad" stroke="#d4c36a"/>
+  <text x="1005" y="695" text-anchor="middle" class="noteText" style="font-size: 13px;">Atomic write with temp file</text>
+
+  <!-- Message 13: Controller to Filter - Response -->
+  <text x="420" y="715" text-anchor="middle" class="messageText" style="font-size: 14px;">Response</text>
+  <line x1="603" y1="729" x2="237" y2="729" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="610" cy="729" r="8" fill="#333"/><text x="610" y="733" fill="white" text-anchor="middle" style="font-size: 10px;">13</text>
+
+  <!-- Message 14: Filter to Client - 200 OK fresh -->
+  <text x="145" y="745" text-anchor="middle" class="messageText" style="font-size: 14px;">200 OK (fresh JSON)</text>
+  <line x1="223" y1="759" x2="67" y2="759" class="messageLine1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <circle cx="230" cy="759" r="8" fill="#333"/><text x="230" y="763" fill="white" text-anchor="middle" style="font-size: 10px;">14</text>
+
+</svg>
