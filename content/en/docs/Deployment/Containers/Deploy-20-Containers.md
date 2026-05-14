@@ -71,6 +71,19 @@ SW360 v20 frontend and backend support three modes of authentication. These are
 configured primarily using the `NEXT_PUBLIC_SW360_AUTH_PROVIDER` variable in the
 `config/front-end/.env.frontend` file.
 
+The backend Resource Server can validate Bearer JWTs from multiple issuers. In
+container deployments this is generated from `config/sw360/.env.backend`:
+
+```env
+SW360_SECURITY_JWT_TRUSTED_ISSUERS=http://localhost:8080/authorization,http://localhost:8083/realms/sw360
+```
+
+Keep this list aligned with the token issuers used by your deployment. The
+issuer URLs must exactly match each JWT's `iss` claim and must be reachable from
+the `sw360` container for issuer discovery/JWKS lookup. The older
+`JWKS_ISSUER_URI` setting remains as a single-issuer fallback when no trusted
+issuer list is configured.
+
 #### 1. Built-in Basic Auth (`sw360basic`)
 This is the default setup. It relies on the built-in basic username and password
 stored directly within the backend's database. No extra frontend configuration
@@ -100,6 +113,12 @@ SW360_REST_CLIENT_ID=trusted-sw360-client
 SW360_REST_CLIENT_SECRET=sw360-secret
 ```
 
+Ensure `config/sw360/.env.backend` includes the SW360 Authorization Server issuer:
+
+```env
+SW360_SECURITY_JWT_TRUSTED_ISSUERS=http://localhost:8080/authorization,http://localhost:8083/realms/sw360
+```
+
 #### 3. Keycloak OpenID Connect (`keycloak`)
 Uses the external Keycloak container included in the full stack. This is the
 **recommended setup for production**.
@@ -124,6 +143,18 @@ SW360_KEYCLOAK_CLIENT_ID=sw360ui
 SW360_KEYCLOAK_CLIENT_SECRET=myoidcsecret
 AUTH_ISSUER=https://localhost/kc/realms/sw360
 ```
+
+Also add the same Keycloak realm issuer to
+`config/sw360/.env.backend` so the backend accepts Keycloak-issued REST API
+Bearer tokens:
+
+```env
+SW360_SECURITY_JWT_TRUSTED_ISSUERS=http://localhost:8080/authorization,https://localhost/kc/realms/sw360
+```
+
+If Keycloak is exposed under a different external hostname or path, use that
+issuer consistently in both `AUTH_ISSUER` and
+`SW360_SECURITY_JWT_TRUSTED_ISSUERS`.
 
 ## Networking & Volumes
 
