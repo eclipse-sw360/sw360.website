@@ -10,12 +10,13 @@ Using the Web interface makes sense for some use cases, for some other cases the
 
 Current authentication mechanisms:
 
-1. Basic Auth (`Authorization: Basic ...`)
-2. API Token with read/write capabilities (`Authorization: Token ...`)
-3. OAuth2 via SW360 Authorization Server (`Authorization: Bearer ...`)
-4. Keycloak OIDC/OAuth2 (`Authorization: Bearer ...`)
+1. HTTP Basic (`Authorization: Basic ...`)
+2. API Token (`Authorization: Token ...`)
+3. OAuth2 `client_credentials` (`Authorization: Bearer ...`)
+4. OAuth2 `authorization_code` + PKCE
+5. Keycloak OIDC/OAuth2 (`Authorization: Bearer ...`)
 
-See the practical guide here:
+See the canonical curl guide here:
 
 - [API Access]({{< relref path="access.md" >}})
 
@@ -32,5 +33,5 @@ API Documentation is available on the instances deployed:
 | --- | --- |
 | Implementation Technology | Java-based Spring framework |
 | REST Flavor | Hypermedia-driven (HAL) |
-| Authentication | Multi-mechanism: Basic Auth, API Token, OAuth2, Keycloak |
+| Authentication | Multi-mechanism: Basic, API Token, OAuth2 grants, Keycloak |
 | More Technical Information | [SW360 Rest API]({{< relref path="Dev-REST-API.md" >}}) |

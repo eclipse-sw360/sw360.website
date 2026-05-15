@@ -2,180 +2,332 @@
 title: "API Access"
 linkTitle: "API Access"
 weight: 10
+description: "Comprehensive SW360 REST API authentication guide with curl examples for Basic, API Token, OAuth2 grants, and Keycloak."
 ---
 
-This page describes the current SW360 REST API authentication options and the
-runtime authorization behavior in the `resource-server`.
+This page is the canonical authentication guide for calling SW360 REST API
+endpoints with curl.
 
-## Authentication Mechanisms (Current)
+For endpoint-level resource documentation, see
+[SW360 Rest API]({{< relref path="Dev-REST-API.md" >}}).
 
-SW360 supports four mechanisms for REST API access:
+## Setup
 
-| Mechanism | Header / Credential | Typical Use |
-| --- | --- | --- |
-| Basic Auth | `Authorization: Basic <base64(user:password)>` | Human/admin tools and simple scripts |
-| API Token | `Authorization: Token <api-token>` | Long-lived personal or service integration |
-| OAuth2 Authorization Server | `Authorization: Bearer <jwt>` | OAuth client flow with `/authorization/oauth2/token` |
-| Keycloak | `Authorization: Bearer <jwt>` | OIDC/OAuth2 from external IAM |
+Use these environment variables in the examples:
+
+```bash
+SW360_HOST='https://<my_sw360_server>'
+RESOURCE_API="$SW360_HOST/resource/api"
+AUTH_SERVER="$SW360_HOST/authorization"
+
+ADMIN_USER='<admin@sw360.org>'
+ADMIN_PASS='<admin-password>'
+
+API_USER='<normal.user@sw360.org>'
+API_PASS='<user-password>'
+
+CLIENT_ID='<oauth-client-id>'
+CLIENT_SECRET='<oauth-client-secret>'
+
+KC_TOKEN_URL='https://<keycloak-host>/realms/<realm>/protocol/openid-connect/token'
+```
+
+## Authentication Mechanisms Overview
+
+| Mechanism | Header / Credential | Typical Use | Credential Lifecycle |
+| --- | --- | --- | --- |
+| HTTP Basic | `Authorization: Basic <base64(user:password)>` | One-off admin/debug calls | User password lifecycle |
+| API Token | `Authorization: Token <token>` | User- or service-owned long-lived integrations | SW360 token validity settings |
+| OAuth2 `client_credentials` | `Authorization: Bearer <jwt>` | Service-to-service automation | OAuth client + short-lived JWT |
+| OAuth2 `authorization_code` (+ PKCE) | `Authorization: Bearer <jwt>` | End-user delegated UI access | Browser login + code exchange |
+| Keycloak OIDC/OAuth2 | `Authorization: Bearer <jwt>` | External IAM/SSO deployments | Keycloak token lifecycle |
+
+## Which Mechanism Should I Use?
+
+- One-off admin debug or smoke test: use **HTTP Basic**.
+- Long-lived integration owned by a SW360 user: use **API Token**.
+- Non-interactive service-to-service integration: use **OAuth2 `client_credentials`**.
+- End-user delegated access from browser/UI: use **OAuth2 `authorization_code` + PKCE**.
+- Centralized enterprise identity/SSO: use **Keycloak**.
 
 ## Authorization Model in `resource-server`
 
 - `GET /api/**` requires `TOKEN_READ`.
 - `POST`, `PUT`, `PATCH`, `DELETE /api/**` require `TOKEN_WRITE`.
-- Common read-only endpoints such as `/health`, `/version`, and report download
-  can be exposed separately from the write-protected resource endpoints.
 
-SW360 merges user group authorities (for example `READ`, `WRITE`, `ADMIN`) with
+SW360 merges user-group authorities (for example `READ`, `WRITE`, `ADMIN`) with
 token capability authorities (`TOKEN_READ`, `TOKEN_WRITE`) before endpoint checks.
 
-## JWT Validation
+## 1) HTTP Basic
 
-Bearer JWTs used with the REST API are validated by the Spring framework. This
-applies to Bearer tokens issued either by the SW360 `authorization-server` or by
-Keycloak.
+### When to Use
 
-The Resource Server can trust multiple JWT issuers via
-`sw360.security.jwt.trusted-issuers` in `resource-server`'s `application.yml`.
-The issuer in the token's `iss` claim selects the matching issuer metadata and
-JWKS. If the trusted issuer list is not configured, SW360 falls back to the
-single Spring Boot property
-`spring.security.oauth2.resourceserver.jwt.issuer-uri`.
+- Local testing, admin diagnostics, short-lived manual calls.
 
-Scope values are then translated into `TOKEN_READ` and `TOKEN_WRITE`
-capabilities.
+### When Not to Use
 
-## 1) Basic Authentication
+- Production automation or integrations where credentials should not be sent each request.
 
-Basic auth authenticates SW360 user credentials and assigns both
-`TOKEN_READ` and `TOKEN_WRITE` capabilities after successful login.
+### Prerequisites
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant RS as Resource Server
-    participant UDS as UserDetails Service
-    participant DB as SW360 User Store
+- Basic auth must be enabled (`sw360.security.http-basic.enabled=true`).
 
-    Client->>RS: Authorization: Basic base64(user:pass)
-    RS->>UDS: loadUserByUsername(user)
-    UDS->>DB: Resolve SW360 user
-    DB-->>UDS: User + group
-    UDS-->>RS: UserDetails + group authorities
-    RS->>RS: Password check + add TOKEN_READ/TOKEN_WRITE
-    RS-->>Client: Authenticated request processing
-```
-
-Example:
+### End-to-End curl
 
 ```bash
-curl -X GET \
-  -H "Authorization: Basic <BASE64_USER_PASSWORD>" \
-  "https://<my_sw360_server>/resource/api/projects"
+curl -sS \
+  --user "$API_USER:$API_PASS" \
+  "$RESOURCE_API/projects?page=0&page_entries=5"
 ```
 
-## 2) API Token (Read or Read/Write)
+Expected: `200 OK` and JSON/HAL response.
 
-API tokens are user-owned tokens generated through REST API user endpoints. The
-token carries capability authorities (`READ` or `READ+WRITE`) that are mapped to
-`TOKEN_READ`/`TOKEN_WRITE` and merged with user group roles.
+### Common Failures
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant RS as Resource Server
-    participant APIF as API Token Filter
-    participant APIP as API Token Provider
-    participant DB as SW360 User Store
+- `401 Unauthorized`: wrong username/password, or Basic auth disabled.
+- `403 Forbidden`: authenticated user lacks required write capability for method.
 
-    Client->>RS: Authorization: Token <token>
-    RS->>APIF: Parse token header
-    APIF->>APIP: Authenticate token
-    APIP->>DB: Find user by token hash
-    DB-->>APIP: User + stored token metadata
-    APIP->>APIP: Validate expiration + capabilities
-    APIP-->>RS: Authenticated principal + merged authorities
-    RS-->>Client: Authenticated request processing
-```
+## 2) API Token (Personal or Service Token)
 
-Token management endpoints:
+### When to Use
 
-- `GET /api/users/tokens`
-- `POST /api/users/tokens`
-- `DELETE /api/users/tokens?name=<token-name>`
+- Scripted integration tied to a SW360 user identity.
+- Read-only or read/write token capability requirements.
 
-Example:
+### When Not to Use
+
+- You need delegated browser-based user consent flow.
+
+### Prerequisites
+
+- Token endpoint access with a valid SW360 user.
+- Token validity configured via:
+  - `rest.apitoken.read.validity.days`
+  - `rest.apitoken.write.validity.days`
+
+### End-to-End curl
+
+Create a token (endpoint shape can vary by version; inspect live OpenAPI first):
 
 ```bash
-curl -X GET \
-  -H "Authorization: Token <API_TOKEN>" \
-  "https://<my_sw360_server>/resource/api/projects"
+curl -sS \
+  --user "$API_USER:$API_PASS" \
+  -H 'Content-Type: application/json' \
+  -X POST "$RESOURCE_API/users/tokens" \
+  -d '{"name":"ci-read-token","writeAccess":false}'
 ```
+
+Use token for API call:
+
+```bash
+API_TOKEN='<token-value>'
+
+curl -sS \
+  -H "Authorization: Token $API_TOKEN" \
+  "$RESOURCE_API/projects?page=0&page_entries=5"
+```
+
+Expected: `200 OK`.
+
+### Common Failures
+
+- `401 Unauthorized`: token expired, malformed, or revoked.
+- `403 Forbidden`: token has only read capability but request method requires write.
 
 ## 3) OAuth2 via SW360 Authorization Server
 
-In this flow, the client obtains a JWT from SW360 `authorization-server` and
-calls `resource-server` with `Bearer` token.
+### 3.1 `client_credentials`
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant AS as Authorization Server
-    participant RS as Resource Server
+#### When to Use
 
-    Client->>AS: Request access token (/authorization/oauth2/token)
-    AS-->>Client: JWT access token (+ optional refresh token)
-    Client->>RS: Authorization: Bearer <jwt>
-    RS->>RS: Decode JWT + map scope to TOKEN_READ/TOKEN_WRITE
-    RS-->>Client: Authenticated request processing
-```
+- Headless service-to-service calls where no user interaction is possible.
 
-Example token request:
+#### When Not to Use
+
+- User-delegated actions that require individual user identity (use `authorization_code` instead).
+
+#### Prerequisites
+
+Admin registers an OAuth client via `/authorization/client-management`:
 
 ```bash
-curl -X POST \
-  --user '<client-id>:<client-secret>' \
+curl -sS \
+  --user "$ADMIN_USER:$ADMIN_PASS" \
+  -H 'Content-Type: application/json' \
+  -X POST "$AUTH_SERVER/client-management" \
+  -d '{"description":"ci-client","scope":["READ","WRITE"],"authorities":["BASIC"],"access_token_validity":3600,"refresh_token_validity":3600}'
+```
+
+> [!IMPORTANT]
+> Treat the returned `client_secret` as sensitive and store it immediately.
+> Do not rely on list/read responses to retrieve plaintext credentials later —
+> secrets are stored hashed after creation.
+
+#### End-to-End curl
+
+Mint token:
+
+```bash
+curl -sS \
+  --user "$CLIENT_ID:$CLIENT_SECRET" \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=client_credentials&scope=READ' \
-  'https://<my_sw360_server>/authorization/oauth2/token'
+  "$AUTH_SERVER/oauth2/token"
 ```
 
-Example API request:
+Call API:
 
 ```bash
-curl -X GET \
-  -H "Authorization: Bearer <ACCESS_TOKEN>" \
-  "https://<my_sw360_server>/resource/api/projects"
+ACCESS_TOKEN='<jwt-access-token>'
+
+curl -sS \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  "$RESOURCE_API/projects?page=0&page_entries=5"
 ```
 
-## 4) Keycloak (OIDC/OAuth2)
+#### Common Failures
 
-In Keycloak mode, clients obtain JWTs from Keycloak and call SW360 resource
-endpoints with `Bearer` token. Scope values are interpreted as capabilities:
+- `401 Unauthorized`: wrong `client_id`/`client_secret`, unknown issuer, or token expired.
+- `403 Forbidden`: token scope/capability mismatch (`READ` token used for write endpoint).
 
-- `READ` => `TOKEN_READ`
-- `WRITE` => `TOKEN_READ` + `TOKEN_WRITE`
+---
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant KC as Keycloak
-    participant RS as Resource Server
-    participant US as SW360 User Service
+### 3.2 `authorization_code` (+ PKCE)
 
-    Client->>KC: Token request (OIDC/OAuth2)
-    KC-->>Client: JWT (scope includes READ/WRITE)
-    Client->>RS: Authorization: Bearer <jwt>
-    RS->>US: Resolve SW360 user by email/user_name
-    US-->>RS: User + user group
-    RS->>RS: Merge group roles with token capabilities
-    RS-->>Client: Authenticated request processing
+#### When to Use
+
+- Browser-based or native applications acting on behalf of an end user.
+
+#### When Not to Use
+
+- Non-interactive server services — use `client_credentials` instead.
+
+#### Prerequisites
+
+- OAuth client registered with allowed redirect URI(s).
+- PKCE-capable client (S256 code challenge method).
+
+#### Flow Summary
+
+1. Generate a random `code_verifier` and derive `code_challenge = BASE64URL(SHA256(code_verifier))`.
+2. Redirect the browser to:
+   ```
+   $AUTH_SERVER/oauth2/authorize
+     ?response_type=code
+     &client_id=$CLIENT_ID
+     &redirect_uri=https://<my-app>/oauth/callback
+     &scope=openid READ WRITE
+     &code_challenge=<code_challenge>
+     &code_challenge_method=S256
+   ```
+3. User authenticates and approves.
+4. Client receives `code` parameter on the redirect URI.
+5. Client exchanges code for token:
+
+```bash
+AUTH_CODE='<authorization-code-from-redirect>'
+CODE_VERIFIER='<original-pkce-code-verifier>'
+REDIRECT_URI='https://<my-app>/oauth/callback'
+
+curl -sS \
+  --user "$CLIENT_ID:$CLIENT_SECRET" \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d "grant_type=authorization_code&code=$AUTH_CODE&redirect_uri=$REDIRECT_URI&code_verifier=$CODE_VERIFIER" \
+  "$AUTH_SERVER/oauth2/token"
 ```
 
-For Keycloak setup and realm/client automation, see
+#### Common Failures
+
+- `400 invalid_grant`: code already used or expired (single-use).
+- `400 invalid_client`: `client_id`/`client_secret` mismatch.
+
+## 4) Keycloak (External OIDC)
+
+Use this when SW360 `resource-server` is configured to trust a Keycloak issue
+via `sw360.security.jwt.trusted-issuers`.
+
+### When to Use
+
+- Enterprise/SSO environments with a central Keycloak instance.
+
+### When Not to Use
+
+- Deployments using the SW360 built-in Authorization Server only.
+
+### Prerequisites
+
+- Keycloak realm and SW360 client configured with required scopes (`READ`, `WRITE`).
+- Backend trusted-issuer list includes the Keycloak realm URL.
+
+For Keycloak deployment and realm/client setup, see
 [Keycloak Authentication]({{< relref path="../../Deployment/Deploy-Keycloak-Authentication.md" >}}).
 
-## Legacy Guide
+### End-to-End curl (`client_credentials` against Keycloak)
 
-Older and historical workflows were moved to:
+```bash
+KC_CLIENT_ID='<keycloak-client-id>'
+KC_CLIENT_SECRET='<keycloak-client-secret>'
 
-- [Legacy REST API Access Guide]({{< relref path="Legacy/Legacy-API-Access.md" >}})
+curl -sS \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d "grant_type=client_credentials&client_id=$KC_CLIENT_ID&client_secret=$KC_CLIENT_SECRET&scope=openid email READ" \
+  "$KC_TOKEN_URL"
+```
 
+Use token against SW360:
+
+```bash
+KC_ACCESS_TOKEN='<keycloak-jwt>'
+
+curl -sS \
+  -H "Authorization: Bearer $KC_ACCESS_TOKEN" \
+  "$RESOURCE_API/projects?page=0&page_entries=5"
+```
+
+### Common Failures (Keycloak)
+
+- `401 Unauthorized`: issuer mismatch (`iss` not in trusted issuers), invalid signature, expired token.
+- `403 Forbidden`: scope/capability missing (`READ`/`WRITE` not mapped as required by SW360).
+
+## Refresh Tokens
+
+When the grant returns a `refresh_token`, request a new access token without
+re-authenticating the user:
+
+```bash
+REFRESH_TOKEN='<refresh-token>'
+
+curl -sS \
+  --user "$CLIENT_ID:$CLIENT_SECRET" \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d "grant_type=refresh_token&refresh_token=$REFRESH_TOKEN" \
+  "$AUTH_SERVER/oauth2/token"
+```
+
+## Troubleshooting
+
+### 401 vs 403
+
+- `401 Unauthorized`: authentication failed (bad/missing/expired credential).
+- `403 Forbidden`: authentication succeeded, but capability/role is insufficient.
+
+### Token endpoint returns HTML instead of JSON
+
+- Usually reverse-proxy routing is wrong and request is not reaching
+  `/authorization/oauth2/token`.
+
+### Scope vs capability mismatch
+
+- `GET /api/**` requires read capability.
+- `POST/PUT/PATCH/DELETE /api/**` requires write capability.
+
+### Clock skew on JWT validation
+
+- Ensure system clocks are synchronized (NTP) across SW360, Keycloak, and callers.
+
+## Companion Notes
+
+- For lower-level technical details, see
+  [SW360 Rest API]({{< relref path="Dev-REST-API.md" >}}).
+- Legacy/historical auth flows are kept at
+  [Legacy REST API Access Guide]({{< relref path="Legacy/Legacy-API-Access.md" >}}).
