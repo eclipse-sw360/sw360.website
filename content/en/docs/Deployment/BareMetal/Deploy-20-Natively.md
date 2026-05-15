@@ -228,180 +228,23 @@ If done correctly, you should see the SW360 frontend and upon clicking on the
 The default username and password is "admin:admin" setup by the
 `addUnsafeDefaultClient.sh` script.
 
-## 3. Setup OAuth based logins for SW360
+## 3. Authentication Configuration (Bare-Metal)
 
-SW360 backend can support 3 types of authentication:
-1. Basic authentication with username and password
-2. OAuth2 authentication with builtin authorization server
-3. OAuth2 authentication with Keycloak
+This guide keeps only deployment-side configuration values. Security policy,
+provider choice, API keys, credential generation, and rotation are centralized
+in the Administration Guide:
 
-### 3.1. Basic authentication
+**[Securing SW360 (Administration Guide)](../../AdministrationGuide/Securing-SW360.md)**
 
-This is the default authentication method. You can use the default admin user
-to login. The Authorization header for the REST API call should look like this:
+For bare-metal deployments, these are the key configuration surfaces:
 
-```
-Authorization: Basic <base64-encoded-username:password>
-```
+- Frontend provider and client settings in `sw360-frontend/.env`
+- Backend JWT issuer trust and HTTP-basic toggle in `/etc/sw360/rest/application.yml`
+- Authorization server keystore password in `/etc/sw360/authorization/application.yml`
 
-The frontend config from [2.3](#23-clone-and-install-frontend) defines it using
-`NEXT_PUBLIC_SW360_AUTH_PROVIDER='sw360basic'` in the `.env` file.
+For full property details, see:
 
-### 3.2. OAuth2 authentication with builtin authorization server
-
-SW360 also ships with a builtin authorization server built on Spring Security
-and is available at `/authorization` endpoint. The same can be used for
-generating OAuth tokens for calling backend with username and password.
-
-The well-known endpoint for the authorization server is:
-[http://localhost:8080/authorization/.well-known/oauth-authorization-server](http://localhost:8080/authorization/.well-known/oauth-authorization-server)
-
-During the installation of the backend at step
-[1.6](#16-clone-sw360-backend-and-create-default-user), with the script
-`addUnsafeDefaultClient.sh`, a default user is created as well as a default
-client to user with authorization server. The client id is
-`trusted-sw360-client` and the client secret is `sw360-secret`.
-
-#### 3.2.1. Setup the backend
-
-To make sure the authorization server is configured correctly, configure the
-Resource Server to trust the built-in authorization server issuer. For a
-deployment that only accepts tokens from the built-in authorization server, the
-single-issuer fallback property is sufficient:
-
-```yaml
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8080/authorization
-```
-
-For deployments that accept tokens from both the built-in authorization server
-and Keycloak, configure `sw360.security.jwt.trusted-issuers` instead of switching
-this property back and forth. See
-[Multi-Issuer JWT Setup](../Deploy-Configuration-Files.md#multi-issuer-jwt-setup).
-
-#### 3.2.2. Setup the frontend to use OAuth2 authentication
-
-The frontend can be configured to use the OAuth2 authentication with the
-following changes in the `.env` file:
-
-```ini
-NEXT_PUBLIC_SW360_REST_CLIENT_ID='trusted-sw360-client'
-NEXT_PUBLIC_SW360_REST_CLIENT_SECRET='sw360-secret'
-NEXT_PUBLIC_SW360_AUTH_PROVIDER='sw360oauth'
-```
-
-If everything done correctly, next time you open the frontend, upon clicking on
-"Sign In", you should be redirected to the authorization server login page
-instead of seeing a popup asking for username and password.
-
-#### 3.2.3. Generate OAuth2 token
-
-Using the above-mentioned configurations, you can generate an OAuth2 token from
-any application of your choice. But to summarize, you need to:
-
-```
-Well-Known URL: http://localhost:8080/authorization/.well-known/oauth-authorization-server
-Authorization URL: http://localhost:8080/authorization/oauth2/authorize
-Token URL: http://localhost:8080/authorization/oauth2/token
-Grant Type: authorization_code
-
-Client ID: trusted-sw360-client
-Client Secret: sw360-secret
-Scope: openid READ WRITE ADMIN
-PKCE: true
-```
-
-### 3.3. OAuth2 authentication with Keycloak
-
-SW360 frontend and backend can also be configured to use Keycloak as an external
-authorization server. This is an involved process and requires a running
-Keycloak server.
-
-#### 3.3.1. Install Keycloak
-
-Get the latest 26.x.x version from [Keycloak downloads](https://www.keycloak.org/downloads).
-
-```shell
-curl -L 'https://github.com/keycloak/keycloak/releases/download/26.1.3/keycloak-26.1.3.tar.gz' -o ~/Downloads/keycloak-26.1.3.tar.gz
-sudo tar -xzvf ~/Downloads/keycloak-26.1.3.tar.gz -C /opt
-sudo chown -R $USER:$USER /opt/keycloak-26.1.3/
-```
-
-Install PostgreSQL used by Keycloak for management.
-
-```bash
-sudo apt install postgresql
-```
-
-or whatever package version is suitable here, for example version 15 for
-Debian 12.
-
-After installation, it is considered best practice to set up and configure your
-Keycloak realm, clients, and roles using Terraform/OpenTofu. This ensures that
-all components, scopes, and roles are appropriately aligned with SW360
-requirements, especially doing so after periodic upgrades prevents out-of-sync
-configurations.
-
-1. Clone the repository and navigate to the Terraform directory:
-    ```bash
-    git clone https://github.com/eclipse-sw360/sw360.git
-    cd sw360/third-party/keycloak-tf
-    ```
-2. Following the
-   [Keycloak Terraform README](https://github.com/eclipse-sw360/sw360/blob/main/third-party/keycloak-tf/README.md),
-   create an initial OIDC client for your master realm.
-3. Copy `local.tfvars` as `prod.auto.tfvars` and configure the necessary
-   variables (e.g., `kc_client_id`, `kc_client_secret`, and your
-   `redirect_uris`).
-4. Run `terraform apply` (or `tofu apply`) to provision all required Keycloak
-   scopes and roles.
-
-#### 3.3.2. Configure backend to use Keycloak
-
-For backend to authenticate JWT tokens generated by Keycloak, configure the
-Resource Server to trust the Keycloak realm issuer. For a Keycloak-only setup,
-the single-issuer fallback property can point to the Keycloak realm URL:
-
-```yaml
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8083/realms/sw360
-```
-
-For a setup that accepts both built-in authorization server tokens and Keycloak
-tokens, use the multi-issuer configuration in
-[SW360 Configurations](../Deploy-Configuration-Files.md#multi-issuer-jwt-setup).
-
-Once the changes are done, compile and reinstall the application with additional
-flag for Keycloak listener.
-```shell
-mvn clean install -Dbase.deploy.dir=/opt/apache-tomcat-11.0.4/ -Dlistener.deploy.dir=/opt/keycloak-26.1.3/providers -P deploy
-```
-
-This will install the jar and war files at appropriate locations.
-
-#### 3.3.3. Configure frontend to use KeyCloak
-
-The frontend also has to be configured to use Keycloak as the authentication
-provider. Modify the `.env` file to include the following properties:
-
-```ini
-SW360_KEYCLOAK_CLIENT_ID='client-from-kc'
-SW360_KEYCLOAK_CLIENT_SECRET='secret-from-kc'
-AUTH_ISSUER='http://localhost:8083/realms/sw360'
-NEXT_PUBLIC_SW360_AUTH_PROVIDER='keycloak'
-```
-
-If everything done correctly, next time you open the frontend, upon clicking on
-"Sign In", you should be redirected to the Keycloak login page instead of
-seeing a popup asking for username and password.
+- [SW360 Configuration Technical Reference](../Deploy-Configuration-Files.md)
 
 ## 4. Recommended for Production
 
@@ -411,54 +254,10 @@ service-based architecture guarded by a reverse proxy.
 
 ### 4.0. Security Hardening
 
-Before going live, review and apply the following security flags.
+For production hardening choices (disable Basic auth, OAuth/Keycloak strategy,
+API keys, secret generation, and rotation), use the dedicated guide:
 
-#### Disable HTTP Basic Authentication
-
-HTTP Basic authentication is useful for development and testing but should
-be disabled in production. When Basic auth is active, credentials are
-transmitted with every request and browser-based clients may be exposed to
-additional risks.
-
-SW360 ships with **Basic auth enabled by default** (so the bare-metal
-development workflow works out of the box). Disable it by activating the
-`prod` Spring profile on Tomcat startup, or by setting the property
-explicitly.
-
-**Option A - Spring `prod` profile (recommended)**
-
-Add the `prod` profile to the Tomcat JVM options so it picks up
-`application-prod.yml` which sets `sw360.security.http-basic.enabled=false`:
-
-```shell
-# In /etc/systemd/system/tomcat.service (or catalina.sh / setenv.sh)
-Environment="JAVA_OPTS=-Dspring.profiles.active=prod"
-```
-
-Or set the environment variable:
-```shell
-export SPRING_PROFILES_ACTIVE=prod
-```
-
-**Option B - Explicit property override**
-
-Alternatively, add the property directly to `/etc/sw360/rest/application.yml`
-and `/etc/sw360/authorization/application.yml`:
-
-```yaml
-sw360:
-  security:
-    http-basic:
-      enabled: false
-```
-
-After disabling Basic auth, all clients (including the frontend) must
-authenticate via:
-- OAuth2/JWT from the built-in authorization server (see
-  [3.2](#32-oauth2-authentication-with-builtin-authorization-server)), or
-- OAuth2/JWT from Keycloak (see
-  [3.3](#33-oauth2-authentication-with-keycloak)), or
-- SW360 API tokens (generated per-user via the UI or REST API).
+**[Securing SW360 (Administration Guide)](../../AdministrationGuide/Securing-SW360.md)**
 
 ### 4.1. Process Management (systemd)
 

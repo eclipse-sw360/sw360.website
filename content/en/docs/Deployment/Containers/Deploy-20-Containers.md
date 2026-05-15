@@ -67,7 +67,7 @@ from the `.env` configuration file on startup.
 
 ### Authentication Methods
 
-SW360 v20 frontend and backend support three modes of authentication. These are
+SW360 v20 frontend and backend support multiple authentication methods. These are
 configured primarily using the `NEXT_PUBLIC_SW360_AUTH_PROVIDER` variable in the
 `config/front-end/.env.frontend` file.
 
@@ -84,77 +84,33 @@ the `sw360` container for issuer discovery/JWKS lookup. The older
 `JWKS_ISSUER_URI` setting remains as a single-issuer fallback when no trusted
 issuer list is configured.
 
-#### 1. Built-in Basic Auth (`sw360basic`)
-This is the default setup. It relies on the built-in basic username and password
-stored directly within the backend's database. No extra frontend configuration
-is needed beyond defaults. The default setup user is `setup@sw360.org` /
-`sw360fossie` (configurable in `.env.backend`).
+### JWT Signing Key
 
-#### 2. SW360 OAuth2 (`sw360oauth`)
-Leverages SW360's internal OAuth2 authorization server.
-To use this, you must first create a default OAuth client in your CouchDB
-database using the setup script found in the core backend repository.
+The SW360 Authorization Server signs JWT access tokens with
+`/etc/sw360/jwt-keystore.jks`. This file must stay stable across restarts and
+must be the same on all backend instances that issue tokens.
 
-Clone the backend repository and run the script:
-```bash
-git clone https://github.com/eclipse-sw360/sw360.git
-cd sw360
-./scripts/addUnsafeDefaultClient.sh
-```
-*(By default, this sets up the client `trusted-sw360-client` with a secret of
-`sw360-secret` interacting with `127.0.0.1:5984`. You can pass flags like
-`--host`, `--user`, `--pass` to customize this or `-d` to delete the client
-later).*
+Container startup resolves the keystore in this order:
 
-Update your `config/front-end/.env.frontend` to use this provider:
-```env
-NEXT_PUBLIC_SW360_AUTH_PROVIDER=sw360oauth
-SW360_REST_CLIENT_ID=trusted-sw360-client
-SW360_REST_CLIENT_SECRET=sw360-secret
-```
+1. Docker secret `JWT_KEYSTORE`
+2. Existing `/etc/sw360/jwt-keystore.jks` in the persisted `etc` volume
+3. Bundled fallback keystore shipped with the image
 
-Ensure `config/sw360/.env.backend` includes the SW360 Authorization Server issuer:
+Container configuration keys involved:
 
-```env
-SW360_SECURITY_JWT_TRUSTED_ISSUERS=http://localhost:8080/authorization,http://localhost:8083/realms/sw360
-```
+* `JWT_KEYSTORE` Docker secret (keystore source)
+* `JWT_SECRETKEY` in `config/sw360/.env.backend` (keystore password)
 
-#### 3. Keycloak OpenID Connect (`keycloak`)
-Uses the external Keycloak container included in the full stack. This is the
-**recommended setup for production**.
+Detailed security guidance (Basic auth, OAuth2, Keycloak, API keys, secret
+generation and rotation) is centralized in:
 
-Keycloak requires a one-time realm and client setup which can be cleanly
-automated via Terraform or OpenTofu. 
-1. Obtain the Keycloak Terraform/OpenTofu scripts from the SW360 master
-   repository at `third-party/keycloak-tf`.
-2. Follow the
-   [Keycloak Terraform/OpenTofu README](https://github.com/eclipse-sw360/sw360/blob/main/third-party/keycloak-tf/README.md)
-   to log in and create an initial OIDC client for your master realm.
-3. Copy the template `local.tfvars` as `prod.auto.tfvars`. Adjust variables
-   such as `kc_client_id`, `kc_client_secret`, `redirect_uris`, and
-   `frontend_base_url` as necessary.
-4. Run `terraform apply` (or `tofu apply`) to generate the complete realm
-   settings.
+**[Securing SW360 (Administration Guide)](../../AdministrationGuide/Securing-SW360.md)**
 
-Update your `config/front-end/.env.frontend` to connect with Keycloak:
-```env
-NEXT_PUBLIC_SW360_AUTH_PROVIDER=keycloak
-SW360_KEYCLOAK_CLIENT_ID=sw360ui
-SW360_KEYCLOAK_CLIENT_SECRET=myoidcsecret
-AUTH_ISSUER=https://localhost/kc/realms/sw360
-```
+This deployment guide keeps only the container-side config surfaces:
 
-Also add the same Keycloak realm issuer to
-`config/sw360/.env.backend` so the backend accepts Keycloak-issued REST API
-Bearer tokens:
-
-```env
-SW360_SECURITY_JWT_TRUSTED_ISSUERS=http://localhost:8080/authorization,https://localhost/kc/realms/sw360
-```
-
-If Keycloak is exposed under a different external hostname or path, use that
-issuer consistently in both `AUTH_ISSUER` and
-`SW360_SECURITY_JWT_TRUSTED_ISSUERS`.
+- `config/front-end/.env.frontend` (`NEXT_PUBLIC_SW360_AUTH_PROVIDER` and related provider-specific variables)
+- `config/sw360/.env.backend` (`SW360_SECURITY_JWT_TRUSTED_ISSUERS`, `SW360_SECURITY_HTTP_BASIC_ENABLED`, `JWT_SECRETKEY`)
+- Docker secret `JWT_KEYSTORE` for Authorization Server signing keystore material
 
 ## Networking & Volumes
 
