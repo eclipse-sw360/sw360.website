@@ -131,20 +131,11 @@ couchdb:
 
 jwt:
   secretkey: sw360SecretKey
-  auth:
-    converter:
-      principle-attribute: email
 
 spring:
   jackson:
     serialization:
       indent_output: true
-  main:
-    allow-circular-references: true
-
-sw360:
-  cors:
-    allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
 
 security:
   customheader:
@@ -162,6 +153,13 @@ logging:
   level:
     org.springframework.security: DEBUG
 ```
+
+> [!IMPORTANT]
+> The Authorization Server signing keystore must remain stable across restarts.
+> In container deployments this is persisted at
+> `/etc/sw360/jwt-keystore.jks` (seeded from the `JWT_KEYSTORE` Docker secret
+> or bundled fallback). Keep `jwt.secretkey` / `JWT_SECRETKEY` aligned with the
+> keystore password on every node.
 
 #### Getting a REST API Token via `client_credentials`
 
@@ -280,7 +278,6 @@ spring:
 jwt:
   auth:
     converter:
-      resource-id: sw360-rest-api
       principle-attribute: email
 
 sw360:
