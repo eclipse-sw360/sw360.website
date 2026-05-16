@@ -309,18 +309,28 @@ WantedBy=multi-user.target
 ```ini
 [Unit]
 Description=Keycloak Application Server
-After=syslog.target network.target
+After=syslog.target network.target postgresql.service
+Wants=postgresql.service
 
 [Service]
-Type=idle
+Type=simple
 
 # Environment variables
 Environment="JAVA_HOME=/path/to/jdk-home"
 Environment="KC_TRANSACTION_XA_ENABLED=true"
 Environment="QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY=true"
 
-# Command to start Tomcat
-ExecStart=/path/to/keycloak-home/bin/kc.sh start-dev
+# Bootstrap admin credentials (KEYCLOAK_BOOTSTRAP_ADMIN_USERNAME/_PASSWORD)
+# and KC_DB_PASSWORD are loaded from this file. See "Loading secrets via
+# EnvironmentFile" below for the one-time setup.
+EnvironmentFile=-/etc/keycloak/keycloak.env
+
+# Rebuild the optimized server image whenever conf changes; cheap when up-to-date.
+ExecStartPre=/path/to/keycloak-home/bin/kc.sh build
+# `start --optimized` skips rebuild on boot and refuses to start if conf
+# changed without a prior build. Suitable for staging/production. Use
+# `start-dev` only for local experiments.
+ExecStart=/path/to/keycloak-home/bin/kc.sh start --optimized
 
 # User and group
 User=non-privileged-user
@@ -328,7 +338,8 @@ Group=non-privileged-group
 
 # Restart on failure
 Restart=on-failure
-RemainAfterExit=yes
+TimeoutStopSec=60
+LimitNOFILE=65536
 
 WorkingDirectory=/path/to/keycloak-home
 
@@ -383,6 +394,45 @@ Check the status of the services:
 1. `sudo systemctl status tomcat.service`
 2. `sudo systemctl status keycloak.service`
 3. `sudo systemctl status sw360-frontend.service`
+
+#### Loading secrets via `EnvironmentFile`
+
+Keep credentials such as the Keycloak bootstrap admin password and the
+PostgreSQL password out of `keycloak.conf` and out of unit files (which are
+world-readable by default). Use a dedicated environment file owned by the
+service user and referenced from the unit via `EnvironmentFile=`.
+
+Create the file once with restrictive permissions:
+
+```shell
+sudo install -o <service-user> -g <service-group> -m 0600 /dev/null /etc/keycloak/keycloak.env
+sudoedit /etc/keycloak/keycloak.env
+```
+
+Populate it with the secrets Keycloak expects on the environment (no quotes
+around values, one per line):
+
+```ini
+KEYCLOAK_BOOTSTRAP_ADMIN_USERNAME=admin
+KEYCLOAK_BOOTSTRAP_ADMIN_PASSWORD=<strong-password>
+KC_DB_PASSWORD=<db-password>
+```
+
+Notes:
+- `KEYCLOAK_BOOTSTRAP_ADMIN_USERNAME`/`_PASSWORD` are honoured only on first
+  start (or until an admin user exists in the database). Rotate via the admin
+  console after the initial run.
+- `KC_DB_PASSWORD` overrides `db-password` from `keycloak.conf`, so the conf
+  file no longer needs to carry the password in plaintext.
+- The same `EnvironmentFile=` pattern can be used for `tomcat.service`
+  whenever Tomcat needs secrets (e.g. external integration tokens) — define
+  them in a similarly locked-down env file and reference it from the unit.
+
+After editing the env file, restart the service to pick up the new values:
+
+```shell
+sudo systemctl restart keycloak.service
+```
 
 ### 4.2. Reverse Proxy & SSL Termination
 

@@ -60,6 +60,17 @@ log=console,file
 - **Proxy**: If behind a reverse proxy, set `proxy-headers=xforwarded` and
   `http-enabled=true` so Keycloak honours the `X-Forwarded-*` headers from the
   edge. (The older `proxy=edge` option is deprecated in Keycloak 26+.)
+- **Secrets**: Keep `db-password` and bootstrap admin credentials out of
+  `keycloak.conf`. Load `KC_DB_PASSWORD`,
+  `KEYCLOAK_BOOTSTRAP_ADMIN_USERNAME`, and `KEYCLOAK_BOOTSTRAP_ADMIN_PASSWORD`
+  via a root-owned, mode `0600` env file referenced from the systemd unit
+  (`EnvironmentFile=-/etc/keycloak/keycloak.env`). See
+  [Process Management (systemd)](BareMetal/Deploy-20-Natively.md#41-process-management-systemd)
+  for the full pattern. Env-var values override the equivalent `keycloak.conf`
+  keys, so the config file no longer needs to carry secrets in plaintext.
+- **Service unit**: Use `Type=simple` with `ExecStartPre=kc.sh build` and
+  `ExecStart=kc.sh start --optimized` for staging/production. Avoid
+  `start-dev` outside local development.
 
 ## Building the Backend & Deploying Providers
 
