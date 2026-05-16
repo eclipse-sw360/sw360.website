@@ -404,8 +404,9 @@ Now that access tokens can be generated, the resource server has to be configure
 
 | Property | Description | Example / Default |
 | --- | --- | --- |
-| `sw360.security.jwt.trusted-issuers` | Trusted JWT issuer URLs for multi-issuer validation | `https://<my_sw360_server>/authorization`, `https://<keycloak-host>/realms/sw360` |
-| `spring.security.oauth2.resourceserver.jwt.issuer-uri` | Single issuer fallback if `sw360.security.jwt.trusted-issuers` is not configured | `https://<my_sw360_server>/authorization` |
+| `sw360.security.jwt.issuers[*].issuer-uri` | Trusted JWT issuer URL. Validated against the `iss` claim of incoming tokens. | `https://<keycloak-host>/realms/sw360` |
+| `sw360.security.jwt.issuers[*].jwk-set-uri` | *(Optional)* Direct JWKS endpoint for the issuer above. When set, OpenID Connect discovery is skipped and JWKS is fetched from this URL. Useful when the identity provider sits behind a reverse proxy with a self-signed certificate. | `http://localhost:8083/realms/sw360/protocol/openid-connect/certs` |
+| `spring.security.oauth2.resourceserver.jwt.issuer-uri` | Single issuer fallback used only when `sw360.security.jwt.issuers` is not configured. | `https://<my_sw360_server>/authorization` |
 | `jwt.auth.converter.principle-attribute` | JWT claim used as principal name | `email` |
 | `sw360.thrift-server-url` | Backend/thrift server URL | `https://<my_sw360_server>` |
 | `sw360.base-url` | Base URL used for generated HAL links (`SW360_BASE_URL` env var) | `https://<my_sw360_server>` |

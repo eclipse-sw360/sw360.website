@@ -57,7 +57,9 @@ log=console,file
   `https-certificate-key-file`.
 - **Database**: Tune `db-pool-initial-size` and `db-pool-max-size` for your
   load.
-- **Proxy**: If behind a reverse proxy, set `proxy=edge` (or appropriate mode).
+- **Proxy**: If behind a reverse proxy, set `proxy-headers=xforwarded` and
+  `http-enabled=true` so Keycloak honours the `X-Forwarded-*` headers from the
+  edge. (The older `proxy=edge` option is deprecated in Keycloak 26+.)
 
 ## Building the Backend & Deploying Providers
 

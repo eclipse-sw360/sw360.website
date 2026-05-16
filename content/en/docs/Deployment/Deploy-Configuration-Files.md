@@ -292,9 +292,9 @@ sw360:
     http-basic:
       enabled: true
     jwt:
-      trusted-issuers:
-        - http://localhost:8080/authorization
-        - http://localhost:8083/realms/sw360
+      issuers:
+        - issuer-uri: http://localhost:8080/authorization
+        - issuer-uri: http://localhost:8083/realms/sw360
 
 blacklist:
   sw360:
@@ -328,25 +328,34 @@ when the deployment accepts tokens from both:
   `client_credentials` tokens; and
 * Keycloak, for browser login and externally managed OIDC clients.
 
-Configure all trusted issuer URLs under `sw360.security.jwt.trusted-issuers`:
-
 ```yaml
 sw360:
   security:
     jwt:
-      trusted-issuers:
-        - https://sw360.example.org/authorization
-        - https://keycloak.example.org/realms/sw360
+      issuers:
+        - issuer-uri: https://sw360.example.org/authorization
+        - issuer-uri: https://keycloak.example.org/realms/sw360
+          jwk-set-uri: http://localhost:8083/realms/sw360/protocol/openid-connect/certs
 ```
 
-The issuer value must exactly match the token's `iss` claim, including scheme,
-host, port, context path, and absence or presence of a trailing slash. The
-Resource Server uses issuer discovery to obtain the corresponding JWKS, so each
-issuer must publish its OpenID Connect or OAuth2 Authorization Server metadata.
-The full `rest/application.yml` example above shows the equivalent local
-development values.
+When the identity provider sits behind a reverse proxy with a self-signed or
+privately-issued certificate, fetching the JWKS via the public URL forces the
+Resource Server through that reverse proxy and requires either a publicly
+trusted certificate or a JVM truststore import on every certificate rotation.
 
-If `sw360.security.jwt.trusted-issuers` is not configured, the Resource Server
+You can provide an optional `jwk-set-uri` that points directly at the JWKS
+endpoint over a loopback or internal URL. When `jwk-set-uri` is set, OpenID
+Connect discovery is skipped entirely; the issuer claim in incoming tokens is
+still validated against `issuer-uri`, so external clients keep using the public
+issuer URL unchanged.
+
+Behaviour summary:
+
+* When `jwk-set-uri` is **omitted**, discovery against `issuer-uri` is used.
+* When `jwk-set-uri` is **set**, JWKS is fetched directly from that URL and the
+  discovery is skipped.
+
+If `sw360.security.jwt.issuers` is not configured, the Resource Server
 falls back to the single Spring Boot issuer property:
 
 ```yaml
@@ -358,9 +367,9 @@ spring:
           issuer-uri: http://localhost:8080/authorization
 ```
 
-After changing issuer configuration, restart the Resource Server. Once both
-issuers are configured, switching between SW360 Authorization Server tokens and
-Keycloak tokens does not require another Resource Server restart.
+After changing issuer configuration, restart the Resource Server. Once the
+trusted issuers are configured, switching between SW360 Authorization Server
+tokens and Keycloak tokens does not require another Resource Server restart.
 
 HTTP Basic authentication is controlled by
 `sw360.security.http-basic.enabled`. The example above keeps the development
