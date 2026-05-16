@@ -63,14 +63,14 @@ This creates client `trusted-sw360-client` / secret `sw360-secret`.
 #### Backend configuration
 
 In `/etc/sw360/rest/application.yml`, add the authorization server issuer to
-the trusted-issuer list (or use the single-issuer fallback):
+the trusted-issuer list:
 
 ```yaml
 sw360:
   security:
     jwt:
-      trusted-issuers:
-        - http://localhost:8080/authorization
+      issuers:
+        - issuer-uri: http://localhost:8080/authorization
 ```
 
 For multi-issuer setups (Authorization Server + Keycloak) see
@@ -126,8 +126,8 @@ Trust the Keycloak realm issuer in `/etc/sw360/rest/application.yml`:
 sw360:
   security:
     jwt:
-      trusted-issuers:
-        - https://keycloak.example.org/realms/sw360
+      issuers:
+        - issuer-uri: https://keycloak.example.org/realms/sw360
 ```
 
 To accept tokens from **both** the built-in Authorization Server and Keycloak:
@@ -135,10 +135,19 @@ To accept tokens from **both** the built-in Authorization Server and Keycloak:
 sw360:
   security:
     jwt:
-      trusted-issuers:
-        - http://localhost:8080/authorization
-        - https://keycloak.example.org/realms/sw360
+      issuers:
+        - issuer-uri: http://localhost:8080/authorization
+        - issuer-uri: https://keycloak.example.org/realms/sw360
+          jwk-set-uri: http://localhost:8083/realms/sw360/protocol/openid-connect/certs
 ```
+
+See [Multi-Issuer JWT Setup](../Deployment/Deploy-Configuration-Files.md#multi-issuer-jwt-setup)
+for the full reference. However, setting the `jwk-set-uri` allows you to skip
+the discovery of the JWKS from the `issuer-uri`. This becomes very handy if
+Keycloak sits behind a reverse proxy with a self-signed or privately-issued
+certificate, prefer filling the `jwk-set-uri` to the local service so the
+Resource Server can fetch JWKS over a loopback URL without any JVM truststore
+changes. The issuer claim is still validated against the public `issuer-uri`.
 
 After changing this, rebuild and reinstall the backend (bare-metal) or restart
 the `sw360` container (containers).

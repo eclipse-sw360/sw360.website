@@ -243,8 +243,10 @@ curl -sS \
 
 ## 4) Keycloak (External OIDC)
 
-Use this when SW360 `resource-server` is configured to trust a Keycloak issue
-via `sw360.security.jwt.trusted-issuers`.
+Use this when SW360 `resource-server` is configured to trust a Keycloak issuer
+via `sw360.security.jwt.issuers`. Each entry additionally accepts an optional
+`jwk-set-uri` to fetch JWKS over a loopback / internal URL — see
+[Resource Server Configuration](../../Deployment/Deploy-Configuration-Files.md#multi-issuer-jwt-setup).
 
 ### When to Use
 
