@@ -42,6 +42,23 @@ development.
 > **DO NOT** use default snakeoil certificates in production. Replace them with
 > valid certificates from a trusted CA (e.g., Let's Encrypt).
 
+### 4. JWT Issuer Allowlist (Resource + Authorization)
+
+Restrict Bearer token validation to explicit trusted issuers using
+`sw360.security.jwt.issuers`. This issuer allowlist is used by both
+`/resource` and `/authorization` endpoints.
+
+```env
+SW360_SECURITY_JWT_ISSUERS_0_ISSUER_URI=https://sw360.example.com/authorization
+SW360_SECURITY_JWT_ISSUERS_1_ISSUER_URI=https://sw360.example.com/kc/realms/sw360
+# Optional direct JWKS endpoint override (skips discovery):
+# SW360_SECURITY_JWT_ISSUERS_1_JWK_SET_URI=https://keycloak-internal:8083/kc/realms/sw360/protocol/openid-connect/certs
+```
+
+* Ensure issuer values exactly match JWT `iss` claims.
+* Prefer explicit `*_JWK_SET_URI` for private/internal PKI or split-horizon DNS.
+* Remove unused issuer slots to reduce trust surface.
+
 ## Mandatory: Credential Rotation
 
 After the initial setup, several default accounts and credentials **must** be

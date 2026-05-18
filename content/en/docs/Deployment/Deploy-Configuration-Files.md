@@ -136,6 +136,12 @@ spring:
   jackson:
     serialization:
       indent_output: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Optional single-issuer fallback.
+          issuer-uri: ${AUTH_RESOURCE_SERVER_ISSUER_URI:}
 
 security:
   customheader:
@@ -149,6 +155,17 @@ security:
       id: sw360-REST-API
   accesstoken:
     validity: 30
+
+sw360:
+  cors:
+    allowed-origin: ${SW360_CORS_ALLOWED_ORIGIN:#{null}}
+  security:
+    jwt:
+      issuers:
+        - issuer-uri: https://sw360.example.com/authorization
+          jwk-set-uri: https://authorization-internal:8090/authorization/oauth2/jwks
+        - issuer-uri: https://sw360.example.com/kc/realms/sw360
+          jwk-set-uri: https://keycloak-internal:8083/kc/realms/sw360/protocol/openid-connect/certs
 logging:
   level:
     org.springframework.security: DEBUG
@@ -263,7 +280,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/authorization
+          # Optional single-issuer fallback.
+          issuer-uri: ${AUTH_RESOURCE_SERVER_ISSUER_URI:}
 
 #logging:
 #  level:
@@ -294,7 +312,8 @@ sw360:
     jwt:
       issuers:
         - issuer-uri: http://localhost:8080/authorization
-        - issuer-uri: http://localhost:8083/realms/sw360
+        - issuer-uri: https://sw360.example.com/kc/realms/sw360
+          jwk-set-uri: http://keycloak-internal:8083/kc/realms/sw360/protocol/openid-connect/certs
 
 blacklist:
   sw360:

@@ -361,6 +361,23 @@ spring:
           jwk-set-uri: http://keycloak:8083/realms/sw360/protocol/openid-connect/certs
 ```
 
+For deployments that must trust more than one issuer/JWKS endpoint (for example,
+Keycloak plus SW360 authorization-server), configure explicit trusted issuers:
+
+```yaml
+sw360:
+  security:
+    jwt:
+      issuers:
+        - issuer-uri: https://sw360.example.com/kc/realms/sw360
+          jwk-set-uri: https://keycloak-internal:8083/kc/realms/sw360/protocol/openid-connect/certs
+        - issuer-uri: http://localhost:8080/authorization
+```
+
+This configuration pattern is supported by both the SW360 `resource-server` and
+the `authorization-server` resource endpoints (for example
+`/authorization/client-management/**` when called with Bearer JWT).
+
 ### Authentication Flow
 
 1. User accesses SW360 UI/API
@@ -412,3 +429,4 @@ rest.apitoken.hash.salt=$2a$04$Software360RestApiSalt
 |---------|------|--------|---------|
 | 1.0 | 2022 | Architecture Team | Initial decision |
 | 2.0 | April 2026 | Bibhuti Bhusan Dash | Reformatted to DAR/SWOT template |
+| 3.0 | April 2026 | Gaurav Mishra | Added `sw360.security.jwt.issuers` configuration example |
