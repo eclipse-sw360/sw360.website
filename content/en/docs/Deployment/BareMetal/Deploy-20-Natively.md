@@ -196,7 +196,7 @@ pnpm is an advanced package manager for node dependencies and can be installed
 with the new npm installed above.
 
 ```shell
-npm install -g pnpm@latest-10
+npm install -g pnpm@latest-11
 ```
 
 ### 2.3. Clone and install frontend

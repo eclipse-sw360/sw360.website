@@ -83,7 +83,7 @@ The SW360 Frontend is a modern web application that replaces the legacy Liferay 
 | **Reactive Streams** | RxJS | 7.x |
 | **Linting/Formatting** | Biome | 2.x |
 | **E2E Testing** | Playwright | Latest |
-| **Package Manager** | pnpm | 10.x |
+| **Package Manager** | pnpm | 11.x |
 | **Runtime** | Node.js | 24.x (slim) |
 | **Bundler** | Turbopack (Next.js native) | Built-in |
 | **Git Hooks** | Husky + lint-staged + commitlint | Latest |
