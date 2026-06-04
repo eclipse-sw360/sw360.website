@@ -91,6 +91,18 @@ CouchDB and Lucene search configuration properties.
 > New integration with CouchDB Nouveau does not allow leading wildcards (e.g.
 > *sw360) for efficiency and thus this feature should remain disabled.
 
+**Thrift Backend Connection Pooling (sw360.properties)**
+
+Configured in `sw360.properties`, these control the shared, pooled HTTP client used for all
+Thrift-over-HTTP backend calls within the JVM.
+
+| Property Key | Description | Default |
+| :--- | :--- | :--- |
+| `backend.thrift.max.connections.total` | Max total pooled connections to backend | `200` |
+| `backend.thrift.max.connections.per.route` | Max pooled connections per backend route | `100` |
+| `backend.thrift.idle.evict.seconds` | Validate idle pooled connections before reuse; set below Tomcat's `keepAliveTimeout` (seconds) | `15` |
+| `backend.thrift.connection.ttl.seconds` | Force-retire pooled connections older than this, even if active (seconds) | `60` |
+
 
 ### orgmapping.properties (/etc/sw360/orgmapping.properties)
 
