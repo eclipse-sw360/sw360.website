@@ -85,6 +85,13 @@ CouchDB and Lucene search configuration properties.
 | `couchdb.attachments` | Database for file attachments | `sw360attachments` |
 | `couchdb.vulnerability_management` | Database for vulnerability data | `sw360vm` |
 | `lucenesearch.limit` | Maximum results for search queries | `25` |
+| `cloudant.enable.retries` | Enable Cloudant SDK retries | `true` |
+| `cloudant.max.retries` | Maximum retry attempts when retries are enabled | `2` |
+| `cloudant.max.retry.interval` | Maximum retry interval in seconds | `5` |
+| `cloudant.pool.max.idle.connections` | Optional max idle HTTP pooled connections (`<=0` disables explicit tuning) | `-1` |
+| `cloudant.pool.keepalive.seconds` | Optional HTTP pooled connection keepalive in seconds (`<=0` disables explicit tuning) | `-1` |
+| `cloudant.max.requests` | Optional max in-flight HTTP requests in Cloudant dispatcher (`<=0` disables explicit tuning) | `-1` |
+| `cloudant.max.requests.per.host` | Optional max in-flight HTTP requests per host (`<=0` disables explicit tuning) | `-1` |
 | `lucenesearch.leading.wildcard` | Allow leading wildcards in search | `false` |
 
 > [!NOTE]
