@@ -133,5 +133,73 @@ $ mvn scm:tag
 ```
 This creates the tag and **pushes it to GitHub**.
 
+# Technical: PNPM Universe to make/tag a release:
+
+The following information refers to the existing pnpm-based versioning scheme, as of now we are looking into a system
+which is not leading to a temporary change in the repo, commit, and then reverting changes.
+
+Let us assume, that we want to tag the version **1.2.0** and that the current version in the `package.json` file  is **1.1.10**.
+
+### 0. Work in a clean environment
+The safe way is to start with:
+```shell
+$ cd /tmp/
+$ git clone https://github.com/eclipse-sw360/sw360-frontend.git
+$ cd sw360-frontend
+```
+
+### 1. Create a new release branch
+It is always advised to push the release versioning to a new branch and raise a PR
+```shell
+$ git switch -C chore/release_<version> <remote>/main
+$ git checkout chore/release_<version>
+```
+
+### 2. Install updated dependencies
+```shell
+$ pnpm install
+```
+
+### 3. Write the version of the release into the `package.json`
+```shell
+$ pnpm version 1.2.0 --no-git-tag-version
+```
+This will actually edit `package.json` file and change the versions to **1.2.0**.
+
+### 4. Update the Changelog
+
+After changing the version in `package.json` file, update the `CHANGELOG.md` file with the information about the new releases and
+add a summary of significant changes since the last release. Following are helper scripts to create the changelog
+portions for annotating the authors and commits. Change the `<last_tag>` in scripts to the
+[last tag from git](https://github.com/eclipse-sw360/sw360-frontend/tags), example: `v1.0.0-rc.1`.
+
+#### 4.1. Listing authors
+```shell
+git log --no-merges --format="format:> %an <%ae>" <last_tag>..HEAD | sort --unique --ignore-case > new-authors
+```
+
+#### 4.2. Listing feature commits
+```shell
+git log --no-merges --format="format:* \`%h\` %s" --grep="feat(\\(|:)" --extended-regexp --regexp-ignore-case <last_tag>..HEAD > feature-changelog
+```
+
+#### 4.3. Listing correction commits
+```shell
+git log --no-merges --format="format:* \`%h\` %s" --grep="(hot)?fix(\\(|:)" --extended-regexp --regexp-ignore-case <last_tag>..HEAD > correction-changelog
+```
+
+#### 4.4. Listing infra commits
+```shell
+git log --no-merges --format="format:* \`%h\` %s" --grep="((hot)?fix|feat)(\\(|:)" --extended-regexp --regexp-ignore-case --invert-grep <last_tag>..HEAD > infra-changelog
+```
+
+### 5. Create and push the branch
+```shell
+$ git add package.json
+$ git add CHANGELOG.md
+$ git commit -sS -m "chore(release): Updated release version and changelog file"
+$ git push <remote> chore/release_<version>
+```
+
 --
 ⁽¹⁾ based on: https://axelfontaine.com/blog/final-nail.html
