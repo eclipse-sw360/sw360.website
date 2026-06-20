@@ -4,13 +4,13 @@ linkTitle: "Database Migration"
 weight: 10
 ---
 
-### Praeamble
+### Preamble
 
 Please note that database migrations are done now in python scripts at
 
 > https://github.com/eclipse/sw360/tree/master/scripts/migrations
 
-keeping the following page because Costco might be useful for development / testing / quick adaptations.
+This page is retained because Costco might be useful for development, testing, and quick adaptations
 
 ### Problem
 
@@ -18,30 +18,31 @@ The main problem with changing field names in thrift is that existing documents 
 
 ### Solution
 
-Use costco, an open source project that
+Use Costco, an open source project that
 
-* is a couchapp (right, this implies that you install the couchapp environment)
-* offers a Web interface as sub path of the couchdb database
-* allows to iterate through the documents of a database and then apply modifications on a particular document
-* allows to perform modifications on documents using Java script
+- is a couchapp (right, this implies that you install the couchapp environment)
+- offers a Web interface as sub path of the couchdb database
+- allows iterating through the documents of a database and then apply modifications on a particular document
+- allows to perform modifications on documents using Javascript
 
 More information
 
-* Project website: https://github.com/harthur/costco
-* Useful examples: http://harthur.github.io/costco/
+- Project website: https://github.com/harthur/costco
+- Useful examples: http://harthur.github.io/costco/
 
-Note that costco does not allow to perform operations involving several documents at once, for example, setting values in one document that results from querying from several other documents. Costco is perfect for corrections on the couchdb document 'schema' (not in the classic sense as there is no schema in couchdb).
+Note that Costco does not allow to perform operations involving several documents at once, for example, setting values in one document that results from querying from several other documents. Costco is perfect for corrections on the couchdb document 'schema' (not in the classic sense as there is no schema in couchdb).
 
 ### Troubleshooting
 
-If you try to install costco, you try to install couchapp mst likely. However, it might be that some python packages are missing which results in a 'not-so-obvious' python error during install of couchapp. The following line could be th dependencies that you might need:
+If you try to install Costco, you try to install couchapp mst likely. However, it might be that some python packages are missing which results in a 'not-so-obvious' python error during install of couchapp. The following line could be the dependencies that you might need:
+
 ```Bash
 sudo apt-get install python-dev libxml2-dev libxslt-dev
 ```
 
 ### Cheat Sheet: Installing costco inside an sw360vagrant deployment
 
-OK, if you read until here, to make it easy for you just the few lines to have executed to install costco when youi have a machine that is deployed with our vagrant:
+If you've read this far, here are a few commands to execute to install Costco on a machine deployed with our Vagrant setup.
 
 ```Bash
 $ sudo apt-get install python-dev libxml2-dev libxslt-dev
@@ -57,7 +58,7 @@ The following examples show some costco code from the use with sw360.
 
 #### Renaming a key
 
-In order to rename a field's key, the following code might be helpful. In the following example, the field's key ```developement``` into ```development``` (correcting a typo in the datamodel).
+In order to rename a field's key, the following code might be helpful. In the following example, the field's key `developement` into `development` (correcting a typo in the data model).
 
 ```JavaScript
 function(doc) {
@@ -71,7 +72,7 @@ function(doc) {
 
 #### Renaming a key in a subdocument
 
-Similar thing as above, rename a key from ```comment``` to ```createdcomment```, but this time inside a nested list of documents.
+Similar thing as above, rename a key from `comment` to `createdcomment`, but this time inside a nested list of documents.
 
 ```JavaScript
 function(doc) {
@@ -87,21 +88,19 @@ function(doc) {
 
 ### More JavaScript Examples with CouchDB
 
-In addition to costco, also the couchdb map-reduce functions can help to track down issues in the data sets.
+In addition to Costco, also the couchdb map-reduce functions can help to track down issues in the data sets.
 
 The following example searched for attachments of type `SOURCE` at releases, which do not have the `createdBy` set:
 
 ```JavaScript
-function(doc) { 
-  if ((doc.type == 'release') 
+function(doc) {
+  if ((doc.type == 'release')
        && (doc.attachments)) {
-    for (var attachment in doc.attachments) {
-      if (!doc.attachments[attachment].createdBy) {
-        if (doc.attachments[attachment].attachmentType== 'SOURCE') {
-          emit(doc._id, doc.attachments[attachment].filename);
-        }
-      }
-    }
+         doc.attachments.forEach(attachment => {
+                if (!attachment.createdBy && attachment.attachmentType === 'SOURCE') {
+           emit(doc._id, attachment.filename);
+  }
+});
   }
 }
 ```
