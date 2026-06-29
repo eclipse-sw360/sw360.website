@@ -420,9 +420,19 @@ Now that access tokens can be generated, the resource server has to be configure
 | `rest.apitoken.write.generator.enable` | Enables write-token generation | `true` |
 | `rest.apitoken.read.validity.days` | Default/maximum read-token validity | `90` |
 | `rest.apitoken.write.validity.days` | Default/maximum write-token validity | `30` |
-| `rest.apitoken.hash.salt` | Salt used for API token hashing | implementation default |
+| `rest.apitoken.hash.salt` | BCrypt salt used for API token hashing (OpenBSD format, e.g. `$2a$04$...`) | `$2a$04$Software360RestApiSalt` |
 
 The REST API is now completely usable via an own client or testwise with integrated tools.
+
+When this property is configured through shell-sourced secrets files, keep it quoted,
+for example `REST_APITOKEN_HASH_SALT='$2a$04$Software360RestApiSalt'`. To generate a
+new value:
+
+```sh
+REST_APITOKEN_HASH_SALT='$2a$04$'$(openssl rand -hex 16 | head -c 22)
+```
+
+Keep the value stable after deployment; changing it invalidates existing API tokens.
 
 ## Tools
 
