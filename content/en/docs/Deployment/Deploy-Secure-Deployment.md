@@ -35,7 +35,7 @@ In a typical `docker-compose` setup, all SW360 services should reside in an
 
 ### 3. Nginx and TLS
 The reference
-[docker-compose-full.yml](https://github.com/eclipse-sw360/sw360-frontend/blob/main/docker-compose-full.yml)
+[docker-compose.yml](https://github.com/eclipse-sw360/sw360-frontend/blob/main/docker-compose.yml)
 uses Nginx with **snakeoil (self-signed) certificates** for convenience during
 development.
 > [!CAUTION]
