@@ -632,44 +632,13 @@ This section describes the infrastructure and deployment architecture of SW360.
 
 ### 8.3 Docker Compose Configuration
 
-```yaml
-# docker-compose.yml (simplified)
-services:
-  sw360:
-    image: ghcr.io/eclipse-sw360/sw360:latest
-    ports:
-      - "8080:8080"
-      - "11311:11311"
-    depends_on:
-      - couchdb
-    volumes:
-      - etc:/etc/sw360
-      - ./config/sw360:/app/sw360/config
-    environment:
-      - SW360_BASE_URL=http://localhost:8080
+The canonical compose definition and operational container setup are maintained
+in the frontend repository:
 
-  couchdb:
-    image: couchdb:3.4
-    ports:
-      - "5984:5984"
-    volumes:
-      - couchdb:/opt/couchdb/data
-      - ./config/couchdb/sw360_setup.ini:/opt/couchdb/etc/local.d/sw360_setup.ini
+**[SW360 Frontend Docker Guide (`eclipse-sw360/sw360-frontend`)](https://github.com/eclipse-sw360/sw360-frontend/blob/main/README_DOCKER.md)**
 
-  couchdb-nouveau:
-    image: couchdb:3.4-nouveau
-    ports:
-      - "5987:5987"
-      - "5988:5988"
-
-volumes:
-  couchdb:
-  etc:
-
-networks:
-  default:
-    name: sw360net
-```
+This architecture document intentionally does not duplicate compose snippets to
+avoid drift between repositories.
 
 ### 8.4 Production Deployment Considerations
 
