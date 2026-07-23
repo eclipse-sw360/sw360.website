@@ -195,6 +195,7 @@ and defined Contributors.
 | Write / Attachments | Admin, Clearing Admin/Expert (same dept), or record Moderator/Contributor | → Moderation Request |
 | Delete / Clearing | Admin, Clearing Admin (same dept), or record Moderator | → Moderation Request |
 | Write ECC | Admin only | → Moderation Request |
+| Write / AttachmentUsage | Admin, Clearing Admin (same dept), or Contributor | → Denied |
 
 ### Projects (Closed)
 
@@ -208,6 +209,7 @@ modified by anyone except admins.
 | Read | Depends on Visibility setting | — |
 | Write / Attachments | Admin, Clearing Admin/Expert (same dept), Creator, Project Responsible, Moderator, Contributor, or Lead Architect | → Moderation Request |
 | Delete / Clearing / Write ECC | **Admin only** | → Moderation Request |
+| Write / AttachmentUsage | **Admin only** | → Denied |
 
 ### Licenses
 
