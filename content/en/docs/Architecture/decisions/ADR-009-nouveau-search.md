@@ -414,15 +414,15 @@ public class SW360NouveauSearchBuilder {
         String direction = isAscending ? "" : "-";
 
         if (uiColumn == null || uiColumn.isEmpty() || "score".equalsIgnoreCase(uiColumn)) {
-            return List.of("<score>", "name_sort<string>", "version_sort<string>");
+            return List.of("relevance", "name_sort", "version_sort");
         }
 
         return switch (uiColumn.toLowerCase()) {
-            case "name" -> List.of(direction + "name_sort<string>", "<score>", "version_sort<string>");
-            case "version" -> List.of(direction + "version_sort<string>", "name_sort<string>", "<score>");
-            case "vendor" -> List.of(direction + "vendor_sort<string>", "name_sort<string>", "<score>");
-            case "createdon", "date" -> List.of(direction + "created_on<double>", "name_sort<string>");
-            default -> List.of(direction + uiColumn + "<string>", "<score>");
+            case "name" -> List.of(direction + "name_sort", "relevance", "version_sort");
+            case "version" -> List.of(direction + "version_sort", "name_sort", "relevance");
+            case "vendor" -> List.of(direction + "vendor_sort", "name_sort", "relevance");
+            case "createdon", "date" -> List.of(direction + "created_on", "name_sort");
+            default -> List.of(direction + uiColumn, "relevance");
         };
     }
 
@@ -469,12 +469,12 @@ public class SW360NouveauSearchBuilder {
 
 ### 6.3. Native Nouveau Sorting Matrix
 
-| User Action                 | Nouveau "sort" Parameter                                    | Description                                                                 |
-|-----------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Default Search              | `["<score>", "name_sort<string>", "version_sort<string>"]`  | Ranks exact phrase matches (#1) by BM25 score, tie-breaking alphabetically. |
-| Sort by Name (asc)          | `["name_sort<string>", "<score>", "version_sort<string>"]`  | Pure alphabetical sort with score as secondary tie-breaker.                 |
-| Sort by Version (desc)      | `["-version_sort<string>", "name_sort<string>", "<score>"]` | Descending version sort with multi-field tie-breaking.                      |
-| Sort by Created Date (desc) | `["-created_on<double>", "name_sort<string>"]`              | Sorts newest first.                                                         |
+| User Action                 | Nouveau "sort" Parameter                      | Description                                                                 |
+|-----------------------------|-----------------------------------------------|-----------------------------------------------------------------------------|
+| Default Search              | `["relevance", "name_sort", "version_sort"]`  | Ranks exact phrase matches (#1) by BM25 score, tie-breaking alphabetically. |
+| Sort by Name (asc)          | `["name_sort", "relevance", "version_sort"]`  | Pure alphabetical sort with score as secondary tie-breaker.                 |
+| Sort by Version (desc)      | `["-version_sort", "name_sort", "relevance"]` | Descending version sort with multi-field tie-breaking.                      |
+| Sort by Created Date (desc) | `["-created_on", "name_sort"]`                | Sorts newest first.                                                         |
 
 ---
 
