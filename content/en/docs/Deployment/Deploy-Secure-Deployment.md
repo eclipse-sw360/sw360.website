@@ -25,6 +25,35 @@ Secrets** for sensitive data:
 * **Next.js Frontend**: Ensure `NEXTAUTH_SECRET` is set to a unique, random
   string in production.
 
+#### Best practice: sign outgoing SW360 emails with S/MIME
+
+If your deployment sends SW360 notification or clearing-request emails, configure
+S/MIME signing so recipients can verify that the message genuinely originated
+from your SW360 instance and was not modified in transit.
+
+Recommended setup:
+
+* Store the signing identity as a **PKCS#12** file (`.p12` / `.pfx`) containing
+  the private key and certificate chain.
+* Mount that file as the optional Docker secret `SMIME_KEYSTORE`, which the
+  backend entrypoint copies to `/etc/sw360/smime-keystore.p12` with mode `600`.
+* Provide the passwords through `SW360_SECRETS`, not inline in compose files:
+  `EMAIL_PROPERTIES_SIGNING_KEYSTORE_PASSWORD`, and
+  `EMAIL_PROPERTIES_SIGNING_KEY_PASSWORD` if the key entry uses a different
+  password.
+* Point `EMAIL_PROPERTIES_SIGNING_KEYSTORE_PATH` to
+  `/etc/sw360/smime-keystore.p12`; optionally set
+  `EMAIL_PROPERTIES_SIGNING_KEY_ALIAS` when the keystore contains more than one
+  key entry.
+
+Signing is intentionally **off by default** and only becomes active when the
+path and password are configured and the PKCS#12 can be loaded successfully.
+Use a certificate with `digitalSignature` (or `nonRepudiation`) key usage and
+the `emailProtection` extended key usage.
+
+For the full property reference and PKCS#12 conversion example, see
+[SW360 Configurations - S/MIME email signing](./Deploy-Configuration-Files.md#smime-email-signing).
+
 ### 2. Network Isolation
 In a typical `docker-compose` setup, all SW360 services should reside in an
 **internal network** (e.g., `sw360net`).
@@ -119,5 +148,7 @@ additional guidelines:
 - [ ] HTTPS is mandatory and enforced via HSTS in Nginx.
 - [ ] No default passwords remain for Keycloak, Databases, or SW360 Admin.
 - [ ] OIDC client secrets are rotated and not stored in public repositories.
+- [ ] If SW360 sends email, S/MIME signing is configured with a dedicated
+  PKCS#12 identity and passwords are supplied through secrets management.
 - [ ] Docker images are periodically scanned for vulnerabilities.
 - [ ] Backup procedures for CouchDB and Postgres are encrypted and verified.

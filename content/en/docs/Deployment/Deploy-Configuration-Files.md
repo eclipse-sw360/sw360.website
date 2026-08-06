@@ -44,6 +44,13 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `MailUtil_password` | SMTP password | - |
 | `MailUtil_enableDebug` | Enable debugging for mail operations | `false` |
 | `MailUtil_supportMailAddress` | Support contact email address | - |
+| `MailUtil_smtpSSLProtocol` | TLS/SSL protocol version used for SMTP | - |
+| `MailUtil_smtpSSLTrust` | Hosts whose SMTP certificates are trusted | `*` |
+| `MailUtil_smimeKeystorePath` | Path of the PKCS#12 file holding the S/MIME signing identity. Together with `MailUtil_smimeKeystorePassword` this enables [S/MIME email signing](#smime-email-signing) | - |
+| `MailUtil_smimeKeystorePassword` | Password of the S/MIME PKCS#12 file | - |
+| `MailUtil_smimeKeyAlias` | Alias of the key entry to sign with. Leave empty when the keystore holds exactly one key entry | - |
+| `MailUtil_smimeKeyPassword` | Password of the key entry. Leave empty to reuse `MailUtil_smimeKeystorePassword` | - |
+| `MailUtil_smimeDigestAlgorithm` | Digest algorithm used for the signature | `SHA256` |
 | `defaultBegin` | Header text template for system emails | `*** This is an automatically generated email...` |
 | `defaultEnd` | Footer text template for system emails | `With best regards...` |
 | `unsubscribeNoticeBefore` | Unsubscribe notice prefix | `*** If you do not wish to receive...` |
@@ -69,6 +76,88 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `subjectFor*` / `textFor*` | Various mail notification subjects and body patterns | - |
 | `enable.sw360.change.log` | Enable system-wide changelog writing to a file (in addition to CouchDB) | `false` |
 | `sw360changelog.output.path` | Output path for the change log file | `sw360changelog/sw360changelog` |
+
+
+#### S/MIME email signing
+
+SW360 can cryptographically sign every outgoing email (notifications as well as
+clearing request mails) with an X.509 certificate, so recipients can verify that
+a mail really originates from your SW360 instance.
+
+The produced message is *detached* (clear-signed):
+
+```text
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"
+  part 1 -> the original mail body
+  part 2 -> application/pkcs7-signature; name="smime.p7s"
+```
+
+Mail clients without S/MIME support therefore still show the body, while S/MIME
+capable clients show the signature status.
+
+##### Enabling
+
+There is no dedicated on/off switch. Signing is active if and only if both
+`MailUtil_smimeKeystorePath` and `MailUtil_smimeKeystorePassword` are set and the
+referenced PKCS#12 file yields a usable signing identity. Both properties are
+empty by default, so **signing is disabled out of the box**.
+
+```properties
+MailUtil_smimeKeystorePath=/etc/sw360/smime-keystore.p12
+MailUtil_smimeKeystorePassword=<keystore password>
+# Optional, only needed when the keystore holds more than one key entry
+MailUtil_smimeKeyAlias=sw360-mail
+# Optional, defaults to MailUtil_smimeKeystorePassword
+MailUtil_smimeKeyPassword=
+MailUtil_smimeDigestAlgorithm=SHA256
+```
+
+Restart Tomcat after changing these values.
+
+##### Providing the PKCS#12 file
+
+Only the PKCS#12 format (`.p12` / `.pfx`) is supported. Obtain a certificate for
+the address configured in `MailUtil_from` from your organization's PKI or a
+public S/MIME CA. The certificate should carry the `digitalSignature` (or
+`nonRepudiation`) key usage and the `emailProtection` extended key usage;
+SW360 logs a warning when either is missing, but still signs.
+
+If your CA hands out a separate certificate and private key in PEM format,
+convert them, including the issuing chain:
+
+```sh
+openssl pkcs12 -export \
+  -inkey mail-key.pem \
+  -in mail-cert.pem \
+  -certfile ca-chain.pem \
+  -name sw360-mail \
+  -out smime-keystore.p12
+```
+
+Store the file where only the Tomcat user can read it, for example
+`/etc/sw360/smime-keystore.p12` with mode `600`. Including the issuing chain via
+`-certfile` is recommended so recipients can build a full certification path.
+
+Inspect an existing file with:
+
+```sh
+openssl pkcs12 -in smime-keystore.p12 -nokeys -info
+```
+
+##### Behaviour on misconfiguration
+
+Signing never blocks SW360. If the keystore is missing, the password is wrong,
+the alias is unknown, or the keystore holds several key entries without
+`MailUtil_smimeKeyAlias` being set, SW360 logs a `WARN` naming the exact reason
+and continues sending **unsigned** mail. Startup is not aborted and no
+notification is dropped.
+
+Confirm that signing is live by looking for this line in the backend log after a
+restart:
+
+```text
+INFO  SmimeSigner - S/MIME e-mail signing enabled using certificate '...' (serial ..., valid until ...)
+```
 
 
 ### couchdb.properties (/etc/sw360/couchdb.properties)
