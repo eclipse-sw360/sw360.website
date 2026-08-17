@@ -23,7 +23,7 @@ In most cases, modern software is not built from scratch but is instead assemble
 
 These three main use cases cater to different roles within an organization, including quality managers, software developers, legal counsels, software architects, and R&D managers. However, all these roles share a common need for a centralized hub that manages insights into software components.
 
-**SW360** is an open-source software project licensed under EPL-2.0 that provides both a web application and a repository for collecting, organizing, and making software component information available. It serves as a central hub for managing software components within an organization. SW360 enables:
+**Eclipse SW360** is an open-source software project licensed under EPL-2.0 that provides both a web application and a repository for collecting, organizing, and making software component information available. It serves as a central hub for managing software components within an organization. Eclipse SW360 enables:
 
 * Tracking components used in a project or product.
 * Assessing security vulnerabilities.

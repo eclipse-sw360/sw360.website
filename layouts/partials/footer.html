@@ -34,8 +34,12 @@
         </p>
 
         {{ with .Site.Params.copyright }}
-        <small>© {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>
+        <small class="d-block mb-1">© {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small>
         {{ end }}
+        <small class="d-block text-muted" style="font-size: 0.75rem; max-width: 380px;">
+          Eclipse® and the Eclipse logo are registered trademarks of the Eclipse Foundation.
+          Eclipse SW360™ is a trademark of the Eclipse Foundation.
+        </small>
         <div style="margin-top: 10px">
           <a href="http://www.eclipse.org/">
             <img
