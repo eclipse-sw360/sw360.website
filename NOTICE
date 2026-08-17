@@ -2,7 +2,7 @@
 
 This content is produced and maintained by the Eclipse SW360 project.
 
-* Project home: https://projects.eclipse.org/projects/technology.sw360/
+* Project home: https://projects.eclipse.org/projects/technology.sw360
 
 ## Trademarks
 
@@ -18,7 +18,7 @@ source code repository logs.
 
 This program and the accompanying materials are made available under the terms
 of the Eclipse Public License v. 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+https://www.eclipse.org/legal/epl-2.0.
 
 SPDX-License-Identifier: EPL-2.0
 
@@ -26,9 +26,9 @@ SPDX-License-Identifier: EPL-2.0
 
 The project maintains the following source code repositories:
 
-* https://github.com/eclipse/antenna
-* https://github.com/eclipse/sw360
-* https://github.com/eclipse/sw360.website
+* https://github.com/eclipse-sw360/sw360
+* https://github.com/eclipse-sw360/sw360-frontend
+* https://github.com/eclipse-sw360/sw360.website
 
 ## Third-party Content
 
@@ -36,3 +36,12 @@ This project leverages the following third party content.
 
 * Bootstrapious template: https://github.com/eclipse/sw360.website
 * Hugo website engine: https://gohugo.io/
+
+## Cryptography
+
+Content may contain encryption software. The country in which you are currently
+may have restrictions on the import, possession, and use, and/or re-export to
+another country, of encryption software. BEFORE using any encryption software,
+please check the country's laws, regulations and policies concerning the import,
+possession, or use, and re-export of encryption software, to see if this is
+permitted.
