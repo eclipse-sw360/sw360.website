@@ -380,6 +380,9 @@ spring:
     active: SECURITY_MOCK
   application:
     name: resource
+  data:
+    rest:
+      max-page-size: ${SPRING_DATA_REST_MAX_PAGE_SIZE:1000}
   servlet:
     multipart:
       max-file-size: 500MB
@@ -445,6 +448,12 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/hal+json
 ```
+
+`spring.data.rest.max-page-size` defines the maximum allowed value for
+`page_entries` on paginated REST requests. Values above this limit are capped by
+Spring Data REST. The theoretical upper bound is Java `Integer.MAX_VALUE`
+(`2147483647`), but large values can significantly increase memory usage and
+response times.
 
 #### Multi-Issuer JWT Setup
 
