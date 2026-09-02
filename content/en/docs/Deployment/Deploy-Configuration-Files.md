@@ -541,6 +541,7 @@ The configurations are partitioned into two containers:
 | `bulk.release.deleting.enabled` | Enable bulk release deleting feature | `false` |
 | `disable.clearing.fossology.report.download` | Disable the ISR generation in fossology process | `false` |
 | `rest.force.update.enabled` | Enable force update feature | `false` |
+| `projects.closed.update.strict` | Restrict updates on projects with clearing state `CLOSED`. When enabled, only clearing admins (and above) may modify all fields of such a project; moderators, the creator, the project responsible, contributors and lead architects may only change `state`, `externalIds` and `additionalData`. Any other change is rejected with HTTP `403`. | `false` |
 | `sbom.import.export.access.usergroup` | SBOM Import Export Access User Group | `USER` |
 | `sw360.tool.name` | The tool name in exported CycloneDx SBOM | `sw360` |
 | `sw360.tool.vendor` | The tool vendor in exported CycloneDx SBOM | `eclipse` |
