@@ -27,12 +27,24 @@ The Project List lists all the relevant projects with the following information:
 * **Project responsible**: The email address of the person responsible for the project is displayed. 
 * **State**: Displays the state of the project and clearing requests. The status for PS and CS is indicated by colors.
 
+    ##### **Project rows**
     | Color | Project State (PS) | Project Clearing State (CS) | 
     |-----:|:------------------|:------------------|
     |<span style="color:#68C17C"> **Green** </span> | Active |Closed |
     |<span style="color:#FFD351"> **Yellow** </span> |Not Applicable | In-progress |
     |<span style="color:#E6717C"> **Red** </span> | Open | Open |
     |<span style="color:#DEE2E6"> **Grey** </span> | Phase out/ Unknown |Not Applicable |
+
+    ##### **Release rows — CS (Release Clearing State) badge**
+    | Color | Clearing State |
+    |---|---|
+    | <span style="color:#e6717c"> **Red** </span> | `NEW_CLEARING` |
+    | <span style="color:#ffd350"> **Yellow** </span> | `UNDER_CLEARING` |
+    | <span style="color:#f7941e"> **Orange** </span> | `SENT_TO_CLEARING_TOOL` / `SCAN_AVAILABLE` |
+    | <span style="color:#0d6efd"> **Blue** </span> | `REPORT_AVAILABLE` |
+    | <span style="color:#9370db"> **Purple** </span> | `INTERNAL_USE_SCAN_AVAILABLE` |
+    | <span style="color:#69c17d"> **Green** </span> | `APPROVED` |
+    | <span style="color:#dee2e6"> **Gray** </span> | unknown/null/undefined/empty/unmapped |
 
 * **License Clearing** displays the clearing states for releases for the project including sub projects.
 * **Actions**: you can perform the following actions for a project:
