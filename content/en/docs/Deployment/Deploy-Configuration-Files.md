@@ -511,7 +511,7 @@ HTTP Basic authentication is controlled by
 `sw360.security.http-basic.enabled`. The example above keeps the development
 default (`true`). For production hardening guidance, including disabling Basic
 auth via the `prod` profile or an explicit property override, see
-[Disable HTTP Basic Authentication](BareMetal/Deploy-20-Natively.md#disable-http-basic-authentication).
+[Disable HTTP Basic Authentication](../AdministrationGuide/Securing-SW360.md#3-disable-http-basic-auth).
 
 ## Database Configurations
 
@@ -541,7 +541,7 @@ The configurations are partitioned into two containers:
 | `bulk.release.deleting.enabled` | Enable bulk release deleting feature | `false` |
 | `disable.clearing.fossology.report.download` | Disable the ISR generation in fossology process | `false` |
 | `rest.force.update.enabled` | Enable force update feature | `false` |
-| `projects.closed.update.strict` | Restrict updates on projects with clearing state `CLOSED`. When enabled, only clearing admins (and above) may modify all fields of such a project; moderators, the creator, the project responsible, contributors and lead architects may only change `state`, `externalIds` and `additionalData`. Any other change is rejected with HTTP `403`. | `false` |
+| `projects.closed.update.strict` | Restrict updates on projects with clearing state `CLOSED` at field level. See [Projects (Closed)](../AdministrationGuide/user-management-roles.md#projects-closed) for full details. | `false` |
 | `sbom.import.export.access.usergroup` | SBOM Import Export Access User Group | `USER` |
 | `sw360.tool.name` | The tool name in exported CycloneDx SBOM | `sw360` |
 | `sw360.tool.vendor` | The tool vendor in exported CycloneDx SBOM | `eclipse` |

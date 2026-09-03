@@ -199,17 +199,40 @@ and defined Contributors.
 
 ### Projects (Closed)
 
-Once a project's clearing state is set to **CLOSED**, permissions become more
-restrictive. Only specific fields remain editable (e.g., `state`,
-`securityResponsibles`, `externalIds`). Attachments and obligations cannot be
-modified by anyone except admins.
+Once a project's clearing state is set to **CLOSED**, update permissions are
+governed by the database configuration property `projects.closed.update.strict`:
 
-| Action | Minimum Requirement | Fallback |
-|---|---|---|
-| Read | Depends on Visibility setting | — |
-| Write / Attachments | Admin, Clearing Admin/Expert (same dept), Creator, Project Responsible, Moderator, Contributor, or Lead Architect | → Moderation Request |
-| Delete / Clearing / Write ECC | **Admin only** | → Moderation Request |
-| Write / AttachmentUsage | **Admin only** | → Denied |
+#### When `projects.closed.update.strict` is `false` (default)
+
+* **Clearing Admin or above**, as well as **Moderators, Creator, Project
+    Responsible, Contributors, and Lead Architects** can modify all fields of
+    the closed project.
+* For all other users, no update requests will be accepted and
+    **no moderation request** will be created (updates are denied).
+
+#### When `projects.closed.update.strict` is `true`
+
+* **Clearing Admin or above** can modify all fields.
+* **Moderators, Creator, Project Responsible, Contributors, and Lead Architects** can only modify:
+  * Project `state` (note: project state, not clearing state)
+  * `externalIds`
+  * `additionalData`
+
+  Modifications to any other fields are denied.
+* For all other users, all modifications are denied (no moderation request
+  created).
+
+| Action                                            | `projects.closed.update.strict = false`                                                       | `projects.closed.update.strict = true`                                                        | Fallback                         |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------|
+| Read                                              | Depends on Visibility setting                                                                 | Depends on Visibility setting                                                                 | —                                |
+| Update (All Fields)                               | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above                                                                       | → Denied (No moderation request) |
+| Update (`state`, `externalIds`, `additionalData`) | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | → Denied (No moderation request) |
+| Delete / Clearing / Write ECC                     | Admin only                                                                                    | Admin only                                                                                    | → Denied (No moderation request) |
+
+> [!NOTE]
+> **Component/Release Merges Sanity Check**: If a Release or Component that is
+> linked to/used by a closed project is merged, the backend will force-update
+> the corresponding reference in the closed project as well.
 
 ### Licenses
 

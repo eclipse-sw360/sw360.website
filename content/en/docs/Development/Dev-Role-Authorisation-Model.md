@@ -81,6 +81,8 @@ P² : only if the user is member of the group of the project (or has created the
 
 Note that ECC Admins and Security Admins have only the ability to write ECC and security data respectively at given records. However, as for the other access rights this role does not enhance anything above users.
 
+For permissions and update rules on **closed projects** (clearing state `CLOSED`) and the configuration setting `projects.closed.update.strict`, refer to the detailed [Projects (Closed) Documentation](../AdministrationGuide/user-management-roles.md#projects-closed).
+
 #### Legend
 
 | acronym | description |
