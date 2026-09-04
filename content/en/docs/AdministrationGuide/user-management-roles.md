@@ -213,21 +213,26 @@ governed by the database configuration property `projects.closed.update.strict`:
 #### When `projects.closed.update.strict` is `true`
 
 * **Clearing Admin or above** can modify all fields.
-* **Moderators, Creator, Project Responsible, Contributors, and Lead Architects** can only modify:
-  * Project `state` (note: project state, not clearing state)
-  * `externalIds`
-  * `additionalData`
+* **Moderators, Creator, Project Responsible, Contributors, and Lead Architects** can only modify the following fields:
+  * **Project State** (`state`, note: project state, not clearing state)
+  * **Project Responsibles** (`projectResponsible`)
+  * **Project Owner** (`projectOwner`)
+  * **Security Responsible** (`securityResponsibles`)
+  * **Enable Security Vulnerability Monitoring** (`enableSvm`)
+  * **Display Vulnerabilities** (`enableVulnerabilitiesDisplay`)
+  * **Phase-out date** (`phaseOutSince`)
+  * **External IDs** (`externalIds`)
 
   Modifications to any other fields are denied.
 * For all other users, all modifications are denied (no moderation request
   created).
 
-| Action                                            | `projects.closed.update.strict = false`                                                       | `projects.closed.update.strict = true`                                                        | Fallback                         |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------|
-| Read                                              | Depends on Visibility setting                                                                 | Depends on Visibility setting                                                                 | —                                |
-| Update (All Fields)                               | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above                                                                       | → Denied (No moderation request) |
-| Update (`state`, `externalIds`, `additionalData`) | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | → Denied (No moderation request) |
-| Delete / Clearing / Write ECC                     | Admin only                                                                                    | Admin only                                                                                    | → Denied (No moderation request) |
+| Action                        | `projects.closed.update.strict = false`                                                       | `projects.closed.update.strict = true`                                                        | Fallback                         |
+|-------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------|
+| Read                          | Depends on Visibility setting                                                                 | Depends on Visibility setting                                                                 | —                                |
+| Update (All Fields)           | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above                                                                       | → Denied (No moderation request) |
+| Update restricted fields      | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | → Denied (No moderation request) |
+| Delete / Clearing / Write ECC | Admin only                                                                                    | Admin only                                                                                    | → Denied (No moderation request) |
 
 > [!NOTE]
 > **Component/Release Merges Sanity Check**: If a Release or Component that is
