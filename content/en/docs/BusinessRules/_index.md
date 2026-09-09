@@ -61,12 +61,13 @@ Rules are uniquely identified using the scheme `BR-<DOMAIN>-<NNN>`:
 | ID | Title | Governing Configuration | Status |
 |---|---|---|---|
 | [BR-PROJ-001](./Projects/BR-PROJ-001-closed-project-restrictions.md) | **Closed Project Update Restrictions** | `projects.closed.update.strict` | Approved |
+| [BR-PROJ-002](./Projects/BR-PROJ-002-license-clearing-tab-badges.md) | **License Clearing Tab Status Badges** | `LicenseClearing.tsx` | Approved |
 
 ### Clearing (`BR-CLR`)
 
 | ID | Title | Governing Configuration | Status |
 |---|---|---|---|
-| [BR-CLR-001](./Clearing/BR-CLR-001-release-clearing-state-determination.md) | **Release Clearing State Recalculation & Manual Override** | none | Approved |
+| [BR-CLR-001](./Clearing/BR-CLR-001-release-clearing-state-determination.md) | **Release Clearing State Determination & Manual Transitions** | `ReleaseService` | Approved |
 
 ### Security (`BR-SEC`)
 
