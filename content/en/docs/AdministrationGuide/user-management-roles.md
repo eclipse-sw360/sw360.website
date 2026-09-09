@@ -36,8 +36,14 @@ They define a user's system-wide capabilities.
 5. **Security Admin** — Can view and suppress security vulnerabilities across
    the instance. They can assess risk across all projects in their department.
 
-6. **Security User** — A read-only security role. Can view vulnerability data
-   but cannot suppress findings. Assigned and managed via **Admin > Users**.
+6. **Security User** — A read-only security role with visibility into all
+   projects (including private ones), but restricted strictly to their Summary
+   and Vulnerabilities data. They cannot view license clearing, ECC, or
+   compliance details. This role is strictly prohibited from creating, updating,
+   or deleting records (enforced via `EndpointsFilter`, with exemptions for safe
+   POST read endpoints like `/api/releases/batch-summary`). See
+   [BR-SEC-001](../BusinessRules/Security/BR-SEC-001-security-user-role-restrictions.md)
+   for full specification.
 
 7. **SW360 Admin** — Full administrative rights on all visible records.
    Can promote other users to any role. Use this role for users who need
@@ -238,6 +244,8 @@ governed by the database configuration property `projects.closed.update.strict`:
 > **Component/Release Merges Sanity Check**: If a Release or Component that is
 > linked to/used by a closed project is merged, the backend will force-update
 > the corresponding reference in the closed project as well.
+>
+> For the complete formal specification and executable test scenarios, see [BR-PROJ-001: Closed Project Update Restrictions](../BusinessRules/Projects/BR-PROJ-001-closed-project-restrictions.md).
 
 ### Licenses
 
