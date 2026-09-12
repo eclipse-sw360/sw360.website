@@ -15,7 +15,7 @@
     "homepage": "https://eclipse.org/sw360",
     "devDependencies": {
         "autoprefixer": "^10.5.5",
-        "postcss": "^8.5.26",
+        "postcss": "^8.5.28",
         "postcss-cli": "^12.0.0"
     }
 }
