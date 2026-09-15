@@ -33,18 +33,18 @@ last_verified: "2026-09-07"
         * `(PS)` for **Project Clearing State**.
         * `(CS)` for **Release Clearing State**.
     * **When** rendering the `(PS)` badge for a project row, the system **shall apply** the exact background color mapped to the project clearing state:
-        * `Closed` $\rightarrow$ **Green** (`#68C17C`)
-        * `In-progress` $\rightarrow$ **Yellow** (`#FFD351`)
-        * `Open` $\rightarrow$ **Red** (`#E6717C`)
-        * `Not Applicable` / `Unknown` $\rightarrow$ **Grey** (`#DEE2E6`)
+        * `Closed` -> **Green** (`{{< hex-color "#68C17C" >}}`)
+        * `In-progress` -> **Yellow** (`{{< hex-color "#FFD351" >}}`)
+        * `Open` -> **Red** (`{{< hex-color "#E6717C" >}}`)
+        * `Not Applicable` / `Unknown` -> **Grey** (`{{< hex-color "#DEE2E6" >}}`)
     * **When** rendering the `(CS)` badge for a release row, the system **shall apply** the exact background color mapped to the release clearing state:
-        * `NEW_CLEARING` $\rightarrow$ **Red** (`#E6717C`)
-        * `UNDER_CLEARING` $\rightarrow$ **Yellow** (`#FFD350`)
-        * `SENT_TO_CLEARING_TOOL` or `SCAN_AVAILABLE` $\rightarrow$ **Orange** (`#F7941E`)
-        * `REPORT_AVAILABLE` $\rightarrow$ **Blue** (`#0D6EFD`)
-        * `INTERNAL_USE_SCAN_AVAILABLE` $\rightarrow$ **Purple** (`#9370DB`)
-        * `APPROVED` $\rightarrow$ **Green** (`#69C17D`)
-        * `null`, `undefined`, or unmapped $\rightarrow$ **Grey** (`#DEE2E6`)
+        * `NEW_CLEARING` -> **Red** (`{{< hex-color "#E6717C" >}}`)
+        * `UNDER_CLEARING` -> **Yellow** (`{{< hex-color "#FFD350" >}}`)
+        * `SENT_TO_CLEARING_TOOL` or `SCAN_AVAILABLE` -> **Orange** (`{{< hex-color "#F7941E" >}}`)
+        * `REPORT_AVAILABLE` -> **Blue** (`{{< hex-color "#0D6EFD" >}}`)
+        * `INTERNAL_USE_SCAN_AVAILABLE` -> **Purple** (`{{< hex-color "#9370DB" >}}`)
+        * `APPROVED` -> **Green** (`{{< hex-color "#69C17D" >}}`)
+        * `null`, `undefined`, or unmapped -> **Grey** (`{{< hex-color "#DEE2E6" >}}`)
     * **When** a user hovers over any `(PS)` or `(CS)` badge, the system **shall render a tooltip** displaying the full, human-readable state name.
 
 ### 1.2 Purpose & Risk Mitigated
@@ -67,25 +67,25 @@ Compact color-coded badge representations allow project managers, architects, an
 
 ### 3.1 Project Row `(PS)` Badge Color Mappings
 
-| Indicator | Domain State | Visual Color | Hex Code | Tooltip Display Text |
-|---|---|---|---|---|
-| **PS** | `CLOSED` | Green | `#68C17C` | "Closed" |
-| **PS** | `IN_PROGRESS` | Yellow | `#FFD351` | "In-progress" |
-| **PS** | `OPEN` | Red | `#E6717C` | "Open" |
-| **PS** | `NOT_APPLICABLE` / `UNKNOWN` | Grey | `#DEE2E6` | "Not Applicable" |
+| Project Clearing State | Visual Color | Hex Code | Tooltip Display Text |
+|---|---|---|---|
+| `CLOSED` | Green | `{{< hex-color "#68C17C" >}}` | "Closed" |
+| `IN_PROGRESS` | Yellow | `{{< hex-color "#FFD351" >}}` | "In-progress" |
+| `OPEN` | Red | `{{< hex-color "#E6717C" >}}` | "Open" |
+| `NOT_APPLICABLE` / `UNKNOWN` | Grey | `{{< hex-color "#DEE2E6" >}}` | "Not Applicable" |
 
 ### 3.2 Release Row `(CS)` Badge Color Mappings
 
 | Release Clearing State Enum | Visual Color | Hex Code | Tooltip Display Text |
 |---|---|---|---|
-| `NEW_CLEARING` | Red | `#E6717C` | "New Clearing" |
-| `UNDER_CLEARING` | Yellow | `#FFD350` | "Under Clearing" |
-| `SENT_TO_CLEARING_TOOL` | Orange | `#F7941E` | "Sent to Clearing Tool" |
-| `SCAN_AVAILABLE` | Orange | `#F7941E` | "Scan Available" |
-| `REPORT_AVAILABLE` | Blue | `#0D6EFD` | "Report Available" |
-| `INTERNAL_USE_SCAN_AVAILABLE` | Purple | `#9370DB` | "Internal Use Scan Available" |
-| `APPROVED` | Green | `#69C17D` | "Approved" |
-| *Fallback / Unknown / Null* | Grey | `#DEE2E6` | "Unknown" |
+| `NEW_CLEARING` | Red | `{{< hex-color "#E6717C" >}}` | "New Clearing" |
+| `UNDER_CLEARING` | Yellow | `{{< hex-color "#FFD350" >}}` | "Under Clearing" |
+| `SENT_TO_CLEARING_TOOL` | Orange | `{{< hex-color "#F7941E" >}}` | "Sent to Clearing Tool" |
+| `SCAN_AVAILABLE` | Orange | `{{< hex-color "#F7941E" >}}` | "Scan Available" |
+| `REPORT_AVAILABLE` | Blue | `{{< hex-color "#0D6EFD" >}}` | "Report Available" |
+| `INTERNAL_USE_SCAN_AVAILABLE` | Purple | `{{< hex-color "#9370DB" >}}` | "Internal Use Scan Available" |
+| `APPROVED` | Green | `{{< hex-color "#69C17D" >}}` | "Approved" |
+| *Fallback / Unknown / Null* | Grey | `{{< hex-color "#DEE2E6" >}}` | "Unknown" |
 
 ---
 

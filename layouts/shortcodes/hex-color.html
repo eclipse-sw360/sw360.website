@@ -1,0 +1,14 @@
+{{/*
+Usage:
+{{< hex-color "#e6717c" >}}
+{{< hex-color "e6717c" >}}
+{{< hex-color color="#68C17C" label="Green" >}}
+*/}}
+{{- $rawColor := .Get 0 | default (.Get "color") | default "#000000" -}}
+{{- $color := cond (hasPrefix $rawColor "#") $rawColor (printf "#%s" $rawColor) -}}
+{{- $label := .Get 1 | default (.Get "label") | default $color -}}
+
+<span class="color-chip" style="display: inline-flex; align-items: center; gap: 6px; padding: 2px 7px; background: rgba(125, 125, 125, 0.12); border: 1px solid rgba(125, 125, 125, 0.25); border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85em; line-height: 1.4; vertical-align: middle; white-space: nowrap;">
+  <span>{{ $label }}</span>
+  <span class="color-swatch" style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: {{ $color | safeCSS }}; border: 1px solid rgba(0, 0, 0, 0.2); box-shadow: 0 0 1px rgba(0,0,0,0.3); flex-shrink: 0;"></span>
+</span>
