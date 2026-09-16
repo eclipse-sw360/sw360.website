@@ -13,3 +13,4 @@ This section specifies domain constraints, role definitions, and authorization l
 | ID | Title | Governing Configuration | Status |
 |---|---|---|---|
 | [BR-SEC-001](./BR-SEC-001-security-user-role-restrictions.md) | **Security User Role & REST Filter Restrictions** | `EndpointsFilter` | Approved |
+| [BR-SEC-002](./Security/BR-SEC-002-security-admin-privileges.md) | **ECC Admin Privileges** | `none` | Approved |

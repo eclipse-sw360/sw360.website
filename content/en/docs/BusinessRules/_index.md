@@ -74,6 +74,7 @@ Rules are uniquely identified using the scheme `BR-<DOMAIN>-<NNN>`:
 | ID | Title | Governing Configuration | Status |
 |---|---|---|---|
 | [BR-SEC-001](./Security/BR-SEC-001-security-user-role-restrictions.md) | **Security User Role & REST Filter Restrictions** | `EndpointsFilter` | Approved |
+| [BR-SEC-002](./Security/BR-SEC-002-security-admin-privileges.md) | **ECC Admin Privileges** | `none` | Approved |
 
 ---
 
