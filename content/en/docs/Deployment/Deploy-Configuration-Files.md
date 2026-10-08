@@ -67,8 +67,14 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `schedule.svmsync.cleanup.frequency.days` | Days between full syncs; after this many days the next run is a full sync (without `modified_after`) so SVM-side deletions can be purged locally | `7` |
 | `schedule.svmmatch.firstOffset.seconds` | Time offset for SVM matching job (seconds) since 00:00 | `7200` |
 | `schedule.svmmatch.interval.seconds` | Interval for SVM matching job (seconds) | `86400` |
+| `schedule.cvesearch.firstOffset.seconds` | Time offset for CVE search job (seconds) since 00:00 | `0` |
+| `schedule.cvesearch.interval.seconds` | Interval for CVE search job (seconds) | `86400` |
+| `schedule.svmlistupdate.firstOffset.seconds` | Time offset for SVM list update job (seconds) since 00:00 | `10800` |
 | `schedule.svmlistupdate.interval.seconds` | Interval for SVM list updates (seconds) | `86400` |
 | `schedule.trackingfeedback.firstOffset.seconds` | Time offset for tracking feedback (seconds) since 00:00 | `10800` |
+| `schedule.trackingfeedback.interval.seconds` | Interval for tracking feedback (seconds) | `86400` |
+| `schedule.srcupload.firstOffset.seconds` | Time offset for source upload job (seconds) since 00:00 | `79200` |
+| `schedule.srcupload.interval.seconds` | Interval for source upload job (seconds) | `86400` |
 | `schedule.delete.attachment.firstOffset.seconds` | Time offset for attachment deletion (seconds) since 00:00 | `0` |
 | `schedule.delete.attachment.interval.seconds` | Interval for attachment deletion (seconds) | `86400` |
 | `schedule.department.firstOffset.seconds` | Time offset for department sync (seconds) since 00:00 | `0` |
@@ -77,6 +83,11 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `enable.sw360.change.log` | Enable system-wide changelog writing to a file (in addition to CouchDB) | `false` |
 | `sw360changelog.output.path` | Output path for the change log file | `sw360changelog/sw360changelog` |
 
+For Docker deployments, the backend image exposes equivalent `SCHEDULE_*`
+environment variables in `config/sw360/.env.backend`; see the
+[backend Docker guide](https://github.com/eclipse-sw360/sw360/blob/main/README_DOCKER.md#other-runtime-settings)
+for the complete mapping. Schedule offsets are seconds after midnight, while
+intervals are expressed in seconds.
 
 #### S/MIME email signing
 
