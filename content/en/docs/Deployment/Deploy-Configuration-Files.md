@@ -34,6 +34,8 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | Property Key | Description | Default |
 | :--- | :--- | :--- |
 | `backend.url` | Base URL for Thrift | `http://localhost:8080` |
+| `backend.timeout.connection` | Thrift connection timeout in milliseconds | `5000` |
+| `backend.timeout.read` | Thrift read timeout in milliseconds | `600000` |
 | `MailUtil_host` | SMTP server host address | - |
 | `MailUtil_from` | Default sender address for system emails | `__No_Reply__@sw360.org` |
 | `MailUtil_port` | SMTP server port | `25` |
@@ -61,6 +63,10 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `svm.components.vulnerabilities.url` | SVM: Component vulnerabilities endpoint | - |
 | `svm.vulnerabilities.url` | SVM: Vulnerabilities detail endpoint | - |
 | `svm.sw360.api.url` | SVM: Base URL for SVM if not configuring individual SVM endpoints above | - |
+| `svm.sw360.componentmappings.api.url` | SVM: Component mappings endpoint | - |
+| `source.code.attachment.uploader.email` | Email address recorded as the source-code attachment uploader | - |
+| `source.download.formats` | Supported source download formats | - |
+| `src.attachment.download.location` | Location used for source attachment downloads | - |
 | `schedule.svmsync.firstOffset.seconds` | Time offset for SVM sync job (seconds) since 00:00 | `3600` |
 | `schedule.svmsync.interval.seconds` | Interval for SVM sync job (seconds) | `86400` |
 | `schedule.svmsync.delta.offset.days` | Delta sync overlap window in days; `modified_after` for each delta call is calculated as last sync end-date minus this value | `1` |
@@ -81,13 +87,33 @@ The `sw360.properties` file contains properties that are considered non-changeab
 | `schedule.department.interval.seconds` | Interval for department sync (seconds) | `3600` |
 | `subjectFor*` / `textFor*` | Various mail notification subjects and body patterns | - |
 | `enable.sw360.change.log` | Enable system-wide changelog writing to a file (in addition to CouchDB) | `false` |
+| `sw360changelog.config.file.location` | Log4j2 configuration file for the SW360 changelog | `/etc/sw360/log4j2.xml` |
 | `sw360changelog.output.path` | Output path for the change log file | `sw360changelog/sw360changelog` |
+
+REST response cache settings are supported in this file. The Docker template
+includes the cache configuration block commented out; uncomment and adjust the
+desired settings to enable or tune caching.
 
 For Docker deployments, the backend image exposes equivalent `SCHEDULE_*`
 environment variables in `config/sw360/.env.backend`; see the
 [backend Docker guide](https://github.com/eclipse-sw360/sw360/blob/main/README_DOCKER.md#other-runtime-settings)
 for the complete mapping. Schedule offsets are seconds after midnight, while
 intervals are expressed in seconds.
+
+The Docker entrypoint also maps these optional environment variables into
+`sw360.properties`:
+
+| Environment variable | Property | Default |
+| :--- | :--- | :--- |
+| `SOURCE_CODE_ATTACHMENT_UPLOADER_EMAIL` | `source.code.attachment.uploader.email` | - |
+| `SOURCE_DOWNLOAD_FORMATS` | `source.download.formats` | - |
+| `SRC_ATTACHMENT_DOWNLOAD_LOCATION` | `src.attachment.download.location` | - |
+| `SVM_SW360_COMPONENTMAPPINGS_API_URL` | `svm.sw360.componentmappings.api.url` | - |
+
+The Docker template sets the defaults for `backend.timeout.connection`,
+`backend.timeout.read`, `sw360changelog.config.file.location`, and
+`sw360changelog.output.path` directly in `sw360.properties`; these values are
+not controlled by environment variables.
 
 #### S/MIME email signing
 
@@ -562,11 +588,13 @@ The configurations are partitioned into two containers:
 | `release.sourcecodeurl.skip.domains` | Regex for domains to skip URL check in Release Source Download URL | `git(hub\|lab).com` |
 | `release.friendly.url` | Create URLs in Doc reports | `http://localhost:3000/...` |
 | `combined.cli.parser.external.id.correlation.key` | Find correlation key for combined CLI | - |
-| `rest.apitoken.length` | Configure the length of generated REST API tokens | `20` |
 | `inherit.attachment.usages` | Inherit attachmentUsages of subproject by default | `false` |
 | `vcs.hosts` | RepositoryURL class to handle VCS from SBOM | `[]` |
 | `svm.notification.url` | Configure the SVM notification URL | - |
 | `non.pkg.managed.comps.prop` | Properties of non-package managed components while importing CDX SBOM | - |
+
+`rest.apitoken.length` is database-backed and controls the length of generated
+REST API tokens (default: `20`).
 
 ### UI Container (Frontend)
 
