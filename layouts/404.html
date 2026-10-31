@@ -6,10 +6,10 @@
   </h1>
 
   <p class="lead mb-4">
-    Oops! This page doesn't exist. Try going back to our <a href="{{ " /sw360" | relURL }}">home page</a>.
+    Oops! This page doesn't exist. Try going back to our <a href="{{ .Site.Home.RelPermalink }}">home page</a>.
   </p>
 
-  <a href="{{ " /sw360" | relURL }}" class="btn btn-primary btn-lg px-4 py-2 shadow-sm">
+  <a href="{{ .Site.Home.RelPermalink }}" class="btn btn-primary btn-lg px-4 py-2 shadow-sm">
     BACK TO HOME
   </a>
 </main>
