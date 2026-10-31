@@ -12,7 +12,7 @@ The Packages page in SW360 displays all available software packages. A package i
 
 To view packages, navigate to the **Packages** tab in the main menu. You can use the Advanced Search to locate a package by various criteria. Additionally, this page allows you to add new packages and edit existing ones.
 
-{{< figure src="/img/ImagesBasic/PackagesPage/PackagePage.png" >}}
+{{< figure src="/sw360/img/ImagesBasic/PackagesPage/PackagePage.png" >}}
 
 
 
@@ -34,10 +34,10 @@ On the Packages page, you can view all the packages relevant to you. The package
 
     | Action |Description |
     |:--:|:--|
-    |{{< figure src="/img/ImagesBasic/Edit_Pen.png" >}} | To edit a package |
-    |{{< figure src="/img/ImagesBasic/Delete_Trash.png" >}} | To delete the package from SW360. |
+    |{{< figure src="/sw360/img/ImagesBasic/Edit_Pen.png" >}} | To edit a package |
+    |{{< figure src="/sw360/img/ImagesBasic/Delete_Trash.png" >}} | To delete the package from SW360. |
   
-**NOTE: USE {{< figure src="/img/ImagesBasic/SortIcon.png" >}} TO SORT THE LIST ALPHABETICALLY OR IN ASCENDING/DESCENDING ORDER.**
+**NOTE: USE {{< figure src="/sw360/img/ImagesBasic/SortIcon.png" >}} TO SORT THE LIST ALPHABETICALLY OR IN ASCENDING/DESCENDING ORDER.**
 
 ## 4.03 Package Search 
 
@@ -57,7 +57,7 @@ To add a new package, click **Add Package** from the package page, this will red
 ### **Summary**
 
 ```NOTE: FIELDS MARKED "*" ARE MANDATORY.```
-{{< figure src="/img/ImagesBasic/PackagesPage/AddPackage.png" >}}
+{{< figure src="/sw360/img/ImagesBasic/PackagesPage/AddPackage.png" >}}
 
 1. Enter the **Name** of the package you want to create.</BR>
    ```NOTE: MAKE SURE THAT THERE ARE NO DUPLICATES.```</BR>
@@ -87,7 +87,7 @@ To add a new package, click **Add Package** from the package page, this will red
 ## 4.05 Edit Package
 
 1. Search for the package you want to edit or navigate from the package list.
-2. Click on ![](/img/ImagesBasic/Edit_Pen.png) from the actions column. You can also edit a package by clicking on the package and then clicking on **Edit Package**.
+2. Click on ![](/sw360/img/ImagesBasic/Edit_Pen.png) from the actions column. You can also edit a package by clicking on the package and then clicking on **Edit Package**.
 3. You can view summary information of the package. 
 4. Click on **Update Package** to update the new package information.
 5. Click on **Delete Package** To delete the package.
@@ -106,7 +106,7 @@ To open a view mode for a package:
 ### **Summary**
 
 In this section, you can view the details of the package, including all essential information related to it.
-{{< figure src="/img/ImagesBasic/PackagesPage/EditPackage.png" >}}
+{{< figure src="/sw360/img/ImagesBasic/PackagesPage/EditPackage.png" >}}
 
 1. **Id**: This field shows the unique identifier assigned to the package.
 2. **Name**: Displays the name of the package.
@@ -128,8 +128,8 @@ In this section, you can view the details of the package, including all essentia
 
 You can see all the changes that are done for the package in the change log section.
 
-![](/img/ImagesBasic/PackagesPage/ChangeLog.png)
+![](/sw360/img/ImagesBasic/PackagesPage/ChangeLog.png)
 
 1. To view all the changes done for the package, click on **Change Log**.
 2. You can now view the change date, change log ID, change type, and the user who made the change.
-3. Click on ![](/img/ImagesBasic/PackagesPage/action.png) to view all the changes made for a specific change log ID.
+3. Click on ![](/sw360/img/ImagesBasic/PackagesPage/action.png) to view all the changes made for a specific change log ID.

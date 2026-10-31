@@ -129,9 +129,9 @@ The clearing requests are listed with the following information:
 * **Agreed Clearing Date**: The agreed date of completion for clearing request. 
 * **Request Closed on**: The actual date the clearing request is closed. 
 * **Clearing Progress** (Only applicable for open clearing requests) 
-* **Actions**: Click on ![](/sw360/img/ImagesBasic/Request_Page/Images/Edit_Pen.png) to edit the clearing request.
+* **Actions**: Click on ![](/sw360/img/ImagesBasic/Edit_Pen.png) to edit the clearing request.
 
-**NOTE: USE ![](/sw360/img/ImagesBasic/Request_Page/Images/SortIcon.png) TO SORT THE LIST ALPHABETICALLY OR IN ASCENDING/DESCENDING ORDER.**
+**NOTE: USE ![](/sw360/img/ImagesBasic/SortIcon.png) TO SORT THE LIST ALPHABETICALLY OR IN ASCENDING/DESCENDING ORDER.**
 
 ### 2. Search Clearing Requests:
 

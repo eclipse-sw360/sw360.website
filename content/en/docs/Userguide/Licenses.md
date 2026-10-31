@@ -36,8 +36,8 @@ On the License page you can view all the licenses available in SW360. The licens
   
     | Symbol                                                  | Status|
 ---------------------------------------------------------|:----:|:----:|
-    | {{< figure src="/sw360/img/ImagesBasic/Checked.png" >}} | Checked |
-    | {{< figure src="/sw360/img/ImagesBasic/Unchecked.png" >}} | Unchecked |
+    | {{< figure src="/sw360/img/ImagesBasic/LicensePage/Checked.png" >}} | Checked |
+    | {{< figure src="/sw360/img/ImagesBasic/LicensePage/Unchecked.png" >}} | Unchecked |
 
 * **License Type**: Type of the License. 
 
