@@ -23,7 +23,7 @@ The SW360 admin can change all data and promote users for more access rights, su
 
 #### Clearing Admin (Liferay Role)
 
-The clearing admin can change all component and release records and project records of the same group. This can be seen as group administrator.
+The clearing admin can change all component and release records and project records of the same group. This can be seen as group administrator. For projects, the group is matched against the user's primary department or any secondary department where the user holds the `CLEARING_ADMIN` role. Matching users can edit directly without a Moderation Request, regardless of project-level roles, subject to closed-project restrictions. Existing visibility, ECC/security permissions, and Clearing Expert role hierarchy remain unchanged. See [BR-PROJ-003](../BusinessRules/Projects/BR-PROJ-003-clearing-admin-project-modification.md).
 
 #### Security Admin (Liferay Role)
 
@@ -74,14 +74,14 @@ The row specifies which action to take, the column the role of the actor. Cell e
 | --- | ----------- | --------- | ----- | ---- | -------- | ----- |
 | create | - | - | - | PCRV | PCRVL | PCRVL |
 | read | P | P | P | (P²)CRVL | (P²)CRVL | PCRVL |
-| edit | PCR | PCR | PCR | (all created ones) | PCRVL | PCRVL |
+| edit | PCR | PCR | PCR | (all created ones) | (P²)CRVL | PCRVL |
 | delete | PCR | PCR | - | (all created ones)  | L | PCRVL |
 
 P² : only if the user is member of the group of the project (or has created the project)
 
 Note that ECC Admins and Security Admins have only the ability to write ECC and security data respectively at given records. However, as for the other access rights this role does not enhance anything above users.
 
-For permissions and update rules on **closed projects** (clearing state `CLOSED`) and the configuration setting `projects.closed.update.strict`, refer to the detailed [Projects (Closed) Documentation](../AdministrationGuide/user-management-roles.md#projects-closed).
+For permissions and update rules on **closed projects** (clearing state `CLOSED`) and the configuration setting `projects.closed.update.strict`, refer to the detailed [Projects (Closed) Documentation](../AdministrationGuide/user-management-roles.md#projects-closed), [BR-PROJ-001](../BusinessRules/Projects/BR-PROJ-001-closed-project-restrictions.md), and [BR-PROJ-003](../BusinessRules/Projects/BR-PROJ-003-clearing-admin-project-modification.md).
 
 #### Legend
 
@@ -123,6 +123,3 @@ Note that the general application of these permission operations runs in the bac
 |     | contributor | moderator | creator | user | clearing admin | admin |
 | --- | ----------- | --------- | ----- | ---- | -------- | ----- |
 | edit clearing report | - | R | R | - | R? | PCRL |
-
-
-

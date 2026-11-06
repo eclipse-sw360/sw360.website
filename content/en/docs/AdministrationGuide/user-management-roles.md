@@ -87,7 +87,7 @@ creator or moderator:
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Create records | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Edit own records | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Edit others' records directly | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
+| Edit others' records directly | ❌ | ❌ | ✅ <sup>1</sup> | ❌ | ❌ | ❌ | ✅ |
 | Approve moderation requests | ❌ | ❌ | ✅ <sup>1</sup> | ❌ | ❌ | ❌ | ✅ |
 | Edit license details | ❌ | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ |
 | Import / delete licenses (OSADL, SPDX) | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
@@ -100,8 +100,9 @@ creator or moderator:
 | Manage users & promote roles | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | Access admin configurations | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 
-*<sup>1</sup> Clearing Admin are added can approve Moderation Requests for records
-within their own department.*<br />
+*<sup>1</sup> Clearing Admins can approve Moderation Requests for records within
+their own department. They can directly edit projects in their group, matched
+through a primary or secondary department with the clearing role.*<br />
 *<sup>2</sup> Clearing Admin is the **default moderator** for clearing
 requests.*<br />
 *<sup>3</sup> Security User has read-only access to vulnerability data and a
@@ -193,15 +194,20 @@ Releases are always readable by all logged-in users.
 For **open** (non-closed) projects, access follows the standard rule-set.
 Note that for Projects, **moderators** includes: Creator, Project Responsible,
 and defined Moderators. **Contributors** additionally includes: Lead Architect
-and defined Contributors.
+and defined Contributors. A **Clearing Admin** of the same department/group can
+directly modify projects of that group without a Moderation Request,
+irrespective of whether they hold a project-level role (see
+[BR-PROJ-003](../BusinessRules/Projects/BR-PROJ-003-clearing-admin-project-modification.md)).
+Existing visibility restrictions and separately controlled ECC/security actions
+remain unchanged.
 
 | Action | Minimum Requirement | Fallback |
 |---|---|---|
 | Read | Depends on Visibility setting | — |
-| Write / Attachments | Admin, Clearing Admin/Expert (same dept), or record Moderator/Contributor | → Moderation Request |
-| Delete / Clearing | Admin, Clearing Admin (same dept), or record Moderator | → Moderation Request |
+| Write / Attachments | Admin, Clearing Admin/Expert (same dept, primary or secondary), or record Moderator/Contributor | → Moderation Request |
+| Delete / Clearing | Admin, Clearing Admin (same dept, primary or secondary), or record Moderator | → Moderation Request |
 | Write ECC | Admin only | → Moderation Request |
-| Write / AttachmentUsage | Admin, Clearing Admin (same dept), or Contributor | → Denied |
+| Write / AttachmentUsage | Admin, Clearing Admin (same dept, primary or secondary), or Contributor | → Denied |
 
 ### Projects (Closed)
 
@@ -210,42 +216,51 @@ governed by the database configuration property `projects.closed.update.strict`:
 
 #### When `projects.closed.update.strict` is `false` (default)
 
-* **Clearing Admin or above**, as well as **Moderators, Creator, Project
-    Responsible, Contributors, and Lead Architects** can modify all fields of
-    the closed project.
-* For all other users, no update requests will be accepted and
-    **no moderation request** will be created (updates are denied).
+* **Admin / SW360 Admin**, **Clearing Admin/Expert (same dept, primary or secondary)**,
+    as well as **Moderators, Creator, Project Responsible,
+    Contributors, and Lead Architects** can modify all fields of the closed
+    project without a Moderation Request.
+* For all other users, no update requests will be accepted and **no moderation
+    request** will be created (updates are denied).
 
 #### When `projects.closed.update.strict` is `true`
 
-* **Clearing Admin or above** can modify all fields.
-* **Moderators, Creator, Project Responsible, Contributors, and Lead Architects** can only modify the following fields:
+* **Admin / SW360 Admin** can modify all fields and linked dependencies.
+* **Clearing Admin/Expert (same dept, primary or secondary)** (even if not on the
+    project team), as well as **Moderators, Creator, Project Responsible,
+    Contributors, and Lead Architects** can only modify the
+    following 11 allowlisted operational maintenance fields without a Moderation
+    Request:
   * **Project State** (`state`, note: project state, not clearing state)
-  * **Project Responsibles** (`projectResponsible`)
+  * **Project Responsible** (`projectResponsible`)
   * **Project Owner** (`projectOwner`)
-  * **Security Responsible** (`securityResponsibles`)
+  * **Lead Architect** (`leadArchitect`)
+  * **Moderators** (`moderators`)
+  * **Contributors** (`contributors`)
+  * **Security Responsibles** (`securityResponsibles`)
   * **Enable Security Vulnerability Monitoring** (`enableSvm`)
   * **Display Vulnerabilities** (`enableVulnerabilitiesDisplay`)
   * **Phase-out date** (`phaseOutSince`)
   * **External IDs** (`externalIds`)
 
-  Modifications to any other fields are denied.
+  Modifications to any other fields or linked dependencies (`linkedReleases`,
+  `linkedProjects`, `packages`) are denied (`403 Forbidden`).
 * For all other users, all modifications are denied (no moderation request
   created).
 
-| Action                        | `projects.closed.update.strict = false`                                                       | `projects.closed.update.strict = true`                                                        | Fallback                         |
-|-------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|----------------------------------|
-| Read                          | Depends on Visibility setting                                                                 | Depends on Visibility setting                                                                 | —                                |
-| Update (All Fields)           | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above                                                                       | → Denied (No moderation request) |
-| Update restricted fields      | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | Clearing Admin or above, Creator, Project Responsible, Moderator, Contributor, Lead Architect | → Denied (No moderation request) |
-| Delete / Clearing / Write ECC | Admin only                                                                                    | Admin only                                                                                    | → Denied (No moderation request) |
+| Action                        | `projects.closed.update.strict = false`                                                                                       | `projects.closed.update.strict = true`                                                                                        | Fallback                         |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
+| Read                          | Depends on Visibility setting                                                                                                 | Depends on Visibility setting                                                                                                 | —                                |
+| Update (All Fields)           | Admin, Clearing Admin/Expert (same dept, primary or secondary), Creator, Project Responsible, Moderator, Contributor, Lead Architect | Admin / SW360 Admin                                                                                                           | → Denied (No moderation request) |
+| Update restricted fields      | Admin, Clearing Admin/Expert (same dept, primary or secondary), Creator, Project Responsible, Moderator, Contributor, Lead Architect | Admin, Clearing Admin/Expert (same dept, primary or secondary), Creator, Project Responsible, Moderator, Contributor, Lead Architect | → Denied (No moderation request) |
+| Delete / Clearing / Write ECC | Admin only                                                                                                                    | Admin only                                                                                                                    | → Denied (No moderation request) |
 
 > [!NOTE]
 > **Component/Release Merges Sanity Check**: If a Release or Component that is
 > linked to/used by a closed project is merged, the backend will force-update
 > the corresponding reference in the closed project as well.
 >
-> For the complete formal specification and executable test scenarios, see [BR-PROJ-001: Closed Project Update Restrictions](../BusinessRules/Projects/BR-PROJ-001-closed-project-restrictions.md).
+> For the complete formal specifications and executable test scenarios, see [BR-PROJ-001: Closed Project Update Restrictions](../BusinessRules/Projects/BR-PROJ-001-closed-project-restrictions.md) and [BR-PROJ-003: Clearing Admin Group-Scoped Project Modification Privileges](../BusinessRules/Projects/BR-PROJ-003-clearing-admin-project-modification.md).
 
 ### Licenses
 

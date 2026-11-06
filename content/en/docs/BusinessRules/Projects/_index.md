@@ -15,3 +15,4 @@ governing **Projects** within SW360.
 |---|---|---|---|
 | [BR-PROJ-001](./BR-PROJ-001-closed-project-restrictions.md) | **Closed Project Update Restrictions** | `projects.closed.update.strict` | Approved |
 | [BR-PROJ-002](./BR-PROJ-002-license-clearing-tab-badges.md) | **License Clearing Tab Status Badges** | `LicenseClearing.tsx` | Approved |
+| [BR-PROJ-003](./BR-PROJ-003-clearing-admin-project-modification.md) | **Clearing Admin Group-Scoped Project Modification Privileges** | `none` | Approved |

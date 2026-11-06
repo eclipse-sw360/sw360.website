@@ -62,6 +62,7 @@ Rules are uniquely identified using the scheme `BR-<DOMAIN>-<NNN>`:
 |---|---|---|---|
 | [BR-PROJ-001](./Projects/BR-PROJ-001-closed-project-restrictions.md) | **Closed Project Update Restrictions** | `projects.closed.update.strict` | Approved |
 | [BR-PROJ-002](./Projects/BR-PROJ-002-license-clearing-tab-badges.md) | **License Clearing Tab Status Badges** | `LicenseClearing.tsx` | Approved |
+| [BR-PROJ-003](./Projects/BR-PROJ-003-clearing-admin-project-modification.md) | **Clearing Admin Group-Scoped Project Modification Privileges** | `none` | Approved |
 
 ### Clearing (`BR-CLR`)
 
