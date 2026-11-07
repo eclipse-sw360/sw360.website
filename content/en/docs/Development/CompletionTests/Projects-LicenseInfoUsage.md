@@ -35,6 +35,17 @@ weight: 52
 
 ### License Info Table
 
+#### CLI Candidate Priority
+- **Test Case ID:** PROJ-LI-AU-013
+- **Description:** Verify CLI selection for project obligations, clearing reports, and adding license information to linked releases.
+- **Steps:**
+    1. Attach approved and non-approved CLI XML files to a linked release.
+    2. Select a non-approved CLI in the project's Attachment Usage and verify that it takes priority in Obligations tab.
+    3. Select multiple CLI files in Attachment Usage and verify in the Obligations tab that the selected set is retained with an ambiguity warning, even if only one file is approved.
+    4. Clear the CLI usage selection and verify that approved CLI files are used in Obligations tab. Multiple approved files must produce an ambiguity warning without falling back.
+    5. With no CLI usage selection and no approved CLI, verify that available CLI files are used and multiple files produce an ambiguity warning.
+- **Expected Result:** Only an empty candidate tier permits fallback: Attachment Usage, then approved CLI, then any CLI. Non-CLI and stale attachment IDs do not count as CLI candidates. Report obligation mapping and linked-release license updates retain their single-candidate requirement and skip ambiguous releases.
+
 #### Columns
 - **Test Case ID:** PROJ-LI-AU-004
 - **Description:** Verify the presence of the specified columns in the License Info Table.
